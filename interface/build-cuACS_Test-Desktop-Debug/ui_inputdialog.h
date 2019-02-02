@@ -15,11 +15,13 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QFormLayout>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
@@ -28,114 +30,125 @@ QT_BEGIN_NAMESPACE
 class Ui_InputDiag
 {
 public:
-    QDialogButtonBox *buttonBox;
-    QWidget *formLayoutWidget;
-    QFormLayout *formLayout;
+    QWidget *gridLayoutWidget;
+    QGridLayout *gridLayout;
     QLabel *nameLabel;
-    QLineEdit *nameLineEdit;
-    QLabel *speciesLabel;
+    QComboBox *speciesSelector;
     QLabel *sexLabel;
-    QLabel *ageLabel;
-    QLineEdit *ageLineEdit;
-    QComboBox *comboBox;
-    QComboBox *comboBox_2;
-    QLabel *descLabel;
+    QSpinBox *ageSpinBox;
+    QLineEdit *nameLineEdit;
     QTextEdit *descTextEdit;
+    QLabel *speciesLabel;
+    QLabel *descLabel;
+    QComboBox *sexSelector;
+    QLabel *ageLabel;
+    QSpacerItem *horizontalSpacer;
+    QWidget *buttons;
+    QPushButton *saveButton;
+    QPushButton *cancelButton;
 
     void setupUi(QDialog *InputDiag)
     {
         if (InputDiag->objectName().isEmpty())
             InputDiag->setObjectName(QStringLiteral("InputDiag"));
-        InputDiag->resize(400, 300);
-        buttonBox = new QDialogButtonBox(InputDiag);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setGeometry(QRect(110, 260, 171, 32));
-        buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
-        formLayoutWidget = new QWidget(InputDiag);
-        formLayoutWidget->setObjectName(QStringLiteral("formLayoutWidget"));
-        formLayoutWidget->setGeometry(QRect(9, 29, 381, 121));
-        formLayout = new QFormLayout(formLayoutWidget);
-        formLayout->setObjectName(QStringLiteral("formLayout"));
-        formLayout->setContentsMargins(0, 0, 0, 0);
-        nameLabel = new QLabel(formLayoutWidget);
+        InputDiag->resize(341, 291);
+        gridLayoutWidget = new QWidget(InputDiag);
+        gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
+        gridLayoutWidget->setGeometry(QRect(20, 10, 301, 241));
+        gridLayout = new QGridLayout(gridLayoutWidget);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        nameLabel = new QLabel(gridLayoutWidget);
         nameLabel->setObjectName(QStringLiteral("nameLabel"));
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, nameLabel);
+        gridLayout->addWidget(nameLabel, 0, 0, 1, 1);
 
-        nameLineEdit = new QLineEdit(formLayoutWidget);
-        nameLineEdit->setObjectName(QStringLiteral("nameLineEdit"));
+        speciesSelector = new QComboBox(gridLayoutWidget);
+        speciesSelector->setObjectName(QStringLiteral("speciesSelector"));
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, nameLineEdit);
+        gridLayout->addWidget(speciesSelector, 1, 1, 1, 1);
 
-        speciesLabel = new QLabel(formLayoutWidget);
-        speciesLabel->setObjectName(QStringLiteral("speciesLabel"));
-
-        formLayout->setWidget(1, QFormLayout::LabelRole, speciesLabel);
-
-        sexLabel = new QLabel(formLayoutWidget);
+        sexLabel = new QLabel(gridLayoutWidget);
         sexLabel->setObjectName(QStringLiteral("sexLabel"));
 
-        formLayout->setWidget(2, QFormLayout::LabelRole, sexLabel);
+        gridLayout->addWidget(sexLabel, 2, 0, 1, 1);
 
-        ageLabel = new QLabel(formLayoutWidget);
+        ageSpinBox = new QSpinBox(gridLayoutWidget);
+        ageSpinBox->setObjectName(QStringLiteral("ageSpinBox"));
+
+        gridLayout->addWidget(ageSpinBox, 3, 1, 1, 1);
+
+        nameLineEdit = new QLineEdit(gridLayoutWidget);
+        nameLineEdit->setObjectName(QStringLiteral("nameLineEdit"));
+
+        gridLayout->addWidget(nameLineEdit, 0, 1, 1, 1);
+
+        descTextEdit = new QTextEdit(gridLayoutWidget);
+        descTextEdit->setObjectName(QStringLiteral("descTextEdit"));
+
+        gridLayout->addWidget(descTextEdit, 4, 1, 1, 2);
+
+        speciesLabel = new QLabel(gridLayoutWidget);
+        speciesLabel->setObjectName(QStringLiteral("speciesLabel"));
+
+        gridLayout->addWidget(speciesLabel, 1, 0, 1, 1);
+
+        descLabel = new QLabel(gridLayoutWidget);
+        descLabel->setObjectName(QStringLiteral("descLabel"));
+
+        gridLayout->addWidget(descLabel, 4, 0, 1, 1);
+
+        sexSelector = new QComboBox(gridLayoutWidget);
+        sexSelector->setObjectName(QStringLiteral("sexSelector"));
+
+        gridLayout->addWidget(sexSelector, 2, 1, 1, 1);
+
+        ageLabel = new QLabel(gridLayoutWidget);
         ageLabel->setObjectName(QStringLiteral("ageLabel"));
 
-        formLayout->setWidget(3, QFormLayout::LabelRole, ageLabel);
+        gridLayout->addWidget(ageLabel, 3, 0, 1, 1);
 
-        ageLineEdit = new QLineEdit(formLayoutWidget);
-        ageLineEdit->setObjectName(QStringLiteral("ageLineEdit"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        formLayout->setWidget(3, QFormLayout::FieldRole, ageLineEdit);
+        gridLayout->addItem(horizontalSpacer, 0, 2, 1, 1);
 
-        comboBox = new QComboBox(formLayoutWidget);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-
-        formLayout->setWidget(1, QFormLayout::FieldRole, comboBox);
-
-        comboBox_2 = new QComboBox(formLayoutWidget);
-        comboBox_2->setObjectName(QStringLiteral("comboBox_2"));
-
-        formLayout->setWidget(2, QFormLayout::FieldRole, comboBox_2);
-
-        descLabel = new QLabel(InputDiag);
-        descLabel->setObjectName(QStringLiteral("descLabel"));
-        descLabel->setGeometry(QRect(10, 160, 80, 17));
-        descTextEdit = new QTextEdit(InputDiag);
-        descTextEdit->setObjectName(QStringLiteral("descTextEdit"));
-        descTextEdit->setGeometry(QRect(90, 160, 291, 91));
-        QWidget::setTabOrder(nameLineEdit, comboBox);
-        QWidget::setTabOrder(comboBox, comboBox_2);
-        QWidget::setTabOrder(comboBox_2, ageLineEdit);
-        QWidget::setTabOrder(ageLineEdit, descTextEdit);
+        buttons = new QWidget(InputDiag);
+        buttons->setObjectName(QStringLiteral("buttons"));
+        buttons->setGeometry(QRect(70, 260, 201, 31));
+        saveButton = new QPushButton(buttons);
+        saveButton->setObjectName(QStringLiteral("saveButton"));
+        saveButton->setGeometry(QRect(100, 0, 89, 25));
+        cancelButton = new QPushButton(buttons);
+        cancelButton->setObjectName(QStringLiteral("cancelButton"));
+        cancelButton->setGeometry(QRect(10, 0, 89, 25));
 
         retranslateUi(InputDiag);
-        QObject::connect(buttonBox, SIGNAL(accepted()), InputDiag, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), InputDiag, SLOT(reject()));
 
         QMetaObject::connectSlotsByName(InputDiag);
     } // setupUi
 
     void retranslateUi(QDialog *InputDiag)
     {
-        InputDiag->setWindowTitle(QApplication::translate("InputDiag", "Dialog", Q_NULLPTR));
-        nameLabel->setText(QApplication::translate("InputDiag", "Name", Q_NULLPTR));
-        speciesLabel->setText(QApplication::translate("InputDiag", "Species", Q_NULLPTR));
-        sexLabel->setText(QApplication::translate("InputDiag", "Sex", Q_NULLPTR));
-        ageLabel->setText(QApplication::translate("InputDiag", "Age", Q_NULLPTR));
-        comboBox->clear();
-        comboBox->insertItems(0, QStringList()
+        InputDiag->setWindowTitle(QApplication::translate("InputDiag", "Animal View", Q_NULLPTR));
+        nameLabel->setText(QApplication::translate("InputDiag", "       Name:", Q_NULLPTR));
+        speciesSelector->clear();
+        speciesSelector->insertItems(0, QStringList()
          << QApplication::translate("InputDiag", "Species", Q_NULLPTR)
          << QApplication::translate("InputDiag", "Cat", Q_NULLPTR)
          << QApplication::translate("InputDiag", "Dog", Q_NULLPTR)
         );
-        comboBox_2->clear();
-        comboBox_2->insertItems(0, QStringList()
+        sexLabel->setText(QApplication::translate("InputDiag", "          Sex:", Q_NULLPTR));
+        speciesLabel->setText(QApplication::translate("InputDiag", "    Species:", Q_NULLPTR));
+        descLabel->setText(QApplication::translate("InputDiag", "Description", Q_NULLPTR));
+        sexSelector->clear();
+        sexSelector->insertItems(0, QStringList()
          << QApplication::translate("InputDiag", "Sex", Q_NULLPTR)
          << QApplication::translate("InputDiag", "F", Q_NULLPTR)
          << QApplication::translate("InputDiag", "M", Q_NULLPTR)
         );
-        descLabel->setText(QApplication::translate("InputDiag", "Description", Q_NULLPTR));
+        ageLabel->setText(QApplication::translate("InputDiag", "          Age:", Q_NULLPTR));
+        saveButton->setText(QApplication::translate("InputDiag", "Save", Q_NULLPTR));
+        cancelButton->setText(QApplication::translate("InputDiag", "Cancel", Q_NULLPTR));
     } // retranslateUi
 
 };

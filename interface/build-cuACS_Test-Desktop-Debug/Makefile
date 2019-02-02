@@ -53,12 +53,14 @@ OBJECTS_DIR   = ./
 SOURCES       = ../cuACS_Test/main.cpp \
 		../cuACS_Test/mainwindow.cpp \
 		../cuACS_Test/inputDiag.cpp \
-		../cuACS_Test/animal.cpp moc_mainwindow.cpp \
+		../cuACS_Test/listview.cpp \
+		../cuACS_Test/entity.cpp moc_mainwindow.cpp \
 		moc_inputDiag.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		inputDiag.o \
-		animal.o \
+		listview.o \
+		entity.o \
 		moc_mainwindow.o \
 		moc_inputDiag.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -153,10 +155,12 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../cuACS_Test/cuACS_Test.pro ../cuACS_Test/mainwindow.h \
 		../cuACS_Test/inputDiag.h \
-		../cuACS_Test/animal.h ../cuACS_Test/main.cpp \
+		../cuACS_Test/listview.h \
+		../cuACS_Test/entity.h ../cuACS_Test/main.cpp \
 		../cuACS_Test/mainwindow.cpp \
 		../cuACS_Test/inputDiag.cpp \
-		../cuACS_Test/animal.cpp
+		../cuACS_Test/listview.cpp \
+		../cuACS_Test/entity.cpp
 QMAKE_TARGET  = cuACS_Test
 DESTDIR       = 
 TARGET        = cuACS_Test
@@ -372,8 +376,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../cuACS_Test/mainwindow.h ../cuACS_Test/inputDiag.h ../cuACS_Test/animal.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../cuACS_Test/main.cpp ../cuACS_Test/mainwindow.cpp ../cuACS_Test/inputDiag.cpp ../cuACS_Test/animal.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../cuACS_Test/mainwindow.h ../cuACS_Test/inputDiag.h ../cuACS_Test/listview.h ../cuACS_Test/entity.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../cuACS_Test/main.cpp ../cuACS_Test/mainwindow.cpp ../cuACS_Test/inputDiag.cpp ../cuACS_Test/listview.cpp ../cuACS_Test/entity.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../cuACS_Test/mainwindow.ui ../cuACS_Test/inputdialog.ui $(DISTDIR)/
 
 
@@ -456,8 +460,11 @@ inputDiag.o: ../cuACS_Test/inputDiag.cpp ../cuACS_Test/inputDiag.h \
 		ui_inputdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o inputDiag.o ../cuACS_Test/inputDiag.cpp
 
-animal.o: ../cuACS_Test/animal.cpp ../cuACS_Test/animal.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o animal.o ../cuACS_Test/animal.cpp
+listview.o: ../cuACS_Test/listview.cpp ../cuACS_Test/listview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o listview.o ../cuACS_Test/listview.cpp
+
+entity.o: ../cuACS_Test/entity.cpp ../cuACS_Test/entity.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entity.o ../cuACS_Test/entity.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

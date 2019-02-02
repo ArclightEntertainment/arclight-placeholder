@@ -33,4 +33,5 @@ void MainWindow::handleButtonInput()
 void MainWindow::handleButtonView()
 {
     std::cout << "Pushed View Button!" << std::endl;
+    //
 }

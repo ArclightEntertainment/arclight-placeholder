@@ -5,7 +5,8 @@
 #include <QPushButton>
 #include <QDialog>
 #include <QMainWindow>
-
+#include <QDebug>
+#include <qstring.h>
 
 namespace Ui {
 class InputDiag;
@@ -18,8 +19,13 @@ class InputDiag : public QDialog
 public:
     explicit InputDiag(QWidget *parent = 0);
     ~InputDiag();
+private slots:
+    void handleButtonSave();
+    void handleButtonCancel();
 private:
     Ui::InputDiag *ui;
+    QPushButton *saveButton;
+    QPushButton *cancelButton;
 };
 
 #endif // INPUTDIAG_H

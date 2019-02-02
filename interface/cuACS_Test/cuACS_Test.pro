@@ -28,12 +28,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     inputDiag.cpp \
-    animal.cpp
+    listview.cpp \
+    entity.cpp
 
 HEADERS += \
         mainwindow.h \
     inputDiag.h \
-    animal.h
+    listview.h \
+    entity.h
 
 FORMS += \
         mainwindow.ui \
