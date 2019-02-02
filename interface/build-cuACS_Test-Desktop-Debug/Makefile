@@ -169,7 +169,7 @@ TARGET        = cuACS_Test
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_inputdialog.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_inputdialog.h ui_listdialog.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../cuACS_Test/cuACS_Test.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -378,7 +378,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../cuACS_Test/mainwindow.h ../cuACS_Test/inputDiag.h ../cuACS_Test/listview.h ../cuACS_Test/entity.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../cuACS_Test/main.cpp ../cuACS_Test/mainwindow.cpp ../cuACS_Test/inputDiag.cpp ../cuACS_Test/listview.cpp ../cuACS_Test/entity.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../cuACS_Test/mainwindow.ui ../cuACS_Test/inputdialog.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../cuACS_Test/mainwindow.ui ../cuACS_Test/inputdialog.ui ../cuACS_Test/listdialog.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -426,9 +426,9 @@ moc_inputDiag.cpp: ../cuACS_Test/inputDiag.h \
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_inputdialog.h
+compiler_uic_make_all: ui_mainwindow.h ui_inputdialog.h ui_listdialog.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_inputdialog.h
+	-$(DEL_FILE) ui_mainwindow.h ui_inputdialog.h ui_listdialog.h
 ui_mainwindow.h: ../cuACS_Test/mainwindow.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic ../cuACS_Test/mainwindow.ui -o ui_mainwindow.h
@@ -436,6 +436,10 @@ ui_mainwindow.h: ../cuACS_Test/mainwindow.ui \
 ui_inputdialog.h: ../cuACS_Test/inputdialog.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic ../cuACS_Test/inputdialog.ui -o ui_inputdialog.h
+
+ui_listdialog.h: ../cuACS_Test/listdialog.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic ../cuACS_Test/listdialog.ui -o ui_listdialog.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:

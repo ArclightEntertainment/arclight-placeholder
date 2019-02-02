@@ -8,6 +8,8 @@
 #include <QDebug>
 #include <qstring.h>
 
+#include "entity.h"
+
 namespace Ui {
 class InputDiag;
 }

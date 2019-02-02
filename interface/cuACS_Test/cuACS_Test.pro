@@ -39,4 +39,5 @@ HEADERS += \
 
 FORMS += \
         mainwindow.ui \
-    inputdialog.ui
+    inputdialog.ui \
+    listdialog.ui
