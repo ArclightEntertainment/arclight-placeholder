@@ -1,5 +1,6 @@
 #include "inputDiag.h"
 #include "ui_inputdialog.h"
+#include <iostream>
 
 InputDiag::InputDiag(QWidget *parent) :
     QDialog(parent),
@@ -13,7 +14,30 @@ InputDiag::InputDiag(QWidget *parent) :
     connect(saveButton, SIGNAL(released()), this,SLOT(handleButtonSave()));
     connect(cancelButton, SIGNAL(released()), this,SLOT(handleButtonCancel()));
 }
+Animal* InputDiag::generateAnimalFromInput()
+{
+    Animal *newAnimal = new Animal(
+                ui->nameLineEdit->text().toStdString(),
+                ui->ageSpinBox->text().toInt(),
+                ui->sexSelector->currentText().at(0).toLatin1(),
+                ui->speciesSelector->currentText().toStdString(),
+                ui->breedLineEdit->text().toStdString()
+                );
+    newAnimal->populateSocial(
+                ui->trainingSlider->value(),
+                ui->peopleSlider->value(),
+                ui->childSlider->value(),
+                ui->animalSlider->value(),
+                ui->approachabilitySlider->value(),
+                ui->timeSlider->value()
+                );
 
+    std::cout <<newAnimal->getName() << " " << newAnimal->getSexString() << " " << newAnimal->getSpecies() << std::endl;
+    std::cout <<newAnimal->getTrainingLevel() << " " << newAnimal->getAffForPeople() << " " << newAnimal->getAffForChildren() << " ";
+    std::cout <<newAnimal->getAffForAnimals() << " " << newAnimal->getApproachability() << " " << newAnimal->getTimeCommitment() << std::endl;
+
+    return newAnimal;
+}
 void InputDiag::handleButtonSave()
 {
     //important values
@@ -25,17 +49,7 @@ void InputDiag::handleButtonSave()
     //verify -> populate
     if (name && species && sex && age)
     {
-        // qDebug() << "Name: "    << ui->nameLineEdit->text();
-        // qDebug() << "Species: " << ui->speciesSelector->currentText();
-        // qDebug() << "Sex: "     << ui->sexSelector->currentText();
-        // qDebug() << "Age: "     << ui->ageSpinBox->text()                << "\n";
-        Animal *newAnimal = new Animal(
-                    ui->nameLineEdit->text().toStdString(),
-                    ui->ageSpinBox->text().toInt(),
-                    ui->sexSelector->currentText().at(0).toLatin1(),
-                    ui->speciesSelector->currentText().toStdString(),
-                    ui->breedLineEdit->text().toStdString()
-                    );
+        Animal *newAnimal = generateAnimalFromInput();
         qDebug() << QString::fromStdString(newAnimal->getName());
         close();
     } else {

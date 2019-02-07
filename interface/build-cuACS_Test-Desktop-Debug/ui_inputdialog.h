@@ -13,14 +13,19 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTabWidget>
@@ -36,7 +41,7 @@ public:
     QWidget *verticalLayoutWidget;
     QVBoxLayout *layout;
     QTabWidget *infoTabWidget;
-    QWidget *tab;
+    QWidget *basic;
     QWidget *gridLayoutWidget;
     QGridLayout *BasicInfo;
     QLabel *nameLabel;
@@ -44,16 +49,55 @@ public:
     QLabel *sexLabel;
     QSpinBox *ageSpinBox;
     QLineEdit *nameLineEdit;
-    QTextEdit *descTextEdit;
     QLabel *speciesLabel;
     QLabel *descLabel;
     QComboBox *sexSelector;
     QLabel *ageLabel;
     QSpacerItem *horizontalSpacer;
     QLabel *label;
+    QSpacerItem *verticalSpacer_2;
     QLineEdit *breedLineEdit;
-    QWidget *tab_2;
-    QWidget *tab_3;
+    QSpacerItem *verticalSpacer;
+    QSpacerItem *verticalSpacer_3;
+    QTextEdit *descTextEdit;
+    QSpacerItem *verticalSpacer_5;
+    QSpacerItem *verticalSpacer_6;
+    QSpacerItem *verticalSpacer_4;
+    QSpacerItem *verticalSpacer_7;
+    QFrame *line;
+    QWidget *social;
+    QWidget *gridLayoutWidget_2;
+    QGridLayout *SocialInfo;
+    QLabel *animalLabel;
+    QLabel *childLabel;
+    QLabel *peopleLabel;
+    QLabel *trainingLabel;
+    QLabel *timeLabel;
+    QLabel *approachabilityLabel;
+    QSlider *trainingSlider;
+    QSlider *peopleSlider;
+    QSlider *childSlider;
+    QSlider *animalSlider;
+    QSlider *approachabilitySlider;
+    QSlider *timeSlider;
+    QWidget *history;
+    QWidget *gridLayoutWidget_3;
+    QGridLayout *gridLayout;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QPlainTextEdit *plainTextEdit;
+    QLabel *aHistLabel;
+    QSpacerItem *verticalSpacer_8;
+    QLabel *bioLabel;
+    QLabel *specNeedsLabel;
+    QLabel *immunizedLabel;
+    QTextEdit *aHistTextEdit;
+    QTextEdit *bioTextEdit;
+    QHBoxLayout *immunizedLayout;
+    QSpacerItem *horizontalSpacer_4;
+    QCheckBox *immunizedCheckbox;
+    QSpacerItem *horizontalSpacer_5;
+    QSpacerItem *verticalSpacer_9;
     QHBoxLayout *buttonLayout;
     QSpacerItem *horizontalSpacer_2;
     QWidget *buttons;
@@ -65,10 +109,10 @@ public:
     {
         if (InputDiag->objectName().isEmpty())
             InputDiag->setObjectName(QStringLiteral("InputDiag"));
-        InputDiag->resize(399, 480);
+        InputDiag->resize(501, 516);
         verticalLayoutWidget = new QWidget(InputDiag);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(10, 10, 381, 461));
+        verticalLayoutWidget->setGeometry(QRect(10, 10, 481, 501));
         layout = new QVBoxLayout(verticalLayoutWidget);
         layout->setObjectName(QStringLiteral("layout"));
         layout->setContentsMargins(0, 0, 0, 0);
@@ -79,11 +123,11 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(infoTabWidget->sizePolicy().hasHeightForWidth());
         infoTabWidget->setSizePolicy(sizePolicy);
-        tab = new QWidget();
-        tab->setObjectName(QStringLiteral("tab"));
-        gridLayoutWidget = new QWidget(tab);
+        basic = new QWidget();
+        basic->setObjectName(QStringLiteral("basic"));
+        gridLayoutWidget = new QWidget(basic);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(30, 30, 306, 252));
+        gridLayoutWidget->setGeometry(QRect(30, 30, 411, 361));
         BasicInfo = new QGridLayout(gridLayoutWidget);
         BasicInfo->setObjectName(QStringLiteral("BasicInfo"));
         BasicInfo->setContentsMargins(0, 0, 0, 0);
@@ -95,47 +139,42 @@ public:
         speciesSelector = new QComboBox(gridLayoutWidget);
         speciesSelector->setObjectName(QStringLiteral("speciesSelector"));
 
-        BasicInfo->addWidget(speciesSelector, 1, 1, 1, 1);
+        BasicInfo->addWidget(speciesSelector, 2, 1, 1, 1);
 
         sexLabel = new QLabel(gridLayoutWidget);
         sexLabel->setObjectName(QStringLiteral("sexLabel"));
 
-        BasicInfo->addWidget(sexLabel, 3, 0, 1, 1);
+        BasicInfo->addWidget(sexLabel, 6, 0, 1, 1);
 
         ageSpinBox = new QSpinBox(gridLayoutWidget);
         ageSpinBox->setObjectName(QStringLiteral("ageSpinBox"));
 
-        BasicInfo->addWidget(ageSpinBox, 5, 1, 1, 1);
+        BasicInfo->addWidget(ageSpinBox, 8, 1, 1, 1);
 
         nameLineEdit = new QLineEdit(gridLayoutWidget);
         nameLineEdit->setObjectName(QStringLiteral("nameLineEdit"));
 
         BasicInfo->addWidget(nameLineEdit, 0, 1, 1, 1);
 
-        descTextEdit = new QTextEdit(gridLayoutWidget);
-        descTextEdit->setObjectName(QStringLiteral("descTextEdit"));
-
-        BasicInfo->addWidget(descTextEdit, 6, 1, 1, 2);
-
         speciesLabel = new QLabel(gridLayoutWidget);
         speciesLabel->setObjectName(QStringLiteral("speciesLabel"));
 
-        BasicInfo->addWidget(speciesLabel, 1, 0, 1, 1);
+        BasicInfo->addWidget(speciesLabel, 2, 0, 1, 1);
 
         descLabel = new QLabel(gridLayoutWidget);
         descLabel->setObjectName(QStringLiteral("descLabel"));
 
-        BasicInfo->addWidget(descLabel, 6, 0, 1, 1);
+        BasicInfo->addWidget(descLabel, 12, 0, 1, 1);
 
         sexSelector = new QComboBox(gridLayoutWidget);
         sexSelector->setObjectName(QStringLiteral("sexSelector"));
 
-        BasicInfo->addWidget(sexSelector, 3, 1, 1, 1);
+        BasicInfo->addWidget(sexSelector, 6, 1, 1, 1);
 
         ageLabel = new QLabel(gridLayoutWidget);
         ageLabel->setObjectName(QStringLiteral("ageLabel"));
 
-        BasicInfo->addWidget(ageLabel, 5, 0, 1, 1);
+        BasicInfo->addWidget(ageLabel, 8, 0, 1, 1);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -144,20 +183,226 @@ public:
         label = new QLabel(gridLayoutWidget);
         label->setObjectName(QStringLiteral("label"));
 
-        BasicInfo->addWidget(label, 2, 0, 1, 1);
+        BasicInfo->addWidget(label, 4, 0, 1, 1);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        BasicInfo->addItem(verticalSpacer_2, 3, 1, 1, 1);
 
         breedLineEdit = new QLineEdit(gridLayoutWidget);
         breedLineEdit->setObjectName(QStringLiteral("breedLineEdit"));
 
-        BasicInfo->addWidget(breedLineEdit, 2, 1, 1, 1);
+        BasicInfo->addWidget(breedLineEdit, 4, 1, 1, 1);
 
-        infoTabWidget->addTab(tab, QString());
-        tab_2 = new QWidget();
-        tab_2->setObjectName(QStringLiteral("tab_2"));
-        infoTabWidget->addTab(tab_2, QString());
-        tab_3 = new QWidget();
-        tab_3->setObjectName(QStringLiteral("tab_3"));
-        infoTabWidget->addTab(tab_3, QString());
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        BasicInfo->addItem(verticalSpacer, 1, 1, 1, 1);
+
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        BasicInfo->addItem(verticalSpacer_3, 5, 1, 1, 1);
+
+        descTextEdit = new QTextEdit(gridLayoutWidget);
+        descTextEdit->setObjectName(QStringLiteral("descTextEdit"));
+
+        BasicInfo->addWidget(descTextEdit, 12, 1, 1, 1);
+
+        verticalSpacer_5 = new QSpacerItem(20, 60, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        BasicInfo->addItem(verticalSpacer_5, 9, 1, 1, 1);
+
+        verticalSpacer_6 = new QSpacerItem(20, 58, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        BasicInfo->addItem(verticalSpacer_6, 13, 1, 1, 1);
+
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        BasicInfo->addItem(verticalSpacer_4, 7, 1, 1, 1);
+
+        verticalSpacer_7 = new QSpacerItem(20, 60, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        BasicInfo->addItem(verticalSpacer_7, 11, 1, 1, 1);
+
+        line = new QFrame(gridLayoutWidget);
+        line->setObjectName(QStringLiteral("line"));
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+
+        BasicInfo->addWidget(line, 10, 0, 1, 3);
+
+        infoTabWidget->addTab(basic, QString());
+        social = new QWidget();
+        social->setObjectName(QStringLiteral("social"));
+        gridLayoutWidget_2 = new QWidget(social);
+        gridLayoutWidget_2->setObjectName(QStringLiteral("gridLayoutWidget_2"));
+        gridLayoutWidget_2->setGeometry(QRect(30, 30, 411, 371));
+        SocialInfo = new QGridLayout(gridLayoutWidget_2);
+        SocialInfo->setObjectName(QStringLiteral("SocialInfo"));
+        SocialInfo->setContentsMargins(0, 0, 0, 0);
+        animalLabel = new QLabel(gridLayoutWidget_2);
+        animalLabel->setObjectName(QStringLiteral("animalLabel"));
+
+        SocialInfo->addWidget(animalLabel, 3, 0, 1, 1);
+
+        childLabel = new QLabel(gridLayoutWidget_2);
+        childLabel->setObjectName(QStringLiteral("childLabel"));
+
+        SocialInfo->addWidget(childLabel, 2, 0, 1, 1);
+
+        peopleLabel = new QLabel(gridLayoutWidget_2);
+        peopleLabel->setObjectName(QStringLiteral("peopleLabel"));
+
+        SocialInfo->addWidget(peopleLabel, 1, 0, 1, 1);
+
+        trainingLabel = new QLabel(gridLayoutWidget_2);
+        trainingLabel->setObjectName(QStringLiteral("trainingLabel"));
+
+        SocialInfo->addWidget(trainingLabel, 0, 0, 1, 1);
+
+        timeLabel = new QLabel(gridLayoutWidget_2);
+        timeLabel->setObjectName(QStringLiteral("timeLabel"));
+
+        SocialInfo->addWidget(timeLabel, 5, 0, 1, 1);
+
+        approachabilityLabel = new QLabel(gridLayoutWidget_2);
+        approachabilityLabel->setObjectName(QStringLiteral("approachabilityLabel"));
+
+        SocialInfo->addWidget(approachabilityLabel, 4, 0, 1, 1);
+
+        trainingSlider = new QSlider(gridLayoutWidget_2);
+        trainingSlider->setObjectName(QStringLiteral("trainingSlider"));
+        trainingSlider->setMaximum(2);
+        trainingSlider->setSliderPosition(1);
+        trainingSlider->setOrientation(Qt::Horizontal);
+
+        SocialInfo->addWidget(trainingSlider, 0, 1, 1, 1);
+
+        peopleSlider = new QSlider(gridLayoutWidget_2);
+        peopleSlider->setObjectName(QStringLiteral("peopleSlider"));
+        peopleSlider->setMaximum(2);
+        peopleSlider->setSliderPosition(1);
+        peopleSlider->setOrientation(Qt::Horizontal);
+
+        SocialInfo->addWidget(peopleSlider, 1, 1, 1, 1);
+
+        childSlider = new QSlider(gridLayoutWidget_2);
+        childSlider->setObjectName(QStringLiteral("childSlider"));
+        childSlider->setMaximum(2);
+        childSlider->setSliderPosition(1);
+        childSlider->setOrientation(Qt::Horizontal);
+
+        SocialInfo->addWidget(childSlider, 2, 1, 1, 1);
+
+        animalSlider = new QSlider(gridLayoutWidget_2);
+        animalSlider->setObjectName(QStringLiteral("animalSlider"));
+        animalSlider->setMaximum(2);
+        animalSlider->setSliderPosition(1);
+        animalSlider->setOrientation(Qt::Horizontal);
+
+        SocialInfo->addWidget(animalSlider, 3, 1, 1, 1);
+
+        approachabilitySlider = new QSlider(gridLayoutWidget_2);
+        approachabilitySlider->setObjectName(QStringLiteral("approachabilitySlider"));
+        approachabilitySlider->setMaximum(2);
+        approachabilitySlider->setSliderPosition(1);
+        approachabilitySlider->setOrientation(Qt::Horizontal);
+
+        SocialInfo->addWidget(approachabilitySlider, 4, 1, 1, 1);
+
+        timeSlider = new QSlider(gridLayoutWidget_2);
+        timeSlider->setObjectName(QStringLiteral("timeSlider"));
+        timeSlider->setMaximum(2);
+        timeSlider->setSliderPosition(1);
+        timeSlider->setOrientation(Qt::Horizontal);
+
+        SocialInfo->addWidget(timeSlider, 5, 1, 1, 1);
+
+        infoTabWidget->addTab(social, QString());
+        history = new QWidget();
+        history->setObjectName(QStringLiteral("history"));
+        gridLayoutWidget_3 = new QWidget(history);
+        gridLayoutWidget_3->setObjectName(QStringLiteral("gridLayoutWidget_3"));
+        gridLayoutWidget_3->setGeometry(QRect(30, 30, 411, 371));
+        gridLayout = new QGridLayout(gridLayoutWidget_3);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        scrollArea = new QScrollArea(gridLayoutWidget_3);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(scrollArea->sizePolicy().hasHeightForWidth());
+        scrollArea->setSizePolicy(sizePolicy1);
+        scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 261, 72));
+        plainTextEdit = new QPlainTextEdit(scrollAreaWidgetContents);
+        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
+        plainTextEdit->setGeometry(QRect(0, 0, 261, 241));
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        gridLayout->addWidget(scrollArea, 1, 1, 1, 1);
+
+        aHistLabel = new QLabel(gridLayoutWidget_3);
+        aHistLabel->setObjectName(QStringLiteral("aHistLabel"));
+
+        gridLayout->addWidget(aHistLabel, 5, 0, 1, 1);
+
+        verticalSpacer_8 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_8, 2, 1, 1, 1);
+
+        bioLabel = new QLabel(gridLayoutWidget_3);
+        bioLabel->setObjectName(QStringLiteral("bioLabel"));
+
+        gridLayout->addWidget(bioLabel, 3, 0, 1, 1);
+
+        specNeedsLabel = new QLabel(gridLayoutWidget_3);
+        specNeedsLabel->setObjectName(QStringLiteral("specNeedsLabel"));
+
+        gridLayout->addWidget(specNeedsLabel, 1, 0, 1, 1);
+
+        immunizedLabel = new QLabel(gridLayoutWidget_3);
+        immunizedLabel->setObjectName(QStringLiteral("immunizedLabel"));
+
+        gridLayout->addWidget(immunizedLabel, 0, 0, 1, 1);
+
+        aHistTextEdit = new QTextEdit(gridLayoutWidget_3);
+        aHistTextEdit->setObjectName(QStringLiteral("aHistTextEdit"));
+
+        gridLayout->addWidget(aHistTextEdit, 5, 1, 1, 1);
+
+        bioTextEdit = new QTextEdit(gridLayoutWidget_3);
+        bioTextEdit->setObjectName(QStringLiteral("bioTextEdit"));
+
+        gridLayout->addWidget(bioTextEdit, 3, 1, 1, 1);
+
+        immunizedLayout = new QHBoxLayout();
+        immunizedLayout->setObjectName(QStringLiteral("immunizedLayout"));
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        immunizedLayout->addItem(horizontalSpacer_4);
+
+        immunizedCheckbox = new QCheckBox(gridLayoutWidget_3);
+        immunizedCheckbox->setObjectName(QStringLiteral("immunizedCheckbox"));
+
+        immunizedLayout->addWidget(immunizedCheckbox);
+
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        immunizedLayout->addItem(horizontalSpacer_5);
+
+
+        gridLayout->addLayout(immunizedLayout, 0, 1, 1, 1);
+
+        verticalSpacer_9 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_9, 4, 1, 1, 1);
+
+        infoTabWidget->addTab(history, QString());
 
         layout->addWidget(infoTabWidget);
 
@@ -193,9 +438,15 @@ public:
         QWidget::setTabOrder(breedLineEdit, sexSelector);
         QWidget::setTabOrder(sexSelector, ageSpinBox);
         QWidget::setTabOrder(ageSpinBox, descTextEdit);
-        QWidget::setTabOrder(descTextEdit, saveButton);
-        QWidget::setTabOrder(saveButton, cancelButton);
-        QWidget::setTabOrder(cancelButton, infoTabWidget);
+        QWidget::setTabOrder(descTextEdit, cancelButton);
+        QWidget::setTabOrder(cancelButton, saveButton);
+        QWidget::setTabOrder(saveButton, infoTabWidget);
+        QWidget::setTabOrder(infoTabWidget, trainingSlider);
+        QWidget::setTabOrder(trainingSlider, peopleSlider);
+        QWidget::setTabOrder(peopleSlider, childSlider);
+        QWidget::setTabOrder(childSlider, animalSlider);
+        QWidget::setTabOrder(animalSlider, approachabilitySlider);
+        QWidget::setTabOrder(approachabilitySlider, timeSlider);
 
         retranslateUi(InputDiag);
 
@@ -226,9 +477,20 @@ public:
         );
         ageLabel->setText(QApplication::translate("InputDiag", "          Age:", Q_NULLPTR));
         label->setText(QApplication::translate("InputDiag", "      Breed:", Q_NULLPTR));
-        infoTabWidget->setTabText(infoTabWidget->indexOf(tab), QApplication::translate("InputDiag", "Basic Info", Q_NULLPTR));
-        infoTabWidget->setTabText(infoTabWidget->indexOf(tab_2), QApplication::translate("InputDiag", "Social", Q_NULLPTR));
-        infoTabWidget->setTabText(infoTabWidget->indexOf(tab_3), QApplication::translate("InputDiag", "History", Q_NULLPTR));
+        infoTabWidget->setTabText(infoTabWidget->indexOf(basic), QApplication::translate("InputDiag", "Basic Info", Q_NULLPTR));
+        animalLabel->setText(QApplication::translate("InputDiag", "   Affinity, Animals: ", Q_NULLPTR));
+        childLabel->setText(QApplication::translate("InputDiag", "   Affinity, Children: ", Q_NULLPTR));
+        peopleLabel->setText(QApplication::translate("InputDiag", "     Affinity, People: ", Q_NULLPTR));
+        trainingLabel->setText(QApplication::translate("InputDiag", "                Training: ", Q_NULLPTR));
+        timeLabel->setText(QApplication::translate("InputDiag", "Time Commitment: ", Q_NULLPTR));
+        approachabilityLabel->setText(QApplication::translate("InputDiag", "    Approachability: ", Q_NULLPTR));
+        infoTabWidget->setTabText(infoTabWidget->indexOf(social), QApplication::translate("InputDiag", "Social", Q_NULLPTR));
+        aHistLabel->setText(QApplication::translate("InputDiag", "History of Abuse: ", Q_NULLPTR));
+        bioLabel->setText(QApplication::translate("InputDiag", "          Biography: ", Q_NULLPTR));
+        specNeedsLabel->setText(QApplication::translate("InputDiag", "   Special Needs: ", Q_NULLPTR));
+        immunizedLabel->setText(QApplication::translate("InputDiag", "        Immunized: ", Q_NULLPTR));
+        immunizedCheckbox->setText(QString());
+        infoTabWidget->setTabText(infoTabWidget->indexOf(history), QApplication::translate("InputDiag", "History", Q_NULLPTR));
         saveButton->setText(QApplication::translate("InputDiag", "Save", Q_NULLPTR));
         cancelButton->setText(QApplication::translate("InputDiag", "Cancel", Q_NULLPTR));
     } // retranslateUi
