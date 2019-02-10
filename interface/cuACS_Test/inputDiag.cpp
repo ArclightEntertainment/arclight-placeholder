@@ -14,16 +14,16 @@ InputDiag::InputDiag(QWidget *parent) :
     connect(saveButton, SIGNAL(released()), this,SLOT(handleButtonSave()));
     connect(cancelButton, SIGNAL(released()), this,SLOT(handleButtonCancel()));
 }
-Animal* InputDiag::generateAnimalFromInput()
+Animal& InputDiag::generateAnimalFromInput()
 {
-    Animal *newAnimal = new Animal(
+    Animal &newAnimal = *new Animal(
                 ui->nameLineEdit->text().toStdString(),
                 ui->ageSpinBox->text().toInt(),
                 ui->sexSelector->currentText().at(0).toLatin1(),
                 ui->speciesSelector->currentText().toStdString(),
                 ui->breedLineEdit->text().toStdString()
                 );
-    newAnimal->populateSocial(
+    newAnimal.populateSocial(
                 ui->trainingSlider->value(),
                 ui->peopleSlider->value(),
                 ui->childSlider->value(),
@@ -32,12 +32,22 @@ Animal* InputDiag::generateAnimalFromInput()
                 ui->timeSlider->value()
                 );
 
-    std::cout <<newAnimal->getName() << " " << newAnimal->getSexString() << " " << newAnimal->getSpecies() << std::endl;
-    std::cout <<newAnimal->getTrainingLevel() << " " << newAnimal->getAffForPeople() << " " << newAnimal->getAffForChildren() << " ";
-    std::cout <<newAnimal->getAffForAnimals() << " " << newAnimal->getApproachability() << " " << newAnimal->getTimeCommitment() << std::endl;
+    newAnimal.populateHistory(
+                ui->immunizedCheckbox->isChecked(),
+                ui->dietLineEdit->text().toStdString(),
+                ui->mobilityLineEdit->text().toStdString(),
+                ui->disabLineEdit->text().toStdString(),
+                ui->bioTextEdit->toPlainText().toStdString(),
+                ui->aHistTextEdit->toPlainText().toStdString()
+                );
+
+    std::cout <<newAnimal.getName() << " " << newAnimal.getSexString() << " " << newAnimal.getSpecies() << std::endl;
+    std::cout <<newAnimal.getTrainingLevel() << " " << newAnimal.getAffForPeople() << " " << newAnimal.getAffForChildren() << " ";
+    std::cout <<newAnimal.getAffForAnimals() << " " << newAnimal.getApproachability() << " " << newAnimal.getTimeCommitment() << std::endl;
 
     return newAnimal;
 }
+
 void InputDiag::handleButtonSave()
 {
     //important values
@@ -49,13 +59,14 @@ void InputDiag::handleButtonSave()
     //verify -> populate
     if (name && species && sex && age)
     {
-        Animal *newAnimal = generateAnimalFromInput();
-        qDebug() << QString::fromStdString(newAnimal->getName());
+        Animal &newAnimal = generateAnimalFromInput();
+        qDebug() << QString::fromStdString(newAnimal.getName());
         close();
     } else {
 //Make a warning dialog
     }
 }
+
 void InputDiag::handleButtonCancel()
 {
     close();

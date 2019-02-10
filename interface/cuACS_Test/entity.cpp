@@ -33,10 +33,12 @@ void Animal::populateSocial(int trLevel, int peopleLevel, int childLevel, int an
     social.timeCommitment = (tiLevel == 0) ? Level::LOW : ((tiLevel == 1) ? Level::MEDIUM : Level::HIGH);
 }
 
-void Animal::populateHistory(bool imm, std::string specNeedsString, std::string bio, std::string aHist)
+void Animal::populateHistory(bool imm, std::string dietString, std::string mobilityString, std::string disabilityString, std::string bio, std::string aHist)
 {
     history.immunized = imm;
+    history.dietNeeds = dietString;
+    history.mobilityNeeds = mobilityString;
+    history.disabilityNeeds = disabilityString;
     history.biography = bio;
     history.abuseHistory = aHist;
-
 }

@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_InputDiag_t {
-    QByteArrayData data[6];
-    char stringdata0[79];
+    QByteArrayData data[5];
+    char stringdata0[71];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,13 +35,11 @@ QT_MOC_LITERAL(0, 0, 9), // "InputDiag"
 QT_MOC_LITERAL(1, 10, 16), // "handleButtonSave"
 QT_MOC_LITERAL(2, 27, 0), // ""
 QT_MOC_LITERAL(3, 28, 18), // "handleButtonCancel"
-QT_MOC_LITERAL(4, 47, 23), // "generateAnimalFromInput"
-QT_MOC_LITERAL(5, 71, 7) // "Animal*"
+QT_MOC_LITERAL(4, 47, 23) // "generateAnimalFromInput"
 
     },
     "InputDiag\0handleButtonSave\0\0"
-    "handleButtonCancel\0generateAnimalFromInput\0"
-    "Animal*"
+    "handleButtonCancel\0generateAnimalFromInput"
 };
 #undef QT_MOC_LITERAL
 
@@ -66,7 +64,7 @@ static const uint qt_meta_data_InputDiag[] = {
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    0x80000000 | 5,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -79,11 +77,11 @@ void InputDiag::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         switch (_id) {
         case 0: _t->handleButtonSave(); break;
         case 1: _t->handleButtonCancel(); break;
-        case 2: { Animal* _r = _t->generateAnimalFromInput();
-            if (_a[0]) *reinterpret_cast< Animal**>(_a[0]) = std::move(_r); }  break;
+        case 2: _t->generateAnimalFromInput(); break;
         default: ;
         }
     }
+    Q_UNUSED(_a);
 }
 
 const QMetaObject InputDiag::staticMetaObject = {

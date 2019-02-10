@@ -50,7 +50,9 @@ struct socialInfo{
 struct historyInfo{
     int disabled;
     bool immunized;
-    std::vector<std::string> specialNeeds;
+    std::string dietNeeds;
+    std::string mobilityNeeds;
+    std::string disabilityNeeds;
     std::string abuseHistory;
     std::string biography;
 };
@@ -71,7 +73,7 @@ public:
     Animal();
     Animal(std::string n, int a, char sx, std::string sp, std::string b);
     void populateSocial(int trLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel);
-    void populateHistory(bool immunized, std::string specialNeedsString, std::string bio, std::string aHist);
+    void populateHistory(bool imm, std::string dietString, std::string mobilityString, std::string disabilityString, std::string bio, std::string aHist);
 //Getters
     //basicInfo
     inline std::string getName() {return basic.name;}
@@ -91,7 +93,9 @@ public:
 
     //historyInfo
     inline bool isDisabled() {return history.disabled;}
-    inline std::vector<std::string> getSpecialNeeds() {return history.specialNeeds;}
+    inline std::string getDietNeeds() {return history.dietNeeds;}
+    inline std::string getMobilityNeeds() {return history.mobilityNeeds;}
+    inline std::string getDisabilityNeeds() {return history.disabilityNeeds;}
     inline std::string getAbuseHistory() {return history.abuseHistory;}
     inline std::string getBiography() {return history.biography;}
 
@@ -113,7 +117,14 @@ public:
 
     //history
     inline void setDisabled(bool d) {history.disabled = d;}
-    inline void addSpecialNeed(std::string n) {history.specialNeeds.push_back(n);}
+    inline void setDietNeeds(        std::string nstring) {history.dietNeeds = nstring;}
+    inline void setMobilityNeeds(    std::string nstring) {history.mobilityNeeds = nstring;}
+    inline void setDisabilityNeeds(  std::string nstring) {history.disabilityNeeds = nstring;}
+
+    inline void addDietNeeds(        std::string nstring) {history.dietNeeds         .append(", "); history.dietNeeds         .append(nstring);}
+    inline void addMobilityNeeds(    std::string nstring) {history.mobilityNeeds     .append(", "); history.mobilityNeeds     .append(nstring);}
+    inline void addDisabilityNeeds(  std::string nstring) {history.disabilityNeeds   .append(", "); history.disabilityNeeds   .append(nstring);}
+
     inline void setAbuseHistory(std::string aH) {history.abuseHistory = aH;}
     inline void setBiography(std::string b) {history.biography = b;}
 };

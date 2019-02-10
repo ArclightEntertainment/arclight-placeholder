@@ -16,15 +16,14 @@
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
@@ -83,9 +82,6 @@ public:
     QWidget *history;
     QWidget *gridLayoutWidget_3;
     QGridLayout *gridLayout;
-    QScrollArea *scrollArea;
-    QWidget *scrollAreaWidgetContents;
-    QPlainTextEdit *plainTextEdit;
     QLabel *aHistLabel;
     QSpacerItem *verticalSpacer_8;
     QLabel *bioLabel;
@@ -98,6 +94,13 @@ public:
     QCheckBox *immunizedCheckbox;
     QSpacerItem *horizontalSpacer_5;
     QSpacerItem *verticalSpacer_9;
+    QFormLayout *formLayout;
+    QLabel *label_2;
+    QLineEdit *dietLineEdit;
+    QLabel *label_3;
+    QLineEdit *mobilityLineEdit;
+    QLabel *label_4;
+    QLineEdit *disabLineEdit;
     QHBoxLayout *buttonLayout;
     QSpacerItem *horizontalSpacer_2;
     QWidget *buttons;
@@ -326,26 +329,6 @@ public:
         gridLayout = new QGridLayout(gridLayoutWidget_3);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        scrollArea = new QScrollArea(gridLayoutWidget_3);
-        scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(scrollArea->sizePolicy().hasHeightForWidth());
-        scrollArea->setSizePolicy(sizePolicy1);
-        scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-        scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-        scrollArea->setWidgetResizable(true);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 261, 72));
-        plainTextEdit = new QPlainTextEdit(scrollAreaWidgetContents);
-        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        plainTextEdit->setGeometry(QRect(0, 0, 261, 241));
-        scrollArea->setWidget(scrollAreaWidgetContents);
-
-        gridLayout->addWidget(scrollArea, 1, 1, 1, 1);
-
         aHistLabel = new QLabel(gridLayoutWidget_3);
         aHistLabel->setObjectName(QStringLiteral("aHistLabel"));
 
@@ -402,6 +385,42 @@ public:
 
         gridLayout->addItem(verticalSpacer_9, 4, 1, 1, 1);
 
+        formLayout = new QFormLayout();
+        formLayout->setObjectName(QStringLiteral("formLayout"));
+        label_2 = new QLabel(gridLayoutWidget_3);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        formLayout->setWidget(0, QFormLayout::LabelRole, label_2);
+
+        dietLineEdit = new QLineEdit(gridLayoutWidget_3);
+        dietLineEdit->setObjectName(QStringLiteral("dietLineEdit"));
+        dietLineEdit->setEchoMode(QLineEdit::Normal);
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, dietLineEdit);
+
+        label_3 = new QLabel(gridLayoutWidget_3);
+        label_3->setObjectName(QStringLiteral("label_3"));
+
+        formLayout->setWidget(1, QFormLayout::LabelRole, label_3);
+
+        mobilityLineEdit = new QLineEdit(gridLayoutWidget_3);
+        mobilityLineEdit->setObjectName(QStringLiteral("mobilityLineEdit"));
+
+        formLayout->setWidget(1, QFormLayout::FieldRole, mobilityLineEdit);
+
+        label_4 = new QLabel(gridLayoutWidget_3);
+        label_4->setObjectName(QStringLiteral("label_4"));
+
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_4);
+
+        disabLineEdit = new QLineEdit(gridLayoutWidget_3);
+        disabLineEdit->setObjectName(QStringLiteral("disabLineEdit"));
+
+        formLayout->setWidget(2, QFormLayout::FieldRole, disabLineEdit);
+
+
+        gridLayout->addLayout(formLayout, 1, 1, 1, 1);
+
         infoTabWidget->addTab(history, QString());
 
         layout->addWidget(infoTabWidget);
@@ -450,7 +469,7 @@ public:
 
         retranslateUi(InputDiag);
 
-        infoTabWidget->setCurrentIndex(2);
+        infoTabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(InputDiag);
@@ -490,6 +509,13 @@ public:
         specNeedsLabel->setText(QApplication::translate("InputDiag", "   Special Needs: ", Q_NULLPTR));
         immunizedLabel->setText(QApplication::translate("InputDiag", "        Immunized: ", Q_NULLPTR));
         immunizedCheckbox->setText(QString());
+        label_2->setText(QApplication::translate("InputDiag", "Dietary: ", Q_NULLPTR));
+        dietLineEdit->setText(QString());
+        dietLineEdit->setPlaceholderText(QApplication::translate("InputDiag", "Dietary Restrictions", Q_NULLPTR));
+        label_3->setText(QApplication::translate("InputDiag", "Mobility: ", Q_NULLPTR));
+        mobilityLineEdit->setPlaceholderText(QApplication::translate("InputDiag", "Mobility Restrictions", Q_NULLPTR));
+        label_4->setText(QApplication::translate("InputDiag", "Disabilities: ", Q_NULLPTR));
+        disabLineEdit->setPlaceholderText(QApplication::translate("InputDiag", "Physical Disabilities", Q_NULLPTR));
         infoTabWidget->setTabText(infoTabWidget->indexOf(history), QApplication::translate("InputDiag", "History", Q_NULLPTR));
         saveButton->setText(QApplication::translate("InputDiag", "Save", Q_NULLPTR));
         cancelButton->setText(QApplication::translate("InputDiag", "Cancel", Q_NULLPTR));
