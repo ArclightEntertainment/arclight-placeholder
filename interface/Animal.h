@@ -1,7 +1,6 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 #include <string>
-#include<vector>
 
 enum Level {LOW=0, MEDIUM=1, HIGH=2};
 

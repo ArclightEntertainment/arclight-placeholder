@@ -48,27 +48,7 @@
          </rect>
         </property>
         <layout class="QGridLayout" name="BasicInfo">
-         <item row="6" column="0">
-          <widget class="QLabel" name="sexLabel">
-           <property name="text">
-            <string>               Sex:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <spacer name="verticalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="14" column="1">
+         <item row="15" column="1">
           <spacer name="verticalSpacer_6">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
@@ -82,7 +62,17 @@
           </spacer>
          </item>
          <item row="8" column="1">
-          <widget class="QSpinBox" name="ageSpinBox"/>
+          <widget class="QSpinBox" name="ageSpinBox">
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="minimum">
+            <number>0</number>
+           </property>
+          </widget>
          </item>
          <item row="1" column="1">
           <spacer name="verticalSpacer">
@@ -104,7 +94,7 @@
            </property>
           </widget>
          </item>
-         <item row="13" column="1">
+         <item row="14" column="1">
           <widget class="QTextEdit" name="descTextEdit"/>
          </item>
          <item row="0" column="0">
@@ -140,7 +130,7 @@
            </property>
           </spacer>
          </item>
-         <item row="13" column="0">
+         <item row="14" column="0">
           <widget class="QLabel" name="descLabel">
            <property name="text">
             <string>Description</string>
@@ -156,6 +146,12 @@
          </item>
          <item row="6" column="1">
           <widget class="QComboBox" name="sexSelector">
+           <property name="maximumSize">
+            <size>
+             <width>60</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <item>
             <property name="text">
              <string>Sex</string>
@@ -187,7 +183,7 @@
           </spacer>
          </item>
          <item row="4" column="0">
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="breedLabel">
            <property name="text">
             <string>           Breed:</string>
            </property>
@@ -218,7 +214,7 @@
            </item>
           </widget>
          </item>
-         <item row="12" column="1">
+         <item row="13" column="1">
           <spacer name="verticalSpacer_7">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
@@ -231,7 +227,7 @@
            </property>
           </spacer>
          </item>
-         <item row="11" column="0" colspan="3">
+         <item row="12" column="0" colspan="3">
           <widget class="Line" name="line">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -258,6 +254,26 @@
            </property>
           </widget>
          </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="sexLabel">
+           <property name="text">
+            <string>               Sex:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
          <item row="9" column="1">
           <widget class="QSlider" name="careSlider">
            <property name="maximum">
@@ -268,6 +284,23 @@
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="0">
+          <widget class="QLabel" name="shelterIDLabel">
+           <property name="text">
+            <string>     Shelter ID:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="1">
+          <widget class="QLineEdit" name="shelterIDLineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
            </property>
           </widget>
          </item>
@@ -633,6 +666,9 @@
          <property name="text">
           <string>Cancel</string>
          </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
         </widget>
        </widget>
       </item>
@@ -660,7 +696,8 @@
   <tabstop>breedLineEdit</tabstop>
   <tabstop>sexSelector</tabstop>
   <tabstop>ageSpinBox</tabstop>
-  <tabstop>descTextEdit</tabstop>
+  <tabstop>careSlider</tabstop>
+  <tabstop>shelterIDLineEdit</tabstop>
   <tabstop>cancelButton</tabstop>
   <tabstop>saveButton</tabstop>
   <tabstop>infoTabWidget</tabstop>
@@ -670,6 +707,13 @@
   <tabstop>animalSlider</tabstop>
   <tabstop>approachabilitySlider</tabstop>
   <tabstop>timeSlider</tabstop>
+  <tabstop>immunizedCheckbox</tabstop>
+  <tabstop>dietLineEdit</tabstop>
+  <tabstop>mobilityLineEdit</tabstop>
+  <tabstop>disabLineEdit</tabstop>
+  <tabstop>bioTextEdit</tabstop>
+  <tabstop>aHistTextEdit</tabstop>
+  <tabstop>descTextEdit</tabstop>
  </tabstops>
  <resources/>
  <connections/>

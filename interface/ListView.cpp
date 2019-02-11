@@ -9,6 +9,8 @@ ListView::ListView(AnimalManager *aM, QWidget *parent) :
     ui->setupUi(this);
 
     animalList = ui->animalTableWidget;
+    animalList->setSelectionBehavior(QAbstractItemView::SelectRows);
+    animalList->setSelectionMode(QAbstractItemView::SingleSelection);
     manager = aM;
 
     updateListView();
@@ -27,11 +29,23 @@ void ListView::updateListView()
 
     for(int i = 0; i < manager->getNumAnimals(); i++)
     {
-        animalList->setItem(i, 0, new QTableWidgetItem (QString::fromStdString(a[i].getName())));    //Name
-        animalList->setItem(i, 1, new QTableWidgetItem (QString::fromStdString(a[i].getSpecies())));    //Species
-        animalList->setItem(i, 2, new QTableWidgetItem (QString::fromStdString(a[i].getBreed())));    //Breed
-        animalList->setItem(i, 3, new QTableWidgetItem (QString::number(a[i].getAge())));    //Age
-        animalList->setItem(i, 4, new QTableWidgetItem (QString(QChar::fromLatin1(a[i].getSex()))));    //Sex
+        QTableWidgetItem *name = new QTableWidgetItem (QString::fromStdString(a[i].getName()));
+        QTableWidgetItem *species = new QTableWidgetItem (QString::fromStdString(a[i].getSpecies()));
+        QTableWidgetItem *breed = new QTableWidgetItem (QString::fromStdString(a[i].getBreed()));
+        QTableWidgetItem *age = new QTableWidgetItem (QString::number(a[i].getAge()));
+        QTableWidgetItem *sex = new QTableWidgetItem (QString(QChar::fromLatin1(a[i].getSex())));
+
+        name->setFlags(name->flags() ^ Qt::ItemIsEditable);
+        species->setFlags(species->flags() ^ Qt::ItemIsEditable);
+        breed->setFlags(breed->flags() ^ Qt::ItemIsEditable);
+        age->setFlags(age->flags() ^ Qt::ItemIsEditable);
+        sex->setFlags(sex->flags() ^ Qt::ItemIsEditable);
+
+        animalList->setItem(i, 0, name);    //Name
+        animalList->setItem(i, 1, species);    //Species
+        animalList->setItem(i, 2, breed);    //Breed
+        animalList->setItem(i, 3, age);    //Age
+        animalList->setItem(i, 4, sex);    //Sex
     }
     animalList->setColumnWidth(0, 150); //Name
     animalList->setColumnWidth(1, 150); //Species

@@ -3,6 +3,7 @@
 
 #include <QCoreApplication>
 #include <QPushButton>
+#include <QMessageBox>
 #include <QDialog>
 #include <QMainWindow>
 #include <QDebug>
