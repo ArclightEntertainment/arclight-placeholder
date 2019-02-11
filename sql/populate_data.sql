@@ -1,12 +1,13 @@
-DROP TABLE IF EXISTS Animals;
 CREATE TABLE IF NOT EXISTS Animals(
-	animalID INTEGER PRIMARY KEY AUTOINCREMENT,
+	shelterID INTEGER NOT NULL,
 	animalName text NOT NULL,
+	animalSpecies text NOT NULL,
+	animalBreed text NOT NULL,
 	animalAge INTEGER NOT NULL,
 	animalSex text NOT NULL,
 	animalTrainingLevel INTEGER NOT NULL,
 	animalAffinityForPeople INTEGER NOT NULL,
-	animalAffinityForChildren INTEGER NOT NULL, 
+	animalAffinityForChildren INTEGER NOT NULL,
 	animalAffinityForAnimals INTEGER NOT NULL,
 	animalApproachability INTEGER NOT NULL,
 	animalTimeCommitment INTEGER NOT NULL,
@@ -14,15 +15,30 @@ CREATE TABLE IF NOT EXISTS Animals(
 	animalMobilityNeeds text,
 	animalDisablityNeeds text,
 	animalAbuseHistory text,
-	animalBiography text
+	animalBiography text,
+	FOREIGN KEY(animalSpecies, animalBreed) REFERENCES AnimalsBreedsRelationship(speciesName, breedName)
+	PRIMARY KEY(shelterID)
 );
-/*
+
 CREATE TABLE IF NOT EXISTS Species(
-	speciesName
+	speciesName text NOT NULL,
+	primary key(speciesName)
 );
-*/
+
+CREATE TABLE IF NOT EXISTS Breeds(
+	speciesName text NOT NULL,
+	breedName text NOT NULL,
+	FOREIGN KEY(speciesName) REFERENCES Species(speciesName),
+	PRIMARY KEY(speciesName, breedName)
+);
+
+CREATE TABLE IF NOT EXISTS AnimalsBreedsRelationship(
+	shelterID INTEGER NOT NULL,
+	breedName text NOT NULL,
+	FOREIGN KEY(shelterID) REFERENCES Animals(shelterID),
+	FOREIGN KEY(breedName) REFERENCES Breeds(breedName)
+);
 /*
-DROP TABLE IF EXISTS Clients;
 CREATE TABLE IF NOT EXISTS Clients(
 	clientID INTEGER NOT NULL,
 	clientFName text NOT NULL,
@@ -33,10 +49,28 @@ CREATE TABLE IF NOT EXISTS Clients(
 );
 */
 begin transaction;
+INSERT OR REPLACE INTO
+	Species(
+		speciesName
+	)VALUES(
+		"Cat"
+	);
 
-insert or replace into 
+INSERT OR REPLACE INTO
+	Breeds(
+		speciesName,
+		breedName
+	)VALUES(
+		"Cat",
+		"Tabby"
+	);
+
+INSERT OR REPLACE INTO
 	Animals(
+		shelterID,
 		animalName,
+		animalSpecies,
+		animalBreed,
 		animalAge,
 		animalSex,
 		animalTrainingLevel,
@@ -50,8 +84,11 @@ insert or replace into
 		animalDisablityNeeds,
 		animalAbuseHistory,
 		animalBiography
-	)values(
+	)VALUES(
+		0,
 		"Linus",
+		"Cat",
+		"Tabby",
 		3,
 		"M",
 		1,
@@ -66,9 +103,12 @@ insert or replace into
 		NULL,
 		"Loves people"
 	);
-insert or replace into 
+INSERT OR REPLACE INTO
 	Animals(
+		shelterID,
 		animalName,
+		animalSpecies,
+		animalBreed,
 		animalAge,
 		animalSex,
 		animalTrainingLevel,
@@ -82,8 +122,11 @@ insert or replace into
 		animalDisablityNeeds,
 		animalAbuseHistory,
 		animalBiography
-	)values(
+	)VALUES(
+		1,
 		"Quinn",
+		"Cat",
+		"Tabby",
 		3,
 		"M",
 		1,
