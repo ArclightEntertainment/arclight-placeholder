@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-01-31T09:50:56
+# Project created by QtCreator 2019-02-11T05:58:30
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = cuACS_Test
+TARGET = cuACS
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -25,21 +25,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 LIBS += -lsqlite3
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    inputDiag.cpp \
-    animal.cpp \
-    animalmanager.cpp \
-    listView.cpp
+    data/DatabaseInterface.cpp \
+    interface/main.cpp \
+    interface/Animal.cpp \
+    interface/AnimalManager.cpp \
+    interface/InputDiag.cpp \
+    interface/ListView.cpp \
+    interface/MainWindow.cpp
 
 HEADERS += \
-        mainwindow.h \
-    inputDiag.h \
-    animal.h \
-    animalmanager.h \
-    listView.h
+    data/DatabaseInterface.h \
+    interface/Animal.h \
+    interface/AnimalManager.h \
+    interface/InputDiag.h \
+    interface/ListView.h \
+    interface/MainWindow.h
 
 FORMS += \
-        mainwindow.ui \
-    inputdialog.ui \
-    listview.ui
+    interface/inputdialog.ui \
+    interface/listview.ui \
+    interface/mainwindow.ui

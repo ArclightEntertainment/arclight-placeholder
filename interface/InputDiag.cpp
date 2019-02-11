@@ -1,4 +1,4 @@
-#include "inputDiag.h"
+#include "InputDiag.h"
 #include "ui_inputdialog.h"
 #include <iostream>
 
@@ -19,6 +19,7 @@ InputDiag::InputDiag(AnimalManager *manager, QWidget *parent) :
 Animal& InputDiag::generateAnimalFromInput()
 {
     Animal &newAnimal = *new Animal(
+                ui->ageSpinBox->text().toInt(),
                 ui->nameLineEdit->text().toStdString(),
                 ui->ageSpinBox->text().toInt(),
                 ui->sexSelector->currentText().at(0).toLatin1(),

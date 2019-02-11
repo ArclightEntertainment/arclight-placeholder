@@ -10,7 +10,7 @@
 #include <QDebug>
 #include <qstring.h>
 
-#include "animalmanager.h"
+#include "AnimalManager.h"
 
 namespace Ui {
 class ListView;

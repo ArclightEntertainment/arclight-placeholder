@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "animal.h"
+#include "Animal.h"
 
 
 class AnimalManager

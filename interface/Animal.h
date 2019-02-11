@@ -37,6 +37,7 @@ class Animal
 private:
 //Static Animal Info
     //basic information
+    int shelterID;
     std::string name;
     int age;
     char sex;
@@ -60,11 +61,12 @@ private:
     std::string biography;
 public:
     Animal();
-    Animal(std::string n, int a, char sx, std::string sp, std::string b, int cL);
+    Animal(int id, std::string n, int a, char sx, std::string sp, std::string b, int cL);
     void populateSocial(int trLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel);
     void populateHistory(bool imm, std::string dietString, std::string mobilityString, std::string disabilityString, std::string bio, std::string aHist);
 //Getters
     //basicInfo
+    inline int getShelterID() {return shelterID;}
     inline std::string getName() {return name;}
     inline int getAge() {return age;}
     inline char getSex() {return sex;}

@@ -1,4 +1,4 @@
-#include "animal.h"
+#include "Animal.h"
 
 Species::Species()
 {
@@ -16,15 +16,16 @@ Species::Species(int eCostPerMonth, std::string sName, std::string bName)
 
 Animal::Animal()
 {
-
+    shelterID = 0;
     name = "";
     age = 0;
     sex = ' ';
     species = Species();
 }
 
-Animal::Animal(std::string n, int a, char sx, std::string sp, std::string b, int cL)
+Animal::Animal(int id, std::string n, int a, char sx, std::string sp, std::string b, int cL)
 {
+    shelterID = id;
     name = n;
     age = a;
     sex = sx;

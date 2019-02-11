@@ -1,4 +1,5 @@
-#include "animalmanager.h"
+#include "AnimalManager.h"
+#include "./data/DatabaseInterface.h"
 
 AnimalManager::AnimalManager()
 {
@@ -14,4 +15,5 @@ void AnimalManager::addAnimal(Animal &newAnimal)
 {
     animalCollection[numAnimals++] = newAnimal;
     std::cout<<numAnimals<<std::endl;
+    DatabaseInterface::pushDBAnimal(newAnimal);
 }

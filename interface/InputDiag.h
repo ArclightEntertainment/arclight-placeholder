@@ -8,8 +8,8 @@
 #include <QDebug>
 #include <qstring.h>
 
-#include "animal.h"
-#include "animalmanager.h"
+#include "Animal.h"
+#include "AnimalManager.h"
 
 namespace Ui {
 class InputDiag;

@@ -7,9 +7,9 @@
 #include <QPushButton>
 #include <QDialog>
 #include <QMainWindow>
-#include "inputDiag.h"
-#include "listView.h"
-#include "animalmanager.h"
+#include "InputDiag.h"
+#include "ListView.h"
+#include "AnimalManager.h"
 
 namespace Ui {
 class MainWindow;
