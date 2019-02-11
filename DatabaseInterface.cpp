@@ -1,26 +1,41 @@
 #include <stdio.h>
 #include <sqlite3.h>
-#include <string>
+#include "DatabaseInterface.h"
 
-int main(int argc, char* argv[]){
+DatabaseInterface::DatabaseInterface()
+{
+
+}
+
+DatabaseInterface::~DatabaseInterface()
+{
+
+}
+
+int DatabaseInterface::getDB()
+{
 	sqlite3 *db;
 	sqlite3_stmt *stmt = 0;
 	char const *sql;
 	int rc;
 
 	// Open database
-	rc = sqlite3_open("data.db", &db);
+	rc = sqlite3_open("data/data.db", &db);
 
-	if(rc){
+	if (rc)
+	{
 		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
 		return 0;
-	}else{
+	}
+	else
+	{
 		fprintf(stderr, "Opened databse successfully\n");
 	}
 
 	sql = "SELECT * FROM animals;";
 	sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
-	while( (rc = sqlite3_step(stmt)) == SQLITE_ROW){
+	while ( (rc = sqlite3_step(stmt)) == SQLITE_ROW)
+	{
 		printf("shelterlID                : %d\n", sqlite3_column_int(stmt, 0));
 		printf("animalName                : %s\n", sqlite3_column_text(stmt, 1));
 		printf("animalSpecies             : %s\n", sqlite3_column_text(stmt, 2));
