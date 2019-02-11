@@ -53,16 +53,20 @@ OBJECTS_DIR   = ./
 SOURCES       = ../cuACS_Test/main.cpp \
 		../cuACS_Test/mainwindow.cpp \
 		../cuACS_Test/inputDiag.cpp \
-		../cuACS_Test/listview.cpp \
-		../cuACS_Test/entity.cpp moc_mainwindow.cpp \
-		moc_inputDiag.cpp
+		../cuACS_Test/animal.cpp \
+		../cuACS_Test/animalmanager.cpp \
+		../cuACS_Test/listView.cpp moc_mainwindow.cpp \
+		moc_inputDiag.cpp \
+		moc_listView.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		inputDiag.o \
-		listview.o \
-		entity.o \
+		animal.o \
+		animalmanager.o \
+		listView.o \
 		moc_mainwindow.o \
-		moc_inputDiag.o
+		moc_inputDiag.o \
+		moc_listView.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -155,12 +159,14 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../cuACS_Test/cuACS_Test.pro ../cuACS_Test/mainwindow.h \
 		../cuACS_Test/inputDiag.h \
-		../cuACS_Test/listview.h \
-		../cuACS_Test/entity.h ../cuACS_Test/main.cpp \
+		../cuACS_Test/animal.h \
+		../cuACS_Test/animalmanager.h \
+		../cuACS_Test/listView.h ../cuACS_Test/main.cpp \
 		../cuACS_Test/mainwindow.cpp \
 		../cuACS_Test/inputDiag.cpp \
-		../cuACS_Test/listview.cpp \
-		../cuACS_Test/entity.cpp
+		../cuACS_Test/animal.cpp \
+		../cuACS_Test/animalmanager.cpp \
+		../cuACS_Test/listView.cpp
 QMAKE_TARGET  = cuACS_Test
 DESTDIR       = 
 TARGET        = cuACS_Test
@@ -169,7 +175,7 @@ TARGET        = cuACS_Test
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_inputdialog.h ui_listdialog.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_inputdialog.h ui_listview.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../cuACS_Test/cuACS_Test.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -376,9 +382,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../cuACS_Test/mainwindow.h ../cuACS_Test/inputDiag.h ../cuACS_Test/listview.h ../cuACS_Test/entity.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../cuACS_Test/main.cpp ../cuACS_Test/mainwindow.cpp ../cuACS_Test/inputDiag.cpp ../cuACS_Test/listview.cpp ../cuACS_Test/entity.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../cuACS_Test/mainwindow.ui ../cuACS_Test/inputdialog.ui ../cuACS_Test/listdialog.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../cuACS_Test/mainwindow.h ../cuACS_Test/inputDiag.h ../cuACS_Test/animal.h ../cuACS_Test/animalmanager.h ../cuACS_Test/listView.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../cuACS_Test/main.cpp ../cuACS_Test/mainwindow.cpp ../cuACS_Test/inputDiag.cpp ../cuACS_Test/animal.cpp ../cuACS_Test/animalmanager.cpp ../cuACS_Test/listView.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../cuACS_Test/mainwindow.ui ../cuACS_Test/inputdialog.ui ../cuACS_Test/listview.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -410,25 +416,36 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_inputDiag.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_inputDiag.cpp moc_listView.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_inputDiag.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_inputDiag.cpp moc_listView.cpp
 moc_mainwindow.cpp: ../cuACS_Test/inputDiag.h \
+		../cuACS_Test/animal.h \
+		../cuACS_Test/animalmanager.h \
+		../cuACS_Test/listView.h \
 		../cuACS_Test/mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS/interface/cuACS_Test -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../cuACS_Test/mainwindow.h -o moc_mainwindow.cpp
 
-moc_inputDiag.cpp: ../cuACS_Test/inputDiag.h \
+moc_inputDiag.cpp: ../cuACS_Test/animal.h \
+		../cuACS_Test/animalmanager.h \
+		../cuACS_Test/inputDiag.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS/interface/cuACS_Test -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../cuACS_Test/inputDiag.h -o moc_inputDiag.cpp
 
+moc_listView.cpp: ../cuACS_Test/animal.h \
+		../cuACS_Test/listView.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS/interface/cuACS_Test -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../cuACS_Test/listView.h -o moc_listView.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_inputdialog.h ui_listdialog.h
+compiler_uic_make_all: ui_mainwindow.h ui_inputdialog.h ui_listview.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_inputdialog.h ui_listdialog.h
+	-$(DEL_FILE) ui_mainwindow.h ui_inputdialog.h ui_listview.h
 ui_mainwindow.h: ../cuACS_Test/mainwindow.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic ../cuACS_Test/mainwindow.ui -o ui_mainwindow.h
@@ -437,9 +454,9 @@ ui_inputdialog.h: ../cuACS_Test/inputdialog.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic ../cuACS_Test/inputdialog.ui -o ui_inputdialog.h
 
-ui_listdialog.h: ../cuACS_Test/listdialog.ui \
+ui_listview.h: ../cuACS_Test/listview.ui \
 		/usr/lib/qt5/bin/uic
-	/usr/lib/qt5/bin/uic ../cuACS_Test/listdialog.ui -o ui_listdialog.h
+	/usr/lib/qt5/bin/uic ../cuACS_Test/listview.ui -o ui_listview.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -452,29 +469,46 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 main.o: ../cuACS_Test/main.cpp ../cuACS_Test/mainwindow.h \
-		../cuACS_Test/inputDiag.h
+		../cuACS_Test/inputDiag.h \
+		../cuACS_Test/animal.h \
+		../cuACS_Test/animalmanager.h \
+		../cuACS_Test/listView.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../cuACS_Test/main.cpp
 
 mainwindow.o: ../cuACS_Test/mainwindow.cpp ../cuACS_Test/mainwindow.h \
 		../cuACS_Test/inputDiag.h \
+		../cuACS_Test/animal.h \
+		../cuACS_Test/animalmanager.h \
+		../cuACS_Test/listView.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../cuACS_Test/mainwindow.cpp
 
 inputDiag.o: ../cuACS_Test/inputDiag.cpp ../cuACS_Test/inputDiag.h \
+		../cuACS_Test/animal.h \
+		../cuACS_Test/animalmanager.h \
 		ui_inputdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o inputDiag.o ../cuACS_Test/inputDiag.cpp
 
-listview.o: ../cuACS_Test/listview.cpp ../cuACS_Test/listview.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o listview.o ../cuACS_Test/listview.cpp
+animal.o: ../cuACS_Test/animal.cpp ../cuACS_Test/animal.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o animal.o ../cuACS_Test/animal.cpp
 
-entity.o: ../cuACS_Test/entity.cpp ../cuACS_Test/entity.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entity.o ../cuACS_Test/entity.cpp
+animalmanager.o: ../cuACS_Test/animalmanager.cpp ../cuACS_Test/animalmanager.h \
+		../cuACS_Test/animal.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o animalmanager.o ../cuACS_Test/animalmanager.cpp
+
+listView.o: ../cuACS_Test/listView.cpp ../cuACS_Test/listView.h \
+		../cuACS_Test/animal.h \
+		ui_listview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o listView.o ../cuACS_Test/listView.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
 
 moc_inputDiag.o: moc_inputDiag.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_inputDiag.o moc_inputDiag.cpp
+
+moc_listView.o: moc_listView.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_listView.o moc_listView.cpp
 
 ####### Install
 

@@ -1,4 +1,4 @@
-#include "entity.h"
+#include "animal.h"
 
 Species::Species()
 {
@@ -14,13 +14,23 @@ Species::Species(int eCostPerMonth, std::string sName, std::string bName)
 }
 
 
-Animal::Animal(std::string n, int a, char sx, std::string sp, std::string b)
+Animal::Animal()
+{
+
+    basic.name = "";
+    basic.age = 0;
+    basic.sex = ' ';
+    basic.species = Species();
+}
+
+Animal::Animal(std::string n, int a, char sx, std::string sp, std::string b, int cL)
 {
     basic.name = n;
     basic.age = a;
     basic.sex = sx;
     Species s(0, sp, b);
     basic.species = s;
+    basic.levelOfCare = (cL==0) ? Level::LOW : (cL==1) ? Level::MEDIUM : Level::HIGH;
 }
 
 void Animal::populateSocial(int trLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel)

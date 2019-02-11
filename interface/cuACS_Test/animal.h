@@ -38,6 +38,7 @@ struct basicInfo{
     int age;
     char sex;
     Species species;
+    Level levelOfCare;
 };
 struct socialInfo{
     Level trainingLevel;
@@ -48,7 +49,6 @@ struct socialInfo{
     Level timeCommitment;
 };
 struct historyInfo{
-    int disabled;
     bool immunized;
     std::string dietNeeds;
     std::string mobilityNeeds;
@@ -71,7 +71,7 @@ private:
     struct historyInfo history;
 public:
     Animal();
-    Animal(std::string n, int a, char sx, std::string sp, std::string b);
+    Animal(std::string n, int a, char sx, std::string sp, std::string b, int cL);
     void populateSocial(int trLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel);
     void populateHistory(bool imm, std::string dietString, std::string mobilityString, std::string disabilityString, std::string bio, std::string aHist);
 //Getters
@@ -82,6 +82,7 @@ public:
     inline std::string getSexString() {return (basic.sex == 'M') ? "Male" : "Female";}
     inline std::string getSpecies() {return basic.species.getSpecies();}
     inline std::string getBreed() {return basic.species.getBreed();}
+    inline bool isDisabled() {return basic.levelOfCare;}
 
     //socialInfo
     inline Level getTrainingLevel() {return social.trainingLevel;}
@@ -92,7 +93,6 @@ public:
     inline Level getTimeCommitment() {return social.timeCommitment;}
 
     //historyInfo
-    inline bool isDisabled() {return history.disabled;}
     inline std::string getDietNeeds() {return history.dietNeeds;}
     inline std::string getMobilityNeeds() {return history.mobilityNeeds;}
     inline std::string getDisabilityNeeds() {return history.disabilityNeeds;}
@@ -105,18 +105,25 @@ public:
     inline void setSex(char s) {basic.sex = s;}
     inline void setSpecies(int estimate, std::string s, std::string b="") {basic.species.setSpecies(estimate, s, b);}
     inline void setSpecies(Species *s) {basic.species = *s;}
+    inline void setDisabled(Level d) {basic.levelOfCare = d;}
+    inline void setDisabled(int l) {basic.levelOfCare = (l == 0) ? Level::LOW : ((l == 1) ? Level::MEDIUM : Level::HIGH);}
 
     //social
-    void setLevel(std::string field, int level);
-    inline void setTraining(Level hT) {social.trainingLevel=hT;}
-    inline void setAffForAdults(Level a) {social.affinityForPeople = a;}
-    inline void setAffForChildren(Level a) {social.affinityForChildren = a;}
-    inline void setAffForAnimals(Level a) {social.affinityForAnimals = a;}
+    inline void setTraining(Level hT)       {social.trainingLevel=hT;}
+    inline void setAffForAdults(Level a)    {social.affinityForPeople = a;}
+    inline void setAffForChildren(Level a)  {social.affinityForChildren = a;}
+    inline void setAffForAnimals(Level a)   {social.affinityForAnimals = a;}
     inline void setApproachability(Level a) {social.approachability = a;}
     inline void setTimeCommitment(Level tC) {social.timeCommitment = tC;}
 
+    inline void setTraining         (int l) {social.trainingLevel =         (l == 0) ? Level::LOW : ((l == 1) ? Level::MEDIUM : Level::HIGH);}
+    inline void setAffForAdults     (int l) {social.affinityForPeople =     (l == 0) ? Level::LOW : ((l == 1) ? Level::MEDIUM : Level::HIGH);}
+    inline void setAffForChildren   (int l) {social.affinityForChildren =   (l == 0) ? Level::LOW : ((l == 1) ? Level::MEDIUM : Level::HIGH);}
+    inline void setAffForAnimals    (int l) {social.affinityForAnimals =    (l == 0) ? Level::LOW : ((l == 1) ? Level::MEDIUM : Level::HIGH);}
+    inline void setApproachability  (int l) {social.approachability =       (l == 0) ? Level::LOW : ((l == 1) ? Level::MEDIUM : Level::HIGH);}
+    inline void setTimeCommitment   (int l) {social.timeCommitment =        (l == 0) ? Level::LOW : ((l == 1) ? Level::MEDIUM : Level::HIGH);}
+
     //history
-    inline void setDisabled(bool d) {history.disabled = d;}
     inline void setDietNeeds(        std::string nstring) {history.dietNeeds = nstring;}
     inline void setMobilityNeeds(    std::string nstring) {history.mobilityNeeds = nstring;}
     inline void setDisabilityNeeds(  std::string nstring) {history.disabilityNeeds = nstring;}

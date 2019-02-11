@@ -8,7 +8,8 @@
 #include <QDebug>
 #include <qstring.h>
 
-#include "entity.h"
+#include "animal.h"
+#include "animalmanager.h"
 
 namespace Ui {
 class InputDiag;
@@ -19,7 +20,7 @@ class InputDiag : public QDialog
     Q_OBJECT
 
 public:
-    explicit InputDiag(QWidget *parent = 0);
+    explicit InputDiag(AnimalManager *manager, QWidget *parent = 0);
     ~InputDiag();
 private slots:
     void handleButtonSave();
@@ -29,6 +30,8 @@ private:
     Ui::InputDiag *ui;
     QPushButton *saveButton;
     QPushButton *cancelButton;
+
+    AnimalManager *aManager;
 };
 
 #endif // INPUTDIAG_H

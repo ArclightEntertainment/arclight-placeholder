@@ -2,7 +2,7 @@
 #include "ui_inputdialog.h"
 #include <iostream>
 
-InputDiag::InputDiag(QWidget *parent) :
+InputDiag::InputDiag(AnimalManager *manager, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::InputDiag)
 {
@@ -13,6 +13,8 @@ InputDiag::InputDiag(QWidget *parent) :
 
     connect(saveButton, SIGNAL(released()), this,SLOT(handleButtonSave()));
     connect(cancelButton, SIGNAL(released()), this,SLOT(handleButtonCancel()));
+
+    aManager = manager;
 }
 Animal& InputDiag::generateAnimalFromInput()
 {
@@ -21,7 +23,8 @@ Animal& InputDiag::generateAnimalFromInput()
                 ui->ageSpinBox->text().toInt(),
                 ui->sexSelector->currentText().at(0).toLatin1(),
                 ui->speciesSelector->currentText().toStdString(),
-                ui->breedLineEdit->text().toStdString()
+                ui->breedLineEdit->text().toStdString(),
+                ui->careSlider->value()
                 );
     newAnimal.populateSocial(
                 ui->trainingSlider->value(),
@@ -40,10 +43,9 @@ Animal& InputDiag::generateAnimalFromInput()
                 ui->bioTextEdit->toPlainText().toStdString(),
                 ui->aHistTextEdit->toPlainText().toStdString()
                 );
-
-    std::cout <<newAnimal.getName() << " " << newAnimal.getSexString() << " " << newAnimal.getSpecies() << std::endl;
-    std::cout <<newAnimal.getTrainingLevel() << " " << newAnimal.getAffForPeople() << " " << newAnimal.getAffForChildren() << " ";
-    std::cout <<newAnimal.getAffForAnimals() << " " << newAnimal.getApproachability() << " " << newAnimal.getTimeCommitment() << std::endl;
+    //std::cout <<newAnimal.getName() << " " << newAnimal.getSexString() << " " << newAnimal.getSpecies() << std::endl;
+    //std::cout <<newAnimal.getTrainingLevel() << " " << newAnimal.getAffForPeople() << " " << newAnimal.getAffForChildren() << " ";
+    //std::cout <<newAnimal.getAffForAnimals() << " " << newAnimal.getApproachability() << " " << newAnimal.getTimeCommitment() << std::endl;
 
     return newAnimal;
 }
@@ -60,10 +62,10 @@ void InputDiag::handleButtonSave()
     if (name && species && sex && age)
     {
         Animal &newAnimal = generateAnimalFromInput();
-        qDebug() << QString::fromStdString(newAnimal.getName());
+        aManager->addAnimal(newAnimal);
         close();
     } else {
-//Make a warning dialog
+    //Make a warning dialog
     }
 }
 

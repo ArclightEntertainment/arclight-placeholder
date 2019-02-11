@@ -48,56 +48,109 @@
          </rect>
         </property>
         <layout class="QGridLayout" name="BasicInfo">
-         <item row="0" column="0">
-          <widget class="QLabel" name="nameLabel">
-           <property name="text">
-            <string>       Name:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QComboBox" name="speciesSelector">
-           <item>
-            <property name="text">
-             <string>Species</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Cat</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Dog</string>
-            </property>
-           </item>
-          </widget>
-         </item>
          <item row="6" column="0">
           <widget class="QLabel" name="sexLabel">
            <property name="text">
-            <string>          Sex:</string>
+            <string>               Sex:</string>
            </property>
           </widget>
+         </item>
+         <item row="3" column="1">
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="14" column="1">
+          <spacer name="verticalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>58</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item row="8" column="1">
           <widget class="QSpinBox" name="ageSpinBox"/>
          </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="nameLineEdit"/>
+         <item row="1" column="1">
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="speciesLabel">
            <property name="text">
-            <string>    Species:</string>
+            <string>        Species:</string>
            </property>
           </widget>
          </item>
-         <item row="12" column="0">
+         <item row="13" column="1">
+          <widget class="QTextEdit" name="descTextEdit"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="nameLabel">
+           <property name="text">
+            <string>          Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="1">
+          <spacer name="verticalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>60</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="2">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="13" column="0">
           <widget class="QLabel" name="descLabel">
            <property name="text">
             <string>Description</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="ageLabel">
+           <property name="text">
+            <string>               Age:</string>
            </property>
           </widget>
          </item>
@@ -120,62 +173,6 @@
            </item>
           </widget>
          </item>
-         <item row="8" column="0">
-          <widget class="QLabel" name="ageLabel">
-           <property name="text">
-            <string>          Age:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>      Breed:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <spacer name="verticalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="4" column="1">
-          <widget class="QLineEdit" name="breedLineEdit"/>
-         </item>
-         <item row="1" column="1">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
          <item row="5" column="1">
           <spacer name="verticalSpacer_3">
            <property name="orientation">
@@ -189,11 +186,40 @@
            </property>
           </spacer>
          </item>
-         <item row="12" column="1">
-          <widget class="QTextEdit" name="descTextEdit"/>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>           Breed:</string>
+           </property>
+          </widget>
          </item>
-         <item row="9" column="1">
-          <spacer name="verticalSpacer_5">
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="breedLineEdit"/>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="nameLineEdit"/>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="speciesSelector">
+           <item>
+            <property name="text">
+             <string>Species</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Cat</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Dog</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="12" column="1">
+          <spacer name="verticalSpacer_7">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
            </property>
@@ -205,18 +231,12 @@
            </property>
           </spacer>
          </item>
-         <item row="13" column="1">
-          <spacer name="verticalSpacer_6">
+         <item row="11" column="0" colspan="3">
+          <widget class="Line" name="line">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>58</height>
-            </size>
-           </property>
-          </spacer>
+          </widget>
          </item>
          <item row="7" column="1">
           <spacer name="verticalSpacer_4">
@@ -231,21 +251,21 @@
            </property>
           </spacer>
          </item>
-         <item row="11" column="1">
-          <spacer name="verticalSpacer_7">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
+         <item row="9" column="0">
+          <widget class="QLabel" name="careLabel">
+           <property name="text">
+            <string>Level of Care: </string>
            </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>60</height>
-            </size>
-           </property>
-          </spacer>
+          </widget>
          </item>
-         <item row="10" column="0" colspan="3">
-          <widget class="Line" name="line">
+         <item row="9" column="1">
+          <widget class="QSlider" name="careSlider">
+           <property name="maximum">
+            <number>2</number>
+           </property>
+           <property name="sliderPosition">
+            <number>1</number>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -405,10 +425,10 @@
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout">
-         <item row="5" column="0">
-          <widget class="QLabel" name="aHistLabel">
+         <item row="1" column="0">
+          <widget class="QLabel" name="specNeedsLabel">
            <property name="text">
-            <string>History of Abuse: </string>
+            <string>   Special Needs: </string>
            </property>
           </widget>
          </item>
@@ -424,33 +444,6 @@
             </size>
            </property>
           </spacer>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="bioLabel">
-           <property name="text">
-            <string>          Biography: </string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="specNeedsLabel">
-           <property name="text">
-            <string>   Special Needs: </string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="immunizedLabel">
-           <property name="text">
-            <string>        Immunized: </string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="QTextEdit" name="aHistTextEdit"/>
-         </item>
-         <item row="3" column="1">
-          <widget class="QTextEdit" name="bioTextEdit"/>
          </item>
          <item row="0" column="1">
           <layout class="QHBoxLayout" name="immunizedLayout">
@@ -489,18 +482,19 @@
            </item>
           </layout>
          </item>
-         <item row="4" column="1">
-          <spacer name="verticalSpacer_9">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
+         <item row="0" column="0">
+          <widget class="QLabel" name="immunizedLabel">
+           <property name="text">
+            <string>        Immunized: </string>
            </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="aHistLabel">
+           <property name="text">
+            <string>History of Abuse: </string>
            </property>
-          </spacer>
+          </widget>
          </item>
          <item row="1" column="1">
           <layout class="QFormLayout" name="formLayout">
@@ -553,6 +547,32 @@
             </widget>
            </item>
           </layout>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="bioLabel">
+           <property name="text">
+            <string>          Biography: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QTextEdit" name="bioTextEdit"/>
+         </item>
+         <item row="6" column="1">
+          <widget class="QTextEdit" name="aHistTextEdit"/>
+         </item>
+         <item row="5" column="1">
+          <spacer name="verticalSpacer_9">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>

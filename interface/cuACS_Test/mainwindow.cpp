@@ -14,24 +14,26 @@ MainWindow::MainWindow(QWidget *parent) :
     //connect buttons to slots
     connect(viewButton, SIGNAL(released()), this,SLOT(handleButtonView()));
     connect(inputButton, SIGNAL(released()), this,SLOT(handleButtonInput()));
+
+    /*get Length of animal thing*/
+    animalManager = new AnimalManager();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete viewButton;
-    delete inputButton;
 }
 
 void MainWindow::handleButtonInput()
 {
     std::cout << "Pushed Input Button!" << std::endl;
-    InputDiag diag(this);
+    InputDiag diag(animalManager, this);
     diag.exec();
 }
 
 void MainWindow::handleButtonView()
 {
     std::cout << "Pushed View Button!" << std::endl;
-    //
+    ListView diag(animalManager, this);
+    diag.exec();
 }

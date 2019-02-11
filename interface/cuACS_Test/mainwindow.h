@@ -8,6 +8,8 @@
 #include <QDialog>
 #include <QMainWindow>
 #include "inputDiag.h"
+#include "listView.h"
+#include "animalmanager.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,6 +30,7 @@ private:
     Ui::MainWindow *ui;
     QPushButton *viewButton;
     QPushButton *inputButton;
+    AnimalManager *animalManager;
 };
 
 #endif // MAINWINDOW_H
