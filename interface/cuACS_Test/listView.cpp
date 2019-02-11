@@ -31,8 +31,14 @@ void ListView::updateListView()
         animalList->setItem(i, 1, new QTableWidgetItem (QString::fromStdString(a[i].getSpecies())));    //Species
         animalList->setItem(i, 2, new QTableWidgetItem (QString::fromStdString(a[i].getBreed())));    //Breed
         animalList->setItem(i, 3, new QTableWidgetItem (QString::number(a[i].getAge())));    //Age
-        animalList->setItem(i, 4, new QTableWidgetItem (QString::fromStdString(a[i].getSexString())));    //Sex
+        animalList->setItem(i, 4, new QTableWidgetItem (QString(QChar::fromLatin1(a[i].getSex()))));    //Sex
     }
+    animalList->setColumnWidth(0, 150); //Name
+    animalList->setColumnWidth(1, 150); //Species
+    animalList->setColumnWidth(2, 100); //Breed
+    animalList->setColumnWidth(3, 50); //Age
+    animalList->setColumnWidth(4, 48); //Sex
+    animalList->sortByColumn(0, Qt::SortOrder::AscendingOrder);
 }
 
 ListView::~ListView()

@@ -28,10 +28,10 @@ public:
     {
         if (ListView->objectName().isEmpty())
             ListView->setObjectName(QStringLiteral("ListView"));
-        ListView->resize(675, 531);
+        ListView->resize(581, 531);
         animalTableWidget = new QTableWidget(ListView);
         animalTableWidget->setObjectName(QStringLiteral("animalTableWidget"));
-        animalTableWidget->setGeometry(QRect(110, 160, 256, 192));
+        animalTableWidget->setGeometry(QRect(40, 20, 501, 451));
 
         retranslateUi(ListView);
 
