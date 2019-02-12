@@ -17,6 +17,7 @@ AnimalManager::AnimalManager(int i)
 int AnimalManager::addAnimal(int id, std::string n, int a, char sx, std::string sp, std::string b, int cL)
 {
     animalCollection[numAnimals++] = *new Animal(id, n, a, sx, sp, b, cL);
+    resize();
     return numAnimals-1;
 }
 
@@ -51,11 +52,26 @@ int AnimalManager::checkID(int id)
     return 1;
 }
 
+void AnimalManager::resize()
+{
+    if (numAnimals >= maxNumAnimals)
+    {
+        maxNumAnimals *= 2;
+        Animal *newArray = new Animal[maxNumAnimals];
+        for (int i = 0; i < numAnimals; i++)
+        {
+            newArray[i] = animalCollection[i];
+        }
+        animalCollection = newArray;
+        //std::cout<<"Doubled!"<<std::endl;
+    }
+}
+
 //used for testing only. Input desired code segments to run here
 void AnimalManager::testFunc()
 {
     Animal a = Animal(0, "Jake", 1, 'M', "Cat", "", 1);
     Animal b = Animal(a);
-    std::cout<<a.getName() << " " << a.getAge() << " " << a.getSpecies() << std::endl;
-    std::cout<<b.getName() << " " << b.getAge() << " " << b.getSpecies() << std::endl;
+    //std::cout<<a.getName() << " " << a.getAge() << " " << a.getSpecies() << std::endl;
+    //std::cout<<b.getName() << " " << b.getAge() << " " << b.getSpecies() << std::endl;
 }

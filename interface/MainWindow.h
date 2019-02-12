@@ -20,6 +20,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    inline void setArr(Animal * arr, int numAn){animalManager->setArr(arr, numAn);}
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 

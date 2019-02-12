@@ -27,20 +27,20 @@ MainWindow::~MainWindow()
 
 void MainWindow::handleButtonInput()
 {
-    std::cout << "Pushed Input Button!" << std::endl;
+    //std::cout << "Pushed Input Button!" << std::endl;
     InputDiag diag(animalManager, this);
     diag.exec();
 }
 
 void MainWindow::handleButtonView()
 {
-    std::cout << "Pushed View Button!" << std::endl;
+    //std::cout << "Pushed View Button!" << std::endl;
     ListView diag(animalManager, this);
     diag.exec();
 }
 
 //TEST: void MainWindow::handleButtonTest()
 //TEST: {
-//TEST:     std::cout << "Pushed Test Button!" << std::endl;
+//TEST:     //std::cout << "Pushed Test Button!" << std::endl;
 //TEST:     animalManager->testFunc();
 //TEST: }

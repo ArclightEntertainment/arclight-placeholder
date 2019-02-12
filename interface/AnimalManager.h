@@ -18,11 +18,13 @@ public:
     int checkID(int id);
     inline Animal* getAnimalCollection(){return animalCollection;}
     inline int getNumAnimals(){return numAnimals;}
-
+    inline void setArr(Animal *arr, int numAn){animalCollection = arr; numAnimals = numAn; maxNumAnimals = numAn; resize();}
     void testFunc();
+    void resize();
 private:
     Animal *animalCollection;
     int numAnimals;
+    int maxNumAnimals;
 };
 
 #endif // ANIMALMANAGER_H

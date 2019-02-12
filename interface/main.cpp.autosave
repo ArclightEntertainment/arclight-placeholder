@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     Animal animalArr[animalCount];
 
     for(int i=0; i<animalCount; i++){
-        std::cout << animal->getName() << std::endl;
+        //std::cout << animal->getName() << std::endl;
         animalArr[i] = *animal;
         animal++;
     }

@@ -20,7 +20,7 @@ ListView::ListView(AnimalManager *aM, QWidget *parent) :
 //Update the ListView, inserts all values
 void ListView::updateListView()
 {
-    std::cout<< manager->getNumAnimals() << std::endl;
+    //std::cout<< manager->getNumAnimals() << std::endl;
     animalList->setRowCount(manager->getNumAnimals());
 
     QStringList columnNames = {"Name", "Species", "Breed", "Age", "Sex"};

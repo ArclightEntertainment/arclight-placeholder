@@ -182,7 +182,7 @@ int DatabaseInterface::pushDBAnimal(Animal &animal)
 
     std::cout << sql.str() << std::endl;*/
 
-    if (sqlite3_open("./data.db", &db) == SQLITE_OK)
+    if (sqlite3_open("data/data.db", &db) == SQLITE_OK)
     {
 
         std::string sql = "INSERT OR REPLACE INTO Animals (shelterID, animalName, animalSpecies, animalBreed, animalAge, animalSex, animalTrainingLevel, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproachability, animalTimeCommitment, animalDietNeeds, animalMobilityNeeds, animalDisablityNeeds, animalAbuseHistory, animalBiography) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
