@@ -2,6 +2,7 @@
 #include <sqlite3.h>
 #include <sstream>
 #include <iostream>
+#include <typeinfo>
 #include "DatabaseInterface.h"
 
 DatabaseInterface::DatabaseInterface()
@@ -14,7 +15,7 @@ DatabaseInterface::~DatabaseInterface()
 
 }
 
-int DatabaseInterface::getDB()
+Animal** DatabaseInterface::getDB()
 {
     sqlite3 *db;
     sqlite3_stmt *stmt = 0;
@@ -22,7 +23,7 @@ int DatabaseInterface::getDB()
     int rc;
 
     // Open database
-    rc = sqlite3_open("./data.db", &db);
+    rc = sqlite3_open("data/data.db", &db);
 
     if (rc)
     {
@@ -31,35 +32,57 @@ int DatabaseInterface::getDB()
     }
     else
     {
-        fprintf(stderr, "Opened databse successfully\n");
+        fprintf(stderr, "Opened databse successfully, rc: %d\n", rc);
     }
 
+    // Get the total amount of Animals
+    sql = "SELECT count(*) FROM Animals";
+    rc = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+    rc = sqlite3_step(stmt);
+    int animalCount = sqlite3_column_int(stmt, 0);
+
+    // Initialize the Animal array
+    static Animal *animalArray = new Animal[animalCount];
+
+    // Finalize the statement
+    rc = sqlite3_finalize(stmt);
+
+    // Get the Animals table
     sql = "SELECT * FROM Animals;";
-    sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
-    printf("test print");
+    rc = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+
+    // Go through each row, create an Animal with the column data, and add them into the array
+    int i = 0;
     while ( (rc = sqlite3_step(stmt)) == SQLITE_ROW)
     {
-        printf("shelterlID                : %d\n", sqlite3_column_int(stmt, 0));
-        printf("animalName                : %s\n", sqlite3_column_text(stmt, 1));
-        printf("animalSpecies             : %s\n", sqlite3_column_text(stmt, 2));
-        printf("animalBreed               : %s\n", sqlite3_column_text(stmt, 3));
-        printf("animalAge                 : %d\n", sqlite3_column_int(stmt, 4));
-        printf("animalTrainingLevel       : %d\n", sqlite3_column_int(stmt, 5));
-        printf("animalAffinityForPeople   : %d\n", sqlite3_column_int(stmt, 6));
-        printf("animalAffinityForChildren : %d\n", sqlite3_column_int(stmt, 7));
-        printf("animalAffinityForAnimals  : %d\n", sqlite3_column_int(stmt, 8));
-        printf("animalApproachability     : %d\n", sqlite3_column_int(stmt, 9));
-        printf("animalTimeCommitment      : %d\n", sqlite3_column_int(stmt, 10));
-        printf("animalDietNeeds           : %s\n", sqlite3_column_text(stmt, 11));
-        printf("animalMobilityNeeds       : %s\n", sqlite3_column_text(stmt, 12));
-        printf("animalDisablityNeeds      : %s\n", sqlite3_column_text(stmt, 13));
-        printf("animalAbuseHistory        : %s\n", sqlite3_column_text(stmt, 14));
-        printf("animalBiography           : %s\n", sqlite3_column_text(stmt, 15));
-        printf("\n");
+        int shelterID = sqlite3_column_int(stmt, 0);
+        std::string animalName = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
+        std::string animalSpecies = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
+        std::string animalBreed = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
+        int animalAge = sqlite3_column_int(stmt, 4);
+        char animalSex = sqlite3_column_text(stmt, 5)[0];
+        int animalTrainingLevel = sqlite3_column_int(stmt, 6);
+        int animalAffinityForPeople = sqlite3_column_int(stmt, 7);
+        int animalAffinityForChildren = sqlite3_column_int(stmt, 8);
+        int animalAffinityForAnimals = sqlite3_column_int(stmt, 9);
+        int animalApproacability = sqlite3_column_int(stmt, 10);
+        int animalTimeCommitment = sqlite3_column_int(stmt, 11);
+        std::string animalDietNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 12)));
+        std::string animalMobilityNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 13)));
+        std::string animalDisabilityNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 14)));
+        std::string animalAbuseHistory = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 15)));
+        std::string animalBiography = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 16)));
+        animalArray[i] = Animal(shelterID, animalName, animalAge, animalSex, animalSpecies, animalBreed, animalTimeCommitment);
+        i++;
     }
+
+    // Finalize the stamtement, then close the database
     rc = sqlite3_finalize(stmt);
-    sqlite3_close_v2(db);
-    return 0;
+    sqlite3_close(db);
+    Animal animal = *&animalArray[0];
+
+    // Return a pointer to the first element in the array
+    return &animalArray;
 }
 
 int DatabaseInterface::pushDBAnimal(Animal &animal)

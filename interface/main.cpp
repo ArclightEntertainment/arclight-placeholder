@@ -10,10 +10,11 @@ int main(int argc, char *argv[])
     //open new login dialog on logout
     //just logout on close
 
-    DatabaseInterface::getDB();
-
     MainWindow w;
     w.show();
 
+    Animal **animalArray = DatabaseInterface::getDB();
+    Animal *animal = animalArray[0];
+    std::cout << animal->getName() << std::endl;
     return a.exec();
 }
