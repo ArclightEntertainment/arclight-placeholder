@@ -11,11 +11,11 @@ CREATE TABLE IF NOT EXISTS Animals(
 	animalAffinityForAnimals INTEGER NOT NULL,
 	animalApproachability INTEGER NOT NULL,
 	animalTimeCommitment INTEGER NOT NULL,
-	animalDietNeeds text,
-	animalMobilityNeeds text,
-	animalDisablityNeeds text,
-	animalAbuseHistory text,
-	animalBiography text,
+	animalDietNeeds text NOT NULL,
+	animalMobilityNeeds text NOT NULL,
+	animalDisablityNeeds text NOT NULL,
+	animalAbuseHistory text NOT NULL,
+	animalBiography text NOT NULL,
 	FOREIGN KEY(animalSpecies, animalBreed) REFERENCES AnimalsBreedsRelationship(speciesName, breedName)
 	PRIMARY KEY(shelterID)
 );
@@ -98,9 +98,9 @@ INSERT OR REPLACE INTO
 		2,
 		1,
 		"",
-		NULL,
 		"",
-		NULL,
+		"",
+		"",
 		"Loves people"
 	);
 INSERT OR REPLACE INTO
@@ -137,8 +137,8 @@ INSERT OR REPLACE INTO
 		1,
 		"",
 		"",
-		NULL,
-		NULL,
+		"",
+		"",
 		"Has to get used to you"
 	);
 /*

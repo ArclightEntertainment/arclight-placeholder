@@ -8,7 +8,6 @@ int main(int argc, char *argv[])
     //login page -> open main window
     //open new login dialog on logout
     //just logout on close
-    DatabaseInterface::getDB();
     MainWindow w;
     w.show();
 
