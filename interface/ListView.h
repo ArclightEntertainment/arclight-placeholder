@@ -26,9 +26,11 @@ public:
 private slots:
     void updateListView();
 private:
+    //important UI Elements
     Ui::ListView *ui;
     QTableWidget *animalList;
 
+    //pointer to Animal Manager
     AnimalManager *manager;
 };
 

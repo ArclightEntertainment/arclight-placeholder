@@ -26,12 +26,12 @@ public:
 private slots:
     void handleButtonSave();
     void handleButtonCancel();
-    Animal& generateAnimalFromInput();
 private:
+    //UI Elements
     Ui::InputDiag *ui;
     QPushButton *saveButton;
     QPushButton *cancelButton;
-
+    //pointer to manager
     AnimalManager *aManager;
 };
 
