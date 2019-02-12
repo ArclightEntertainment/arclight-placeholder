@@ -26,10 +26,12 @@ public:
 private slots:
     void handleButtonView();
     void handleButtonInput();
+    //TEST: void handleButtonTest();
 private:
     Ui::MainWindow *ui;
     QPushButton *viewButton;
     QPushButton *inputButton;
+    //TEST: QPushButton *testButton;
     AnimalManager *animalManager;
 };
 

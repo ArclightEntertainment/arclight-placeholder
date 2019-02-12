@@ -2,6 +2,7 @@
 #include "ui_inputdialog.h"
 #include <iostream>
 
+//Requires parent widget and manager
 InputDiag::InputDiag(AnimalManager *manager, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::InputDiag)
@@ -11,17 +12,20 @@ InputDiag::InputDiag(AnimalManager *manager, QWidget *parent) :
     saveButton = ui->saveButton;
     cancelButton = ui->cancelButton;
 
+    //set validators for text fields, limiting valid characters
     ui->shelterIDLineEdit->setValidator(new QIntValidator(0, 99999, this) );
     QValidator *validator = new QRegExpValidator(QRegExp("([A-Z]|[a-z]|-|.){1,50}"), this);
     ui->nameLineEdit->setValidator(validator);
     ui->breedLineEdit->setValidator(validator);
 
+    //link buttons and functions
     connect(saveButton, SIGNAL(released()), this,SLOT(handleButtonSave()));
     connect(cancelButton, SIGNAL(released()), this,SLOT(handleButtonCancel()));
 
     aManager = manager;
 }
 
+//Save Handler
 void InputDiag::handleButtonSave()
 {
     //important values
@@ -60,17 +64,21 @@ void InputDiag::handleButtonSave()
                     ui->bioTextEdit->toPlainText().toStdString(),
                     ui->aHistTextEdit->toPlainText().toStdString()
                     );
+        //push the animal to the DB
         aManager->pushAnimalToDB(index);
         close();
     } else {
+        //Create a warning dialog box, text based on what fields are missing
         QMessageBox warningBox;
         warningBox.setText("An Error occured when Saving:");
         std::string warnString = "";
+
         if (!name){warnString.append("Name Missing!\n");}
         if (!species){warnString.append("Species Missing!\n");}
         if (!sex){warnString.append("Sex Missing!\n");}
         if (!age){warnString.append("Age Missing!\n");}
         if (!id){warnString.append("Shelter ID missing or in Use!\n");}
+
         warningBox.setInformativeText(QString::fromStdString(warnString));
         warningBox.setStandardButtons(QMessageBox::Ok);
         warningBox.setDefaultButton(QMessageBox::Ok);
@@ -78,10 +86,13 @@ void InputDiag::handleButtonSave()
     }
 }
 
+//close on cancel
 void InputDiag::handleButtonCancel()
 {
     close();
 }
+
+//destructor
 InputDiag::~InputDiag()
 {
     delete ui;

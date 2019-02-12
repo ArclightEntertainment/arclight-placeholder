@@ -18,6 +18,8 @@ public:
     int checkID(int id);
     inline Animal* getAnimalCollection(){return animalCollection;}
     inline int getNumAnimals(){return numAnimals;}
+
+    void testFunc();
 private:
     Animal *animalCollection;
     int numAnimals;

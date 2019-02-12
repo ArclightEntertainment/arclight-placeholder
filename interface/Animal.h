@@ -1,30 +1,9 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 #include <string>
+#include "species.h"
 
 enum Level {LOW=0, MEDIUM=1, HIGH=2};
-
-
-//------------------------------------------
-//------------------------------------------
-//--------------Species Class---------------
-//------------------------------------------
-//------------------------------------------
-
-class Species
-{
-private:
-    std::string speciesName;
-    std::string breedName;
-    int estimatedCostPerMonth;
-public:
-    inline std::string getSpecies(){return speciesName;}
-    inline std::string getBreed(){return breedName;}
-    inline int getCostPerMonth(){return estimatedCostPerMonth;}
-    inline void setSpecies(int eCostPerMonth, std::string sName, std::string bName=""){speciesName=sName; breedName=bName; estimatedCostPerMonth=eCostPerMonth;}
-    Species(int eCostPerMonth, std::string sName, std::string bName="");
-    Species();
-};
 
 //------------------------------------------
 //------------------------------------------
@@ -59,35 +38,41 @@ private:
     std::string abuseHistory;
     std::string biography;
 public:
+//Constructor and population functions
     Animal();
     Animal(int id, std::string n, int a, char sx, std::string sp, std::string b, int cL);
     void populateSocial(int trLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel);
     void populateHistory(bool imm, std::string dietString, std::string mobilityString, std::string disabilityString, std::string bio, std::string aHist);
+
+//Operator Overloads
+    Animal (const Animal& a_animal);
 //Getters
     //basicInfo
-    inline int getShelterID() {return shelterID;}
-    inline std::string getName() {return name;}
-    inline int getAge() {return age;}
-    inline char getSex() {return sex;}
-    inline std::string getSexString() {return (sex == 'M') ? "Male" : "Female";}
-    inline std::string getSpecies() {return species.getSpecies();}
-    inline std::string getBreed() {return species.getBreed();}
-    inline bool isDisabled() {return levelOfCare;}
+    inline int getShelterID() const {return shelterID;}
+    inline std::string getName() const {return name;}
+    inline int getAge() const {return age;}
+    inline char getSex() const {return sex;}
+    inline std::string getSexString() const {return (sex == 'M') ? "Male" : "Female";}
+    inline std::string getSpecies() const {return species.getSpecies();}
+    inline std::string getBreed() const {return species.getBreed();}
+    inline int getEstimatedCost() const {return species.getCostPerMonth();}
+    inline Level getLevelOfCare() const {return levelOfCare;}
 
     //socialInfo
-    inline Level getTrainingLevel() {return trainingLevel;}
-    inline Level getAffForPeople() {return affinityForPeople;}
-    inline Level getAffForChildren() {return affinityForChildren;}
-    inline Level getAffForAnimals() {return affinityForAnimals;}
-    inline Level getApproachability() {return approachability;}
-    inline Level getTimeCommitment() {return timeCommitment;}
+    inline Level getTrainingLevel() const {return trainingLevel;}
+    inline Level getAffForPeople() const {return affinityForPeople;}
+    inline Level getAffForChildren() const {return affinityForChildren;}
+    inline Level getAffForAnimals() const {return affinityForAnimals;}
+    inline Level getApproachability() const {return approachability;}
+    inline Level getTimeCommitment() const {return timeCommitment;}
 
     //historyInfo
-    inline std::string getDietNeeds() {return dietNeeds;}
-    inline std::string getMobilityNeeds() {return mobilityNeeds;}
-    inline std::string getDisabilityNeeds() {return disabilityNeeds;}
-    inline std::string getAbuseHistory() {return abuseHistory;}
-    inline std::string getBiography() {return biography;}
+    inline bool isImmunized() const {return immunized;}
+    inline std::string getDietNeeds() const {return dietNeeds;}
+    inline std::string getMobilityNeeds() const {return mobilityNeeds;}
+    inline std::string getDisabilityNeeds() const {return disabilityNeeds;}
+    inline std::string getAbuseHistory() const {return abuseHistory;}
+    inline std::string getBiography() const {return biography;}
 
 //Setters
     inline void setName(std::string n) {name = n;}
@@ -114,6 +99,7 @@ public:
     inline void setTimeCommitment   (int l) {timeCommitment =        (l == 0) ? Level::LOW : ((l == 1) ? Level::MEDIUM : Level::HIGH);}
 
     //history
+    inline void setImmunized(bool imm) {immunized = imm;}
     inline void setDietNeeds(        std::string nstring) {dietNeeds = nstring;}
     inline void setMobilityNeeds(    std::string nstring) {mobilityNeeds = nstring;}
     inline void setDisabilityNeeds(  std::string nstring) {disabilityNeeds = nstring;}

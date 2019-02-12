@@ -10,12 +10,13 @@ MainWindow::MainWindow(QWidget *parent) :
     //connect pointers to buttons
     viewButton = ui->viewButton;
     inputButton = ui->inputButton;
+    //TEST: testButton = ui->testButton;
 
     //connect buttons to slots
     connect(viewButton, SIGNAL(released()), this,SLOT(handleButtonView()));
     connect(inputButton, SIGNAL(released()), this,SLOT(handleButtonInput()));
+    //TEST: connect(testButton, SIGNAL(released()), this,SLOT(handleButtonTest()));
 
-    /*get Length of animal thing*/
     animalManager = new AnimalManager();
 }
 
@@ -37,3 +38,9 @@ void MainWindow::handleButtonView()
     ListView diag(animalManager, this);
     diag.exec();
 }
+
+//TEST: void MainWindow::handleButtonTest()
+//TEST: {
+//TEST:     std::cout << "Pushed Test Button!" << std::endl;
+//TEST:     animalManager->testFunc();
+//TEST: }
