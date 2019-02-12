@@ -15,6 +15,38 @@ DatabaseInterface::~DatabaseInterface()
 
 }
 
+int DatabaseInterface::getAnimalCount(){
+    sqlite3 *db;
+    sqlite3_stmt *stmt = 0;
+    char const *sql;
+    int rc;
+
+    // Open database
+    rc = sqlite3_open("data/data.db", &db);
+
+    if (rc)
+    {
+        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        return 0;
+    }
+    else
+    {
+        fprintf(stderr, "Opened databse successfully, rc: %d\n", rc);
+    }
+
+    // Get the total amount of Animals
+    sql = "SELECT count(*) FROM Animals";
+    rc = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+    rc = sqlite3_step(stmt);
+    int animalCount = sqlite3_column_int(stmt, 0);
+
+    // Finalize the stamtement, then close the database
+    rc = sqlite3_finalize(stmt);
+    sqlite3_close(db);
+
+    return animalCount;
+}
+
 Animal** DatabaseInterface::getDB()
 {
     sqlite3 *db;
@@ -72,7 +104,9 @@ Animal** DatabaseInterface::getDB()
         std::string animalDisabilityNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 14)));
         std::string animalAbuseHistory = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 15)));
         std::string animalBiography = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 16)));
-        animalArray[i] = Animal(shelterID, animalName, animalAge, animalSex, animalSpecies, animalBreed, animalTimeCommitment);
+        animalArray[i] = Animal(shelterID, animalName, animalAge, animalSex, animalSpecies, animalBreed, 1);
+        animalArray[i].populateHistory(true, animalDietNeeds, animalMobilityNeeds, animalDisabilityNeeds, animalBiography, animalAbuseHistory);
+        animalArray[i].populateSocial(animalTrainingLevel, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproacability, animalTimeCommitment);
         i++;
     }
 

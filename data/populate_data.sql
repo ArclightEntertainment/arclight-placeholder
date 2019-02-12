@@ -141,6 +141,123 @@ INSERT OR REPLACE INTO
 		"",
 		"Has to get used to you"
 	);
+
+INSERT OR REPLACE INTO
+	Animals(
+		shelterID,
+		animalName,
+		animalSpecies,
+		animalBreed,
+		animalAge,
+		animalSex,
+		animalTrainingLevel,
+		animalAffinityForPeople,
+		animalAffinityForChildren,
+		animalAffinityForAnimals,
+		animalApproachability,
+		animalTimeCommitment,
+		animalDietNeeds,
+		animalMobilityNeeds,
+		animalDisablityNeeds,
+		animalAbuseHistory,
+		animalBiography
+	)VALUES(
+		2,
+		"Amy",
+		"Dog",
+		"Bishon/Poodle",
+		10,
+		'F',
+		2,
+		0,
+		1,
+		1,
+		2,
+		0,
+		"",
+		"",
+		"",
+		"",
+		"Borks at everyone"
+	);
+
+INSERT OR REPLACE INTO
+	Animals(
+		shelterID,
+		animalName,
+		animalSpecies,
+		animalBreed,
+		animalAge,
+		animalSex,
+		animalTrainingLevel,
+		animalAffinityForPeople,
+		animalAffinityForChildren,
+		animalAffinityForAnimals,
+		animalApproachability,
+		animalTimeCommitment,
+		animalDietNeeds,
+		animalMobilityNeeds,
+		animalDisablityNeeds,
+		animalAbuseHistory,
+		animalBiography
+	)VALUES(
+		3,
+		"Tanner",
+		"Dog",
+		"Chihuahua",
+		3,
+		'M',
+		0,
+		0,
+		2,
+		0,
+		1,
+		1,
+		"",
+		"",
+		"",
+		"",
+		"Doesnt like anybody at all"
+	);
+
+INSERT OR REPLACE INTO
+	Animals(
+		shelterID,
+		animalName,
+		animalSpecies,
+		animalBreed,
+		animalAge,
+		animalSex,
+		animalTrainingLevel,
+		animalAffinityForPeople,
+		animalAffinityForChildren,
+		animalAffinityForAnimals,
+		animalApproachability,
+		animalTimeCommitment,
+		animalDietNeeds,
+		animalMobilityNeeds,
+		animalDisablityNeeds,
+		animalAbuseHistory,
+		animalBiography
+	)VALUES(
+		4,
+		"Jake",
+		"Dog",
+		"Beagle",
+		14,
+		'M',
+		1,
+		1,
+		2,
+		2,
+		1,
+		0,
+		"",
+		"",
+		"",
+		"",
+		"likes everbody; ded"
+	);
 /*
 
 insert or replace into Animals(animalName, animalAge, animalSex, animalSpecies, animalBreed)

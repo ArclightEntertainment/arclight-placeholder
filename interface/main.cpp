@@ -12,7 +12,11 @@ int main(int argc, char *argv[])
     w.show();
 
     Animal **animalArray = DatabaseInterface::getDB();
+    int animalCount = DatabaseInterface::getAnimalCount();
     Animal *animal = animalArray[0];
-    std::cout << animal->getName() << std::endl;
+    for(int i=0; i<animalCount; i++){
+        std::cout << animal->getName() << std::endl;
+        animal++;
+    }
     return a.exec();
 }
