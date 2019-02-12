@@ -4,18 +4,18 @@ CREATE TABLE IF NOT EXISTS Animals(
 	animalSpecies text NOT NULL,
 	animalBreed text NOT NULL,
 	animalAge INTEGER NOT NULL,
-	animalSex text NOT NULL,
+	animalSex char NOT NULL,
 	animalTrainingLevel INTEGER NOT NULL,
 	animalAffinityForPeople INTEGER NOT NULL,
 	animalAffinityForChildren INTEGER NOT NULL,
 	animalAffinityForAnimals INTEGER NOT NULL,
 	animalApproachability INTEGER NOT NULL,
 	animalTimeCommitment INTEGER NOT NULL,
-	animalDietNeeds text,
-	animalMobilityNeeds text,
-	animalDisablityNeeds text,
-	animalAbuseHistory text,
-	animalBiography text,
+	animalDietNeeds text NOT NULL,
+	animalMobilityNeeds text NOT NULL,
+	animalDisablityNeeds text NOT NULL,
+	animalAbuseHistory text NOT NULL,
+	animalBiography text NOT NULL,
 	FOREIGN KEY(animalSpecies, animalBreed) REFERENCES AnimalsBreedsRelationship(speciesName, breedName)
 	PRIMARY KEY(shelterID)
 );
@@ -90,7 +90,7 @@ INSERT OR REPLACE INTO
 		"Cat",
 		"Tabby",
 		3,
-		"M",
+		'M',
 		1,
 		2,
 		2,
@@ -98,9 +98,9 @@ INSERT OR REPLACE INTO
 		2,
 		1,
 		"",
-		NULL,
 		"",
-		NULL,
+		"",
+		"",
 		"Loves people"
 	);
 INSERT OR REPLACE INTO
@@ -128,7 +128,7 @@ INSERT OR REPLACE INTO
 		"Cat",
 		"Tabby",
 		3,
-		"M",
+		'M',
 		1,
 		1,
 		1,
@@ -137,9 +137,126 @@ INSERT OR REPLACE INTO
 		1,
 		"",
 		"",
-		NULL,
-		NULL,
+		"",
+		"",
 		"Has to get used to you"
+	);
+
+INSERT OR REPLACE INTO
+	Animals(
+		shelterID,
+		animalName,
+		animalSpecies,
+		animalBreed,
+		animalAge,
+		animalSex,
+		animalTrainingLevel,
+		animalAffinityForPeople,
+		animalAffinityForChildren,
+		animalAffinityForAnimals,
+		animalApproachability,
+		animalTimeCommitment,
+		animalDietNeeds,
+		animalMobilityNeeds,
+		animalDisablityNeeds,
+		animalAbuseHistory,
+		animalBiography
+	)VALUES(
+		2,
+		"Amy",
+		"Dog",
+		"Bishon/Poodle",
+		10,
+		'F',
+		2,
+		0,
+		1,
+		1,
+		2,
+		0,
+		"",
+		"",
+		"",
+		"",
+		"Borks at everyone"
+	);
+
+INSERT OR REPLACE INTO
+	Animals(
+		shelterID,
+		animalName,
+		animalSpecies,
+		animalBreed,
+		animalAge,
+		animalSex,
+		animalTrainingLevel,
+		animalAffinityForPeople,
+		animalAffinityForChildren,
+		animalAffinityForAnimals,
+		animalApproachability,
+		animalTimeCommitment,
+		animalDietNeeds,
+		animalMobilityNeeds,
+		animalDisablityNeeds,
+		animalAbuseHistory,
+		animalBiography
+	)VALUES(
+		3,
+		"Tanner",
+		"Dog",
+		"Chihuahua",
+		3,
+		'M',
+		0,
+		0,
+		2,
+		0,
+		1,
+		1,
+		"",
+		"",
+		"",
+		"",
+		"Doesnt like anybody at all"
+	);
+
+INSERT OR REPLACE INTO
+	Animals(
+		shelterID,
+		animalName,
+		animalSpecies,
+		animalBreed,
+		animalAge,
+		animalSex,
+		animalTrainingLevel,
+		animalAffinityForPeople,
+		animalAffinityForChildren,
+		animalAffinityForAnimals,
+		animalApproachability,
+		animalTimeCommitment,
+		animalDietNeeds,
+		animalMobilityNeeds,
+		animalDisablityNeeds,
+		animalAbuseHistory,
+		animalBiography
+	)VALUES(
+		4,
+		"Jake",
+		"Dog",
+		"Beagle",
+		14,
+		'M',
+		1,
+		1,
+		2,
+		2,
+		1,
+		0,
+		"",
+		"",
+		"",
+		"",
+		"likes everbody; ded"
 	);
 /*
 
