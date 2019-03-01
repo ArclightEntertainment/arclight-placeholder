@@ -59,6 +59,15 @@ CREATE TABLE IF NOT EXISTS Clients(
 	primary key(clientID)
 );
 
+CREATE TABLE IF NOT EXISTS Address(
+	addressStreetLine1 text NOT NULL,
+	addressStreetLine2 text NOT NULL,
+	addressCity text NOT NULL,
+	addressSubnationalDivision text NOT NULL,
+	addressCountry text NOT NULL,
+	addressPostalCode text NOT NULL
+)
+
 begin transaction;
 INSERT OR REPLACE INTO
 	Clients(
