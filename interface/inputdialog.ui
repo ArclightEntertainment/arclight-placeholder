@@ -48,34 +48,25 @@
          </rect>
         </property>
         <layout class="QGridLayout" name="BasicInfo">
-         <item row="15" column="1">
-          <spacer name="verticalSpacer_6">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>58</height>
-            </size>
-           </property>
-          </spacer>
+         <item row="13" column="1">
+          <widget class="QTextEdit" name="bioTextEdit"/>
          </item>
-         <item row="8" column="1">
-          <widget class="QSpinBox" name="ageSpinBox">
-           <property name="maximumSize">
-            <size>
-             <width>40</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="minimum">
-            <number>0</number>
+         <item row="8" column="0">
+          <widget class="QLabel" name="ageLabel">
+           <property name="text">
+            <string>               Age:</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
-          <spacer name="verticalSpacer">
+         <item row="6" column="0">
+          <widget class="QLabel" name="sexLabel">
+           <property name="text">
+            <string>               Sex:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <spacer name="verticalSpacer_3">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
            </property>
@@ -86,23 +77,6 @@
             </size>
            </property>
           </spacer>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="speciesLabel">
-           <property name="text">
-            <string>        Species:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="14" column="1">
-          <widget class="QTextEdit" name="descTextEdit"/>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="nameLabel">
-           <property name="text">
-            <string>          Name:</string>
-           </property>
-          </widget>
          </item>
          <item row="10" column="1">
           <spacer name="verticalSpacer_5">
@@ -116,33 +90,6 @@
             </size>
            </property>
           </spacer>
-         </item>
-         <item row="0" column="2">
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="14" column="0">
-          <widget class="QLabel" name="descLabel">
-           <property name="text">
-            <string>Description</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="0">
-          <widget class="QLabel" name="ageLabel">
-           <property name="text">
-            <string>               Age:</string>
-           </property>
-          </widget>
          </item>
          <item row="6" column="1">
           <widget class="QComboBox" name="sexSelector">
@@ -169,8 +116,8 @@
            </item>
           </widget>
          </item>
-         <item row="5" column="1">
-          <spacer name="verticalSpacer_3">
+         <item row="3" column="1">
+          <spacer name="verticalSpacer_2">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
            </property>
@@ -182,18 +129,104 @@
            </property>
           </spacer>
          </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="breedLabel">
-           <property name="text">
-            <string>           Breed:</string>
+         <item row="12" column="1">
+          <spacer name="verticalSpacer_7">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
            </property>
-          </widget>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>60</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="nameLineEdit"/>
          </item>
          <item row="4" column="1">
           <widget class="QLineEdit" name="breedLineEdit"/>
          </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="nameLineEdit"/>
+         <item row="11" column="0" colspan="3">
+          <widget class="Line" name="line">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="13" column="0">
+          <widget class="QLabel" name="bioLabel">
+           <property name="text">
+            <string>Biography</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="7" column="1">
+          <spacer name="verticalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="nameLabel">
+           <property name="text">
+            <string>          Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QSpinBox" name="ageSpinBox">
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="minimum">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="1">
+          <widget class="QSlider" name="careSlider">
+           <property name="maximum">
+            <number>2</number>
+           </property>
+           <property name="sliderPosition">
+            <number>1</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="0">
+          <widget class="QLabel" name="careLabel">
+           <property name="text">
+            <string>Level of Care: </string>
+           </property>
+          </widget>
          </item>
          <item row="2" column="1">
           <widget class="QComboBox" name="speciesSelector">
@@ -214,55 +247,35 @@
            </item>
           </widget>
          </item>
-         <item row="13" column="1">
-          <spacer name="verticalSpacer_7">
+         <item row="4" column="0">
+          <widget class="QLabel" name="breedLabel">
+           <property name="text">
+            <string>           Breed:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="speciesLabel">
+           <property name="text">
+            <string>        Species:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="1">
+          <spacer name="verticalSpacer_6">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>60</height>
+             <height>58</height>
             </size>
            </property>
           </spacer>
          </item>
-         <item row="12" column="0" colspan="3">
-          <widget class="Line" name="line">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="1">
-          <spacer name="verticalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="9" column="0">
-          <widget class="QLabel" name="careLabel">
-           <property name="text">
-            <string>Level of Care: </string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="sexLabel">
-           <property name="text">
-            <string>               Sex:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <spacer name="verticalSpacer_2">
+         <item row="1" column="1">
+          <spacer name="verticalSpacer">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
            </property>
@@ -273,36 +286,6 @@
             </size>
            </property>
           </spacer>
-         </item>
-         <item row="9" column="1">
-          <widget class="QSlider" name="careSlider">
-           <property name="maximum">
-            <number>2</number>
-           </property>
-           <property name="sliderPosition">
-            <number>1</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="11" column="0">
-          <widget class="QLabel" name="shelterIDLabel">
-           <property name="text">
-            <string>     Shelter ID:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="11" column="1">
-          <widget class="QLineEdit" name="shelterIDLineEdit">
-           <property name="maximumSize">
-            <size>
-             <width>80</width>
-             <height>16777215</height>
-            </size>
-           </property>
-          </widget>
          </item>
         </layout>
        </widget>
@@ -321,21 +304,21 @@
          </rect>
         </property>
         <layout class="QGridLayout" name="SocialInfo">
-         <item row="3" column="0">
+         <item row="4" column="0">
           <widget class="QLabel" name="animalLabel">
            <property name="text">
             <string>   Affinity, Animals: </string>
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
+         <item row="3" column="0">
           <widget class="QLabel" name="childLabel">
            <property name="text">
             <string>   Affinity, Children: </string>
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
+         <item row="2" column="0">
           <widget class="QLabel" name="peopleLabel">
            <property name="text">
             <string>     Affinity, People: </string>
@@ -349,14 +332,14 @@
            </property>
           </widget>
          </item>
-         <item row="5" column="0">
+         <item row="6" column="0">
           <widget class="QLabel" name="timeLabel">
            <property name="text">
             <string>Time Commitment: </string>
            </property>
           </widget>
          </item>
-         <item row="4" column="0">
+         <item row="5" column="0">
           <widget class="QLabel" name="approachabilityLabel">
            <property name="text">
             <string>    Approachability: </string>
@@ -376,7 +359,7 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
+         <item row="2" column="1">
           <widget class="QSlider" name="peopleSlider">
            <property name="maximum">
             <number>2</number>
@@ -389,7 +372,7 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
+         <item row="3" column="1">
           <widget class="QSlider" name="childSlider">
            <property name="maximum">
             <number>2</number>
@@ -402,7 +385,7 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="1">
+         <item row="4" column="1">
           <widget class="QSlider" name="animalSlider">
            <property name="maximum">
             <number>2</number>
@@ -415,7 +398,7 @@
            </property>
           </widget>
          </item>
-         <item row="4" column="1">
+         <item row="5" column="1">
           <widget class="QSlider" name="approachabilitySlider">
            <property name="maximum">
             <number>2</number>
@@ -428,8 +411,28 @@
            </property>
           </widget>
          </item>
-         <item row="5" column="1">
+         <item row="6" column="1">
           <widget class="QSlider" name="timeSlider">
+           <property name="maximum">
+            <number>2</number>
+           </property>
+           <property name="sliderPosition">
+            <number>1</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="trainabilityLabel">
+           <property name="text">
+            <string>           Trainability:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QSlider" name="trainabilitySlider">
            <property name="maximum">
             <number>2</number>
            </property>
@@ -452,33 +455,50 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>30</y>
+          <y>70</y>
           <width>411</width>
-          <height>371</height>
+          <height>301</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout">
-         <item row="1" column="0">
-          <widget class="QLabel" name="specNeedsLabel">
-           <property name="text">
-            <string>   Special Needs: </string>
+         <item row="3" column="2">
+          <widget class="QLineEdit" name="mobilityLineEdit">
+           <property name="placeholderText">
+            <string>Mobility Restrictions</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
-          <spacer name="verticalSpacer_8">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
+         <item row="6" column="0">
+          <widget class="QLabel" name="aHistLabel">
+           <property name="text">
+            <string>      History of Abuse: </string>
            </property>
-           <property name="sizeHint" stdset="0">
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string> Dietary Restrictions: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="2">
+          <widget class="QTextEdit" name="aHistTextEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
             <size>
-             <width>20</width>
-             <height>40</height>
+             <width>16777215</width>
+             <height>100</height>
             </size>
            </property>
-          </spacer>
+          </widget>
          </item>
-         <item row="0" column="1">
+         <item row="0" column="2">
           <layout class="QHBoxLayout" name="immunizedLayout">
            <item>
             <spacer name="horizontalSpacer_4">
@@ -518,83 +538,11 @@
          <item row="0" column="0">
           <widget class="QLabel" name="immunizedLabel">
            <property name="text">
-            <string>        Immunized: </string>
+            <string>              Immunized: </string>
            </property>
           </widget>
          </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="aHistLabel">
-           <property name="text">
-            <string>History of Abuse: </string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <layout class="QFormLayout" name="formLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_2">
-             <property name="text">
-              <string>Dietary: </string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="dietLineEdit">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="echoMode">
-              <enum>QLineEdit::Normal</enum>
-             </property>
-             <property name="placeholderText">
-              <string>Dietary Restrictions</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_3">
-             <property name="text">
-              <string>Mobility: </string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLineEdit" name="mobilityLineEdit">
-             <property name="placeholderText">
-              <string>Mobility Restrictions</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label_4">
-             <property name="text">
-              <string>Disabilities: </string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QLineEdit" name="disabLineEdit">
-             <property name="placeholderText">
-              <string>Physical Disabilities</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="bioLabel">
-           <property name="text">
-            <string>          Biography: </string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QTextEdit" name="bioTextEdit"/>
-         </item>
-         <item row="6" column="1">
-          <widget class="QTextEdit" name="aHistTextEdit"/>
-         </item>
-         <item row="5" column="1">
+         <item row="5" column="2">
           <spacer name="verticalSpacer_9">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
@@ -606,6 +554,53 @@
             </size>
            </property>
           </spacer>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>               Disabilities: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <spacer name="verticalSpacer_8">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>50</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>         Mobility Needs: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QLineEdit" name="disabLineEdit">
+           <property name="placeholderText">
+            <string>Physical Disabilities</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLineEdit" name="dietLineEdit">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="echoMode">
+            <enum>QLineEdit::Normal</enum>
+           </property>
+           <property name="placeholderText">
+            <string>Dietary Restrictions</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -697,7 +692,6 @@
   <tabstop>sexSelector</tabstop>
   <tabstop>ageSpinBox</tabstop>
   <tabstop>careSlider</tabstop>
-  <tabstop>shelterIDLineEdit</tabstop>
   <tabstop>cancelButton</tabstop>
   <tabstop>saveButton</tabstop>
   <tabstop>infoTabWidget</tabstop>
@@ -708,12 +702,8 @@
   <tabstop>approachabilitySlider</tabstop>
   <tabstop>timeSlider</tabstop>
   <tabstop>immunizedCheckbox</tabstop>
-  <tabstop>dietLineEdit</tabstop>
-  <tabstop>mobilityLineEdit</tabstop>
-  <tabstop>disabLineEdit</tabstop>
-  <tabstop>bioTextEdit</tabstop>
   <tabstop>aHistTextEdit</tabstop>
-  <tabstop>descTextEdit</tabstop>
+  <tabstop>bioTextEdit</tabstop>
  </tabstops>
  <resources/>
  <connections/>

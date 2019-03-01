@@ -46,4 +46,5 @@ HEADERS += \
 FORMS += \
     interface/inputdialog.ui \
     interface/listview.ui \
-    interface/mainwindow.ui
+    interface/mainwindow.ui \
+    interface/animaldetaileddialog.ui

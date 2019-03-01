@@ -22,9 +22,9 @@ int AnimalManager::addAnimal(int id, std::string n, int a, char sx, std::string 
 }
 
 //Takes in an index and some information, populates those values in the animal at index
-void AnimalManager::updateAnimalSocial(int index, int trLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel)
+void AnimalManager::updateAnimalSocial(int index, int taLevel, int trLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel)
 {
-    animalCollection[index].populateSocial(trLevel, peopleLevel, childLevel, animalLevel, approachLevel, tiLevel);
+    animalCollection[index].populateSocial(trLevel, taLevel, peopleLevel, childLevel, animalLevel, approachLevel, tiLevel);
 }
 
 //takes in index and history info, populates related fields in animal at index
@@ -36,7 +36,7 @@ void AnimalManager::updateAnimalHistory(int index, bool imm, std::string dietStr
 //Finalize animal at index, send it to database
 void AnimalManager::pushAnimalToDB(int index)
 {
-    DatabaseInterface::pushDBAnimal(animalCollection[index]);
+    animalCollection[index].setShelterID(DatabaseInterface::pushDBAnimal(animalCollection[index]));
 }
 
 //check input id against id's of every other animal in db, if used, then

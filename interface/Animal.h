@@ -1,5 +1,5 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef ANIMAL_H
+#define ANIMAL_H
 #include <string>
 #include "species.h"
 
@@ -13,7 +13,7 @@ enum Level {LOW=0, MEDIUM=1, HIGH=2};
 class Animal
 {
 private:
-//Static Animal Info
+//Animal Info
     //basic information
     int shelterID;
     std::string name;
@@ -24,6 +24,7 @@ private:
 
     //social information
     Level trainingLevel;
+    Level trainabilityLevel;
     Level affinityForPeople;
     Level affinityForChildren;
     Level affinityForAnimals;
@@ -41,7 +42,7 @@ public:
 //Constructor and population functions
     Animal();
     Animal(int id, std::string n, int a, char sx, std::string sp, std::string b, int cL);
-    void populateSocial(int trLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel);
+    void populateSocial(int trLevel, int taLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel);
     void populateHistory(bool imm, std::string dietString, std::string mobilityString, std::string disabilityString, std::string bio, std::string aHist);
 
 //Operator Overloads
@@ -60,6 +61,7 @@ public:
 
     //socialInfo
     inline Level getTrainingLevel() const {return trainingLevel;}
+    inline Level getTrainabilityLevel() const {return trainabilityLevel;}
     inline Level getAffForPeople() const {return affinityForPeople;}
     inline Level getAffForChildren() const {return affinityForChildren;}
     inline Level getAffForAnimals() const {return affinityForAnimals;}
@@ -75,6 +77,7 @@ public:
     inline std::string getBiography() const {return biography;}
 
 //Setters
+    inline void setShelterID(int id) {shelterID = id;}
     inline void setName(std::string n) {name = n;}
     inline void setAge(int a) {age = a;}
     inline void setSex(char s) {sex = s;}
@@ -111,4 +114,4 @@ public:
     inline void setAbuseHistory(std::string aH) {abuseHistory = aH;}
     inline void setBiography(std::string b) {biography = b;}
 };
-#endif // ENTITY_H
+#endif // ANIMAL_H

@@ -22,9 +22,10 @@ Animal::Animal(int id, std::string n, int a, char sx, std::string sp, std::strin
 }
 
 //populate social values. Input ints, convert to Levels
-void Animal::populateSocial(int trLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel)
+void Animal::populateSocial(int trLevel, int taLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel)
 {
     trainingLevel = (trLevel == 0) ? Level::LOW : ((trLevel == 1) ? Level::MEDIUM : Level::HIGH);
+    trainabilityLevel = (taLevel == 0) ? Level::LOW : ((taLevel == 1) ? Level::MEDIUM : Level::HIGH);
     affinityForPeople = (peopleLevel == 0) ? Level::LOW : ((peopleLevel == 1) ? Level::MEDIUM : Level::HIGH);
     affinityForChildren = (childLevel == 0) ? Level::LOW : ((childLevel == 1) ? Level::MEDIUM : Level::HIGH);
     affinityForAnimals = (animalLevel == 0) ? Level::LOW : ((animalLevel == 1) ? Level::MEDIUM : Level::HIGH);
@@ -56,6 +57,7 @@ Animal::Animal(const Animal &a_animal)
 
     //social information
     trainingLevel = a_animal.getTrainingLevel();
+    trainabilityLevel = a_animal.getTrainabilityLevel();
     affinityForPeople = a_animal.getAffForPeople();
     affinityForChildren = a_animal.getAffForChildren();
     affinityForAnimals = a_animal.getAffForAnimals();
