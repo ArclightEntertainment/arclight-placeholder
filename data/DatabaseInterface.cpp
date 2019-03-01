@@ -27,7 +27,7 @@ int DatabaseInterface::getAnimalCount(){
     if (rc)
     {
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-        return 0;
+        return -1;
     }
     else
     {
@@ -234,6 +234,7 @@ int DatabaseInterface::pushDBAnimal(Animal &animal)
         else
         {
             fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+            return -1;
         }
         sqlite3_close_v2(db);
     }
