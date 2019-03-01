@@ -35,7 +35,7 @@ void Client::populateAddress(std::string sl1, std::string sl2, std::string ct, s
 }
 
 //populate profile
-void Client::populateProfile(int a, FiveScale lOfMobility, FiveScale ownExp, int budget, int space, float timeAvail, FiveScale lOfEnergy, FiveScale goodWithAnis)
+void Client::populateProfile(int a, FiveScale lOfMobility, FiveScale ownExp, int budget, int space, int timeAvail, FiveScale lOfEnergy, FiveScale goodWithAnis)
 {
   profile.setAge(a);
   profile.setLevelOfMobility(toFiveScale(lOfMobility));

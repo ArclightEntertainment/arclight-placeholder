@@ -29,7 +29,7 @@ public:
     Client();
     Client(std::string t, std::string fn, std::string ln, std::string pn);
     void populateAddress(std::string sl1, std::string sl2, std::string ct, std::string sub, std::string c, std::string pc);
-    void populateProfile(int a, FiveScale lOfMobility, FiveScale ownExp, int budget, int space, float timeAvail, FiveScale lOfEnergy, FiveScale goodWithAnis);
+    void populateProfile(int a, FiveScale lOfMobility, FiveScale ownExp, int budget, int space, int timeAvail, FiveScale lOfEnergy, FiveScale goodWithAnis);
 
 
 //Operator Overloads

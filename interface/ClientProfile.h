@@ -16,14 +16,14 @@ private:
   int lengthOfOwnershipExpectation;
   int budgetPerMonth;
   int livingSpaceSquareFeet;
-  float timeAvailabilityPerDay;
+  int timeAvailabilityPerDay;
   FiveScale levelOfEnergy;
   FiveScale goodWithAnimals;
 
 public:
 // Constructor
   ClientProfile();
-  ClientProfile(int a, int lOfMobility, int ownExp, int budget, int space, float timeAvail, int lOfEnergy, int goodWithAnis);
+  ClientProfile(int a, int lOfMobility, int ownExp, int budget, int space, int timeAvail, int lOfEnergy, int goodWithAnis);
 
 //Operator Overloads
   ClientProfile(const ClientProfile& a_profile);
@@ -44,7 +44,7 @@ public:
   inline void setLengthOfOwnershipExpectation(int ownExp) {lengthOfOwnershipExpectation = ownExp;}
   inline void setBudgetPerMonth(int budget)               {budgetPerMonth = budget;}
   inline void setLivingSpaceSquareFeet(int space)         {livingSpaceSquareFeet = space;}
-  inline void setTimeAvailabilityPerDay(float timeAvail)  {timeAvailabilityPerDay = timeAvail;}
+  inline void setTimeAvailabilityPerDay(int timeAvail)  {timeAvailabilityPerDay = timeAvail;}
   inline void setLevelOfEnergy(int lOfEnergy)             {levelOfEnergy = toFiveScale(lOfEnergy);}
   inline void setGoodWithAnimals(int goodWithAnis)        {goodWithAnimals = toFiveScale(goodWithAnis);}
 };

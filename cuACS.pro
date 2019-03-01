@@ -32,7 +32,10 @@ SOURCES += \
     interface/InputDiag.cpp \
     interface/ListView.cpp \
     interface/MainWindow.cpp \
-    interface/species.cpp
+    interface/species.cpp \
+    interface/Address.cpp \
+    interface/Client.cpp \
+    interface/ClientProfile.cpp
 
 HEADERS += \
     data/DatabaseInterface.h \
@@ -41,7 +44,11 @@ HEADERS += \
     interface/InputDiag.h \
     interface/ListView.h \
     interface/MainWindow.h \
-    interface/species.h
+    interface/species.h \
+    interface/Address.h \
+    interface/Client.h \
+    interface/ClientProfile.h \
+    interface/Levels.h
 
 FORMS += \
     interface/inputdialog.ui \

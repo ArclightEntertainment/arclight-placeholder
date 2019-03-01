@@ -15,7 +15,8 @@ DatabaseInterface::~DatabaseInterface()
 
 }
 
-int DatabaseInterface::getAnimalCount(){
+int DatabaseInterface::getAnimalCount()
+{
     sqlite3 *db;
     sqlite3_stmt *stmt = 0;
     char const *sql;
@@ -26,12 +27,12 @@ int DatabaseInterface::getAnimalCount(){
 
     if (rc)
     {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        fprintf(stderr, "getAnimalCount(): Can't open database: %s\n", sqlite3_errmsg(db));
         return -1;
     }
     else
     {
-        fprintf(stderr, "Opened databse successfully, rc: %d\n", rc);
+        fprintf(stderr, "getAnimalCount(): Opened databse successfully, rc: %d\n", rc);
     }
 
     // Get the total amount of Animals
@@ -47,7 +48,7 @@ int DatabaseInterface::getAnimalCount(){
     return animalCount;
 }
 
-Animal** DatabaseInterface::getDB()
+int DatabaseInterface::getClientCount()
 {
     sqlite3 *db;
     sqlite3_stmt *stmt = 0;
@@ -59,12 +60,45 @@ Animal** DatabaseInterface::getDB()
 
     if (rc)
     {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        fprintf(stderr, "getClientCount(): Can't open database: %s\n", sqlite3_errmsg(db));
+        return -1;
+    }
+    else
+    {
+        fprintf(stderr, "getClientCount(): Opened databse successfully, rc: %d\n", rc);
+    }
+
+    // Get the total amount of Clients
+    sql = "SELECT count(*) FROM Clients";
+    rc = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+    rc = sqlite3_step(stmt);
+    int clientCount = sqlite3_column_int(stmt, 0);
+
+    // Finalize the stamtement, then close the database
+    rc = sqlite3_finalize(stmt);
+    sqlite3_close(db);
+
+    return clientCount;
+}
+
+Animal** DatabaseInterface::getAnimalArray()
+{
+    sqlite3 *db;
+    sqlite3_stmt *stmt = 0;
+    char const *sql;
+    int rc;
+
+    // Open database
+    rc = sqlite3_open("data/data.db", &db);
+
+    if (rc)
+    {
+        fprintf(stderr, "getAnimalArray(): Can't open database: %s\n", sqlite3_errmsg(db));
         return 0;
     }
     else
     {
-        fprintf(stderr, "Opened databse successfully, rc: %d\n", rc);
+        fprintf(stderr, "getAnimalArray(): Opened databse successfully, rc: %d\n", rc);
     }
 
     // Get the total amount of Animals
@@ -119,6 +153,69 @@ Animal** DatabaseInterface::getDB()
     return &animalArray;
 }
 
+Client** DatabaseInterface::getClientArray()
+{
+    sqlite3 *db;
+    sqlite3_stmt *stmt = 0;
+    char const *sql;
+    int rc;
+
+    // Open database
+    rc = sqlite3_open("data/data.db", &db);
+
+    if (rc)
+    {
+        fprintf(stderr, "getClientArray(): Can't open database: %s\n", sqlite3_errmsg(db));
+        return 0;
+    }
+    else
+    {
+        fprintf(stderr, "getClientArray(): Opened databse successfully, rc: %d\n", rc);
+    }
+
+    // Get the total amount of Clients
+    sql = "SELECT count(*) FROM Clients";
+    rc = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+    rc = sqlite3_step(stmt);
+    int clientCount = sqlite3_column_int(stmt, 0);
+
+    // Initialize the Client array
+    static Client *clientArray = new Client[clientCount];
+
+    // Finalize the statement
+    rc = sqlite3_finalize(stmt);
+
+    // Get the Clients table
+    sql = "SELECT * FROM Clients;";
+    rc = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+
+    // Go through each row, create an Client with the column data, and add them into the array
+    int i = 0;
+    while ( (rc = sqlite3_step(stmt)) == SQLITE_ROW)
+    {
+        int clientID = sqlite3_column_int(stmt, 0);
+        std::string clientFName = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
+        std::string clientLName = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
+        std::string clientPrefTitle = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
+        std::string clientPhoneNumber = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));
+        int clientAge = sqlite3_column_int(stmt, 5);
+        int clientLevelOfMobility = sqlite3_column_int(stmt, 6);
+        int clientLengthOfOwenershipExpectation = sqlite3_column_int(stmt, 7);
+        int clientMonthlyBudgetForAnimal = sqlite3_column_int(stmt, 8);
+        int clientHasChildrenUnderTwelve = sqlite3_column_int(stmt, 9); // 0 is false, 1 is true
+        int clientEnergyLevel = sqlite3_column_int(stmt, 10);
+        int clientPatience = sqlite3_column_int(stmt, 11);
+        int clientPreviousExperience = sqlite3_column_int(stmt, 12);
+        int clientLivingSpaceArea = sqlite3_column_int(stmt, 13);
+        int clientAvailablityPerDay = sqlite3_column_int(stmt, 14);
+        clientArray[i] = Client(clientPrefTitle, clientFName, clientLName, clientPhoneNumber);
+        //clientArray[i].populateAddress(std::string sl1, std::string sl2, std::string ct, std::string sub, std::string c, std::string pc);
+        //clientArray[i].populateProfile(clientAge, FiveScale lOfMobility, FiveScale ownExp, int budget, int space, int timeAvail, FiveScale lOfEnergy, FiveScale goodWithAnis);
+        i++;
+    }
+    return &clientArray;
+}
+
 int DatabaseInterface::pushDBAnimal(Animal &animal)
 {
     sqlite3 *db;
@@ -130,12 +227,12 @@ int DatabaseInterface::pushDBAnimal(Animal &animal)
 
     if (rc)
     {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        fprintf(stderr, "pushDBAnimal(): Can't open database: %s\n", sqlite3_errmsg(db));
         return 0;
     }
     else
     {
-        fprintf(stderr, "Opened databse successfully\n");
+        fprintf(stderr, "pushDBAnimal(): Opened databse successfully\n");
     }
 
     std::string sep = ", ";

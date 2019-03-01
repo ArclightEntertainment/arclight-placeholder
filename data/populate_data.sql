@@ -38,17 +38,98 @@ CREATE TABLE IF NOT EXISTS AnimalsBreedsRelationship(
 	FOREIGN KEY(shelterID) REFERENCES Animals(shelterID),
 	FOREIGN KEY(breedName) REFERENCES Breeds(breedName)
 );
-/*
+
+/* NO BOOLEANS, 0 is false, 1 is true*/
 CREATE TABLE IF NOT EXISTS Clients(
 	clientID INTEGER NOT NULL,
 	clientFName text NOT NULL,
 	clientLName text NOT NULL,
-	clientPrefTitle text,
+	clientPrefTitle text NOT NULL,
+	clientPhoneNumber text NOT NULL,
 	clientAge INTEGER NOT NULL,
+	clientLevelOfMobility INTEGER NOT NULL,
+	clientLengthOfOwnershipExpectation INTEGER NOT NULL,
+	clientMonthlyBudgetForAnimal INTEGER NOT NULL,
+	clientHasChildrenUnderTwelve INTEGER NOT NULL,
+	clientEnergyLevel INTEGER NOT NULL,
+	clientPatience INTEGER NOT NULL,
+	clientPreviousExperience INTEGER NOT NULL,
+	clientLivingSpaceArea INTEGER NOT NULL,
+	clientAvailabilityPerDay INTEGER NOT NULL,
 	primary key(clientID)
 );
-*/
+
 begin transaction;
+INSERT OR REPLACE INTO
+	Clients(
+		clientID,
+		clientFName,
+		clientLName,
+		clientPrefTitle,
+		clientPhoneNumber,
+		clientAge,
+		clientLevelOfMobility,
+		clientLengthOfOwnershipExpectation,
+		clientMonthlyBudgetForAnimal,
+		clientHasChildrenUnderTwelve,
+		clientEnergyLevel,
+		clientPatience,
+		clientPreviousExperience,
+		clientLivingSpaceArea,
+		clientAvailabilityPerDay
+	)VALUES(
+		0,
+		"Brian",
+		"LeBlanc",
+		"Mr.",
+		"6131234567",
+		20,
+		4,
+		5,
+		200,
+		0,
+		4,
+		2,
+		3,
+		1000,
+		6
+	);
+
+INSERT OR REPLACE INTO
+	Clients(
+		clientID,
+		clientFName,
+		clientLName,
+		clientPrefTitle,
+		clientPhoneNumber,
+		clientAge,
+		clientLevelOfMobility,
+		clientLengthOfOwnershipExpectation,
+		clientMonthlyBudgetForAnimal,
+		clientHasChildrenUnderTwelve,
+		clientEnergyLevel,
+		clientPatience,
+		clientPreviousExperience,
+		clientLivingSpaceArea,
+		clientAvailabilityPerDay
+	)VALUES(
+		1,
+		"Brian",
+		"Grickites",
+		"Mr.",
+		"6130030044",
+		23,
+		3,
+		10,
+		50,
+		0,
+		3,
+		2,
+		4,
+		1500,
+		10
+	);
+
 INSERT OR REPLACE INTO
 	Species(
 		speciesName

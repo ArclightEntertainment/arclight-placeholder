@@ -5,7 +5,7 @@ ClientProfile::ClientProfile()
 
 }
 
-ClientProfile::ClientProfile(int a, int lOfMobility, int ownExp, int budget, int space, float timeAvail, int lOfEnergy, int goodWithAnis)
+ClientProfile::ClientProfile(int a, int lOfMobility, int ownExp, int budget, int space, int timeAvail, int lOfEnergy, int goodWithAnis)
 {
   age = a;
   levelOfMobility = toFiveScale(lOfMobility);
