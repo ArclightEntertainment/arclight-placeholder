@@ -4,6 +4,7 @@
 #include <iostream>
 #include <typeinfo>
 #include "DatabaseInterface.h"
+#include "./interface/Levels.h"
 
 DatabaseInterface::DatabaseInterface()
 {
@@ -186,7 +187,7 @@ Client** DatabaseInterface::getClientArray()
     rc = sqlite3_finalize(stmt);
 
     // Get the Clients table
-    sql = "SELECT * FROM Clients;";
+    sql = "SELECT * FROM Clients JOIN Address WHERE clientID = addressClientID;";
     rc = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
 
     // Go through each row, create an Client with the column data, and add them into the array
@@ -208,8 +209,14 @@ Client** DatabaseInterface::getClientArray()
         int clientPreviousExperience = sqlite3_column_int(stmt, 12);
         int clientLivingSpaceArea = sqlite3_column_int(stmt, 13);
         int clientAvailablityPerDay = sqlite3_column_int(stmt, 14);
+        std::string addressStreetLine1 = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 16)));
+        std::string addressStreetLine2 = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 17)));
+        std::string addressCity = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 18)));
+        std::string addressSubnationalDivision = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 19)));
+        std::string addressCountry = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 20)));
+        std::string addressPostalCode = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 21)));
         clientArray[i] = Client(clientPrefTitle, clientFName, clientLName, clientPhoneNumber);
-        //clientArray[i].populateAddress(std::string sl1, std::string sl2, std::string ct, std::string sub, std::string c, std::string pc);
+        clientArray[i].populateAddress(addressStreetLine1, addressStreetLine2, addressCity, addressSubnationalDivision, addressCountry, addressPostalCode);
         //clientArray[i].populateProfile(clientAge, FiveScale lOfMobility, FiveScale ownExp, int budget, int space, int timeAvail, FiveScale lOfEnergy, FiveScale goodWithAnis);
         i++;
     }
