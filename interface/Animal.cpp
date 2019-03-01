@@ -18,18 +18,18 @@ Animal::Animal(int id, std::string n, int a, char sx, std::string sp, std::strin
     sex = sx;
     Species s(0, sp, b);
     species = s;
-    levelOfCare = (cL==0) ? Level::LOW : (cL==1) ? Level::MEDIUM : Level::HIGH;
+    levelOfCare = toThreeScale(cL);
 }
 
 //populate social values. Input ints, convert to Levels
 void Animal::populateSocial(int trLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel)
 {
-    trainingLevel = (trLevel == 0) ? Level::LOW : ((trLevel == 1) ? Level::MEDIUM : Level::HIGH);
-    affinityForPeople = (peopleLevel == 0) ? Level::LOW : ((peopleLevel == 1) ? Level::MEDIUM : Level::HIGH);
-    affinityForChildren = (childLevel == 0) ? Level::LOW : ((childLevel == 1) ? Level::MEDIUM : Level::HIGH);
-    affinityForAnimals = (animalLevel == 0) ? Level::LOW : ((animalLevel == 1) ? Level::MEDIUM : Level::HIGH);
-    approachability = (approachLevel == 0) ? Level::LOW : ((approachLevel == 1) ? Level::MEDIUM : Level::HIGH);
-    timeCommitment = (tiLevel == 0) ? Level::LOW : ((tiLevel == 1) ? Level::MEDIUM : Level::HIGH);
+    trainingLevel = toThreeScale(trLevel);
+    affinityForPeople = toThreeScale(peopleLevel);
+    affinityForChildren = toThreeScale(childLevel);
+    affinityForAnimals = toThreeScale(animalLevel);
+    approachability = toThreeScale(approachLevel);
+    timeCommitment = toThreeScale(tiLevel);
 }
 
 //populate history values,

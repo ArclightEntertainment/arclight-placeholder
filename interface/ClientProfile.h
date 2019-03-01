@@ -36,16 +36,16 @@ public:
   inline int getLivingSpaceSquareFeet()         const {return livingSpaceSquareFeet;}
   inline int getTimeAvailabilityPerDay()        const {return timeAvailabilityPerDay;}
   inline FiveScale getLevelOfEnergy()           const {return levelOfEnergy;}
-  inline FiveScale getGoodWithAnimals()         const {return goodWithAnis;}
+  inline FiveScale getGoodWithAnimals()         const {return goodWithAnimals;}
 
 // Setters
   inline void setAge(int a)                               {age = a;}
-  inline void setLevelOfMobility(int lOfMobility)         {levelOfMobility = lOfMobility;}
+  inline void setLevelOfMobility(int lOfMobility)         {levelOfMobility = toFiveScale(lOfMobility);}
   inline void setLengthOfOwnershipExpectation(int ownExp) {lengthOfOwnershipExpectation = ownExp;}
   inline void setBudgetPerMonth(int budget)               {budgetPerMonth = budget;}
   inline void setLivingSpaceSquareFeet(int space)         {livingSpaceSquareFeet = space;}
   inline void setTimeAvailabilityPerDay(float timeAvail)  {timeAvailabilityPerDay = timeAvail;}
-  inline void setLevelOfEnergy(int lOfEnergy)             {levelOfEnergy = lOfEnergy;}
-  inline void setGoodWithAnimals(int goodWithAnis)        {goodWithAnimals = goodWithAnis;}
+  inline void setLevelOfEnergy(int lOfEnergy)             {levelOfEnergy = toFiveScale(lOfEnergy);}
+  inline void setGoodWithAnimals(int goodWithAnis)        {goodWithAnimals = toFiveScale(goodWithAnis);}
 };
 #endif // CLIENTPROFILE_H

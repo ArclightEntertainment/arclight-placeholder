@@ -31,6 +31,7 @@ public:
     void populateAddress(std::string sl1, std::string sl2, std::string ct, std::string sub, std::string c, std::string pc);
     void populateProfile(int a, FiveScale lOfMobility, FiveScale ownExp, int budget, int space, float timeAvail, FiveScale lOfEnergy, FiveScale goodWithAnis);
 
+
 //Operator Overloads
     Client(const Client& a_client);
 //Getters
@@ -40,10 +41,9 @@ public:
     inline std::string getFirstName()     const {return firstName;}
     inline std::string getLastName()      const {return lastName;}
     inline std::string getPhoneNumber()   const {return phoneNumber;}
-    inline std::string getAddress()
 
     inline Address& getAddress() {return address;}
-    inline ClientProfile& getClientProfile() {return clientProfile;}
+    inline ClientProfile& getClientProfile() {return profile;}
 
 //Setters
     //contact information

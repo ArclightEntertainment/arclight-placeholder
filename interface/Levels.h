@@ -6,20 +6,20 @@ enum ThreeScale
   LOW = 0,
   MEDIUM = 1,
   HIGH = 2,
-  UNDF = -1
+  UNDFTS = -1
 };
 
 enum FiveScale
 {
   VERYLOW = 0,
-  LOW = 1,
-  MEDIUM = 2,
-  HIGH = 3,
-  VERY HIGH = 4,
-  UNDF = -1
+  MIDLOW = 1,
+  MID = 2,
+  MIDHIGH = 3,
+  VERYHIGH = 4,
+  UNDFFS = -1
 };
 
-inline ThreeScale toThreeScale(int i) const
+inline ThreeScale toThreeScale(int i)
 {
   ThreeScale ts;
 
@@ -31,14 +31,14 @@ inline ThreeScale toThreeScale(int i) const
               break;
     case 2 :  ts = ThreeScale::HIGH;
               break;
-    default : ts = ThreeScale::UNDF;
+    default : ts = ThreeScale::UNDFTS;
               break;
   }
 
   return ts;
 };
 
-inline FiveScale toFiveScale(int i) const
+inline FiveScale toFiveScale(int i)
 {
   FiveScale fs;
 
@@ -46,15 +46,15 @@ inline FiveScale toFiveScale(int i) const
   {
     case 0 :  fs = FiveScale::VERYLOW;
               break;
-    case 1 :  fs = FiveScale::LOW;
+    case 1 :  fs = FiveScale::MIDLOW;
               break;
-    case 2 :  fs = FiveScale::MEDIUM;
+    case 2 :  fs = FiveScale::MID;
               break;
-    case 3 :  fs = FiveScale::HIGH;
+    case 3 :  fs = FiveScale::MIDHIGH;
               break;
     case 4 :  fs = FiveScale::VERYHIGH;
               break;
-    default : fs = FiveScale::UNDF;
+    default : fs = FiveScale::UNDFFS;
               break;
   }
 

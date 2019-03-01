@@ -80,7 +80,7 @@ public:
     inline void setSpecies(int estimate, std::string s, std::string b="") {species.setSpecies(estimate, s, b);}
     inline void setSpecies(Species *s) {species = *s;}
     inline void setDisabled(ThreeScale d) {levelOfCare = d;}
-    inline void setDisabled(int l) {levelOfCare = toThreeScale(l)};
+    inline void setDisabled(int l) {levelOfCare = toThreeScale(l);}
 
     //social
     inline void setTraining(ThreeScale hT)       {trainingLevel=hT;}
@@ -90,12 +90,12 @@ public:
     inline void setApproachability(ThreeScale a) {approachability = a;}
     inline void setTimeCommitment(ThreeScale tC) {timeCommitment = tC;}
 
-    inline void setTraining         (int l) {trainingLevel =         toThreeScale(l)};
-    inline void setAffForAdults     (int l) {affinityForPeople =     toThreeScale(l)};
-    inline void setAffForChildren   (int l) {affinityForChildren =   toThreeScale(l)};
-    inline void setAffForAnimals    (int l) {affinityForAnimals =    toThreeScale(l)};
-    inline void setApproachability  (int l) {approachability =       toThreeScale(l)};
-    inline void setTimeCommitment   (int l) {timeCommitment =        toThreeScale(l)};
+    inline void setTraining         (int l) {trainingLevel =         toThreeScale(l);}
+    inline void setAffForAdults     (int l) {affinityForPeople =     toThreeScale(l);}
+    inline void setAffForChildren   (int l) {affinityForChildren =   toThreeScale(l);}
+    inline void setAffForAnimals    (int l) {affinityForAnimals =    toThreeScale(l);}
+    inline void setApproachability  (int l) {approachability =       toThreeScale(l);}
+    inline void setTimeCommitment   (int l) {timeCommitment =        toThreeScale(l);}
 
     //history
     inline void setImmunized(bool imm) {immunized = imm;}
