@@ -60,17 +60,18 @@ CREATE TABLE IF NOT EXISTS Clients(
 );
 
 CREATE TABLE IF NOT EXISTS Address(
+	addressClientID INTEGER NOT NULL,
 	addressStreetLine1 text NOT NULL,
 	addressStreetLine2 text NOT NULL,
 	addressCity text NOT NULL,
 	addressSubnationalDivision text NOT NULL,
 	addressCountry text NOT NULL,
-	addressPostalCode text NOT NULL
-)
+	addressPostalCode text NOT NULL,
+	FOREIGN KEY(addressClientID) REFERENCES Clients(clientID)
+);
 
 begin transaction;
-INSERT OR REPLACE INTO
-	Clients(
+INSERT OR REPLACE INTO Clients(
 		clientID,
 		clientFName,
 		clientLName,
@@ -102,10 +103,27 @@ INSERT OR REPLACE INTO
 		3,
 		1000,
 		6
-	);
+);
 
-INSERT OR REPLACE INTO
-	Clients(
+INSERT OR REPLACE INTO Address(
+		addressClientID,
+		addressStreetLine1,
+		addressStreetLine2,
+		addressCity,
+		addressSubnationalDivision,
+		addressCountry,
+		addressPostalCode
+	)VALUES(
+		0,
+		"123 Main Street",
+		"",
+		"Ottawa",
+		"Ontario",
+		"Canada",
+		"A0A1B1"
+);
+
+INSERT OR REPLACE INTO Clients(
 		clientID,
 		clientFName,
 		clientLName,
@@ -137,26 +155,41 @@ INSERT OR REPLACE INTO
 		4,
 		1500,
 		10
-	);
+);
 
-INSERT OR REPLACE INTO
-	Species(
+INSERT OR REPLACE INTO Address(
+		addressClientID,
+		addressStreetLine1,
+		addressStreetLine2,
+		addressCity,
+		addressSubnationalDivision,
+		addressCountry,
+		addressPostalCode
+	)VALUES(
+		1,
+		"321 Cool Avenue",
+		"",
+		"Ottawa",
+		"Ontario",
+		"Canada",
+		"C2C0A0"
+);
+
+INSERT OR REPLACE INTO Species(
 		speciesName
 	)VALUES(
 		"Cat"
-	);
+);
 
-INSERT OR REPLACE INTO
-	Breeds(
+INSERT OR REPLACE INTO Breeds(
 		speciesName,
 		breedName
 	)VALUES(
 		"Cat",
 		"Tabby"
-	);
+);
 
-INSERT OR REPLACE INTO
-	Animals(
+INSERT OR REPLACE INTO Animals(
 		shelterID,
 		animalName,
 		animalSpecies,
@@ -192,9 +225,9 @@ INSERT OR REPLACE INTO
 		"",
 		"",
 		"Loves people"
-	);
-INSERT OR REPLACE INTO
-	Animals(
+);
+
+INSERT OR REPLACE INTO Animals(
 		shelterID,
 		animalName,
 		animalSpecies,
@@ -230,10 +263,9 @@ INSERT OR REPLACE INTO
 		"",
 		"",
 		"Has to get used to you"
-	);
+);
 
-INSERT OR REPLACE INTO
-	Animals(
+INSERT OR REPLACE INTO Animals(
 		shelterID,
 		animalName,
 		animalSpecies,
@@ -269,10 +301,9 @@ INSERT OR REPLACE INTO
 		"",
 		"",
 		"Borks at everyone"
-	);
+);
 
-INSERT OR REPLACE INTO
-	Animals(
+INSERT OR REPLACE INTO Animals(
 		shelterID,
 		animalName,
 		animalSpecies,
@@ -308,10 +339,9 @@ INSERT OR REPLACE INTO
 		"",
 		"",
 		"Doesnt like anybody at all"
-	);
+);
 
-INSERT OR REPLACE INTO
-	Animals(
+INSERT OR REPLACE INTO Animals(
 		shelterID,
 		animalName,
 		animalSpecies,
@@ -347,16 +377,6 @@ INSERT OR REPLACE INTO
 		"",
 		"",
 		"likes everbody; ded"
-	);
-/*
+);
 
-insert or replace into Animals(animalName, animalAge, animalSex, animalSpecies, animalBreed)
-	values(
-		"Amy",
-		10,
-		"F",
-		"Dog",
-		"Bichon Frise/Poodle"
-	);
-*/
 end transaction;
