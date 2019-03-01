@@ -10,9 +10,20 @@ Animal::Animal()
 }
 
 //Basic constructor
-Animal::Animal(int id, std::string n, int a, char sx, std::string sp, std::string b, int cL)
+Animal::Animal(std::string n, int a, char sx, std::string sp, std::string b, int cL)
 {
-    shelterID = id;
+    shelterID = 0;
+    name = n;
+    age = a;
+    sex = sx;
+    Species s(0, sp, b);
+    species = s;
+    levelOfCare = (cL==0) ? Level::LOW : (cL==1) ? Level::MEDIUM : Level::HIGH;
+}
+//constructor coming from Database
+Animal::Animal(int sid, std::string n, int a, char sx, std::string sp, std::string b, int cL)
+{
+    shelterID = sid;
     name = n;
     age = a;
     sex = sx;

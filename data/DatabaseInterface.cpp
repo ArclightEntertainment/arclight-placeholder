@@ -140,7 +140,7 @@ int DatabaseInterface::pushDBAnimal(Animal &animal)
 
     std::string sep = ", ";
     std::string strsep = "'";
-    /*std::string sql =
+    std::string sql =
             std::string("INSERT OR REPLACE INTO Animals(shelterID, animalName, animalSpecies, animalBreed, animalAge, animalSex, animalTrainingLevel, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproachability, animalTimeCommitment, animalDietNeeds, animalMobilityNeeds, animalDisablityNeeds, animalAbuseHistory, animalBiography) VALUES(")
             + animal.getShelterID() + sep
             + animal.getName() + sep

@@ -32,7 +32,8 @@ SOURCES += \
     interface/InputDiag.cpp \
     interface/ListView.cpp \
     interface/MainWindow.cpp \
-    interface/species.cpp
+    interface/species.cpp \
+    interface/animaldetaildiag.cpp
 
 HEADERS += \
     data/DatabaseInterface.h \
@@ -41,10 +42,11 @@ HEADERS += \
     interface/InputDiag.h \
     interface/ListView.h \
     interface/MainWindow.h \
-    interface/species.h
+    interface/species.h \
+    interface/animaldetaildiag.h
 
 FORMS += \
     interface/inputdialog.ui \
     interface/listview.ui \
     interface/mainwindow.ui \
-    interface/animaldetaileddialog.ui
+    interface/animaldetaildialog.ui

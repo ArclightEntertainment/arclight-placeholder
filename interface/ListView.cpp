@@ -9,12 +9,35 @@ ListView::ListView(AnimalManager *aM, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    closeButton = ui->closeButton;
+    detailsButton = ui->detailsButton;
+
+    connect(closeButton, SIGNAL(released()), this,SLOT(handleButtonClose()));
+    connect(detailsButton, SIGNAL(released()), this,SLOT(handleButtonDetail()));
+
     animalList = ui->animalTableWidget;
     animalList->setSelectionBehavior(QAbstractItemView::SelectRows);
     animalList->setSelectionMode(QAbstractItemView::SingleSelection);
+
     manager = aM;
 
     updateListView();
+}
+
+void ListView::handleButtonClose()
+{
+    close();
+}
+void ListView::handleButtonDetail()
+{
+
+    int shelterID = animalList->itemAt(animalList->currentRow(), animalList->columnCount()-1)->text().toInt();
+    std::cout << animalList->currentRow() << " ";
+    std::cout << animalList->columnCount()-1 << " ";
+    std::cout << shelterID << std::endl;
+    AnimalDetailDiag diag(manager, manager->getAnimalWithId(shelterID), this);
+
+    diag.exec();
 }
 
 //Update the ListView, inserts all values
@@ -23,7 +46,7 @@ void ListView::updateListView()
     //std::cout<< manager->getNumAnimals() << std::endl;
     animalList->setRowCount(manager->getNumAnimals());
 
-    QStringList columnNames = {"Name", "Species", "Breed", "Age", "Sex"};
+    QStringList columnNames = {"Name", "Species", "Breed", "Age", "Sex", "ID"};
     animalList->setColumnCount(columnNames.length());
     animalList->setHorizontalHeaderLabels(columnNames);
 
@@ -37,6 +60,7 @@ void ListView::updateListView()
         QTableWidgetItem *breed = new QTableWidgetItem (QString::fromStdString(a[i].getBreed()));
         QTableWidgetItem *age = new QTableWidgetItem (QString::number(a[i].getAge()));
         QTableWidgetItem *sex = new QTableWidgetItem (QString(QChar::fromLatin1(a[i].getSex())));
+        QTableWidgetItem *id = new QTableWidgetItem (QString::number(a[i].getShelterID()));
 
         //set all as un-editable
         name->setFlags(name->flags() ^ Qt::ItemIsEditable);
@@ -44,6 +68,7 @@ void ListView::updateListView()
         breed->setFlags(breed->flags() ^ Qt::ItemIsEditable);
         age->setFlags(age->flags() ^ Qt::ItemIsEditable);
         sex->setFlags(sex->flags() ^ Qt::ItemIsEditable);
+        id->setFlags(id->flags() ^ Qt::ItemIsEditable);
 
         //place items into list view
         animalList->setItem(i, 0, name);    //Name
@@ -51,13 +76,17 @@ void ListView::updateListView()
         animalList->setItem(i, 2, breed);    //Breed
         animalList->setItem(i, 3, age);    //Age
         animalList->setItem(i, 4, sex);    //Sex
+        animalList->setItem(i, 5, id);    //ShelterID
     }
     //set dimensions
-    animalList->setColumnWidth(0, 146); //Name
+    animalList->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    animalList->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    animalList->setColumnWidth(0, 140); //Name
     animalList->setColumnWidth(1, 140); //Species
-    animalList->setColumnWidth(2, 100); //Breed
-    animalList->setColumnWidth(3, 50); //Age
-    animalList->setColumnWidth(4, 48); //Sex
+    animalList->setColumnWidth(2, 106); //Breed
+    animalList->setColumnWidth(3, 56); //Age
+    animalList->setColumnWidth(4, 42); //Sex
+    animalList->setColumnWidth(5, 0); //Sex
     //sort ascending
     animalList->sortByColumn(0, Qt::SortOrder::AscendingOrder);
 }

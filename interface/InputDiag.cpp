@@ -36,7 +36,6 @@ void InputDiag::handleButtonSave()
     if (name && species && sex && age)
     {
         int index = aManager -> addAnimal(
-                    ui->ageSpinBox->text().toInt(),
                     ui->nameLineEdit->text().toStdString(),
                     ui->ageSpinBox->text().toInt(),
                     ui->sexSelector->currentText().at(0).toLatin1(),

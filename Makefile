@@ -57,9 +57,11 @@ SOURCES       = data/DatabaseInterface.cpp \
 		interface/InputDiag.cpp \
 		interface/ListView.cpp \
 		interface/MainWindow.cpp \
-		interface/species.cpp moc_InputDiag.cpp \
+		interface/species.cpp \
+		interface/animaldetaildiag.cpp moc_InputDiag.cpp \
 		moc_ListView.cpp \
-		moc_MainWindow.cpp
+		moc_MainWindow.cpp \
+		moc_animaldetaildiag.cpp
 OBJECTS       = DatabaseInterface.o \
 		main.o \
 		Animal.o \
@@ -68,9 +70,11 @@ OBJECTS       = DatabaseInterface.o \
 		ListView.o \
 		MainWindow.o \
 		species.o \
+		animaldetaildiag.o \
 		moc_InputDiag.o \
 		moc_ListView.o \
-		moc_MainWindow.o
+		moc_MainWindow.o \
+		moc_animaldetaildiag.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -167,14 +171,16 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/InputDiag.h \
 		interface/ListView.h \
 		interface/MainWindow.h \
-		interface/species.h data/DatabaseInterface.cpp \
+		interface/species.h \
+		interface/animaldetaildiag.h data/DatabaseInterface.cpp \
 		interface/main.cpp \
 		interface/Animal.cpp \
 		interface/AnimalManager.cpp \
 		interface/InputDiag.cpp \
 		interface/ListView.cpp \
 		interface/MainWindow.cpp \
-		interface/species.cpp
+		interface/species.cpp \
+		interface/animaldetaildiag.cpp
 QMAKE_TARGET  = cuACS
 DESTDIR       = 
 TARGET        = cuACS
@@ -183,7 +189,7 @@ TARGET        = cuACS
 first: all
 ####### Build rules
 
-$(TARGET): ui_inputdialog.h ui_listview.h ui_mainwindow.h ui_animaldetaileddialog.h $(OBJECTS)  
+$(TARGET): ui_inputdialog.h ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: cuACS.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -390,9 +396,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.h interface/Animal.h interface/AnimalManager.h interface/InputDiag.h interface/ListView.h interface/MainWindow.h interface/species.h $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/InputDiag.cpp interface/ListView.cpp interface/MainWindow.cpp interface/species.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents interface/inputdialog.ui interface/listview.ui interface/mainwindow.ui interface/animaldetaileddialog.ui $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseInterface.h interface/Animal.h interface/AnimalManager.h interface/InputDiag.h interface/ListView.h interface/MainWindow.h interface/species.h interface/animaldetaildiag.h $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseInterface.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/InputDiag.cpp interface/ListView.cpp interface/MainWindow.cpp interface/species.cpp interface/animaldetaildiag.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents interface/inputdialog.ui interface/listview.ui interface/mainwindow.ui interface/animaldetaildialog.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -424,9 +430,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_InputDiag.cpp moc_ListView.cpp moc_MainWindow.cpp
+compiler_moc_header_make_all: moc_InputDiag.cpp moc_ListView.cpp moc_MainWindow.cpp moc_animaldetaildiag.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_InputDiag.cpp moc_ListView.cpp moc_MainWindow.cpp
+	-$(DEL_FILE) moc_InputDiag.cpp moc_ListView.cpp moc_MainWindow.cpp moc_animaldetaildiag.cpp
 moc_InputDiag.cpp: interface/Animal.h \
 		interface/species.h \
 		interface/AnimalManager.h \
@@ -453,11 +459,19 @@ moc_MainWindow.cpp: interface/InputDiag.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include interface/MainWindow.h -o moc_MainWindow.cpp
 
+moc_animaldetaildiag.cpp: interface/AnimalManager.h \
+		interface/Animal.h \
+		interface/species.h \
+		interface/animaldetaildiag.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include interface/animaldetaildiag.h -o moc_animaldetaildiag.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_inputdialog.h ui_listview.h ui_mainwindow.h ui_animaldetaileddialog.h
+compiler_uic_make_all: ui_inputdialog.h ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_inputdialog.h ui_listview.h ui_mainwindow.h ui_animaldetaileddialog.h
+	-$(DEL_FILE) ui_inputdialog.h ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h
 ui_inputdialog.h: interface/inputdialog.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic interface/inputdialog.ui -o ui_inputdialog.h
@@ -470,9 +484,9 @@ ui_mainwindow.h: interface/mainwindow.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic interface/mainwindow.ui -o ui_mainwindow.h
 
-ui_animaldetaileddialog.h: interface/animaldetaileddialog.ui \
+ui_animaldetaildialog.h: interface/animaldetaildialog.ui \
 		/usr/lib/qt5/bin/uic
-	/usr/lib/qt5/bin/uic interface/animaldetaileddialog.ui -o ui_animaldetaileddialog.h
+	/usr/lib/qt5/bin/uic interface/animaldetaildialog.ui -o ui_animaldetaildialog.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -534,6 +548,13 @@ MainWindow.o: interface/MainWindow.cpp interface/MainWindow.h \
 species.o: interface/species.cpp interface/species.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o species.o interface/species.cpp
 
+animaldetaildiag.o: interface/animaldetaildiag.cpp interface/animaldetaildiag.h \
+		interface/AnimalManager.h \
+		interface/Animal.h \
+		interface/species.h \
+		ui_detailedview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o animaldetaildiag.o interface/animaldetaildiag.cpp
+
 moc_InputDiag.o: moc_InputDiag.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_InputDiag.o moc_InputDiag.cpp
 
@@ -542,6 +563,9 @@ moc_ListView.o: moc_ListView.cpp
 
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp
+
+moc_animaldetaildiag.o: moc_animaldetaildiag.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_animaldetaildiag.o moc_animaldetaildiag.cpp
 
 ####### Install
 

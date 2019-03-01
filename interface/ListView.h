@@ -11,6 +11,7 @@
 #include <qstring.h>
 
 #include "AnimalManager.h"
+#include "animaldetaildiag.h"
 
 namespace Ui {
 class ListView;
@@ -23,15 +24,21 @@ class ListView : public QDialog
 public:
     explicit ListView(AnimalManager *aM, QWidget *parent = 0);
     ~ListView();
+
 private slots:
-    void updateListView();
+    void handleButtonClose();
+    void handleButtonDetail();
 private:
     //important UI Elements
     Ui::ListView *ui;
     QTableWidget *animalList;
+    QPushButton *closeButton;
+    QPushButton *detailsButton;
 
     //pointer to Animal Manager
     AnimalManager *manager;
+
+    void updateListView();
 };
 
 #endif // LISTVIEW_H

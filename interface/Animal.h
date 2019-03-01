@@ -41,7 +41,8 @@ private:
 public:
 //Constructor and population functions
     Animal();
-    Animal(int id, std::string n, int a, char sx, std::string sp, std::string b, int cL);
+    Animal(std::string n, int a, char sx, std::string sp, std::string b, int cL);
+    Animal(int sid, std::string n, int a, char sx, std::string sp, std::string b, int cL);
     void populateSocial(int trLevel, int taLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel);
     void populateHistory(bool imm, std::string dietString, std::string mobilityString, std::string disabilityString, std::string bio, std::string aHist);
 
@@ -75,6 +76,16 @@ public:
     inline std::string getDisabilityNeeds() const {return disabilityNeeds;}
     inline std::string getAbuseHistory() const {return abuseHistory;}
     inline std::string getBiography() const {return biography;}
+
+    inline std::string getLevelOfCareString()const{return (levelOfCare == 0) ? "Low" : (levelOfCare == 1) ? "Average" : "High";}
+    inline std::string getTrainingString()const{return (trainingLevel == 0) ? "Untrained" : (trainingLevel == 1) ? "House Trained" : "Well Trained";}
+    inline std::string getTrainabilityString()const{return (trainabilityLevel == 0) ? "Disobedient" : (trainabilityLevel == 1) ? "Basic" : "High Level";}
+    inline std::string getAffForPeopleString()const{return (affinityForPeople == 0) ? "Low" : (affinityForPeople == 1) ? "Average" : "High";}
+    inline std::string getAffForChildrenString()const{return (affinityForChildren == 0) ? "Low" : (affinityForChildren == 1) ? "Average" : "High";}
+    inline std::string getAffForAnimalsString()const{return (affinityForAnimals == 0) ? "Low" : (affinityForAnimals == 1) ? "Average" : "High";}
+    inline std::string getApproachabilityString()const{return (approachability == 0) ? "Shy" : (approachability == 1) ? "Tentative" : "Comfortable";}
+    inline std::string getTimeCommitmentString()const{return (timeCommitment == 0) ? "Low" : (timeCommitment == 1) ? "Average" : "High";}
+
 
 //Setters
     inline void setShelterID(int id) {shelterID = id;}

@@ -14,9 +14,9 @@ AnimalManager::AnimalManager(int i)
 }
 
 //Creates a new animal with basic information, returns it's index in the array.
-int AnimalManager::addAnimal(int id, std::string n, int a, char sx, std::string sp, std::string b, int cL)
+int AnimalManager::addAnimal(std::string n, int a, char sx, std::string sp, std::string b, int cL)
 {
-    animalCollection[numAnimals++] = *new Animal(id, n, a, sx, sp, b, cL);
+    animalCollection[numAnimals++] = *new Animal(n, a, sx, sp, b, cL);
     resize();
     return numAnimals-1;
 }
@@ -64,6 +64,17 @@ void AnimalManager::resize()
         }
         animalCollection = newArray;
         //std::cout<<"Doubled!"<<std::endl;
+    }
+}
+
+Animal* AnimalManager::getAnimalWithId(int sid)
+{
+    for (int i = 0; i < numAnimals; i++)
+    {
+        if (animalCollection[i].getShelterID() == sid)
+        {
+            return &animalCollection[i];
+        }
     }
 }
 
