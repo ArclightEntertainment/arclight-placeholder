@@ -47,15 +47,16 @@ CREATE TABLE IF NOT EXISTS Clients(
 	clientPrefTitle text NOT NULL,
 	clientPhoneNumber text NOT NULL,
 	clientAge INTEGER NOT NULL,
+	clientHasChildrenUnderTwelve INTEGER NOT NULL,
 	clientLevelOfMobility INTEGER NOT NULL,
 	clientLengthOfOwnershipExpectation INTEGER NOT NULL,
 	clientMonthlyBudgetForAnimal INTEGER NOT NULL,
-	clientHasChildrenUnderTwelve INTEGER NOT NULL,
-	clientEnergyLevel INTEGER NOT NULL,
-	clientPatience INTEGER NOT NULL,
-	clientPreviousExperience INTEGER NOT NULL,
-	clientLivingSpaceArea INTEGER NOT NULL,
+	clientLivingSpaceSquareFeet INTEGER NOT NULL,
 	clientAvailabilityPerDay INTEGER NOT NULL,
+	clientLevelOfEnergy INTEGER NOT NULL,
+	clientLevelOfPatience INTEGER NOT NULL,
+	clientPreviousExperience INTEGER NOT NULL,
+	clientPhysicalAffection INTEGER NOT NULL,
 	primary key(clientID)
 );
 
@@ -67,7 +68,8 @@ CREATE TABLE IF NOT EXISTS Address(
 	addressSubnationalDivision text NOT NULL,
 	addressCountry text NOT NULL,
 	addressPostalCode text NOT NULL,
-	FOREIGN KEY(addressClientID) REFERENCES Clients(clientID)
+	FOREIGN KEY(addressClientID) REFERENCES Clients(clientID),
+	PRIMARY KEY(addressClientID)
 );
 
 begin transaction;
@@ -78,15 +80,16 @@ INSERT OR REPLACE INTO Clients(
 		clientPrefTitle,
 		clientPhoneNumber,
 		clientAge,
-		clientLevelOfMobility,
+		clientHasChildrenUnderTwelve,
 		clientLengthOfOwnershipExpectation,
 		clientMonthlyBudgetForAnimal,
-		clientHasChildrenUnderTwelve,
-		clientEnergyLevel,
-		clientPatience,
+		clientLivingSpaceSquareFeet,
+		clientAvailabilityPerDay,
+		clientLevelOfMobility,
+		clientLevelOfEnergy,
+		clientLevelOfPatience,
 		clientPreviousExperience,
-		clientLivingSpaceArea,
-		clientAvailabilityPerDay
+		clientPhysicalAffection
 	)VALUES(
 		0,
 		"Brian",
@@ -94,15 +97,16 @@ INSERT OR REPLACE INTO Clients(
 		"Mr.",
 		"6131234567",
 		20,
-		4,
+		0,
 		5,
 		200,
-		0,
+		1000,
+		150,
+		4,
 		4,
 		2,
 		3,
-		1000,
-		6
+		3
 );
 
 INSERT OR REPLACE INTO Address(
@@ -130,31 +134,33 @@ INSERT OR REPLACE INTO Clients(
 		clientPrefTitle,
 		clientPhoneNumber,
 		clientAge,
-		clientLevelOfMobility,
+		clientHasChildrenUnderTwelve,
 		clientLengthOfOwnershipExpectation,
 		clientMonthlyBudgetForAnimal,
-		clientHasChildrenUnderTwelve,
-		clientEnergyLevel,
-		clientPatience,
+		clientLivingSpaceSquareFeet,
+		clientAvailabilityPerDay,
+		clientLevelOfMobility,
+		clientLevelOfEnergy,
+		clientLevelOfPatience,
 		clientPreviousExperience,
-		clientLivingSpaceArea,
-		clientAvailabilityPerDay
+		clientPhysicalAffection
 	)VALUES(
 		1,
 		"Brian",
 		"Grickites",
 		"Mr.",
-		"6130030044",
+		"6131112222",
 		23,
-		3,
-		10,
-		50,
 		0,
-		3,
-		2,
-		4,
+		10,
+		250,
 		1500,
-		10
+		90,
+		1,
+		2,
+		0,
+		4,
+		2
 );
 
 INSERT OR REPLACE INTO Address(

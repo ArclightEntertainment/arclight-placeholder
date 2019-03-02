@@ -5,16 +5,19 @@ ClientProfile::ClientProfile()
 
 }
 
-ClientProfile::ClientProfile(int a, int lOfMobility, int ownExp, int budget, int space, int timeAvail, int lOfEnergy, int goodWithAnis)
+ClientProfile::ClientProfile(int a, bool hasUnderTwelve, int ownExp, int budget, int spaceSqFt, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect)
 {
   age = a;
-  levelOfMobility = toFiveScale(lOfMobility);
+  hasChildrenUnderTwelve = hasUnderTwelve;
   lengthOfOwnershipExpectation = ownExp;
   budgetPerMonth = budget;
-  livingSpaceSquareFeet = space;
+  livingSpaceSquareFeet = spaceSqFt;
   timeAvailabilityPerDay = timeAvail;
-  levelOfEnergy = toFiveScale(lOfEnergy);
-  goodWithAnimals = toFiveScale(goodWithAnis);
+  levelOfMobility = lOfMobility;
+  levelOfEnergy = lOfEnergy;
+  levelOfPatience = lOfPatience;
+  previousExperience = prevExp;
+  physicalAffection = physAffect;
 }
 
 ClientProfile::ClientProfile(const ClientProfile& a_profile)

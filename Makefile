@@ -442,6 +442,7 @@ compiler_moc_header_clean:
 	-$(DEL_FILE) moc_InputDiag.cpp moc_ListView.cpp moc_MainWindow.cpp
 moc_InputDiag.cpp: interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		interface/AnimalManager.h \
 		interface/InputDiag.h \
 		moc_predefs.h \
@@ -451,6 +452,7 @@ moc_InputDiag.cpp: interface/Animal.h \
 moc_ListView.cpp: interface/AnimalManager.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		interface/ListView.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -459,6 +461,7 @@ moc_ListView.cpp: interface/AnimalManager.h \
 moc_MainWindow.cpp: interface/InputDiag.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		interface/AnimalManager.h \
 		interface/ListView.h \
 		interface/MainWindow.h \
@@ -496,8 +499,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 DatabaseInterface.o: data/DatabaseInterface.cpp data/DatabaseInterface.h \
 		interface/Animal.h \
 		interface/species.h \
-		interface/Client.h \
 		interface/Levels.h \
+		interface/Client.h \
 		interface/Address.h \
 		interface/ClientProfile.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DatabaseInterface.o data/DatabaseInterface.cpp
@@ -506,25 +509,26 @@ main.o: interface/main.cpp interface/MainWindow.h \
 		interface/InputDiag.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		interface/AnimalManager.h \
 		interface/ListView.h \
 		data/DatabaseInterface.h \
 		interface/Client.h \
-		interface/Levels.h \
 		interface/Address.h \
 		interface/ClientProfile.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o interface/main.cpp
 
 Animal.o: interface/Animal.cpp interface/Animal.h \
-		interface/species.h
+		interface/species.h \
+		interface/Levels.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Animal.o interface/Animal.cpp
 
 AnimalManager.o: interface/AnimalManager.cpp interface/AnimalManager.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		data/DatabaseInterface.h \
 		interface/Client.h \
-		interface/Levels.h \
 		interface/Address.h \
 		interface/ClientProfile.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AnimalManager.o interface/AnimalManager.cpp
@@ -532,6 +536,7 @@ AnimalManager.o: interface/AnimalManager.cpp interface/AnimalManager.h \
 InputDiag.o: interface/InputDiag.cpp interface/InputDiag.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		interface/AnimalManager.h \
 		ui_inputdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o InputDiag.o interface/InputDiag.cpp
@@ -540,6 +545,7 @@ ListView.o: interface/ListView.cpp interface/ListView.h \
 		interface/AnimalManager.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		ui_listview.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ListView.o interface/ListView.cpp
 
@@ -547,6 +553,7 @@ MainWindow.o: interface/MainWindow.cpp interface/MainWindow.h \
 		interface/InputDiag.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		interface/AnimalManager.h \
 		interface/ListView.h \
 		ui_mainwindow.h

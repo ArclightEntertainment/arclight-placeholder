@@ -12,40 +12,49 @@ class ClientProfile
 {
 private:
   int age;
-  FiveScale levelOfMobility;
+  bool hasChildrenUnderTwelve;
   int lengthOfOwnershipExpectation;
   int budgetPerMonth;
   int livingSpaceSquareFeet;
   int timeAvailabilityPerDay;
+  FiveScale levelOfMobility;
   FiveScale levelOfEnergy;
-  FiveScale goodWithAnimals;
+  FiveScale levelOfPatience;
+  FiveScale previousExperience;
+  FiveScale physicalAffection;
 
 public:
 // Constructor
   ClientProfile();
-  ClientProfile(int a, int lOfMobility, int ownExp, int budget, int space, int timeAvail, int lOfEnergy, int goodWithAnis);
+  ClientProfile(int a, bool hasUnderTwelve, int ownExp, int budget, int spaceSqFt, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect);
 
 //Operator Overloads
   ClientProfile(const ClientProfile& a_profile);
 
 // Getters
   inline int getAge()                           const {return age;}
-  inline FiveScale getLevelOfMobility()         const {return levelOfMobility;}
+  inline bool getHasChildrenUnderTwelve()       const {return hasChildrenUnderTwelve;}
   inline int getLengthOfOwnershipExpectation()  const {return lengthOfOwnershipExpectation;}
   inline int getBudgetPerMonth()                const {return budgetPerMonth;}
   inline int getLivingSpaceSquareFeet()         const {return livingSpaceSquareFeet;}
   inline int getTimeAvailabilityPerDay()        const {return timeAvailabilityPerDay;}
+  inline FiveScale getLevelOfMobility()         const {return levelOfMobility;}
   inline FiveScale getLevelOfEnergy()           const {return levelOfEnergy;}
-  inline FiveScale getGoodWithAnimals()         const {return goodWithAnimals;}
+  inline FiveScale getLevelOfPatience()         const {return levelOfPatience;}
+  inline FiveScale getPreviousExperience()      const {return previousExperience;}
+  inline FiveScale getPhysicalAffection()       const {return physicalAffection;}
 
 // Setters
-  inline void setAge(int a)                               {age = a;}
-  inline void setLevelOfMobility(int lOfMobility)         {levelOfMobility = toFiveScale(lOfMobility);}
-  inline void setLengthOfOwnershipExpectation(int ownExp) {lengthOfOwnershipExpectation = ownExp;}
-  inline void setBudgetPerMonth(int budget)               {budgetPerMonth = budget;}
-  inline void setLivingSpaceSquareFeet(int space)         {livingSpaceSquareFeet = space;}
-  inline void setTimeAvailabilityPerDay(int timeAvail)  {timeAvailabilityPerDay = timeAvail;}
-  inline void setLevelOfEnergy(int lOfEnergy)             {levelOfEnergy = toFiveScale(lOfEnergy);}
-  inline void setGoodWithAnimals(int goodWithAnis)        {goodWithAnimals = toFiveScale(goodWithAnis);}
+  inline void setAge(int a)                                  {age = a;}
+  inline void setHasChildrenUnderTwelve(bool hasUnderTwelve) {hasChildrenUnderTwelve = hasUnderTwelve;}
+  inline void setLengthOfOwnershipExpectation(int ownExp)    {lengthOfOwnershipExpectation = ownExp;}
+  inline void setBudgetPerMonth(int budget)                  {budgetPerMonth = budget;}
+  inline void setLivingSpaceSquareFeet(int space)            {livingSpaceSquareFeet = space;}
+  inline void setTimeAvailabilityPerDay(int timeAvail)       {timeAvailabilityPerDay = timeAvail;}
+  inline void setLevelOfMobility(FiveScale lOfMobility)      {levelOfMobility = lOfMobility;}
+  inline void setLevelOfEnergy(FiveScale lOfEnergy)          {levelOfEnergy = lOfEnergy;}
+  inline void setLevelOfPatience(FiveScale lOfPatience)      {levelOfPatience = lOfPatience;}
+  inline void setPreviousExperience(FiveScale prevEx)        {previousExperience = prevEx;}
+  inline void setPhysicalAffection(FiveScale physAffect)     {physicalAffection = physAffect;}
 };
 #endif // CLIENTPROFILE_H
