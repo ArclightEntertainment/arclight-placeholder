@@ -329,6 +329,9 @@
             <height>7</height>
            </size>
           </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
           <property name="maximum">
            <number>2</number>
           </property>
@@ -336,6 +339,12 @@
            <number>1</number>
           </property>
           <property name="textVisible">
+           <bool>false</bool>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="invertedAppearance">
            <bool>false</bool>
           </property>
          </widget>

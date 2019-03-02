@@ -29,21 +29,21 @@ SOURCES += \
     interface/main.cpp \
     interface/Animal.cpp \
     interface/AnimalManager.cpp \
-    interface/InputDiag.cpp \
-    interface/ListView.cpp \
     interface/MainWindow.cpp \
-    interface/species.cpp \
-    interface/animaldetaildiag.cpp
+    interface/AnimalInputDiag.cpp \
+    interface/AnimalListView.cpp \
+    interface/AnimalDetailDiag.cpp \
+    interface/Species.cpp
 
 HEADERS += \
     data/DatabaseInterface.h \
     interface/Animal.h \
     interface/AnimalManager.h \
-    interface/InputDiag.h \
-    interface/ListView.h \
     interface/MainWindow.h \
-    interface/species.h \
-    interface/animaldetaildiag.h
+    interface/AnimalInputDiag.h \
+    interface/AnimalListView.h \
+    interface/AnimalDetailDiag.h \
+    interface/Species.h
 
 FORMS += \
     interface/inputdialog.ui \

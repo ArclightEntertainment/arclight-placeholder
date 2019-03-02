@@ -88,6 +88,7 @@ Animal* AnimalManager::getAnimalWithName(std::string n)
             return &animalCollection[i];
         }
     }
+    return NULL;
 }
 
 //used for testing only. Input desired code segments to run here

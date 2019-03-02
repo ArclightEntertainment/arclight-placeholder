@@ -11,7 +11,7 @@
 #include <qstring.h>
 
 #include "AnimalManager.h"
-#include "animaldetaildiag.h"
+#include "AnimalDetailDiag.h"
 
 namespace Ui {
 class ListView;

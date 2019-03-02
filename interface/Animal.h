@@ -1,7 +1,7 @@
 #ifndef ANIMAL_H
 #define ANIMAL_H
 #include <string>
-#include "species.h"
+#include "Species.h"
 
 enum Level {LOW=0, MEDIUM=1, HIGH=2};
 

@@ -1,4 +1,4 @@
-#include "InputDiag.h"
+#include "AnimalInputDiag.h"
 #include "ui_inputdialog.h"
 #include <iostream>
 
