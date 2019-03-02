@@ -1,0 +1,110 @@
+Pseudo code for compatability function:
+
+def compatability(animal, client):
+	float personality = 0;
+	float physical = 0;
+	float home = 0;
+	
+	if(animal.species.name is in client.definiteNoList || 
+	  (animal.affinityChildren == 0 && client.childrenUnderTwelve == True))
+		return -1
+
+
+	//discuss weights for values
+	//all values should be assigned weights which add to 1.0 for each of their respective groups
+	//all groups should be assigned a weight which add to 1.0 for the final weight
+	if (client.Patience - (4 - (animal.Affinity for People)*2)) < 0
+		personality += (4 - (animal.Affinity for People)*2) - client.Patience)
+	
+
+	if (client.Physical Affection - (4 - (animal.Affinity for People)*2)) < 0
+		personality += (4 - (animal.Affinity for People)*2) - client.Physical Affection)
+
+	
+	if (client.Previous Experience - (animal.Level of Care)*2) < 0
+		personality += ((animal.Level of Care)*2 - client.Previous Experience)
+		
+		
+	if (client.Previous Experience - (4 - (animal.Training Level)*2)) < 0
+		personality += ((4 - (animal.Training Level)*2) - client.Previous Experience) 
+		
+		
+	if (client.Patience - (4 - (animal.Trainability)*2)) < 0
+		personality += ((4-(animal.Trainability)*2) - client.Patience) 
+		
+		
+	if (client.Previous Experience - (4 - (animal.Trainability)*2)) < 0
+		personality += ((4 - (animal.Trainability)*2) - client.Previous Experience) 
+		
+		
+	if (client.Patience - (4 - (animal.Approachability)*2)) < 0
+		personality += ((4 - (animal.Approachability)*2) - client.Patience) 
+		
+		
+	if (client.Previous Experience - (4 - (animal.Approachability)*2)) < 0
+		personality += ((4 - (animal.Approachability)*2) - client.Previous Experience)
+
+
+	if(animal.Species.Name is in client.Species Preference List)
+		personality -= 2
+
+
+	if (client.Level of Mobility - (animal.Level of Care)*2) < 0
+		physical += ((animal.Level of Care)*2 - client.Level of Mobility)
+
+
+	if (client.Level of Mobility - (4 - (animal.Training Level)*2)) < 0
+		physical += ((4 - (animal.Training Level)*2) - client.Level of Mobility) 
+
+
+	if (client.Patience - (4 - (animal.Training Level)*2)) < 0
+		physical += ((4 - (animal.Training Level)*2) - client.Patience) 
+		
+		
+	if (client.Time Availability Per Day - (4 - (animal.Training Level)*2)) < 0
+		physical += ((4 - (animal.Training Level)*2) - client.Time Availability Per Day) 
+
+		
+	if (animal.Time Commitment > client.Time Availability Per Day)
+		physical += ((animal.Time Commitment - client.Time Availability Per Day)/animal.Time Commitment) * 4)
+		
+		
+	if (client.Time Availability Per Day/60 - (animal.Energy Level)) < 0
+		physical += ((animal.Energy Level) - client.Time Availability Per Day/60)*2 
+
+
+	if (client.Time Availability Per Day/60 - (animal.Trainability)) < 0
+		physical += ((animal.Trainability) - client.Time Availability Per Day/60)*2 
+	
+
+	if(animal.Level of Care == 0 && 15 - client.Time Availability > 0)
+		physical += ((15 - client.Time Availability)/60)
+	else if(animal.Level of Care == 1 && 60 - client.Time Availability > 0)
+		physical += ((60 - client.Time Availability)/60)
+	else if(animal.Level of Care == 2 && 150 - client.Time Availability > 0)
+		physical += ((150 - client.Time Availability)/60)
+
+
+	float overCost = (animal.Estimated Cost Per Month - client.Estimated Monthly Budget)/(client.Estimated Monthly Budget)
+	if(overcost > 0 && overcost < 0.5) 
+		home += overCost*8
+	else if overCost >=0.5
+		home +=  4
+
+
+	if(client.Has Other Pets == True)
+		home += (4 - (animal.Affinity for Animals * 2))
+		
+		
+	if(client.Has Children Under Twelve == True)
+		home += (4 - (animal.Affinity for Children * 2))
+	
+	
+	if (client.Length of Ownership Expectation - (animal.Species.LengthOfLifeEstimate - animal.Age)) < 4 && > 0:
+		home abs(client.Length of Ownership Expectation - (animal.Species.LengthOfLifeEstimate - animal.Age))
+	else if client.Length of Ownership Expectation - (animal.Species.LengthOfLifeEstimate - animal.Age) > 4
+		home +=  4
+		
+		
+	return personality * (weight1) + home * (weight2) + physical * (weight3)
+	
