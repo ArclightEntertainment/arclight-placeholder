@@ -29,14 +29,11 @@ void ListView::handleButtonClose()
     close();
 }
 void ListView::handleButtonDetail()
+
 {
-
-    int shelterID = animalList->itemAt(animalList->currentRow(), animalList->columnCount()-1)->text().toInt();
-    std::cout << animalList->currentRow() << " ";
-    std::cout << animalList->columnCount()-1 << " ";
-    std::cout << shelterID << std::endl;
-    AnimalDetailDiag diag(manager, manager->getAnimalWithId(shelterID), this);
-
+    QModelIndex currentIndex = animalList->currentIndex();
+    std::string name = animalList->item(currentIndex.row(), 0)->text().toStdString();
+    AnimalDetailDiag diag(manager, manager->getAnimalWithName(name), this);
     diag.exec();
 }
 

@@ -76,6 +76,18 @@ Animal* AnimalManager::getAnimalWithId(int sid)
             return &animalCollection[i];
         }
     }
+    return NULL;
+}
+
+Animal* AnimalManager::getAnimalWithName(std::string n)
+{
+    for (int i = 0; i < numAnimals; i++)
+    {
+        if (animalCollection[i].getName().compare(n) == 0)
+        {
+            return &animalCollection[i];
+        }
+    }
 }
 
 //used for testing only. Input desired code segments to run here

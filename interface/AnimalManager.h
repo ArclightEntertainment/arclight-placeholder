@@ -17,6 +17,7 @@ public:
     void pushAnimalToDB(int index);
     int checkID(int id);
     Animal* getAnimalWithId(int sid);
+    Animal* getAnimalWithName(std::string n);
     inline Animal* getAnimalCollection(){return animalCollection;}
     inline int getNumAnimals(){return numAnimals;}
     inline void setArr(Animal *arr, int numAn){animalCollection = arr; numAnimals = numAn; maxNumAnimals = numAn; resize();}

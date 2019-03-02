@@ -444,6 +444,7 @@ moc_InputDiag.cpp: interface/Animal.h \
 moc_ListView.cpp: interface/AnimalManager.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/animaldetaildiag.h \
 		interface/ListView.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -454,6 +455,7 @@ moc_MainWindow.cpp: interface/InputDiag.h \
 		interface/species.h \
 		interface/AnimalManager.h \
 		interface/ListView.h \
+		interface/animaldetaildiag.h \
 		interface/MainWindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -509,6 +511,7 @@ main.o: interface/main.cpp interface/MainWindow.h \
 		interface/species.h \
 		interface/AnimalManager.h \
 		interface/ListView.h \
+		interface/animaldetaildiag.h \
 		data/DatabaseInterface.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o interface/main.cpp
 
@@ -533,6 +536,7 @@ ListView.o: interface/ListView.cpp interface/ListView.h \
 		interface/AnimalManager.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/animaldetaildiag.h \
 		ui_listview.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ListView.o interface/ListView.cpp
 
@@ -542,6 +546,7 @@ MainWindow.o: interface/MainWindow.cpp interface/MainWindow.h \
 		interface/species.h \
 		interface/AnimalManager.h \
 		interface/ListView.h \
+		interface/animaldetaildiag.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o interface/MainWindow.cpp
 
@@ -552,7 +557,7 @@ animaldetaildiag.o: interface/animaldetaildiag.cpp interface/animaldetaildiag.h 
 		interface/AnimalManager.h \
 		interface/Animal.h \
 		interface/species.h \
-		ui_detailedview.h
+		ui_animaldetaildialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o animaldetaildiag.o interface/animaldetaildiag.cpp
 
 moc_InputDiag.o: moc_InputDiag.cpp 
