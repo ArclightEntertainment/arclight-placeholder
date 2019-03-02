@@ -57,7 +57,10 @@ SOURCES       = data/DatabaseInterface.cpp \
 		interface/InputDiag.cpp \
 		interface/ListView.cpp \
 		interface/MainWindow.cpp \
-		interface/species.cpp moc_InputDiag.cpp \
+		interface/species.cpp \
+		interface/Address.cpp \
+		interface/Client.cpp \
+		interface/ClientProfile.cpp moc_InputDiag.cpp \
 		moc_ListView.cpp \
 		moc_MainWindow.cpp
 OBJECTS       = DatabaseInterface.o \
@@ -68,6 +71,9 @@ OBJECTS       = DatabaseInterface.o \
 		ListView.o \
 		MainWindow.o \
 		species.o \
+		Address.o \
+		Client.o \
+		ClientProfile.o \
 		moc_InputDiag.o \
 		moc_ListView.o \
 		moc_MainWindow.o
@@ -167,14 +173,21 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/InputDiag.h \
 		interface/ListView.h \
 		interface/MainWindow.h \
-		interface/species.h data/DatabaseInterface.cpp \
+		interface/species.h \
+		interface/Address.h \
+		interface/Client.h \
+		interface/ClientProfile.h \
+		interface/Levels.h data/DatabaseInterface.cpp \
 		interface/main.cpp \
 		interface/Animal.cpp \
 		interface/AnimalManager.cpp \
 		interface/InputDiag.cpp \
 		interface/ListView.cpp \
 		interface/MainWindow.cpp \
-		interface/species.cpp
+		interface/species.cpp \
+		interface/Address.cpp \
+		interface/Client.cpp \
+		interface/ClientProfile.cpp
 QMAKE_TARGET  = cuACS
 DESTDIR       = 
 TARGET        = cuACS
@@ -390,8 +403,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.h interface/Animal.h interface/AnimalManager.h interface/InputDiag.h interface/ListView.h interface/MainWindow.h interface/species.h $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/InputDiag.cpp interface/ListView.cpp interface/MainWindow.cpp interface/species.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseInterface.h interface/Animal.h interface/AnimalManager.h interface/InputDiag.h interface/ListView.h interface/MainWindow.h interface/species.h interface/Address.h interface/Client.h interface/ClientProfile.h interface/Levels.h $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseInterface.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/InputDiag.cpp interface/ListView.cpp interface/MainWindow.cpp interface/species.cpp interface/Address.cpp interface/Client.cpp interface/ClientProfile.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents interface/inputdialog.ui interface/listview.ui interface/mainwindow.ui $(DISTDIR)/
 
 
@@ -429,6 +442,7 @@ compiler_moc_header_clean:
 	-$(DEL_FILE) moc_InputDiag.cpp moc_ListView.cpp moc_MainWindow.cpp
 moc_InputDiag.cpp: interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		interface/AnimalManager.h \
 		interface/InputDiag.h \
 		moc_predefs.h \
@@ -438,6 +452,7 @@ moc_InputDiag.cpp: interface/Animal.h \
 moc_ListView.cpp: interface/AnimalManager.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		interface/ListView.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -446,6 +461,7 @@ moc_ListView.cpp: interface/AnimalManager.h \
 moc_MainWindow.cpp: interface/InputDiag.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		interface/AnimalManager.h \
 		interface/ListView.h \
 		interface/MainWindow.h \
@@ -482,31 +498,45 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 DatabaseInterface.o: data/DatabaseInterface.cpp data/DatabaseInterface.h \
 		interface/Animal.h \
-		interface/species.h
+		interface/species.h \
+		interface/Levels.h \
+		interface/Client.h \
+		interface/Address.h \
+		interface/ClientProfile.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DatabaseInterface.o data/DatabaseInterface.cpp
 
 main.o: interface/main.cpp interface/MainWindow.h \
 		interface/InputDiag.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		interface/AnimalManager.h \
 		interface/ListView.h \
-		data/DatabaseInterface.h
+		data/DatabaseInterface.h \
+		interface/Client.h \
+		interface/Address.h \
+		interface/ClientProfile.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o interface/main.cpp
 
 Animal.o: interface/Animal.cpp interface/Animal.h \
-		interface/species.h
+		interface/species.h \
+		interface/Levels.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Animal.o interface/Animal.cpp
 
 AnimalManager.o: interface/AnimalManager.cpp interface/AnimalManager.h \
 		interface/Animal.h \
 		interface/species.h \
-		data/DatabaseInterface.h
+		interface/Levels.h \
+		data/DatabaseInterface.h \
+		interface/Client.h \
+		interface/Address.h \
+		interface/ClientProfile.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AnimalManager.o interface/AnimalManager.cpp
 
 InputDiag.o: interface/InputDiag.cpp interface/InputDiag.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		interface/AnimalManager.h \
 		ui_inputdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o InputDiag.o interface/InputDiag.cpp
@@ -515,6 +545,7 @@ ListView.o: interface/ListView.cpp interface/ListView.h \
 		interface/AnimalManager.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		ui_listview.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ListView.o interface/ListView.cpp
 
@@ -522,6 +553,7 @@ MainWindow.o: interface/MainWindow.cpp interface/MainWindow.h \
 		interface/InputDiag.h \
 		interface/Animal.h \
 		interface/species.h \
+		interface/Levels.h \
 		interface/AnimalManager.h \
 		interface/ListView.h \
 		ui_mainwindow.h
@@ -529,6 +561,19 @@ MainWindow.o: interface/MainWindow.cpp interface/MainWindow.h \
 
 species.o: interface/species.cpp interface/species.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o species.o interface/species.cpp
+
+Address.o: interface/Address.cpp interface/Address.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Address.o interface/Address.cpp
+
+Client.o: interface/Client.cpp interface/Client.h \
+		interface/Levels.h \
+		interface/Address.h \
+		interface/ClientProfile.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Client.o interface/Client.cpp
+
+ClientProfile.o: interface/ClientProfile.cpp interface/ClientProfile.h \
+		interface/Levels.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientProfile.o interface/ClientProfile.cpp
 
 moc_InputDiag.o: moc_InputDiag.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_InputDiag.o moc_InputDiag.cpp
