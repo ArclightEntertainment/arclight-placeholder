@@ -1,11 +1,11 @@
 #include "AnimalInputDiag.h"
-#include "ui_inputdialog.h"
+#include "ui_animalinputdialog.h"
 #include <iostream>
 
 //Requires parent widget and manager
-InputDiag::InputDiag(AnimalManager *manager, QWidget *parent) :
+AnimalInputDiag::AnimalInputDiag(AnimalManager *manager, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::InputDiag)
+    ui(new Ui::AnimalInputDiag)
 {
     ui->setupUi(this);
 
@@ -25,7 +25,7 @@ InputDiag::InputDiag(AnimalManager *manager, QWidget *parent) :
 }
 
 //Save Handler
-void InputDiag::handleButtonSave()
+void AnimalInputDiag::handleButtonSave()
 {
     //important values
     bool name = !ui->nameLineEdit->text().isEmpty();
@@ -84,13 +84,13 @@ void InputDiag::handleButtonSave()
 }
 
 //close on cancel
-void InputDiag::handleButtonCancel()
+void AnimalInputDiag::handleButtonCancel()
 {
     close();
 }
 
 //destructor
-InputDiag::~InputDiag()
+AnimalInputDiag::~AnimalInputDiag()
 {
     delete ui;
 }
