@@ -81,6 +81,28 @@
           </property>
          </spacer>
         </item>
+        <item>
+         <widget class="QLineEdit" name="idLineEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>60</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="maxLength">
+           <number>5</number>
+          </property>
+          <property name="placeholderText">
+           <string>00000</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>

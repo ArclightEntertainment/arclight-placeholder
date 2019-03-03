@@ -7,8 +7,9 @@ Client::Client()
 }
 
 //Basic constructor
-Client::Client(std::string t, std::string fn, std::string ln, std::string pn)
+Client::Client(int iD, std::string t, std::string fn, std::string ln, std::string pn)
 {
+    id = iD;
   title = t;
   firstName = fn;
   lastName = ln;

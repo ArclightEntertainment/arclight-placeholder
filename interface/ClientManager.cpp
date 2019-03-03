@@ -13,13 +13,10 @@ ClientManager::ClientManager(int cCount)
     clientCollection = new Client[cCount];
 }
 
-int ClientManager::addClient(std::string t, std::string fn, std::string ln, std::string pn)
+int ClientManager::addClient(std::string t, int iD, std::string fn, std::string ln, std::string pn)
 {
-
-    std::cout<<"ErrorCheck4___----_____-----___----____--" << std::endl;
     std::cout<<numClients << " " << maxNumClients << std::endl;
-    clientCollection[numClients++] = *new Client(t, fn, ln, pn);
-    std::cout<<"ErrorCheck5~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+    clientCollection[numClients++] = *new Client(iD, t, fn, ln, pn);
     resize();
     return numClients-1;
 }
@@ -27,7 +24,6 @@ int ClientManager::addClient(std::string t, std::string fn, std::string ln, std:
 void ClientManager::populateClientAddress(int index, std::string sl1, std::string sl2, std::string ct, std::string sub, std::string c, std::string pc)
 {
 
-    std::cout<<"ErrorCheck7^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^" << std::endl;
     clientCollection[index].populateAddress(sl1, sl2, ct, sub, c, pc);
 }
 

@@ -14,9 +14,9 @@ AnimalManager::AnimalManager(int i)
 }
 
 //Creates a new animal with basic information, returns it's index in the array.
-int AnimalManager::addAnimal(std::string n, int a, char sx, std::string sp, std::string b, int cL)
+int AnimalManager::addAnimal(int id, std::string n, int a, char sx, std::string sp, std::string b, int cL)
 {
-    animalCollection[numAnimals++] = *new Animal(n, a, sx, sp, b, cL);
+    animalCollection[numAnimals++] = *new Animal(id, n, a, sx, sp, b, cL);
     resize();
     return numAnimals-1;
 }
@@ -36,7 +36,8 @@ void AnimalManager::updateAnimalHistory(int index, bool imm, std::string dietStr
 //Finalize animal at index, send it to database
 void AnimalManager::pushAnimalToDB(int index)
 {
-    animalCollection[index].setShelterID(DatabaseInterface::pushDBAnimal(animalCollection[index]));
+    //animalCollection[index].setShelterID(DatabaseInterface::pushDBAnimal(animalCollection[index]));
+    DatabaseInterface::pushDBAnimal(animalCollection[index]);
 }
 
 //check input id against id's of every other animal in db, if used, then

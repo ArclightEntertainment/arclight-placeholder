@@ -38,7 +38,8 @@ SOURCES += \
     interface/Client.cpp \
     interface/ClientProfile.cpp \
     interface/ClientInputDiag.cpp \
-    interface/ClientManager.cpp
+    interface/ClientManager.cpp \
+    interface/ClientListView.cpp
 
 HEADERS += \
     data/DatabaseInterface.h \
@@ -54,7 +55,8 @@ HEADERS += \
     interface/ClientProfile.h \
     interface/Levels.h \
     interface/ClientInputDiag.h \
-    interface/ClientManager.h
+    interface/ClientManager.h \
+    interface/ClientListView.h
 
 FORMS += \
     interface/listview.ui \

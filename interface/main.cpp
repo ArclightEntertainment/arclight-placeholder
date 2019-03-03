@@ -32,7 +32,22 @@ int main(int argc, char *argv[])
         clientArr[i] = *client;
         client++;
     }
-    w.setAnimalArr(animalArr, animalCount);
-    w.setClientArr(clientArr, clientCount);
+    std::cout<<animalCount<<std::endl;
+    if (animalCount > 0)
+    {
+        w.setAnimalArr(animalArr, animalCount);
+    }
+    else
+    {
+        int AnimalCount = 10;
+        Animal AnimalArr[AnimalCount];
+        w.setAnimalArr(AnimalArr, AnimalCount);
+    }
+    if (clientCount > 0)
+    {
+        int ClientCount = 10;
+        Client ClientArr[ClientCount];
+        w.setClientArr(ClientArr, ClientCount);
+    }
     return a.exec();
 }

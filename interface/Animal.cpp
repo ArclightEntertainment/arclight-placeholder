@@ -24,6 +24,7 @@ Animal::Animal(std::string n, int a, char sx, std::string sp, std::string b, int
 Animal::Animal(int sid, std::string n, int a, char sx, std::string sp, std::string b, int cL)
 {
     shelterID = sid;
+    std::cout<<shelterID<< " " << sid <<std::endl;
     name = n;
     age = a;
     sex = sx;

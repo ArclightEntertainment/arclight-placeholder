@@ -17,6 +17,9 @@ ClientInputDiag::ClientInputDiag(ClientManager *cm, QWidget *parent) :
     connect(proceedButton, SIGNAL(released()), this,SLOT(handleButtonProceed()));
     connect(cancelButton, SIGNAL(released()), this,SLOT(handleButtonCancel()));
 
+    QValidator *idValidator = new QRegExpValidator(QRegExp("([0-9]|){1,5}"), this);
+    ui->idLineEdit->setValidator(idValidator);
+
     clientManager = cm;
 }
 
@@ -26,19 +29,17 @@ void ClientInputDiag::handleButtonSave()
 {
     //important values
     //verify -> populate
-    std::cout<<"ErrorCheck1----------------------------"<<std::endl;
     if (checkInputValid())
     {
 
-        std::cout<<"ErrorCheck3++++++++++++++++++++++++++++++" << std::endl;
         std::cout << (ui->firstNameLineEdit->text().toStdString() + " " + ui->lastNameLineEdit->text().toStdString()) << std::endl;
         int index = clientManager->addClient(ui->titleComboBox->currentText().toStdString(),
+                                             ui->idLineEdit->text().toInt(),
                                              ui->firstNameLineEdit->text().toStdString(),
                                              ui->lastNameLineEdit->text().toStdString(),
                                              ui->phoneLineEdit->text().toStdString()
                                              );
 
-        std::cout<<"ErrorCheck6+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" << std::endl;
         clientManager->populateClientAddress(index,
                                              ui->add1LineEdit->text().toStdString(),
                                              ui->add2LineEdit->text().toStdString(),
@@ -55,7 +56,6 @@ void ClientInputDiag::handleButtonSave()
 bool ClientInputDiag::checkInputValid()
 {
 
-    std::cout<<"ErrorCheck2=============================" << std::endl;
     std::string errString = "";
     bool valid = true;
     bool title = ui->titleComboBox->currentText().toStdString().compare("Title");

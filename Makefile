@@ -63,11 +63,13 @@ SOURCES       = data/DatabaseInterface.cpp \
 		interface/Client.cpp \
 		interface/ClientProfile.cpp \
 		interface/ClientInputDiag.cpp \
-		interface/ClientManager.cpp moc_MainWindow.cpp \
+		interface/ClientManager.cpp \
+		interface/ClientListView.cpp moc_MainWindow.cpp \
 		moc_AnimalInputDiag.cpp \
 		moc_AnimalListView.cpp \
 		moc_AnimalDetailDiag.cpp \
-		moc_ClientInputDiag.cpp
+		moc_ClientInputDiag.cpp \
+		moc_ClientListView.cpp
 OBJECTS       = DatabaseInterface.o \
 		main.o \
 		Animal.o \
@@ -82,11 +84,13 @@ OBJECTS       = DatabaseInterface.o \
 		ClientProfile.o \
 		ClientInputDiag.o \
 		ClientManager.o \
+		ClientListView.o \
 		moc_MainWindow.o \
 		moc_AnimalInputDiag.o \
 		moc_AnimalListView.o \
 		moc_AnimalDetailDiag.o \
-		moc_ClientInputDiag.o
+		moc_ClientInputDiag.o \
+		moc_ClientListView.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -190,7 +194,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/ClientProfile.h \
 		interface/Levels.h \
 		interface/ClientInputDiag.h \
-		interface/ClientManager.h data/DatabaseInterface.cpp \
+		interface/ClientManager.h \
+		interface/ClientListView.h data/DatabaseInterface.cpp \
 		interface/main.cpp \
 		interface/Animal.cpp \
 		interface/AnimalManager.cpp \
@@ -203,7 +208,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/Client.cpp \
 		interface/ClientProfile.cpp \
 		interface/ClientInputDiag.cpp \
-		interface/ClientManager.cpp
+		interface/ClientManager.cpp \
+		interface/ClientListView.cpp
 QMAKE_TARGET  = cuACS
 DESTDIR       = 
 TARGET        = cuACS
@@ -419,8 +425,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.h interface/Animal.h interface/AnimalManager.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/Client.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientManager.h $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/Client.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientManager.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseInterface.h interface/Animal.h interface/AnimalManager.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/Client.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientManager.h interface/ClientListView.h $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseInterface.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/Client.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientManager.cpp interface/ClientListView.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents interface/listview.ui interface/mainwindow.ui interface/animaldetaildialog.ui interface/animalinputdialog.ui interface/clientinputdialog.ui $(DISTDIR)/
 
 
@@ -453,9 +459,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp
+compiler_moc_header_make_all: moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp moc_ClientListView.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp
+	-$(DEL_FILE) moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp moc_ClientListView.cpp
 moc_MainWindow.cpp: interface/AnimalInputDiag.h \
 		interface/AnimalManager.h \
 		interface/Animal.h \
@@ -468,6 +474,7 @@ moc_MainWindow.cpp: interface/AnimalInputDiag.h \
 		interface/ClientProfile.h \
 		interface/AnimalListView.h \
 		interface/AnimalDetailDiag.h \
+		interface/ClientListView.h \
 		interface/MainWindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -510,6 +517,16 @@ moc_ClientInputDiag.cpp: interface/ClientManager.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include interface/ClientInputDiag.h -o moc_ClientInputDiag.cpp
+
+moc_ClientListView.cpp: interface/ClientManager.h \
+		interface/Client.h \
+		interface/Levels.h \
+		interface/Address.h \
+		interface/ClientProfile.h \
+		interface/ClientListView.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include interface/ClientListView.h -o moc_ClientListView.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -568,6 +585,7 @@ main.o: interface/main.cpp interface/MainWindow.h \
 		interface/ClientProfile.h \
 		interface/AnimalListView.h \
 		interface/AnimalDetailDiag.h \
+		interface/ClientListView.h \
 		data/DatabaseInterface.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o interface/main.cpp
 
@@ -599,6 +617,7 @@ MainWindow.o: interface/MainWindow.cpp interface/MainWindow.h \
 		interface/ClientProfile.h \
 		interface/AnimalListView.h \
 		interface/AnimalDetailDiag.h \
+		interface/ClientListView.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o interface/MainWindow.cpp
 
@@ -662,6 +681,15 @@ ClientManager.o: interface/ClientManager.cpp interface/ClientManager.h \
 		interface/species.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientManager.o interface/ClientManager.cpp
 
+ClientListView.o: interface/ClientListView.cpp interface/ClientListView.h \
+		interface/ClientManager.h \
+		interface/Client.h \
+		interface/Levels.h \
+		interface/Address.h \
+		interface/ClientProfile.h \
+		ui_listview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientListView.o interface/ClientListView.cpp
+
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp
 
@@ -676,6 +704,9 @@ moc_AnimalDetailDiag.o: moc_AnimalDetailDiag.cpp
 
 moc_ClientInputDiag.o: moc_ClientInputDiag.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ClientInputDiag.o moc_ClientInputDiag.cpp
+
+moc_ClientListView.o: moc_ClientListView.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ClientListView.o moc_ClientListView.cpp
 
 ####### Install
 

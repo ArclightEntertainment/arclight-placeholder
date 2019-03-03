@@ -1,5 +1,5 @@
-#ifndef ANIMALListView_H
-#define ANIMALListView_H
+#ifndef CLIENTLISTVIEW_H
+#define CLIENTLISTVIEW_H
 
 
 #include <QCoreApplication>
@@ -10,20 +10,20 @@
 #include <QDebug>
 #include <qstring.h>
 
-#include "AnimalManager.h"
-#include "AnimalDetailDiag.h"
+#include "ClientManager.h"
+//#include "ClientDetailDiag.h"
 
 namespace Ui {
 class ListView;
 }
 
-class AnimalListView : public QDialog
+class ClientListView : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit AnimalListView(AnimalManager *aM, QWidget *parent = 0);
-    ~AnimalListView();
+    explicit ClientListView(ClientManager *aM, QWidget *parent = 0);
+    ~ClientListView();
 
 private slots:
     void handleButtonClose();
@@ -31,15 +31,15 @@ private slots:
 private:
     //important UI Elements
     Ui::ListView *ui;
-    QTableWidget *animalList;
+    QTableWidget *clientList;
     QPushButton *closeButton;
     QPushButton *detailsButton;
 
     //pointer to Animal Manager
-    AnimalManager *manager;
+    ClientManager *manager;
 
     void updateListView();
 };
 
-#endif // ANIMALListView_H
+#endif // CLIENTLISTVIEW_H
 

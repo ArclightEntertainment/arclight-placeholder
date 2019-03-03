@@ -1,6 +1,7 @@
 #ifndef ANIMAL_H
 #define ANIMAL_H
 #include <string>
+#include <iostream>
 #include "species.h"
 #include "Levels.h"
 //------------------------------------------
@@ -86,7 +87,7 @@ public:
 
 
 //Setters
-    inline void setShelterID(int id) {shelterID = id;}
+    inline void setShelterID(int id) {shelterID = id; std::cout<<shelterID<<std::endl;}
     inline void setName(std::string n) {name = n;}
     inline void setAge(int a) {age = a;}
     inline void setSex(char s) {sex = s;}

@@ -11,6 +11,8 @@
 #include "ClientInputDiag.h"
 #include "AnimalListView.h"
 #include "AnimalManager.h"
+#include "ClientListView.h"
+#include "ClientManager.h"
 
 namespace Ui {
 class MainWindow;

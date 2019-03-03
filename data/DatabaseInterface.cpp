@@ -216,7 +216,7 @@ Client** DatabaseInterface::getClientArray()
         std::string addressSubnationalDivision = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 20)));
         std::string addressCountry = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 21)));
         std::string addressPostalCode = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 22)));
-        clientArray[i] = Client(clientPrefTitle, clientFName, clientLName, clientPhoneNumber);
+        clientArray[i] = Client(clientID, clientPrefTitle, clientFName, clientLName, clientPhoneNumber);
         clientArray[i].populateAddress(addressStreetLine1, addressStreetLine2, addressCity, addressSubnationalDivision, addressCountry, addressPostalCode);
         clientArray[i].populateProfile(clientAge, clientHasChildrenUnderTwelve, clientLengthOfOwnershipExpectation, clientMonthlyBudgetForAnimal,
                                        clientLivingSpaceSquareFeet, clientAvailabilityPerDay, clientLevelOfMobility, clientLevelOfEnergy,
