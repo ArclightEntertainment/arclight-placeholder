@@ -15,4 +15,5 @@ public:
     static Animal** getAnimalArray();
     static Client** getClientArray();
     static int pushDBAnimal(Animal &animal);
+    static int pushDBClient(Client &client);
 };
