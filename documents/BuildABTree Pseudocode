@@ -1,0 +1,102 @@
+def AnimalToClientLinkedList buildABTree(AnimalToClientLinkedList candidates, (function) abTest):
+    return buildABTreeRec(0.0, 0, candidates, abTest)
+
+def AnimalToClientLinkedList buildABTreeRec(float currentAvg, int depth, AnimalToClientLinkedList candidates, (function) abTest):
+    AnimalToClientLinkedList currentOptimalMatchPath = AnimalToClientLinkedList()
+    float currentOptimalMatchPathAcceptabilityFactor = currentAv
+    AnimalToClientNode nextCandidate = candidates.getHead()
+    ##remainingCandidates = candidates.
+    while (nextCandidate != null):
+        #AnimalToClientNode nextCandidate = candidates.pop()
+        remainingCandidates = candidates.getCopyWithoutPairsContaining(nextCandidate.getAnimal(), nextCandidate.getClient())
+
+        if ((function) abTest):
+            int nextDepth = depth+1
+            float nextAvgOffset = nextCandidate.getCompatibility() / nextDepth
+            float nextAcceptabilityFactor = currentOptimalMatchPathAcceptabilityFactor + nextAvgOffset
+            AnimalToClientLinkedList candidateSubtreePath = buildABTreeRec(nextAcceptabilityFactor, nextDepth, remainingCandidates, (function) abTest)
+            float candidateSubtreeAcceptabilityFactor = candidateSubtreePath.getAcceptabilityFactor()
+
+            if (candidateSubtreeAcceptabilityFactor > currentOptimalMatchPathAcceptabilityFactor):
+                currentOptimalMatchPath = candidateSubtreePath
+                currentOptimalMatchPathAcceptabilityFactor = candidateSubtreeAcceptabilityFactor
+
+        currNode = currNode.next()
+
+    return currentOptimalMatchPath
+
+def bool abTest(float threshold, AnimalToClientLinkedList remainingCandidates):
+    # false if the function determines there is no point in exploring the subtree
+
+class AnimalToClientLinkedList:
+    AnimalToClientNode head
+    AnimalToClientNode tail
+
+    def AnimalToClientLinkedList():
+        head = null
+        tail = null
+
+    def void appendAsNewNode(Animal animal, Client client):
+        AnimalToClientNode newNode = new AnimalToClientNode(animal, client)
+        tail.setNext(newNode)
+
+    def void append(AnimalToClientNode node):
+        tail.setNext(node)
+
+    def float getAcceptabilityFactor():
+        # to debate, likely run over list and get mean avg
+
+    def AnimalToClientLinkedList getCopyWithoutPairsContaining(Animal animal, Client client):
+        AnimalToClientLinkedList newCopy = AnimalToClientLinkedList()
+        AnimalToClientNode currNode = head
+
+        while (currentNode != tail):
+            nextNode = currNode.next()
+
+            # Need to ensure comparision works for references/pointers, whatever is being used
+            if (!currNode.getAnimal() == animal && !currNode.getClient() == client):
+                newCopy.append(currNode)
+
+            currNode = currNode.next()
+
+        return newCopy
+
+def determineCompatibility(Animal a, Client c):
+    # determine compatibility
+
+class AnimalToClientNode:
+    Animal animal
+    Client client
+    float compatibility
+    AnimalToClientNode next
+    AnimalToClientNode prev
+
+    def AnimalToClientCandidate(Animal a, Client c):
+        animal = a
+        client = c
+        compatibility = determineCompatibility(a, c)
+        next = null
+        prev = null
+
+    def Animal getAnimal():
+        return animal
+
+    def Animal getClient():
+        return client
+
+    def float getCompatibility():
+        return compatibility
+
+    def AnimalToClientNode prev():
+        return prev
+
+    def AnimalToClientNode next():
+        return next
+
+    def void setNext(AnimalToClientNode successor):
+        # Assume you are not concerned if next already defined
+        next = successor
+
+    def void setPrev(AnimalToClientNode predessessor):
+        # Assume you are not concerned if prev already defined
+        prev = predessessor
