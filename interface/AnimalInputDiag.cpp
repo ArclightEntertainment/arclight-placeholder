@@ -1,11 +1,11 @@
-#include "InputDiag.h"
-#include "ui_inputdialog.h"
+#include "AnimalInputDiag.h"
+#include "ui_animalinputdialog.h"
 #include <iostream>
 
 //Requires parent widget and manager
-InputDiag::InputDiag(AnimalManager *manager, QWidget *parent) :
+AnimalInputDiag::AnimalInputDiag(AnimalManager *manager, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::InputDiag)
+    ui(new Ui::AnimalInputDiag)
 {
     ui->setupUi(this);
 
@@ -13,7 +13,6 @@ InputDiag::InputDiag(AnimalManager *manager, QWidget *parent) :
     cancelButton = ui->cancelButton;
 
     //set validators for text fields, limiting valid characters
-    ui->shelterIDLineEdit->setValidator(new QIntValidator(0, 99999, this) );
     QValidator *validator = new QRegExpValidator(QRegExp("([A-Z]|[a-z]|-|.){1,50}"), this);
     ui->nameLineEdit->setValidator(validator);
     ui->breedLineEdit->setValidator(validator);
@@ -26,19 +25,17 @@ InputDiag::InputDiag(AnimalManager *manager, QWidget *parent) :
 }
 
 //Save Handler
-void InputDiag::handleButtonSave()
+void AnimalInputDiag::handleButtonSave()
 {
     //important values
     bool name = !ui->nameLineEdit->text().isEmpty();
     bool species = QString::compare(ui->speciesSelector->currentText(), "Species");  //!= Species
     bool sex = QString::compare(ui->sexSelector->currentText(), "Sex");  //!= Sex
     bool age = QString::compare(ui->ageSpinBox->text(), "0");
-    bool id =aManager->checkID(ui->shelterIDLineEdit->text().toInt()) && !ui->shelterIDLineEdit->text().isEmpty();
     //verify -> populate
-    if (name && species && sex && age && id)
+    if (name && species && sex && age)
     {
         int index = aManager -> addAnimal(
-                    ui->ageSpinBox->text().toInt(),
                     ui->nameLineEdit->text().toStdString(),
                     ui->ageSpinBox->text().toInt(),
                     ui->sexSelector->currentText().at(0).toLatin1(),
@@ -49,6 +46,7 @@ void InputDiag::handleButtonSave()
         aManager->updateAnimalSocial(
                     index,
                     ui->trainingSlider->value(),
+                    ui->trainabilitySlider->value(),
                     ui->peopleSlider->value(),
                     ui->childSlider->value(),
                     ui->animalSlider->value(),
@@ -77,7 +75,6 @@ void InputDiag::handleButtonSave()
         if (!species){warnString.append("Species Missing!\n");}
         if (!sex){warnString.append("Sex Missing!\n");}
         if (!age){warnString.append("Age Missing!\n");}
-        if (!id){warnString.append("Shelter ID missing or in Use!\n");}
 
         warningBox.setInformativeText(QString::fromStdString(warnString));
         warningBox.setStandardButtons(QMessageBox::Ok);
@@ -87,13 +84,13 @@ void InputDiag::handleButtonSave()
 }
 
 //close on cancel
-void InputDiag::handleButtonCancel()
+void AnimalInputDiag::handleButtonCancel()
 {
     close();
 }
 
 //destructor
-InputDiag::~InputDiag()
+AnimalInputDiag::~AnimalInputDiag()
 {
     delete ui;
 }

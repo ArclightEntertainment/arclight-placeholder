@@ -1,5 +1,5 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef ANIMAL_H
+#define ANIMAL_H
 #include <string>
 #include "species.h"
 #include "Levels.h"
@@ -11,7 +11,7 @@
 class Animal
 {
 private:
-//Static Animal Info
+//Animal Info
     //basic information
     int shelterID;
     std::string name;
@@ -22,6 +22,7 @@ private:
 
     //social information
     ThreeScale trainingLevel;
+    ThreeScale trainabilityLevel;
     ThreeScale affinityForPeople;
     ThreeScale affinityForChildren;
     ThreeScale affinityForAnimals;
@@ -38,8 +39,9 @@ private:
 public:
 //Constructor and population functions
     Animal();
-    Animal(int id, std::string n, int a, char sx, std::string sp, std::string b, int cL);
-    void populateSocial(int trLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel);
+    Animal(std::string n, int a, char sx, std::string sp, std::string b, int cL);
+    Animal(int sid, std::string n, int a, char sx, std::string sp, std::string b, int cL);
+    void populateSocial(int trLevel, int taLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel);
     void populateHistory(bool imm, std::string dietString, std::string mobilityString, std::string disabilityString, std::string bio, std::string aHist);
 
 //Operator Overloads
@@ -58,6 +60,7 @@ public:
 
     //socialInfo
     inline ThreeScale getTrainingLevel() const {return trainingLevel;}
+    inline ThreeScale getTrainabilityLevel() const {return trainabilityLevel;}
     inline ThreeScale getAffForPeople() const {return affinityForPeople;}
     inline ThreeScale getAffForChildren() const {return affinityForChildren;}
     inline ThreeScale getAffForAnimals() const {return affinityForAnimals;}
@@ -72,7 +75,18 @@ public:
     inline std::string getAbuseHistory() const {return abuseHistory;}
     inline std::string getBiography() const {return biography;}
 
+    inline std::string getLevelOfCareString()const{return (levelOfCare == 0) ? "Low" : (levelOfCare == 1) ? "Average" : "High";}
+    inline std::string getTrainingString()const{return (trainingLevel == 0) ? "Untrained" : (trainingLevel == 1) ? "House Trained" : "Well Trained";}
+    inline std::string getTrainabilityString()const{return (trainabilityLevel == 0) ? "Disobedient" : (trainabilityLevel == 1) ? "Basic" : "High Level";}
+    inline std::string getAffForPeopleString()const{return (affinityForPeople == 0) ? "Low" : (affinityForPeople == 1) ? "Average" : "High";}
+    inline std::string getAffForChildrenString()const{return (affinityForChildren == 0) ? "Low" : (affinityForChildren == 1) ? "Average" : "High";}
+    inline std::string getAffForAnimalsString()const{return (affinityForAnimals == 0) ? "Low" : (affinityForAnimals == 1) ? "Average" : "High";}
+    inline std::string getApproachabilityString()const{return (approachability == 0) ? "Shy" : (approachability == 1) ? "Tentative" : "Comfortable";}
+    inline std::string getTimeCommitmentString()const{return (timeCommitment == 0) ? "Low" : (timeCommitment == 1) ? "Average" : "High";}
+
+
 //Setters
+    inline void setShelterID(int id) {shelterID = id;}
     inline void setName(std::string n) {name = n;}
     inline void setAge(int a) {age = a;}
     inline void setSex(char s) {sex = s;}
@@ -109,4 +123,4 @@ public:
     inline void setAbuseHistory(std::string aH) {abuseHistory = aH;}
     inline void setBiography(std::string b) {biography = b;}
 };
-#endif // ENTITY_H
+#endif // ANIMAL_H

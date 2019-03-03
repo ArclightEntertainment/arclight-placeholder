@@ -1,5 +1,5 @@
-#ifndef INPUTDIAG_H
-#define INPUTDIAG_H
+#ifndef ANIMALINPUTDIAG_H
+#define ANIMALINPUTDIAG_H
 
 #include <QCoreApplication>
 #include <QPushButton>
@@ -13,26 +13,26 @@
 #include "AnimalManager.h"
 
 namespace Ui {
-class InputDiag;
+class AnimalInputDiag;
 }
 
-class InputDiag : public QDialog
+class AnimalInputDiag : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit InputDiag(AnimalManager *manager, QWidget *parent = 0);
-    ~InputDiag();
+    explicit AnimalInputDiag(AnimalManager *manager, QWidget *parent = 0);
+    ~AnimalInputDiag();
 private slots:
     void handleButtonSave();
     void handleButtonCancel();
 private:
     //UI Elements
-    Ui::InputDiag *ui;
+    Ui::AnimalInputDiag *ui;
     QPushButton *saveButton;
     QPushButton *cancelButton;
     //pointer to manager
     AnimalManager *aManager;
 };
 
-#endif // INPUTDIAG_H
+#endif // ANIMALINPUTDIAG_H
