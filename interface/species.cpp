@@ -1,4 +1,4 @@
-#include "Species.h"
+#include "species.h"
 
 Species::Species()
 {

@@ -38,35 +38,164 @@ CREATE TABLE IF NOT EXISTS AnimalsBreedsRelationship(
 	FOREIGN KEY(shelterID) REFERENCES Animals(shelterID),
 	FOREIGN KEY(breedName) REFERENCES Breeds(breedName)
 );
-/*
+
+/* NO BOOLEANS, 0 is false, 1 is true*/
 CREATE TABLE IF NOT EXISTS Clients(
 	clientID INTEGER NOT NULL,
 	clientFName text NOT NULL,
 	clientLName text NOT NULL,
-	clientPrefTitle text,
+	clientPrefTitle text NOT NULL,
+	clientPhoneNumber text NOT NULL,
 	clientAge INTEGER NOT NULL,
+	clientHasChildrenUnderTwelve INTEGER NOT NULL,
+	clientLengthOfOwnershipExpectation INTEGER NOT NULL,
+	clientMonthlyBudgetForAnimal INTEGER NOT NULL,
+	clientLivingSpaceSquareFeet INTEGER NOT NULL,
+	clientAvailabilityPerDay INTEGER NOT NULL,
+	clientLevelOfMobility INTEGER NOT NULL,
+	clientLevelOfEnergy INTEGER NOT NULL,
+	clientLevelOfPatience INTEGER NOT NULL,
+	clientPreviousExperience INTEGER NOT NULL,
+	clientPhysicalAffection INTEGER NOT NULL,
 	primary key(clientID)
 );
-*/
+
+CREATE TABLE IF NOT EXISTS Address(
+	addressClientID INTEGER NOT NULL,
+	addressStreetLine1 text NOT NULL,
+	addressStreetLine2 text NOT NULL,
+	addressCity text NOT NULL,
+	addressSubnationalDivision text NOT NULL,
+	addressCountry text NOT NULL,
+	addressPostalCode text NOT NULL,
+	FOREIGN KEY(addressClientID) REFERENCES Clients(clientID),
+	PRIMARY KEY(addressClientID)
+);
+
 begin transaction;
-INSERT OR REPLACE INTO
-	Species(
+INSERT OR REPLACE INTO Clients(
+		clientID,
+		clientFName,
+		clientLName,
+		clientPrefTitle,
+		clientPhoneNumber,
+		clientAge,
+		clientHasChildrenUnderTwelve,
+		clientLengthOfOwnershipExpectation,
+		clientMonthlyBudgetForAnimal,
+		clientLivingSpaceSquareFeet,
+		clientAvailabilityPerDay,
+		clientLevelOfMobility,
+		clientLevelOfEnergy,
+		clientLevelOfPatience,
+		clientPreviousExperience,
+		clientPhysicalAffection
+	)VALUES(
+		0,
+		"Brian",
+		"LeBlanc",
+		"Mr.",
+		"6131234567",
+		20,
+		0,
+		5,
+		200,
+		1000,
+		150,
+		4,
+		4,
+		2,
+		3,
+		3
+);
+
+INSERT OR REPLACE INTO Address(
+		addressClientID,
+		addressStreetLine1,
+		addressStreetLine2,
+		addressCity,
+		addressSubnationalDivision,
+		addressCountry,
+		addressPostalCode
+	)VALUES(
+		0,
+		"123 Main Street",
+		"",
+		"Ottawa",
+		"Ontario",
+		"Canada",
+		"A0A1B1"
+);
+
+INSERT OR REPLACE INTO Clients(
+		clientID,
+		clientFName,
+		clientLName,
+		clientPrefTitle,
+		clientPhoneNumber,
+		clientAge,
+		clientHasChildrenUnderTwelve,
+		clientLengthOfOwnershipExpectation,
+		clientMonthlyBudgetForAnimal,
+		clientLivingSpaceSquareFeet,
+		clientAvailabilityPerDay,
+		clientLevelOfMobility,
+		clientLevelOfEnergy,
+		clientLevelOfPatience,
+		clientPreviousExperience,
+		clientPhysicalAffection
+	)VALUES(
+		1,
+		"Brian",
+		"Grickites",
+		"Mr.",
+		"6131112222",
+		23,
+		0,
+		10,
+		250,
+		1500,
+		90,
+		1,
+		2,
+		0,
+		4,
+		2
+);
+
+INSERT OR REPLACE INTO Address(
+		addressClientID,
+		addressStreetLine1,
+		addressStreetLine2,
+		addressCity,
+		addressSubnationalDivision,
+		addressCountry,
+		addressPostalCode
+	)VALUES(
+		1,
+		"321 Cool Avenue",
+		"",
+		"Ottawa",
+		"Ontario",
+		"Canada",
+		"C2C0A0"
+);
+
+INSERT OR REPLACE INTO Species(
 		speciesName
 	)VALUES(
 		"Cat"
-	);
+);
 
-INSERT OR REPLACE INTO
-	Breeds(
+INSERT OR REPLACE INTO Breeds(
 		speciesName,
 		breedName
 	)VALUES(
 		"Cat",
 		"Tabby"
-	);
+);
 
-INSERT OR REPLACE INTO
-	Animals(
+INSERT OR REPLACE INTO Animals(
 		shelterID,
 		animalName,
 		animalSpecies,
@@ -102,9 +231,9 @@ INSERT OR REPLACE INTO
 		"",
 		"",
 		"Loves people"
-	);
-INSERT OR REPLACE INTO
-	Animals(
+);
+
+INSERT OR REPLACE INTO Animals(
 		shelterID,
 		animalName,
 		animalSpecies,
@@ -140,10 +269,9 @@ INSERT OR REPLACE INTO
 		"",
 		"",
 		"Has to get used to you"
-	);
+);
 
-INSERT OR REPLACE INTO
-	Animals(
+INSERT OR REPLACE INTO Animals(
 		shelterID,
 		animalName,
 		animalSpecies,
@@ -179,10 +307,9 @@ INSERT OR REPLACE INTO
 		"",
 		"",
 		"Borks at everyone"
-	);
+);
 
-INSERT OR REPLACE INTO
-	Animals(
+INSERT OR REPLACE INTO Animals(
 		shelterID,
 		animalName,
 		animalSpecies,
@@ -218,10 +345,9 @@ INSERT OR REPLACE INTO
 		"",
 		"",
 		"Doesnt like anybody at all"
-	);
+);
 
-INSERT OR REPLACE INTO
-	Animals(
+INSERT OR REPLACE INTO Animals(
 		shelterID,
 		animalName,
 		animalSpecies,
@@ -257,16 +383,6 @@ INSERT OR REPLACE INTO
 		"",
 		"",
 		"likes everbody; ded"
-	);
-/*
+);
 
-insert or replace into Animals(animalName, animalAge, animalSex, animalSpecies, animalBreed)
-	values(
-		"Amy",
-		10,
-		"F",
-		"Dog",
-		"Bichon Frise/Poodle"
-	);
-*/
 end transaction;
