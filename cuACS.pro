@@ -33,8 +33,8 @@ SOURCES += \
     interface/AnimalInputDiag.cpp \
     interface/AnimalListView.cpp \
     interface/AnimalDetailDiag.cpp \
-    interface/Species.cpp \
-    interface/ClientInputDialog.cpp
+    interface/ClientInputDialog.cpp \
+    interface/species.cpp
 
 HEADERS += \
     data/DatabaseInterface.h \
