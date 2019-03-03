@@ -16,14 +16,14 @@ public:
     void updateAnimalHistory(int index, bool imm, std::string dietString, std::string mobilityString, std::string disabilityString, std::string bio, std::string aHist);
     void pushAnimalToDB(int index);
     int checkID(int id);
-
+    int getNextID();
     Animal* getAnimalWithId(int sid);
     Animal* getAnimalWithName(std::string n);
     inline Animal* getAnimalCollection(){return animalCollection;}
     inline int getNumAnimals(){return numAnimals;}
     inline void setArr(Animal *arr, int numAn){animalCollection = arr; numAnimals = numAn; maxNumAnimals = numAn; resize();}
-    void testFunc();
     void resize();
+    inline void printAll(){for (int i = 0; i < numAnimals; i++){std::cout<<animalCollection[i].getName() << " " << animalCollection[i].getShelterID() << std::endl;}}
 private:
     Animal *animalCollection;
     int numAnimals;

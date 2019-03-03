@@ -31,18 +31,10 @@ void ClientListView::handleButtonClose()
 void ClientListView::handleButtonDetail()
 
 {
-
-    manager->printAll();
-    for(int i=0; i<manager->getNumClients(); i++){
-        Client * client = &manager->getClientCollection()[i];
-        std::cout << client->getNameWithTitle() << " " << client->getClientID() << std::endl;
-        client++;
-    }
-
-//    QModelIndex currentIndex = clientList->currentIndex();
-//    std::string name = clientList->item(currentIndex.row(), 0)->text().toStdString();
-//    ClientDetailDiag diag(manager, manager->getClientWithName(name), this);
-//    diag.exec();
+    QModelIndex currentIndex = clientList->currentIndex();
+    int id = clientList->item(currentIndex.row(), clientList->columnCount()-1)->text().toInt();
+    ClientDetailDiag diag(manager, manager->getClientWithId(id), this);
+    diag.exec();
 }
 
 //Update the ListView, inserts all values
@@ -51,7 +43,7 @@ void ClientListView::updateListView()
     //std::cout<< manager->getNumClients() << std::endl;
     clientList->setRowCount(manager->getNumClients());
 
-    QStringList columnNames = {"Name", "ID"};
+    QStringList columnNames = {"Title", "First Name", "Last Name", "ID"};
     clientList->setColumnCount(columnNames.length());
     clientList->setHorizontalHeaderLabels(columnNames);
 
@@ -60,22 +52,30 @@ void ClientListView::updateListView()
     for(int i = 0; i < manager->getNumClients(); i++)
     {
         //Create item widgets for row
-        QTableWidgetItem *name = new QTableWidgetItem (QString::fromStdString(a[i].getName()));
+        QTableWidgetItem *title = new QTableWidgetItem (QString::fromStdString(a[i].getTitle()));
+        QTableWidgetItem *fname = new QTableWidgetItem (QString::fromStdString(a[i].getFirstName()));
+        QTableWidgetItem *lname = new QTableWidgetItem (QString::fromStdString(a[i].getLastName()));
         QTableWidgetItem *id = new QTableWidgetItem (QString::number(a[i].getClientID()));
 
         //set all as un-editable
-        name->setFlags(name->flags() ^ Qt::ItemIsEditable);
+        title->setFlags(title->flags() ^ Qt::ItemIsEditable);
+        fname->setFlags(fname->flags() ^ Qt::ItemIsEditable);
+        lname->setFlags(lname->flags() ^ Qt::ItemIsEditable);
         id->setFlags(id->flags() ^ Qt::ItemIsEditable);
 
         //place items into list view
-        clientList->setItem(i, 0, name);    //Name
-        clientList->setItem(i, 1, id);    //ID
+        clientList->setItem(i, 0, title);    //Title
+        clientList->setItem(i, 1, fname);    //FName
+        clientList->setItem(i, 2, lname);    //LName
+        clientList->setItem(i, 3, id);    //ID
     }
     //set dimensions
     clientList->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     clientList->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    clientList->setColumnWidth(0, 200); //Name
-    clientList->setColumnWidth(1, 140); //ID
+    clientList->setColumnWidth(0, 40); //Title
+    clientList->setColumnWidth(1, 200); //FName
+    clientList->setColumnWidth(2, 200); //LName
+    clientList->setColumnWidth(3, 60); //ID
     //sort ascending
     clientList->sortByColumn(0, Qt::SortOrder::AscendingOrder);
 }

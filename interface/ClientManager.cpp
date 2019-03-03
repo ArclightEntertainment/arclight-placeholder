@@ -52,6 +52,20 @@ int ClientManager::checkID(int id)
     return 1;
 }
 
+
+int ClientManager::getNextID()
+{
+    int highestID = 0;
+    for(int i = 0; i < numClients; i++)
+    {
+        if (clientCollection[i].getClientID() >= highestID)
+        {
+            highestID ++;
+        }
+    }
+    return highestID++;
+}
+
 void ClientManager::resize()
 {
     if (numClients >= maxNumClients)
@@ -85,9 +99,11 @@ Client* ClientManager::getClientWithName(std::string n)
     {
         if (clientCollection[i].getName().compare(n) == 0)
         {
+            std::cout<<"Found Client With Name: " << n << std::endl;
             return &clientCollection[i];
         }
     }
+    std::cout<<"No Client With Name: " << n << std::endl;
     return NULL;
 }
 

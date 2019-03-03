@@ -1,5 +1,6 @@
 #ifndef CLIENT_H
 #define CLIENT_H
+#include <stdio.h>
 #include <string>
 #include "Levels.h"
 #include "Address.h"
@@ -43,6 +44,7 @@ public:
     inline std::string getFirstName()     const {return firstName;}
     inline std::string getLastName()      const {return lastName;}
     inline std::string getPhoneNumber()   const {return phoneNumber;}
+    std::string getPhoneNumberString();
 
     inline Address& getAddress() {return address;}
     inline ClientProfile& getClientProfile() {return profile;}

@@ -49,6 +49,7 @@ void ClientInputDiag::handleButtonSave()
                                              ui->postalLineEdit->text().toStdString()
                                              );
 
+        clientManager->pushClientToDB(index);
         close();
     }
 }
@@ -58,6 +59,7 @@ bool ClientInputDiag::checkInputValid()
 
     std::string errString = "";
     bool valid = true;
+    bool id = clientManager->checkID(ui->idLineEdit->text().toInt());
     bool title = ui->titleComboBox->currentText().toStdString().compare("Title");
     bool fname = !ui->firstNameLineEdit->text().isEmpty();
     bool lname = !ui->lastNameLineEdit->text().isEmpty();
@@ -68,6 +70,7 @@ bool ClientInputDiag::checkInputValid()
     bool city = !ui->cityLineEdit->text().isEmpty();
     bool add1 = !ui->add1LineEdit->text().isEmpty();
 
+    if (!id){errString.append("Missing or invalid id. Suggest using: " + std::to_string(clientManager->getNextID()) + "\n"); valid = false;}
     if (!title){errString.append("Must Input Title!\n"); valid = false;}
     if (!fname){errString.append("Missing First Name!\n"); valid = false;}
     if (!lname){errString.append("Missing Last Name!\n"); valid = false;}

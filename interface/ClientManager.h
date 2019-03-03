@@ -16,13 +16,14 @@ public:
     void populateClientProfile(int index, int a, bool hasUnderTwelve, int ownExp, int budget, int spaceSqFt, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect);
     void pushClientToDB(int index);
     int checkID(int id);
+    int getNextID();
     Client* getClientWithId(int sid);
     Client* getClientWithName(std::string n);
     inline Client* getClientCollection(){return clientCollection; }
-    inline void printAll(){for (int i = 0; i < numClients; i++){std::cout<<clientCollection[i].getNameWithTitle() << " " << clientCollection[i].getClientID() << std::endl;}}
     inline int getNumClients(){return numClients;}
     inline void setArr(Client *arr, int numCli){clientCollection = arr; numClients = numCli; maxNumClients = numCli; resize();}
     void resize();
+    inline void printAll(){for (int i = 0; i < numClients; i++){std::cout<<clientCollection[i].getNameWithTitle() << " " << clientCollection[i].getClientID() << std::endl;}}
 private:
     Client *clientCollection;
     int numClients;

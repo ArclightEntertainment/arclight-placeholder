@@ -76,7 +76,11 @@ void AnimalInputDiag::handleButtonSave()
         std::string warnString = "";
 
         if (!name){warnString.append("Name Missing!\n");}
-        if (!id){warnString.append("Shelter ID Missing or in use!\n");}
+        if (!id)
+        {
+            warnString.append("Shelter ID Missing or in use!\n");
+            warnString.append("Suggest using: " + std::to_string(aManager->getNextID()) + "\n");
+        }
         if (!species){warnString.append("Species Missing!\n");}
         if (!sex){warnString.append("Sex Missing!\n");}
         if (!age){warnString.append("Age Missing!\n");}

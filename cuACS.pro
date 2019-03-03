@@ -39,7 +39,8 @@ SOURCES += \
     interface/ClientProfile.cpp \
     interface/ClientInputDiag.cpp \
     interface/ClientManager.cpp \
-    interface/ClientListView.cpp
+    interface/ClientListView.cpp \
+    interface/ClientDetailDiag.cpp
 
 HEADERS += \
     data/DatabaseInterface.h \
@@ -56,11 +57,13 @@ HEADERS += \
     interface/Levels.h \
     interface/ClientInputDiag.h \
     interface/ClientManager.h \
-    interface/ClientListView.h
+    interface/ClientListView.h \
+    interface/ClientDetailDiag.h
 
 FORMS += \
     interface/listview.ui \
     interface/mainwindow.ui \
     interface/animaldetaildialog.ui \
     interface/animalinputdialog.ui \
-    interface/clientinputdialog.ui
+    interface/clientinputdialog.ui \
+    interface/clientdetaildialog.ui

@@ -53,6 +53,19 @@ int AnimalManager::checkID(int id)
     return 1;
 }
 
+int AnimalManager::getNextID()
+{
+    int highestID = 0;
+    for(int i = 0; i < numAnimals; i++)
+    {
+        if (animalCollection[i].getShelterID() >= highestID)
+        {
+            highestID ++;
+        }
+    }
+    return highestID++;
+}
+
 void AnimalManager::resize()
 {
     if (numAnimals >= maxNumAnimals)
@@ -92,11 +105,3 @@ Animal* AnimalManager::getAnimalWithName(std::string n)
     return NULL;
 }
 
-//used for testing only. Input desired code segments to run here
-void AnimalManager::testFunc()
-{
-    Animal a = Animal(0, "Jake", 1, 'M', "Cat", "", 1);
-    Animal b = Animal(a);
-    //std::cout<<a.getName() << " " << a.getAge() << " " << a.getSpecies() << std::endl;
-    //std::cout<<b.getName() << " " << b.getAge() << " " << b.getSpecies() << std::endl;
-}

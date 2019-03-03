@@ -11,7 +11,7 @@
 #include <qstring.h>
 
 #include "ClientManager.h"
-//#include "ClientDetailDiag.h"
+#include "ClientDetailDiag.h"
 
 namespace Ui {
 class ListView;
