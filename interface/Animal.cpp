@@ -18,7 +18,7 @@ Animal::Animal(std::string n, int a, char sx, std::string sp, std::string b, int
     sex = sx;
     Species s(0, sp, b);
     species = s;
-    levelOfCare = (cL==0) ? ThreeScale::LOW : (cL==1) ? ThreeScale::MEDIUM : ThreeScale::HIGH;
+    levelOfCare = toThreeScale(cL);
 }
 //constructor coming from Database
 Animal::Animal(int sid, std::string n, int a, char sx, std::string sp, std::string b, int cL)
@@ -30,19 +30,19 @@ Animal::Animal(int sid, std::string n, int a, char sx, std::string sp, std::stri
     sex = sx;
     Species s(0, sp, b);
     species = s;
-    levelOfCare = (cL==0) ? ThreeScale::LOW : (cL==1) ? ThreeScale::MEDIUM : ThreeScale::HIGH;
+    levelOfCare = toThreeScale(cL);
 }
 
 //populate social values. Input ints, convert to Levels
 void Animal::populateSocial(int trLevel, int taLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel)
 {
-    trainingLevel = (trLevel == 0) ? ThreeScale::LOW : ((trLevel == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);
-    trainabilityLevel = (taLevel == 0) ? ThreeScale::LOW : ((taLevel == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);
-    affinityForPeople = (peopleLevel == 0) ? ThreeScale::LOW : ((peopleLevel == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);
-    affinityForChildren = (childLevel == 0) ? ThreeScale::LOW : ((childLevel == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);
-    affinityForAnimals = (animalLevel == 0) ? ThreeScale::LOW : ((animalLevel == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);
-    approachability = (approachLevel == 0) ? ThreeScale::LOW : ((approachLevel == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);
-    timeCommitment = (tiLevel == 0) ? ThreeScale::LOW : ((tiLevel == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);
+    trainingLevel = toThreeScale(trLevel);
+    trainabilityLevel = toThreeScale(taLevel);
+    affinityForPeople = toThreeScale(peopleLevel);
+    affinityForChildren = toThreeScale(childLevel);
+    affinityForAnimals = toThreeScale(animalLevel);
+    approachability = toThreeScale(approachLevel);
+    timeCommitment = toThreeScale(tiLevel);
 }
 
 //populate history values,

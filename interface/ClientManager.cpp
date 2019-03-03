@@ -15,7 +15,6 @@ ClientManager::ClientManager(int cCount)
 
 int ClientManager::addClient(std::string t, int iD, std::string fn, std::string ln, std::string pn)
 {
-    std::cout<<numClients << " " << maxNumClients << std::endl;
     clientCollection[numClients++] = *new Client(iD, t, fn, ln, pn);
     resize();
     return numClients-1;
@@ -36,8 +35,8 @@ void ClientManager::populateClientProfile(int index, int a, bool hasUnderTwelve,
 void ClientManager::pushClientToDB(int index)
 {
     Client* a = &clientCollection[index];
-    std::cout << a->getNameWithTitle() << "\n\t" << a->getPhoneNumber() << "\n\t" << a->getAddress().getCity() << std::endl;
     //clientCollection[index].setID(DatabaseInterface::pushDBClient(clientCollection[index]));
+    DatabaseInterface::pushDBClient(clientCollection[index]);
 }
 
 //check input id against id's of every other client in db, if used, then
@@ -45,7 +44,7 @@ int ClientManager::checkID(int id)
 {
     for(int i = 0; i < numClients; i++)
     {
-        if (clientCollection[i].getID() == id)
+        if (clientCollection[i].getClientID() == id)
         {
             return 0;
         }
@@ -72,7 +71,7 @@ Client* ClientManager::getClientWithId(int sid)
 {
     for (int i = 0; i < numClients; i++)
     {
-        if (clientCollection[i].getID() == sid)
+        if (clientCollection[i].getClientID() == sid)
         {
             return &clientCollection[i];
         }

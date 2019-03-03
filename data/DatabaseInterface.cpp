@@ -222,7 +222,10 @@ Client** DatabaseInterface::getClientArray()
                                        clientLivingSpaceSquareFeet, clientAvailabilityPerDay, clientLevelOfMobility, clientLevelOfEnergy,
                                        clientLevelOfPatience, clientPreviousExperience, clientPhysicalAffection);
         i++;
+
+        //std::cout << clientFName << " " << clientLName << " " << clientID;
     }
+    sqlite3_close_v2(db);
     return &clientArray;
 }
 
@@ -233,13 +236,11 @@ int DatabaseInterface::pushDBAnimal(Animal &animal)
 
     if (sqlite3_open("data/data.db", &db) == SQLITE_OK)
     {
-
-        std::string sql = "INSERT OR REPLACE INTO Animals (shelterID, animalName, animalSpecies, animalBreed, animalAge, animalSex, animalTrainingLevel, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproachability, animalTimeCommitment, animalDietNeeds, animalMobilityNeeds, animalDisablityNeeds, animalAbuseHistory, animalBiography) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        std::string sql = "INSERT OR REPLACE INTO Animals (shelterID, animalName, animalSpecies, animalBreed, animalAge, animalSex, animalTrainingLevel, animalTrainabilityLevel, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproachability, animalTimeCommitment, animalDietNeeds, animalMobilityNeeds, animalDisablityNeeds, animalAbuseHistory, animalBiography) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, NULL);
         if (rc == SQLITE_OK)
         {
             sqlite3_bind_int(stmt, 1, animal.getShelterID());
-            std::cout << sql << std::endl;
             sqlite3_bind_text(stmt, 2, animal.getName().c_str(),  animal.getName().length(),  SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 3, animal.getSpecies().c_str(), animal.getSpecies().length(), SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 4, animal.getBreed().c_str(), animal.getBreed().length(), SQLITE_TRANSIENT);
@@ -248,35 +249,21 @@ int DatabaseInterface::pushDBAnimal(Animal &animal)
             char *psex = &sex;
             sqlite3_bind_text(stmt, 6, psex, 1, SQLITE_TRANSIENT);
             sqlite3_bind_int(stmt, 7, animal.getTrainingLevel());
-            sqlite3_bind_int(stmt, 8, animal.getAffForPeople());
-            sqlite3_bind_int(stmt, 9, animal.getAffForChildren());
-            sqlite3_bind_int(stmt, 10, animal.getAffForAnimals());
-            sqlite3_bind_int(stmt, 11, animal.getApproachability());
-            sqlite3_bind_int(stmt, 12, animal.getTimeCommitment());
-            sqlite3_bind_text(stmt, 13, animal.getDietNeeds().c_str(), animal.getDietNeeds().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 14, animal.getMobilityNeeds().c_str(), animal.getMobilityNeeds().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 15, animal.getDisabilityNeeds().c_str(), animal.getSpecies().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 16, animal.getAbuseHistory().c_str(), animal.getAbuseHistory().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 17, animal.getBiography().c_str(), animal.getBiography().length(), SQLITE_TRANSIENT);
-            /*
-            << animal.getAge() << sep
-            << strsep << animal.getSex() << strsep << sep
-            << animal.getTrainingLevel() << sep
-            << animal.getAffForPeople() << sep
-            << animal.getAffForChildren() << sep
-            << animal.getAffForAnimals() << sep
-            << animal.getApproachability() << sep
-            << animal.getTimeCommitment() << sep
-            << strsep << animal.getDietNeeds() << strsep << sep
-            << strsep << animal.getMobilityNeeds() << strsep << sep
-            << strsep << animal.getDisabilityNeeds() << strsep << sep
-            << strsep << animal.getAbuseHistory() << strsep << sep
-            << strsep << animal.getBiography() <<  strsep << ");";*/
+            sqlite3_bind_int(stmt, 8, animal.getTrainabilityLevel());
+            sqlite3_bind_int(stmt, 9, animal.getAffForPeople());
+            sqlite3_bind_int(stmt, 10, animal.getAffForChildren());
+            sqlite3_bind_int(stmt, 11, animal.getAffForAnimals());
+            sqlite3_bind_int(stmt, 12, animal.getApproachability());
+            sqlite3_bind_int(stmt, 13, animal.getTimeCommitment());
+            sqlite3_bind_text(stmt, 14, animal.getDietNeeds().c_str(), animal.getDietNeeds().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 15, animal.getMobilityNeeds().c_str(), animal.getMobilityNeeds().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 16, animal.getDisabilityNeeds().c_str(), animal.getSpecies().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 17, animal.getAbuseHistory().c_str(), animal.getAbuseHistory().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 18, animal.getBiography().c_str(), animal.getBiography().length(), SQLITE_TRANSIENT);
 
             std::cout << sql << std::endl;
 
-            //sqlite3_step(stmt);
-            if (sqlite3_step(stmt) != SQLITE_DONE) std::cout << "Didn't Insert Item!" << std::endl;;
+            if (sqlite3_step(stmt) != SQLITE_DONE){std::cout << "Didn't Insert Item!" << std::endl;}
             sqlite3_finalize(stmt);
 
         }
@@ -288,4 +275,51 @@ int DatabaseInterface::pushDBAnimal(Animal &animal)
         sqlite3_close_v2(db);
     }
     return 0;
+}
+
+int DatabaseInterface::pushDBClient(Client &client)
+{
+    sqlite3 *db;
+    sqlite3_stmt *stmt = 0;
+    if (sqlite3_open("data/data.db", &db) == SQLITE_OK)
+    {
+        std::string sql = "INSERT OR REPLACE INTO Clients(clientID, clientFName, clientLName, clientPrefTitle, clientPhoneNumber, clientAge, clientHasChildrenUnderTwelve, clientLengthOfOwnershipExpectation, clientMonthlyBudgetForAnimal, clientLivingSpaceSquareFeet, clientAvailabilityPerDay, clientLevelOfMobility, clientLevelOfEnergy, clientLevelOfPatience, clientPreviousExperience, clientPhysicalAffection)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, NULL);
+        if(rc == SQLITE_OK)
+        {
+            sqlite3_bind_int(stmt, 1, client.getClientID());
+            sqlite3_bind_text(stmt, 2, client.getFirstName().c_str(), client.getFirstName().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 3, client.getLastName().c_str(), client.getLastName().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 4, client.getTitle().c_str(), client.getTitle().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 5, client.getPhoneNumber().c_str(), client.getPhoneNumber().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_int(stmt, 6, client.getClientProfile().getAge());
+            sqlite3_bind_int(stmt, 7, client.getClientProfile().getHasChildrenUnderTwelve());
+            sqlite3_bind_int(stmt, 8, client.getClientProfile().getLengthOfOwnershipExpectation());
+            sqlite3_bind_int(stmt, 9, client.getClientProfile().getBudgetPerMonth());
+            sqlite3_bind_int(stmt, 10, client.getClientProfile().getLivingSpaceSquareFeet());
+            sqlite3_bind_int(stmt, 11, client.getClientProfile().getTimeAvailabilityPerDay());
+            sqlite3_bind_int(stmt, 12, client.getClientProfile().getLevelOfMobility());
+            sqlite3_bind_int(stmt, 13, client.getClientProfile().getLevelOfEnergy());
+            sqlite3_bind_int(stmt, 14, client.getClientProfile().getLevelOfPatience());
+            sqlite3_bind_int(stmt, 15, client.getClientProfile().getPreviousExperience());
+            sqlite3_bind_int(stmt, 16, client.getClientProfile().getPhysicalAffection());
+        }
+        rc = sqlite3_finalize(stmt);
+
+        sql = "INSERT OR REPLACE INTO Address(addressClientID, addressStreetLine1, addressStreetLine2, addressCity, addressSubnationalDivision, addressCountry, addressPostalCode)VALUES(?, ?, ?, ?, ?, ?, ?)";
+        rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, NULL);
+        if(rc == SQLITE_OK)
+        {
+            Address adr = client.getAddress();
+            sqlite3_bind_int(stmt, 1, client.getClientID());
+            sqlite3_bind_text(stmt, 2, adr.getStreetLine1().c_str(), adr.getStreetLine1().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 3, adr.getStreetLine2().c_str(), adr.getStreetLine2().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 4, adr.getCity().c_str(), adr.getCity().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 5, adr.getSubnationalDivision().c_str(), adr.getSubnationalDivision().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 6, adr.getCountry().c_str(), adr.getCountry().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 7, adr.getPostalCode().c_str(), adr.getPostalCode().length(), SQLITE_TRANSIENT);
+        }
+        rc = sqlite3_finalize(stmt);
+        sqlite3_close_v2(db);
+    }
 }

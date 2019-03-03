@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS Animals(
 	animalAge INTEGER NOT NULL,
 	animalSex char NOT NULL,
 	animalTrainingLevel INTEGER NOT NULL,
+	animalTrainabilityLevel INTEGER NOT NULL,
 	animalAffinityForPeople INTEGER NOT NULL,
 	animalAffinityForChildren INTEGER NOT NULL,
 	animalAffinityForAnimals INTEGER NOT NULL,
@@ -173,12 +174,174 @@ INSERT OR REPLACE INTO Address(
 		addressPostalCode
 	)VALUES(
 		1,
-		"321 Cool Avenue",
+		"321 Nighthawk Avenue",
 		"",
 		"Ottawa",
 		"Ontario",
 		"Canada",
 		"C2C0A0"
+);
+
+INSERT OR REPLACE INTO Clients(
+		clientID,
+		clientFName,
+		clientLName,
+		clientPrefTitle,
+		clientPhoneNumber,
+		clientAge,
+		clientHasChildrenUnderTwelve,
+		clientLengthOfOwnershipExpectation,
+		clientMonthlyBudgetForAnimal,
+		clientLivingSpaceSquareFeet,
+		clientAvailabilityPerDay,
+		clientLevelOfMobility,
+		clientLevelOfEnergy,
+		clientLevelOfPatience,
+		clientPreviousExperience,
+		clientPhysicalAffection
+	)VALUES(
+		2,
+		"Shalin",
+		"Lathigra",
+		"Mrs.",
+		"6139991234",
+		17,
+		0,
+		2,
+		75,
+		500,
+		45,
+		2,
+		0,
+		4,
+		2,
+		0
+);
+
+INSERT OR REPLACE INTO Address(
+		addressClientID,
+		addressStreetLine1,
+		addressStreetLine2,
+		addressCity,
+		addressSubnationalDivision,
+		addressCountry,
+		addressPostalCode
+	)VALUES(
+		2,
+		"1888 Long Street",
+		"Room Number 144",
+		"Ottawa",
+		"Ontario",
+		"Canada",
+		"N6M0L2"
+);
+
+INSERT OR REPLACE INTO Clients(
+		clientID,
+		clientFName,
+		clientLName,
+		clientPrefTitle,
+		clientPhoneNumber,
+		clientAge,
+		clientHasChildrenUnderTwelve,
+		clientLengthOfOwnershipExpectation,
+		clientMonthlyBudgetForAnimal,
+		clientLivingSpaceSquareFeet,
+		clientAvailabilityPerDay,
+		clientLevelOfMobility,
+		clientLevelOfEnergy,
+		clientLevelOfPatience,
+		clientPreviousExperience,
+		clientPhysicalAffection
+	)VALUES(
+		3,
+		"Aaron",
+		"Ramos-Lazette",
+		"",
+		"16148005656",
+		35,
+		1,
+		15,
+		350,
+		3000,
+		180,
+		3,
+		3,
+		3,
+		4,
+		4
+);
+
+INSERT OR REPLACE INTO Address(
+		addressClientID,
+		addressStreetLine1,
+		addressStreetLine2,
+		addressCity,
+		addressSubnationalDivision,
+		addressCountry,
+		addressPostalCode
+	)VALUES(
+		3,
+		"999 Riverrun Crescent",
+		"",
+		"Toronto",
+		"Ontario",
+		"Canada",
+		"L0D9H8"
+);
+
+INSERT OR REPLACE INTO Clients(
+		clientID,
+		clientFName,
+		clientLName,
+		clientPrefTitle,
+		clientPhoneNumber,
+		clientAge,
+		clientHasChildrenUnderTwelve,
+		clientLengthOfOwnershipExpectation,
+		clientMonthlyBudgetForAnimal,
+		clientLivingSpaceSquareFeet,
+		clientAvailabilityPerDay,
+		clientLevelOfMobility,
+		clientLevelOfEnergy,
+		clientLevelOfPatience,
+		clientPreviousExperience,
+		clientPhysicalAffection
+	)VALUES(
+		4,
+		"Barbara",
+		"Smith",
+		"Ms.",
+		"6131114200",
+		53,
+		1,
+		8,
+		50,
+		750,
+		30,
+		2,
+		4,
+		1,
+		1,
+		4
+);
+
+INSERT OR REPLACE INTO Address(
+		addressClientID,
+		addressStreetLine1,
+		addressStreetLine2,
+		addressCity,
+		addressSubnationalDivision,
+		addressCountry,
+		addressPostalCode
+	)VALUES(
+		4,
+		"18 Prince of Wales",
+		"Floor 15/Apartment 34",
+		"Ottawa",
+		"Ontario",
+		"Canada",
+		"Q0A6D6"
 );
 
 INSERT OR REPLACE INTO Species(
@@ -203,6 +366,7 @@ INSERT OR REPLACE INTO Animals(
 		animalAge,
 		animalSex,
 		animalTrainingLevel,
+		animalTrainabilityLevel,
 		animalAffinityForPeople,
 		animalAffinityForChildren,
 		animalAffinityForAnimals,
@@ -221,6 +385,7 @@ INSERT OR REPLACE INTO Animals(
 		3,
 		'M',
 		1,
+		0,
 		2,
 		2,
 		2,
@@ -241,6 +406,7 @@ INSERT OR REPLACE INTO Animals(
 		animalAge,
 		animalSex,
 		animalTrainingLevel,
+		animalTrainabilityLevel,
 		animalAffinityForPeople,
 		animalAffinityForChildren,
 		animalAffinityForAnimals,
@@ -259,6 +425,7 @@ INSERT OR REPLACE INTO Animals(
 		3,
 		'M',
 		1,
+		0,
 		1,
 		1,
 		2,
@@ -270,7 +437,6 @@ INSERT OR REPLACE INTO Animals(
 		"",
 		"Has to get used to you"
 );
-
 INSERT OR REPLACE INTO Animals(
 		shelterID,
 		animalName,
@@ -279,6 +445,7 @@ INSERT OR REPLACE INTO Animals(
 		animalAge,
 		animalSex,
 		animalTrainingLevel,
+		animalTrainabilityLevel,
 		animalAffinityForPeople,
 		animalAffinityForChildren,
 		animalAffinityForAnimals,
@@ -297,6 +464,7 @@ INSERT OR REPLACE INTO Animals(
 		10,
 		'F',
 		2,
+		1,
 		0,
 		1,
 		1,
@@ -317,6 +485,7 @@ INSERT OR REPLACE INTO Animals(
 		animalAge,
 		animalSex,
 		animalTrainingLevel,
+		animalTrainabilityLevel,
 		animalAffinityForPeople,
 		animalAffinityForChildren,
 		animalAffinityForAnimals,
@@ -335,6 +504,7 @@ INSERT OR REPLACE INTO Animals(
 		3,
 		'M',
 		0,
+		2,
 		0,
 		2,
 		0,
@@ -355,6 +525,7 @@ INSERT OR REPLACE INTO Animals(
 		animalAge,
 		animalSex,
 		animalTrainingLevel,
+		animalTrainabilityLevel,
 		animalAffinityForPeople,
 		animalAffinityForChildren,
 		animalAffinityForAnimals,
@@ -374,6 +545,7 @@ INSERT OR REPLACE INTO Animals(
 		'M',
 		1,
 		1,
+		1,
 		2,
 		2,
 		1,
@@ -382,7 +554,7 @@ INSERT OR REPLACE INTO Animals(
 		"",
 		"",
 		"",
-		"likes everbody; ded"
+		"likes everbody"
 );
 
 end transaction;

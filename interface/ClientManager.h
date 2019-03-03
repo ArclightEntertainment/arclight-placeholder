@@ -18,7 +18,8 @@ public:
     int checkID(int id);
     Client* getClientWithId(int sid);
     Client* getClientWithName(std::string n);
-    inline Client* getClientCollection(){return clientCollection;}
+    inline Client* getClientCollection(){return clientCollection; }
+    inline void printAll(){for (int i = 0; i < numClients; i++){std::cout<<clientCollection[i].getNameWithTitle() << " " << clientCollection[i].getClientID() << std::endl;}}
     inline int getNumClients(){return numClients;}
     inline void setArr(Client *arr, int numCli){clientCollection = arr; numClients = numCli; maxNumClients = numCli; resize();}
     void resize();

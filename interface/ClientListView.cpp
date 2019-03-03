@@ -31,6 +31,14 @@ void ClientListView::handleButtonClose()
 void ClientListView::handleButtonDetail()
 
 {
+
+    manager->printAll();
+    for(int i=0; i<manager->getNumClients(); i++){
+        Client * client = &manager->getClientCollection()[i];
+        std::cout << client->getNameWithTitle() << " " << client->getClientID() << std::endl;
+        client++;
+    }
+
 //    QModelIndex currentIndex = clientList->currentIndex();
 //    std::string name = clientList->item(currentIndex.row(), 0)->text().toStdString();
 //    ClientDetailDiag diag(manager, manager->getClientWithName(name), this);
@@ -52,8 +60,8 @@ void ClientListView::updateListView()
     for(int i = 0; i < manager->getNumClients(); i++)
     {
         //Create item widgets for row
-        QTableWidgetItem *name = new QTableWidgetItem (QString::fromStdString(a[i].getName()));\
-        QTableWidgetItem *id = new QTableWidgetItem (QString::number(a[i].getID()));
+        QTableWidgetItem *name = new QTableWidgetItem (QString::fromStdString(a[i].getName()));
+        QTableWidgetItem *id = new QTableWidgetItem (QString::number(a[i].getClientID()));
 
         //set all as un-editable
         name->setFlags(name->flags() ^ Qt::ItemIsEditable);
@@ -66,7 +74,7 @@ void ClientListView::updateListView()
     //set dimensions
     clientList->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     clientList->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    clientList->setColumnWidth(0, 140); //Name
+    clientList->setColumnWidth(0, 200); //Name
     clientList->setColumnWidth(1, 140); //ID
     //sort ascending
     clientList->sortByColumn(0, Qt::SortOrder::AscendingOrder);

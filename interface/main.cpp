@@ -13,26 +13,25 @@ int main(int argc, char *argv[])
 
     Animal **animalArray = DatabaseInterface::getAnimalArray();
     int animalCount = DatabaseInterface::getAnimalCount();
+    Animal *animal = animalArray[0];
+    Animal animalArr[animalCount];
+
     Client **clientArray = DatabaseInterface::getClientArray();
     int clientCount = DatabaseInterface::getClientCount();
-    Animal *animal = animalArray[0];
     Client *client = clientArray[0];
-
-    Animal animalArr[animalCount];
     Client clientArr[clientCount];
 
     for(int i=0; i<animalCount; i++){
-        std::cout << animal->getName() << std::endl;
         animalArr[i] = *animal;
         animal++;
     }
 
     for(int i=0; i<clientCount; i++){
-        std::cout << client->getName() << std::endl;
         clientArr[i] = *client;
+        std::cout << client->getNameWithTitle() << " " << client->getClientID() << std::endl;
         client++;
     }
-    std::cout<<animalCount<<std::endl;
+
     if (animalCount > 0)
     {
         w.setAnimalArr(animalArr, animalCount);
@@ -44,6 +43,10 @@ int main(int argc, char *argv[])
         w.setAnimalArr(AnimalArr, AnimalCount);
     }
     if (clientCount > 0)
+    {
+        w.setClientArr(clientArr, clientCount);
+    }
+    else
     {
         int ClientCount = 10;
         Client ClientArr[ClientCount];
