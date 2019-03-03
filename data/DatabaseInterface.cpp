@@ -4,6 +4,7 @@
 #include <iostream>
 #include <typeinfo>
 #include "DatabaseInterface.h"
+#include "./interface/Levels.h"
 
 DatabaseInterface::DatabaseInterface()
 {
@@ -15,7 +16,8 @@ DatabaseInterface::~DatabaseInterface()
 
 }
 
-int DatabaseInterface::getAnimalCount(){
+int DatabaseInterface::getAnimalCount()
+{
     sqlite3 *db;
     sqlite3_stmt *stmt = 0;
     char const *sql;
@@ -26,12 +28,12 @@ int DatabaseInterface::getAnimalCount(){
 
     if (rc)
     {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-        return 0;
+        fprintf(stderr, "getAnimalCount(): Can't open database: %s\n", sqlite3_errmsg(db));
+        return -1;
     }
     else
     {
-        fprintf(stderr, "Opened databse successfully, rc: %d\n", rc);
+        fprintf(stderr, "getAnimalCount(): Opened databse successfully, rc: %d\n", rc);
     }
 
     // Get the total amount of Animals
@@ -47,7 +49,7 @@ int DatabaseInterface::getAnimalCount(){
     return animalCount;
 }
 
-Animal** DatabaseInterface::getDB()
+int DatabaseInterface::getClientCount()
 {
     sqlite3 *db;
     sqlite3_stmt *stmt = 0;
@@ -59,12 +61,45 @@ Animal** DatabaseInterface::getDB()
 
     if (rc)
     {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        fprintf(stderr, "getClientCount(): Can't open database: %s\n", sqlite3_errmsg(db));
+        return -1;
+    }
+    else
+    {
+        fprintf(stderr, "getClientCount(): Opened databse successfully, rc: %d\n", rc);
+    }
+
+    // Get the total amount of Clients
+    sql = "SELECT count(*) FROM Clients";
+    rc = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+    rc = sqlite3_step(stmt);
+    int clientCount = sqlite3_column_int(stmt, 0);
+
+    // Finalize the stamtement, then close the database
+    rc = sqlite3_finalize(stmt);
+    sqlite3_close(db);
+
+    return clientCount;
+}
+
+Animal** DatabaseInterface::getAnimalArray()
+{
+    sqlite3 *db;
+    sqlite3_stmt *stmt = 0;
+    char const *sql;
+    int rc;
+
+    // Open database
+    rc = sqlite3_open("data/data.db", &db);
+
+    if (rc)
+    {
+        fprintf(stderr, "getAnimalArray(): Can't open database: %s\n", sqlite3_errmsg(db));
         return 0;
     }
     else
     {
-        fprintf(stderr, "Opened databse successfully, rc: %d\n", rc);
+        fprintf(stderr, "getAnimalArray(): Opened databse successfully, rc: %d\n", rc);
     }
 
     // Get the total amount of Animals
@@ -93,12 +128,12 @@ Animal** DatabaseInterface::getDB()
         std::string animalBreed = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
         int animalAge = sqlite3_column_int(stmt, 4);
         char animalSex = sqlite3_column_text(stmt, 5)[0];
-        int animalTrainingLevel = sqlite3_column_int(stmt, 6);
-        int animalAffinityForPeople = sqlite3_column_int(stmt, 7);
-        int animalAffinityForChildren = sqlite3_column_int(stmt, 8);
-        int animalAffinityForAnimals = sqlite3_column_int(stmt, 9);
-        int animalApproacability = sqlite3_column_int(stmt, 10);
-        int animalTimeCommitment = sqlite3_column_int(stmt, 11);
+        ThreeScale animalTrainingLevel = toThreeScale(sqlite3_column_int(stmt, 6));
+        ThreeScale animalAffinityForPeople = toThreeScale(sqlite3_column_int(stmt, 7));
+        ThreeScale animalAffinityForChildren = toThreeScale(sqlite3_column_int(stmt, 8));
+        ThreeScale animalAffinityForAnimals = toThreeScale(sqlite3_column_int(stmt, 9));
+        ThreeScale animalApproacability = toThreeScale(sqlite3_column_int(stmt, 10));
+        ThreeScale animalTimeCommitment = toThreeScale(sqlite3_column_int(stmt, 11));
         std::string animalDietNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 12)));
         std::string animalMobilityNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 13)));
         std::string animalDisabilityNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 14)));
@@ -106,7 +141,7 @@ Animal** DatabaseInterface::getDB()
         std::string animalBiography = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 16)));
         animalArray[i] = Animal(shelterID, animalName, animalAge, animalSex, animalSpecies, animalBreed, 1);
         animalArray[i].populateHistory(true, animalDietNeeds, animalMobilityNeeds, animalDisabilityNeeds, animalBiography, animalAbuseHistory);
-        animalArray[i].populateSocial(animalTrainingLevel, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproacability, animalTimeCommitment);
+        animalArray[i].populateSocial(animalTrainingLevel, 1, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproacability, animalTimeCommitment);
         i++;
     }
 
@@ -119,68 +154,82 @@ Animal** DatabaseInterface::getDB()
     return &animalArray;
 }
 
-int DatabaseInterface::pushDBAnimal(Animal &animal)
+Client** DatabaseInterface::getClientArray()
 {
     sqlite3 *db;
-    sqlite3_stmt *stmt;
-    //int rc;
+    sqlite3_stmt *stmt = 0;
+    char const *sql;
+    int rc;
 
-    /*// Open database
-    rc = sqlite3_open("data.db", &db);
+    // Open database
+    rc = sqlite3_open("data/data.db", &db);
 
     if (rc)
     {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        fprintf(stderr, "getClientArray(): Can't open database: %s\n", sqlite3_errmsg(db));
         return 0;
     }
     else
     {
-        fprintf(stderr, "Opened databse successfully\n");
+        fprintf(stderr, "getClientArray(): Opened databse successfully, rc: %d\n", rc);
     }
 
-    std::string sep = ", ";
-    std::string strsep = "'";
-    /*std::string sql =
-            std::string("INSERT OR REPLACE INTO Animals(shelterID, animalName, animalSpecies, animalBreed, animalAge, animalSex, animalTrainingLevel, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproachability, animalTimeCommitment, animalDietNeeds, animalMobilityNeeds, animalDisablityNeeds, animalAbuseHistory, animalBiography) VALUES(")
-            + animal.getShelterID() + sep
-            + animal.getName() + sep
-            + animal.getSpecies() + sep
-            + animal.getBreed() + sep
-            + animal.getAge() + sep
-            + animal.getSex() + sep
-            + animal.getTrainingLevel() + sep
-            + animal.getAffForPeople() + sep
-            + animal.getAffForChildren() + sep
-            + animal.getAffForAnimals() + sep
-            + animal.getApproachability() + sep
-            + animal.getTimeCommitment() + sep
-            + animal.getDietNeeds() + sep
-            + animal.getMobilityNeeds() + sep
-            + animal.getDisabilityNeeds() + sep
-            + animal.getAbuseHistory() + sep
-            + animal.getBiography() + std::string(");");*/
+    // Get the total amount of Clients
+    sql = "SELECT count(*) FROM Clients";
+    rc = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+    rc = sqlite3_step(stmt);
+    int clientCount = sqlite3_column_int(stmt, 0);
 
-    /*std::ostringstream sql;
-    sql << "INSERT OR REPLACE INTO Animals(shelterID, animalName, animalSpecies, animalBreed, animalAge, animalSex, animalTrainingLevel, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproachability, animalTimeCommitment, animalDietNeeds, animalMobilityNeeds, animalDisablityNeeds, animalAbuseHistory, animalBiography) VALUES( "
-        << animal.getShelterID() << sep
-        << strsep << animal.getName() << strsep << sep
-        << strsep << animal.getSpecies() << strsep << sep
-        << strsep << animal.getBreed() << strsep << sep
-        << animal.getAge() << sep
-        << strsep << animal.getSex() << strsep << sep
-        << animal.getTrainingLevel() << sep
-        << animal.getAffForPeople() << sep
-        << animal.getAffForChildren() << sep
-        << animal.getAffForAnimals() << sep
-        << animal.getApproachability() << sep
-        << animal.getTimeCommitment() << sep
-        << strsep << animal.getDietNeeds() << strsep << sep
-        << strsep << animal.getMobilityNeeds() << strsep << sep
-        << strsep << animal.getDisabilityNeeds() << strsep << sep
-        << strsep << animal.getAbuseHistory() << strsep << sep
-        << strsep << animal.getBiography() <<  strsep << ");";
+    // Initialize the Client array
+    static Client *clientArray = new Client[clientCount];
 
-    std::cout << sql.str() << std::endl;*/
+    // Finalize the statement
+    rc = sqlite3_finalize(stmt);
+
+    // Get the Clients table
+    sql = "SELECT * FROM Clients JOIN Address WHERE clientID = addressClientID;";
+    rc = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+
+    // Go through each row, create an Client with the column data, and add them into the array
+    int i = 0;
+    while ( (rc = sqlite3_step(stmt)) == SQLITE_ROW)
+    {
+        int clientID = sqlite3_column_int(stmt, 0);
+        std::string clientFName = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
+        std::string clientLName = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
+        std::string clientPrefTitle = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
+        std::string clientPhoneNumber = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));
+        int clientAge = sqlite3_column_int(stmt, 5);
+        int clientHasChildrenUnderTwelve = sqlite3_column_int(stmt, 6); // 0 is false, 1 is true
+        int clientLengthOfOwnershipExpectation = sqlite3_column_int(stmt, 7);
+        int clientMonthlyBudgetForAnimal = sqlite3_column_int(stmt, 8);
+        int clientLivingSpaceSquareFeet = sqlite3_column_int(stmt, 9);
+        int clientAvailabilityPerDay = sqlite3_column_int(stmt, 10);
+        FiveScale clientLevelOfMobility = toFiveScale(sqlite3_column_int(stmt, 11));
+        FiveScale clientLevelOfEnergy = toFiveScale(sqlite3_column_int(stmt, 12));
+        FiveScale clientLevelOfPatience = toFiveScale(sqlite3_column_int(stmt, 13));
+        FiveScale clientPreviousExperience = toFiveScale(sqlite3_column_int(stmt, 14));
+        FiveScale clientPhysicalAffection = toFiveScale(sqlite3_column_int(stmt, 15));
+        std::string addressStreetLine1 = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 17)));
+        std::string addressStreetLine2 = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 18)));
+        std::string addressCity = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 19)));
+        std::string addressSubnationalDivision = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 20)));
+        std::string addressCountry = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 21)));
+        std::string addressPostalCode = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 22)));
+        clientArray[i] = Client(clientPrefTitle, clientFName, clientLName, clientPhoneNumber);
+        clientArray[i].populateAddress(addressStreetLine1, addressStreetLine2, addressCity, addressSubnationalDivision, addressCountry, addressPostalCode);
+        clientArray[i].populateProfile(clientAge, clientHasChildrenUnderTwelve, clientLengthOfOwnershipExpectation, clientMonthlyBudgetForAnimal,
+                                       clientLivingSpaceSquareFeet, clientAvailabilityPerDay, clientLevelOfMobility, clientLevelOfEnergy,
+                                       clientLevelOfPatience, clientPreviousExperience, clientPhysicalAffection);
+        i++;
+    }
+    return &clientArray;
+}
+
+int DatabaseInterface::pushDBAnimal(Animal &animal)
+{
+    sqlite3 *db;
+    sqlite3_stmt *stmt;
 
     if (sqlite3_open("data/data.db", &db) == SQLITE_OK)
     {
@@ -234,15 +283,9 @@ int DatabaseInterface::pushDBAnimal(Animal &animal)
         else
         {
             fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+            return -1;
         }
         sqlite3_close_v2(db);
     }
-
-    /*sqlite3_prepare(db, sql.str().c_str(), -1, &stmt, NULL);
-    rc = sqlite3_step(stmt);
-    sqlite3_finalize(stmt);
-    sqlite3_close(db);
-
-    std::cout << rc << std::endl;*/
     return 0;
 }

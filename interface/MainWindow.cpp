@@ -28,7 +28,7 @@ MainWindow::~MainWindow()
 void MainWindow::handleButtonInput()
 {
     //std::cout << "Pushed Input Button!" << std::endl;
-    InputDiag diag(animalManager, this);
+    AnimalInputDiag diag(animalManager, this);
     diag.exec();
 }
 

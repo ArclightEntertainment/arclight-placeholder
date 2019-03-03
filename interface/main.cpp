@@ -11,9 +11,12 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    Animal **animalArray = DatabaseInterface::getDB();
+    Animal **animalArray = DatabaseInterface::getAnimalArray();
     int animalCount = DatabaseInterface::getAnimalCount();
+    Client **clientArray = DatabaseInterface::getClientArray();
+    int clientCount = DatabaseInterface::getClientCount();
     Animal *animal = animalArray[0];
+    Client *client = clientArray[0];
 
     Animal animalArr[animalCount];
 
@@ -21,6 +24,11 @@ int main(int argc, char *argv[])
         std::cout << animal->getName() << std::endl;
         animalArr[i] = *animal;
         animal++;
+    }
+
+    for(int i=0; i<clientCount; i++){
+        std::cout << client->getName() << std::endl;
+        client++;
     }
     w.setArr(animalArr, animalCount);
     return a.exec();

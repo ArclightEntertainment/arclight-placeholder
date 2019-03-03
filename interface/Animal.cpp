@@ -10,26 +10,38 @@ Animal::Animal()
 }
 
 //Basic constructor
-Animal::Animal(int id, std::string n, int a, char sx, std::string sp, std::string b, int cL)
+Animal::Animal(std::string n, int a, char sx, std::string sp, std::string b, int cL)
 {
-    shelterID = id;
+    shelterID = 0;
     name = n;
     age = a;
     sex = sx;
     Species s(0, sp, b);
     species = s;
-    levelOfCare = (cL==0) ? Level::LOW : (cL==1) ? Level::MEDIUM : Level::HIGH;
+    levelOfCare = (cL==0) ? ThreeScale::LOW : (cL==1) ? ThreeScale::MEDIUM : ThreeScale::HIGH;
+}
+//constructor coming from Database
+Animal::Animal(int sid, std::string n, int a, char sx, std::string sp, std::string b, int cL)
+{
+    shelterID = sid;
+    name = n;
+    age = a;
+    sex = sx;
+    Species s(0, sp, b);
+    species = s;
+    levelOfCare = (cL==0) ? ThreeScale::LOW : (cL==1) ? ThreeScale::MEDIUM : ThreeScale::HIGH;
 }
 
 //populate social values. Input ints, convert to Levels
-void Animal::populateSocial(int trLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel)
+void Animal::populateSocial(int trLevel, int taLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel)
 {
-    trainingLevel = (trLevel == 0) ? Level::LOW : ((trLevel == 1) ? Level::MEDIUM : Level::HIGH);
-    affinityForPeople = (peopleLevel == 0) ? Level::LOW : ((peopleLevel == 1) ? Level::MEDIUM : Level::HIGH);
-    affinityForChildren = (childLevel == 0) ? Level::LOW : ((childLevel == 1) ? Level::MEDIUM : Level::HIGH);
-    affinityForAnimals = (animalLevel == 0) ? Level::LOW : ((animalLevel == 1) ? Level::MEDIUM : Level::HIGH);
-    approachability = (approachLevel == 0) ? Level::LOW : ((approachLevel == 1) ? Level::MEDIUM : Level::HIGH);
-    timeCommitment = (tiLevel == 0) ? Level::LOW : ((tiLevel == 1) ? Level::MEDIUM : Level::HIGH);
+    trainingLevel = (trLevel == 0) ? ThreeScale::LOW : ((trLevel == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);
+    trainabilityLevel = (taLevel == 0) ? ThreeScale::LOW : ((taLevel == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);
+    affinityForPeople = (peopleLevel == 0) ? ThreeScale::LOW : ((peopleLevel == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);
+    affinityForChildren = (childLevel == 0) ? ThreeScale::LOW : ((childLevel == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);
+    affinityForAnimals = (animalLevel == 0) ? ThreeScale::LOW : ((animalLevel == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);
+    approachability = (approachLevel == 0) ? ThreeScale::LOW : ((approachLevel == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);
+    timeCommitment = (tiLevel == 0) ? ThreeScale::LOW : ((tiLevel == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);
 }
 
 //populate history values,
@@ -56,6 +68,7 @@ Animal::Animal(const Animal &a_animal)
 
     //social information
     trainingLevel = a_animal.getTrainingLevel();
+    trainabilityLevel = a_animal.getTrainabilityLevel();
     affinityForPeople = a_animal.getAffForPeople();
     affinityForChildren = a_animal.getAffForChildren();
     affinityForAnimals = a_animal.getAffForAnimals();
