@@ -44,8 +44,8 @@ HEADERS += \
     interface/AnimalInputDiag.h \
     interface/AnimalListView.h \
     interface/AnimalDetailDiag.h \
-    interface/Species.h \
-    interface/ClientInputDialog.h
+    interface/ClientInputDialog.h \
+    interface/species.h
 
 FORMS += \
     interface/listview.ui \
