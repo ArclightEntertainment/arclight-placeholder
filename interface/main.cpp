@@ -21,15 +21,14 @@ int main(int argc, char *argv[])
     Animal animalArr[animalCount];
 
     for(int i=0; i<animalCount; i++){
-        std::cout << animal->getName() << std::endl;
         animalArr[i] = *animal;
         animal++;
     }
 
     for(int i=0; i<clientCount; i++){
-        std::cout << client->getName() << std::endl;
         client++;
     }
+
     w.setArr(animalArr, animalCount);
     return a.exec();
 }

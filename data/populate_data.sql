@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS Animals(
 	animalAge INTEGER NOT NULL,
 	animalSex char NOT NULL,
 	animalTrainingLevel INTEGER NOT NULL,
+	animalTrainabilityLevel INTEGER NOT NULL,
 	animalAffinityForPeople INTEGER NOT NULL,
 	animalAffinityForChildren INTEGER NOT NULL,
 	animalAffinityForAnimals INTEGER NOT NULL,
@@ -365,6 +366,7 @@ INSERT OR REPLACE INTO Animals(
 		animalAge,
 		animalSex,
 		animalTrainingLevel,
+		animalTrainabilityLevel,
 		animalAffinityForPeople,
 		animalAffinityForChildren,
 		animalAffinityForAnimals,
@@ -383,6 +385,7 @@ INSERT OR REPLACE INTO Animals(
 		3,
 		'M',
 		1,
+		0,
 		2,
 		2,
 		2,
@@ -403,6 +406,7 @@ INSERT OR REPLACE INTO Animals(
 		animalAge,
 		animalSex,
 		animalTrainingLevel,
+		animalTrainabilityLevel,
 		animalAffinityForPeople,
 		animalAffinityForChildren,
 		animalAffinityForAnimals,
@@ -421,6 +425,7 @@ INSERT OR REPLACE INTO Animals(
 		3,
 		'M',
 		1,
+		0,
 		1,
 		1,
 		2,
@@ -432,7 +437,6 @@ INSERT OR REPLACE INTO Animals(
 		"",
 		"Has to get used to you"
 );
-
 INSERT OR REPLACE INTO Animals(
 		shelterID,
 		animalName,
@@ -441,6 +445,7 @@ INSERT OR REPLACE INTO Animals(
 		animalAge,
 		animalSex,
 		animalTrainingLevel,
+		animalTrainabilityLevel,
 		animalAffinityForPeople,
 		animalAffinityForChildren,
 		animalAffinityForAnimals,
@@ -459,6 +464,7 @@ INSERT OR REPLACE INTO Animals(
 		10,
 		'F',
 		2,
+		1,
 		0,
 		1,
 		1,
@@ -479,6 +485,7 @@ INSERT OR REPLACE INTO Animals(
 		animalAge,
 		animalSex,
 		animalTrainingLevel,
+		animalTrainabilityLevel,
 		animalAffinityForPeople,
 		animalAffinityForChildren,
 		animalAffinityForAnimals,
@@ -497,6 +504,7 @@ INSERT OR REPLACE INTO Animals(
 		3,
 		'M',
 		0,
+		2,
 		0,
 		2,
 		0,
@@ -517,6 +525,7 @@ INSERT OR REPLACE INTO Animals(
 		animalAge,
 		animalSex,
 		animalTrainingLevel,
+		animalTrainabilityLevel,
 		animalAffinityForPeople,
 		animalAffinityForChildren,
 		animalAffinityForAnimals,
@@ -536,6 +545,7 @@ INSERT OR REPLACE INTO Animals(
 		'M',
 		1,
 		1,
+		1,
 		2,
 		2,
 		1,
@@ -544,7 +554,7 @@ INSERT OR REPLACE INTO Animals(
 		"",
 		"",
 		"",
-		"likes everbody; ded"
+		"likes everbody"
 );
 
 end transaction;
