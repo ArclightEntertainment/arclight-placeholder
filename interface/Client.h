@@ -13,7 +13,7 @@
 class Client
 {
 private:
-
+    int id;
     //contact information
     std::string title;
     std::string firstName;
@@ -35,6 +35,7 @@ public:
 //Operator Overloads
     Client(const Client& a_client);
 //Getters
+    inline int getID()                    const {return id;}
     //contact information
     inline std::string getName()          const {return firstName + " " + lastName;}
     inline std::string getNameWithTitle() const {return title + " " + firstName + " " + lastName;}
@@ -46,6 +47,7 @@ public:
     inline ClientProfile& getClientProfile() {return profile;}
 
 //Setters
+    inline void setID(int iD)                   {id=iD;}
     //contact information
     inline void setTitle(std::string t)         {title = t;}
     inline void setFirstName(std::string fn)    {firstName = fn;}

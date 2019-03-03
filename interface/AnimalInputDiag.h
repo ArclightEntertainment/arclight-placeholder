@@ -9,7 +9,6 @@
 #include <QDebug>
 #include <qstring.h>
 
-#include "Animal.h"
 #include "AnimalManager.h"
 
 namespace Ui {

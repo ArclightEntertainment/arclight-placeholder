@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     Client *client = clientArray[0];
 
     Animal animalArr[animalCount];
+    Client clientArr[clientCount];
 
     for(int i=0; i<animalCount; i++){
         std::cout << animal->getName() << std::endl;
@@ -28,8 +29,10 @@ int main(int argc, char *argv[])
 
     for(int i=0; i<clientCount; i++){
         std::cout << client->getName() << std::endl;
+        clientArr[i] = *client;
         client++;
     }
-    w.setArr(animalArr, animalCount);
+    w.setAnimalArr(animalArr, animalCount);
+    w.setClientArr(clientArr, clientCount);
     return a.exec();
 }
