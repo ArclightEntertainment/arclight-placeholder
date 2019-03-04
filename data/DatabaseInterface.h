@@ -14,6 +14,6 @@ public:
     static int getClientCount();
     static Animal** getAnimalArray();
     static Client** getClientArray();
-    static int pushDBAnimal(Animal &animal);
-    static int pushDBClient(Client &client);
+    static void pushDBAnimal(Animal &animal);
+    static void pushDBClient(Client &client);
 };

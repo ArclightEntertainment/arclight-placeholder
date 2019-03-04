@@ -232,7 +232,7 @@ Client** DatabaseInterface::getClientArray()
     return &clientArray;
 }
 
-int DatabaseInterface::pushDBAnimal(Animal &animal)
+void DatabaseInterface::pushDBAnimal(Animal &animal)
 {
     sqlite3 *db;
     sqlite3_stmt *stmt;
@@ -274,15 +274,13 @@ int DatabaseInterface::pushDBAnimal(Animal &animal)
         }
         else
         {
-            fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-            return -1;
+            fprintf(stderr, "pushDBAnimal(): Can't open database: %s\n", sqlite3_errmsg(db));
         }
         sqlite3_close_v2(db);
     }
-    return 0;
 }
 
-int DatabaseInterface::pushDBClient(Client &client)
+void DatabaseInterface::pushDBClient(Client &client)
 {
     sqlite3 *db;
     sqlite3_stmt *stmt = 0;
@@ -308,6 +306,8 @@ int DatabaseInterface::pushDBClient(Client &client)
             sqlite3_bind_int(stmt, 14, client.getClientProfile().getLevelOfPatience());
             sqlite3_bind_int(stmt, 15, client.getClientProfile().getPreviousExperience());
             sqlite3_bind_int(stmt, 16, client.getClientProfile().getPhysicalAffection());
+
+            if (sqlite3_step(stmt) != SQLITE_DONE){std::cout << "Didn't Insert Item!" << std::endl;}
         }
         rc = sqlite3_finalize(stmt);
 
@@ -323,8 +323,14 @@ int DatabaseInterface::pushDBClient(Client &client)
             sqlite3_bind_text(stmt, 5, adr.getSubnationalDivision().c_str(), adr.getSubnationalDivision().length(), SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 6, adr.getCountry().c_str(), adr.getCountry().length(), SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 7, adr.getPostalCode().c_str(), adr.getPostalCode().length(), SQLITE_TRANSIENT);
+
+            if (sqlite3_step(stmt) != SQLITE_DONE){std::cout << "Didn't Insert Item!" << std::endl;}
         }
         rc = sqlite3_finalize(stmt);
         sqlite3_close_v2(db);
+    }
+    else
+    {
+        fprintf(stderr, "pushDBClient(): Can't open database: %s\n", sqlite3_errmsg(db));
     }
 }
