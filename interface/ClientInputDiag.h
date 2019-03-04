@@ -38,6 +38,7 @@ private:
     int newClientID;
 
     bool checkInputValid();
+    std::string getPhoneNumberFromUI();
 };
 
 #endif // CLIENTINPUTDIAG_H

@@ -26,8 +26,26 @@ ClientInputDiag::ClientInputDiag(ClientManager *cm, QWidget *parent) :
     ui->idLineEdit->setEnabled(false);
 }
 
+std::string ClientInputDiag::getPhoneNumberFromUI()
+{
+    std::string startString = ui->phoneLineEdit->text().toStdString();
+    std::string totalString = "";
+    for (int i = 0; i < startString.length(); i++)
+    {
+        if (isdigit(startString[i]))
+        {
+            totalString += startString[i];
+            //std::cout << totalString << std::endl;
+        }
+    }
 
+    if (startString.length() < 10)
+    {
+        return "";
+    }
+    return totalString;
 
+}
 void ClientInputDiag::handleButtonSave()
 {
     //important values
@@ -39,7 +57,7 @@ void ClientInputDiag::handleButtonSave()
                                              newClientID,
                                              ui->firstNameLineEdit->text().toStdString(),
                                              ui->lastNameLineEdit->text().toStdString(),
-                                             ui->phoneLineEdit->text().toStdString()
+                                             getPhoneNumberFromUI()
                                              );
 
         clientManager->populateClientAddress(index,
@@ -64,7 +82,7 @@ bool ClientInputDiag::checkInputValid()
     bool title = ui->titleComboBox->currentText().toStdString().compare("Title");
     bool fname = !ui->firstNameLineEdit->text().isEmpty();
     bool lname = !ui->lastNameLineEdit->text().isEmpty();
-    bool phone = !ui->phoneLineEdit->text().isEmpty();
+    bool phone = getPhoneNumberFromUI().length()>0;
     bool postal = !ui->postalLineEdit->text().isEmpty();
     bool country = !ui->countryLineEdit->text().isEmpty();
     bool prov = !ui->provLineEdit->text().isEmpty();
@@ -74,7 +92,7 @@ bool ClientInputDiag::checkInputValid()
     if (!title){errString.append("Must Input Title!\n"); valid = false;}
     if (!fname){errString.append("Missing First Name!\n"); valid = false;}
     if (!lname){errString.append("Missing Last Name!\n"); valid = false;}
-    if (!phone){errString.append("Missing Phone Number!\n"); valid = false;}
+    if (!phone){errString.append("Missing or Invalid Phone Number!\n"); valid = false;}
     if (!postal){errString.append("Missing Postal Code!\n"); valid = false;}
     if (!country){errString.append("Missing Country!\n"); valid = false;}
     if (!prov){errString.append("Missing Province!\n"); valid = false;}

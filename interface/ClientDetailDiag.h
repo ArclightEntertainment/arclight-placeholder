@@ -34,6 +34,7 @@ private:
     Client *aSubject;
     //update field values, remove edit privileges
     void updateFields();
+    std::string getPhoneNumberFromUI();
 };
 
 #endif // CLIENTDETAILDIAG_H
