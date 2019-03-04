@@ -25,12 +25,10 @@ public:
 
 private slots:
     void handleButtonSave();
-    void handleButtonProceed();
     void handleButtonCancel();
 private:
     Ui::ClientInputDiag *ui;
     QPushButton *saveButton;
-    QPushButton *proceedButton;
     QPushButton *cancelButton;
 
     ClientManager* clientManager;
