@@ -20,10 +20,14 @@ ClientInputDiag::ClientInputDiag(ClientManager *cm, QWidget *parent) :
 
     QValidator *pNumValidator = new QRegExpValidator(QRegExp("([0-9]|-|\\)|\\(|\\ ){1,20}"), this);
     QValidator *postValidator = new QRegExpValidator(QRegExp("([0-9]|[a-z]|[A-Z]|\\ ){1,7}"), this);
+    QValidator *textValidator = new QRegExpValidator(QRegExp("([a-z]|[A-Z]|\\ ){1,30}"), this);
 
     newClientID = clientManager->getNextID();
     ui->idLineEdit->setText(QString::number(newClientID));
     ui->idLineEdit->setEnabled(false);
+    ui->cityLineEdit->setValidator(textValidator);
+    ui->provLineEdit->setValidator(textValidator);
+    ui->countryLineEdit->setValidator(textValidator);
     ui->phoneLineEdit->setValidator(pNumValidator);
     ui->postalLineEdit->setValidator(postValidator);
 }
