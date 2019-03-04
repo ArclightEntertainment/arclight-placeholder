@@ -1,5 +1,6 @@
 #ifndef CLIENT_H
 #define CLIENT_H
+#include <stdio.h>
 #include <string>
 #include "Levels.h"
 #include "Address.h"
@@ -13,7 +14,6 @@
 class Client
 {
 private:
-
     int clientID;
     //contact information
     std::string title;
@@ -30,7 +30,7 @@ public:
     Client();
     Client(int id, std::string t, std::string fn, std::string ln, std::string pn);
     void populateAddress(std::string sl1, std::string sl2, std::string ct, std::string sub, std::string c, std::string pc);
-    void populateProfile(int a, bool hasUnderTwelve, int ownExp, int budget, int spaceSqFt, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect);
+    void populateProfile(int a, bool hasUnderTwelve, int ownExp, int budget, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect);
 
 
 //Operator Overloads
@@ -44,11 +44,13 @@ public:
     inline std::string getFirstName()     const {return firstName;}
     inline std::string getLastName()      const {return lastName;}
     inline std::string getPhoneNumber()   const {return phoneNumber;}
+    std::string getPhoneNumberString();
 
     inline Address& getAddress() {return address;}
     inline ClientProfile& getClientProfile() {return profile;}
 
 //Setters
+    inline void setID(int id)                   {clientID=id;}
     //contact information
     inline void setTitle(std::string t)         {title = t;}
     inline void setFirstName(std::string fn)    {firstName = fn;}

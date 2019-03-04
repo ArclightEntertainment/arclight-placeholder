@@ -139,7 +139,7 @@ Animal** DatabaseInterface::getAnimalArray()
         std::string animalDisabilityNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 14)));
         std::string animalAbuseHistory = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 15)));
         std::string animalBiography = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 16)));
-        animalArray[i] = Animal(shelterID, animalName, animalAge, animalSex, animalSpecies, animalBreed, 1);
+        animalArray[i] = Animal(shelterID, 0, animalName, animalAge, animalSex, animalSpecies, animalBreed, 1);
         animalArray[i].populateHistory(true, animalDietNeeds, animalMobilityNeeds, animalDisabilityNeeds, animalBiography, animalAbuseHistory);
         animalArray[i].populateSocial(animalTrainingLevel, 1, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproacability, animalTimeCommitment);
         i++;
@@ -219,9 +219,11 @@ Client** DatabaseInterface::getClientArray()
         clientArray[i] = Client(clientID, clientPrefTitle, clientFName, clientLName, clientPhoneNumber);
         clientArray[i].populateAddress(addressStreetLine1, addressStreetLine2, addressCity, addressSubnationalDivision, addressCountry, addressPostalCode);
         clientArray[i].populateProfile(clientAge, clientHasChildrenUnderTwelve, clientLengthOfOwnershipExpectation, clientMonthlyBudgetForAnimal,
-                                       clientLivingSpaceSquareFeet, clientAvailabilityPerDay, clientLevelOfMobility, clientLevelOfEnergy,
+                                       clientAvailabilityPerDay, clientLevelOfMobility, clientLevelOfEnergy,
                                        clientLevelOfPatience, clientPreviousExperience, clientPhysicalAffection);
         i++;
+
+        //std::cout << clientFName << " " << clientLName << " " << clientID;
     }
     sqlite3_close_v2(db);
     return &clientArray;
@@ -294,7 +296,7 @@ int DatabaseInterface::pushDBClient(Client &client)
             sqlite3_bind_int(stmt, 7, client.getClientProfile().getHasChildrenUnderTwelve());
             sqlite3_bind_int(stmt, 8, client.getClientProfile().getLengthOfOwnershipExpectation());
             sqlite3_bind_int(stmt, 9, client.getClientProfile().getBudgetPerMonth());
-            sqlite3_bind_int(stmt, 10, client.getClientProfile().getLivingSpaceSquareFeet());
+            sqlite3_bind_int(stmt, 10, 0);
             sqlite3_bind_int(stmt, 11, client.getClientProfile().getTimeAvailabilityPerDay());
             sqlite3_bind_int(stmt, 12, client.getClientProfile().getLevelOfMobility());
             sqlite3_bind_int(stmt, 13, client.getClientProfile().getLevelOfEnergy());
