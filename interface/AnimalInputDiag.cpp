@@ -14,8 +14,10 @@ AnimalInputDiag::AnimalInputDiag(AnimalManager *manager, QWidget *parent) :
 
     //set validators for text fields, limiting valid characters
     QValidator *textValidator = new QRegExpValidator(QRegExp("([A-Z]|[a-z]|-|.){1,50}"), this);
+    QValidator *expValidator = new QRegExpValidator(QRegExp("([0-9]|,){1,50}"), this);
     ui->nameLineEdit->setValidator(textValidator);
     ui->breedLineEdit->setValidator(textValidator);
+    ui->expenditureLineEdit->setValidator(expValidator);
 
     //link buttons and functions
     connect(saveButton, SIGNAL(released()), this,SLOT(handleButtonSave()));
@@ -35,11 +37,13 @@ void AnimalInputDiag::handleButtonSave()
     bool species = QString::compare(ui->speciesSelector->currentText(), "Species");  //!= Species
     bool sex = QString::compare(ui->sexSelector->currentText(), "Sex");  //!= Sex
     bool age = QString::compare(ui->ageSpinBox->text(), "0");
+    bool expenditure = getExpenditureFromUI();
     //verify -> populate
-    if (name && species && sex && age && id)
+    if (name && species && sex && age && id && expenditure)
     {
         int index = aManager -> addAnimal(
                     ui->idLineEdit->text().toInt(),
+                    getExpenditureFromUI(),
                     ui->nameLineEdit->text().toStdString(),
                     ui->ageSpinBox->text().toInt(),
                     ui->sexSelector->currentText().at(0).toLatin1(),
@@ -96,6 +100,28 @@ void AnimalInputDiag::handleButtonSave()
 void AnimalInputDiag::handleButtonCancel()
 {
     close();
+}
+
+int AnimalInputDiag::getExpenditureFromUI()
+{
+    QString inputString = ui->expenditureLineEdit->text();
+    QString newString = "";
+    for (int i = 0; i < inputString.length(); i++)
+    {
+        if (inputString[i].isDigit())
+        {
+            newString.append(inputString[i]);
+        }
+    }
+
+    if (newString.toInt() > 0)
+    {
+        return newString.toInt();
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 //destructor

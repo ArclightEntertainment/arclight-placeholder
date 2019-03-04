@@ -32,6 +32,7 @@ private:
     QPushButton *cancelButton;
     //pointer to manager
     AnimalManager *aManager;
+    int getExpenditureFromUI();
 };
 
 #endif // ANIMALINPUTDIAG_H

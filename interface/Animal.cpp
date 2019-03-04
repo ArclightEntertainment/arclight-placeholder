@@ -21,14 +21,14 @@ Animal::Animal(std::string n, int a, char sx, std::string sp, std::string b, int
     levelOfCare = toThreeScale(cL);
 }
 //constructor coming from Database
-Animal::Animal(int sid, std::string n, int a, char sx, std::string sp, std::string b, int cL)
+Animal::Animal(int sid, int expenditure, std::string n, int a, char sx, std::string sp, std::string b, int cL)
 {
     shelterID = sid;
-    std::cout<<shelterID<< " " << sid <<std::endl;
+    //std::cout<<shelterID<< " " << sid <<std::endl;
     name = n;
     age = a;
     sex = sx;
-    Species s(0, sp, b);
+    Species s(expenditure, sp, b);
     species = s;
     levelOfCare = toThreeScale(cL);
 }

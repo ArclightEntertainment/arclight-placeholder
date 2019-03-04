@@ -41,7 +41,7 @@ public:
 //Constructor and population functions
     Animal();
     Animal(std::string n, int a, char sx, std::string sp, std::string b, int cL);
-    Animal(int sid, std::string n, int a, char sx, std::string sp, std::string b, int cL);
+    Animal(int sid, int expenditure, std::string n, int a, char sx, std::string sp, std::string b, int cL);
     void populateSocial(int trLevel, int taLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel);
     void populateHistory(bool imm, std::string dietString, std::string mobilityString, std::string disabilityString, std::string bio, std::string aHist);
 
