@@ -84,7 +84,7 @@ void AnimalListView::updateListView()
     animalList->setColumnWidth(4, 42); //Sex
     animalList->setColumnWidth(5, 42); //ShelterID
     //sort ascending
-    animalList->sortByColumn(0, Qt::SortOrder::AscendingOrder);
+    animalList->sortByColumn(animalList->columnCount()-1, Qt::SortOrder::AscendingOrder);
 }
 
 //destructor

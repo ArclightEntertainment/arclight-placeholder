@@ -35,6 +35,8 @@ private:
 
     ClientManager* clientManager;
 
+    int newClientID;
+
     bool checkInputValid();
 };
 

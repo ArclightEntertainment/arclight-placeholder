@@ -219,7 +219,7 @@ Client** DatabaseInterface::getClientArray()
         clientArray[i] = Client(clientID, clientPrefTitle, clientFName, clientLName, clientPhoneNumber);
         clientArray[i].populateAddress(addressStreetLine1, addressStreetLine2, addressCity, addressSubnationalDivision, addressCountry, addressPostalCode);
         clientArray[i].populateProfile(clientAge, clientHasChildrenUnderTwelve, clientLengthOfOwnershipExpectation, clientMonthlyBudgetForAnimal,
-                                       clientLivingSpaceSquareFeet, clientAvailabilityPerDay, clientLevelOfMobility, clientLevelOfEnergy,
+                                       clientAvailabilityPerDay, clientLevelOfMobility, clientLevelOfEnergy,
                                        clientLevelOfPatience, clientPreviousExperience, clientPhysicalAffection);
         i++;
 
@@ -296,7 +296,7 @@ int DatabaseInterface::pushDBClient(Client &client)
             sqlite3_bind_int(stmt, 7, client.getClientProfile().getHasChildrenUnderTwelve());
             sqlite3_bind_int(stmt, 8, client.getClientProfile().getLengthOfOwnershipExpectation());
             sqlite3_bind_int(stmt, 9, client.getClientProfile().getBudgetPerMonth());
-            sqlite3_bind_int(stmt, 10, client.getClientProfile().getLivingSpaceSquareFeet());
+            sqlite3_bind_int(stmt, 10, 0);
             sqlite3_bind_int(stmt, 11, client.getClientProfile().getTimeAvailabilityPerDay());
             sqlite3_bind_int(stmt, 12, client.getClientProfile().getLevelOfMobility());
             sqlite3_bind_int(stmt, 13, client.getClientProfile().getLevelOfEnergy());

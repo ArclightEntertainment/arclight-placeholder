@@ -14,16 +14,16 @@ AnimalInputDiag::AnimalInputDiag(AnimalManager *manager, QWidget *parent) :
 
     //set validators for text fields, limiting valid characters
     QValidator *textValidator = new QRegExpValidator(QRegExp("([A-Z]|[a-z]|-|.){1,50}"), this);
-    QValidator *idValidator = new QRegExpValidator(QRegExp("([0-9]|){1,5}"), this);
     ui->nameLineEdit->setValidator(textValidator);
     ui->breedLineEdit->setValidator(textValidator);
-    ui->idLineEdit->setValidator(idValidator);
 
     //link buttons and functions
     connect(saveButton, SIGNAL(released()), this,SLOT(handleButtonSave()));
     connect(cancelButton, SIGNAL(released()), this,SLOT(handleButtonCancel()));
 
     aManager = manager;
+    ui->idLineEdit->setEnabled(false);
+    ui->idLineEdit->setText(QString::number(aManager->getNextID()));
 }
 
 //Save Handler

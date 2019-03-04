@@ -17,10 +17,13 @@ ClientInputDiag::ClientInputDiag(ClientManager *cm, QWidget *parent) :
     connect(proceedButton, SIGNAL(released()), this,SLOT(handleButtonProceed()));
     connect(cancelButton, SIGNAL(released()), this,SLOT(handleButtonCancel()));
 
-    QValidator *idValidator = new QRegExpValidator(QRegExp("([0-9]|){1,5}"), this);
-    ui->idLineEdit->setValidator(idValidator);
 
     clientManager = cm;
+
+
+    newClientID = clientManager->getNextID();
+    ui->idLineEdit->setText(QString::number(newClientID));
+    ui->idLineEdit->setEnabled(false);
 }
 
 
@@ -31,10 +34,9 @@ void ClientInputDiag::handleButtonSave()
     //verify -> populate
     if (checkInputValid())
     {
-
         std::cout << (ui->firstNameLineEdit->text().toStdString() + " " + ui->lastNameLineEdit->text().toStdString()) << std::endl;
         int index = clientManager->addClient(ui->titleComboBox->currentText().toStdString(),
-                                             ui->idLineEdit->text().toInt(),
+                                             newClientID,
                                              ui->firstNameLineEdit->text().toStdString(),
                                              ui->lastNameLineEdit->text().toStdString(),
                                              ui->phoneLineEdit->text().toStdString()
@@ -59,7 +61,6 @@ bool ClientInputDiag::checkInputValid()
 
     std::string errString = "";
     bool valid = true;
-    bool id = clientManager->checkID(ui->idLineEdit->text().toInt());
     bool title = ui->titleComboBox->currentText().toStdString().compare("Title");
     bool fname = !ui->firstNameLineEdit->text().isEmpty();
     bool lname = !ui->lastNameLineEdit->text().isEmpty();
@@ -70,7 +71,6 @@ bool ClientInputDiag::checkInputValid()
     bool city = !ui->cityLineEdit->text().isEmpty();
     bool add1 = !ui->add1LineEdit->text().isEmpty();
 
-    if (!id){errString.append("Missing or invalid id. Suggest using: " + std::to_string(clientManager->getNextID()) + "\n"); valid = false;}
     if (!title){errString.append("Must Input Title!\n"); valid = false;}
     if (!fname){errString.append("Missing First Name!\n"); valid = false;}
     if (!lname){errString.append("Missing Last Name!\n"); valid = false;}

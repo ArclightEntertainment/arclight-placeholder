@@ -21,13 +21,16 @@ public:
     Client* getClientWithName(std::string n);
     inline Client* getClientCollection(){return clientCollection; }
     inline int getNumClients(){return numClients;}
-    inline void setArr(Client *arr, int numCli){clientCollection = arr; numClients = numCli; maxNumClients = numCli; resize();}
+    inline void setArr(Client *arr, int numCli){clientCollection = arr; numClients = numCli; maxNumClients = numCli; resize(); setNextClientID();}
     void resize();
     inline void printAll(){for (int i = 0; i < numClients; i++){std::cout<<clientCollection[i].getNameWithTitle() << " " << clientCollection[i].getClientID() << std::endl;}}
 private:
     Client *clientCollection;
     int numClients;
     int maxNumClients;
+
+    int nextClientID;
+    inline void setNextClientID(){for (int i = 0; i < numClients; i++){if (clientCollection[i].getClientID() > nextClientID){nextClientID = clientCollection[i].getClientID();}}}
 };
 
 #endif // ClientMANAGER_H

@@ -5,18 +5,21 @@
 ClientManager::ClientManager()
 {
     clientCollection = new Client[30];
+    nextClientID = 0;
 }
 
 //Can instantiate with a specific count
 ClientManager::ClientManager(int cCount)
 {
     clientCollection = new Client[cCount];
+    nextClientID = 0;
 }
 
 int ClientManager::addClient(std::string t, int iD, std::string fn, std::string ln, std::string pn)
 {
     clientCollection[numClients++] = *new Client(iD, t, fn, ln, pn);
     resize();
+    nextClientID++;
     return numClients-1;
 }
 
@@ -28,7 +31,7 @@ void ClientManager::populateClientAddress(int index, std::string sl1, std::strin
 
 void ClientManager::populateClientProfile(int index, int a, bool hasUnderTwelve, int ownExp, int budget, int spaceSqFt, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect)
 {
-    clientCollection[index].populateProfile(a, hasUnderTwelve, ownExp, budget, spaceSqFt, timeAvail, lOfMobility, lOfEnergy, lOfPatience, prevExp, physAffect);
+    clientCollection[index].populateProfile(a, hasUnderTwelve, ownExp, budget, timeAvail, lOfMobility, lOfEnergy, lOfPatience, prevExp, physAffect);
 }
 
 //Finalize client at index, send it to database
@@ -55,15 +58,7 @@ int ClientManager::checkID(int id)
 
 int ClientManager::getNextID()
 {
-    int highestID = 0;
-    for(int i = 0; i < numClients; i++)
-    {
-        if (clientCollection[i].getClientID() >= highestID)
-        {
-            highestID ++;
-        }
-    }
-    return highestID++;
+    return nextClientID+1;
 }
 
 void ClientManager::resize()

@@ -5,12 +5,14 @@
 AnimalManager::AnimalManager()
 {
     animalCollection = new Animal[30];
+    nextShelterID = 0;
 }
 
 //Can instantiate with a specific count
 AnimalManager::AnimalManager(int i)
 {
     animalCollection = new Animal[i];
+    nextShelterID = 0;
 }
 
 //Creates a new animal with basic information, returns it's index in the array.
@@ -18,6 +20,7 @@ int AnimalManager::addAnimal(int id, std::string n, int a, char sx, std::string 
 {
     animalCollection[numAnimals++] = *new Animal(id, n, a, sx, sp, b, cL);
     resize();
+    nextShelterID++;
     return numAnimals-1;
 }
 
@@ -55,15 +58,7 @@ int AnimalManager::checkID(int id)
 
 int AnimalManager::getNextID()
 {
-    int highestID = 0;
-    for(int i = 0; i < numAnimals; i++)
-    {
-        if (animalCollection[i].getShelterID() >= highestID)
-        {
-            highestID ++;
-        }
-    }
-    return highestID++;
+    return nextShelterID+1;
 }
 
 void AnimalManager::resize()

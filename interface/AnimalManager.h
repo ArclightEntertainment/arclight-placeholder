@@ -21,13 +21,16 @@ public:
     Animal* getAnimalWithName(std::string n);
     inline Animal* getAnimalCollection(){return animalCollection;}
     inline int getNumAnimals(){return numAnimals;}
-    inline void setArr(Animal *arr, int numAn){animalCollection = arr; numAnimals = numAn; maxNumAnimals = numAn; resize();}
+    inline void setArr(Animal *arr, int numAn){animalCollection = arr; numAnimals = numAn; maxNumAnimals = numAn; resize();setNextShelterID();}
     void resize();
     inline void printAll(){for (int i = 0; i < numAnimals; i++){std::cout<<animalCollection[i].getName() << " " << animalCollection[i].getShelterID() << std::endl;}}
 private:
     Animal *animalCollection;
     int numAnimals;
     int maxNumAnimals;
+
+    int nextShelterID;
+    inline void setNextShelterID(){for (int i = 0; i < numAnimals; i++){if (animalCollection[i].getShelterID() > nextShelterID){nextShelterID = animalCollection[i].getShelterID();}}}
 };
 
 #endif // ANIMALMANAGER_H
