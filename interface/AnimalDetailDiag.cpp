@@ -71,7 +71,8 @@ void AnimalDetailDiag::updateFields()
     lineEdits[17] = ui->immunizedLineEdit;
     lineEdits[17]->setText((aSubject->isImmunized()) ? QString("Yes") : QString("No"));
     lineEdits[18] = ui->expenditureLineEdit;
-    lineEdits[18]->setText(QString::number(aSubject->getEstimatedCost()));
+    //lineEdits[18]->setText(QString::number(aSubject->getEstimatedCost()));
+    lineEdits[18]->setText(QString::number(aSubject->getCostPerMonth()));
 
     for (int i = 0; i < NUMLINES; i++)
     {

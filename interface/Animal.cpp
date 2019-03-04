@@ -31,6 +31,8 @@ Animal::Animal(int sid, int expenditure, std::string n, int a, char sx, std::str
     Species s(expenditure, sp, b);
     species = s;
     levelOfCare = toThreeScale(cL);
+
+    estimatedCostPerMonth = expenditure;
 }
 
 //populate social values. Input ints, convert to Levels
@@ -64,7 +66,8 @@ Animal::Animal(const Animal &a_animal)
     name = a_animal.getName();
     age = a_animal.getAge();
     sex = a_animal.getSex();
-    species = Species(a_animal.getEstimatedCost(), a_animal.getSpecies(), a_animal.getBreed());
+    //species = Species(a_animal.getEstimatedCost(), a_animal.getSpecies(), a_animal.getBreed());
+    species = Species(a_animal.getCostPerMonth(), a_animal.getSpecies(), a_animal.getBreed());
     levelOfCare = a_animal.getLevelOfCare();
 
     //social information
