@@ -10,27 +10,29 @@ ClientInputDiag::ClientInputDiag(ClientManager *cm, QWidget *parent) :
     ui->setupUi(this);
 
     saveButton = ui->saveButton;
-    proceedButton = ui->proceedButton;
     cancelButton = ui->cancelButton;
 
     connect(saveButton, SIGNAL(released()), this,SLOT(handleButtonSave()));
-    connect(proceedButton, SIGNAL(released()), this,SLOT(handleButtonProceed()));
     connect(cancelButton, SIGNAL(released()), this,SLOT(handleButtonCancel()));
 
 
     clientManager = cm;
 
+    QValidator *pNumValidator = new QRegExpValidator(QRegExp("([0-9]|-|\\)|\\(|\\ ){1,20}"), this);
+    QValidator *postValidator = new QRegExpValidator(QRegExp("([0-9]|[a-z]|[A-Z]|\\ ){1,7}"), this);
 
     newClientID = clientManager->getNextID();
     ui->idLineEdit->setText(QString::number(newClientID));
     ui->idLineEdit->setEnabled(false);
+    ui->phoneLineEdit->setValidator(pNumValidator);
+    ui->postalLineEdit->setValidator(postValidator);
 }
 
 std::string ClientInputDiag::getPhoneNumberFromUI()
 {
     std::string startString = ui->phoneLineEdit->text().toStdString();
     std::string totalString = "";
-    for (int i = 0; i < startString.length(); i++)
+    for (int i = 0; i < (int)startString.length(); i++)
     {
         if (isdigit(startString[i]))
         {
@@ -111,13 +113,6 @@ bool ClientInputDiag::checkInputValid()
     }
 
     return (valid);
-}
-
-//close on cancel
-void ClientInputDiag::handleButtonProceed()
-{
-    std::cout << "Proceed!" << std::endl;
-    close();
 }
 
 //close on cancel

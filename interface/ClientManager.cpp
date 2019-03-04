@@ -37,7 +37,6 @@ void ClientManager::populateClientProfile(int index, int a, bool hasUnderTwelve,
 //Finalize client at index, send it to database
 void ClientManager::pushClientToDB(int index)
 {
-    Client* a = &clientCollection[index];
     //clientCollection[index].setID(DatabaseInterface::pushDBClient(clientCollection[index]));
     DatabaseInterface::pushDBClient(clientCollection[index]);
 }
