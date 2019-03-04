@@ -286,7 +286,7 @@ void DatabaseInterface::pushDBClient(Client &client)
     sqlite3_stmt *stmt = 0;
     if (sqlite3_open("data/data.db", &db) == SQLITE_OK)
     {
-        std::string sql = "INSERT OR REPLACE INTO Clients(clientID, clientFName, clientLName, clientPrefTitle, clientPhoneNumber, clientAge, clientHasChildrenUnderTwelve, clientHasPets, clientLengthOfOwnershipExpectation, clientMonthlyBudgetForAnimal, clientLivingSpaceSquareFeet, clientAvailabilityPerDay, clientLevelOfMobility, clientLevelOfEnergy, clientLevelOfPatience, clientPreviousExperience, clientPhysicalAffection)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        std::string sql = "INSERT OR REPLACE INTO Clients(clientID,clientFName,clientLName,clientPrefTitle,clientPhoneNumber,clientAge,clientHasChildrenUnderTwelve,clientHasPets,clientLengthOfOwnershipExpectation,clientMonthlyBudgetForAnimal,clientAvailabilityPerDay,clientLevelOfMobility,clientLevelOfEnergy,clientLevelOfPatience,clientPreviousExperience,clientPhysicalAffection) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, NULL);
         if(rc == SQLITE_OK)
         {
@@ -315,14 +315,14 @@ void DatabaseInterface::pushDBClient(Client &client)
         rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, NULL);
         if(rc == SQLITE_OK)
         {
-            Address adr = client.getAddress();
+            //Address adr = client.getAddress();
             sqlite3_bind_int(stmt, 1, client.getClientID());
-            sqlite3_bind_text(stmt, 2, adr.getStreetLine1().c_str(), adr.getStreetLine1().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 3, adr.getStreetLine2().c_str(), adr.getStreetLine2().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 4, adr.getCity().c_str(), adr.getCity().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 5, adr.getSubnationalDivision().c_str(), adr.getSubnationalDivision().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 6, adr.getCountry().c_str(), adr.getCountry().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 7, adr.getPostalCode().c_str(), adr.getPostalCode().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 2, client.getAddress().getStreetLine1().c_str(), client.getAddress().getStreetLine1().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 3, client.getAddress().getStreetLine2().c_str(), client.getAddress().getStreetLine2().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 4, client.getAddress().getCity().c_str(), client.getAddress().getCity().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 5, client.getAddress().getSubnationalDivision().c_str(), client.getAddress().getSubnationalDivision().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 6, client.getAddress().getCountry().c_str(), client.getAddress().getCountry().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 7, client.getAddress().getPostalCode().c_str(), client.getAddress().getPostalCode().length(), SQLITE_TRANSIENT);
 
             if (sqlite3_step(stmt) != SQLITE_DONE){std::cout << "Didn't Insert Item!" << std::endl;}
         }
