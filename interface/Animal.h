@@ -1,6 +1,7 @@
 #ifndef ANIMAL_H
 #define ANIMAL_H
 #include <string>
+#include <iostream>
 #include "species.h"
 #include "Levels.h"
 //------------------------------------------
@@ -36,11 +37,13 @@ private:
     std::string disabilityNeeds;
     std::string abuseHistory;
     std::string biography;
+
+    int estimatedCostPerMonth;
 public:
 //Constructor and population functions
     Animal();
     Animal(std::string n, int a, char sx, std::string sp, std::string b, int cL);
-    Animal(int sid, std::string n, int a, char sx, std::string sp, std::string b, int cL);
+    Animal(int sid, int expenditure, std::string n, int a, char sx, std::string sp, std::string b, int cL);
     void populateSocial(int trLevel, int taLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel);
     void populateHistory(bool imm, std::string dietString, std::string mobilityString, std::string disabilityString, std::string bio, std::string aHist);
 
@@ -55,7 +58,7 @@ public:
     inline std::string getSexString() const {return (sex == 'M') ? "Male" : "Female";}
     inline std::string getSpecies() const {return species.getSpecies();}
     inline std::string getBreed() const {return species.getBreed();}
-    inline int getEstimatedCost() const {return species.getCostPerMonth();}
+    //inline int getEstimatedCost() const {return species.getCostPerMonth();}
     inline ThreeScale getLevelOfCare() const {return levelOfCare;}
 
     //socialInfo
@@ -84,13 +87,15 @@ public:
     inline std::string getApproachabilityString()const{return (approachability == 0) ? "Shy" : (approachability == 1) ? "Tentative" : "Comfortable";}
     inline std::string getTimeCommitmentString()const{return (timeCommitment == 0) ? "Low" : (timeCommitment == 1) ? "Average" : "High";}
 
+    inline int getEstimatedCost()const{return estimatedCostPerMonth;}
+
 
 //Setters
-    inline void setShelterID(int id) {shelterID = id;}
+    inline void setShelterID(int id) {shelterID = id; std::cout<<shelterID<<std::endl;}
     inline void setName(std::string n) {name = n;}
     inline void setAge(int a) {age = a;}
     inline void setSex(char s) {sex = s;}
-    inline void setSpecies(int estimate, std::string s, std::string b="") {species.setSpecies(estimate, s, b);}
+    //inline void setSpecies(int estimate, std::string s, std::string b="") {species.setSpecies(estimate, s, b);}
     inline void setSpecies(Species *s) {species = *s;}
     inline void setDisabled(ThreeScale d) {levelOfCare = d;}
     inline void setDisabled(int l) {levelOfCare = (l == 0) ? ThreeScale::LOW : ((l == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);}

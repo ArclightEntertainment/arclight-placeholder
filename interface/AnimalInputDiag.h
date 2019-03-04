@@ -9,7 +9,6 @@
 #include <QDebug>
 #include <qstring.h>
 
-#include "Animal.h"
 #include "AnimalManager.h"
 
 namespace Ui {
@@ -33,6 +32,7 @@ private:
     QPushButton *cancelButton;
     //pointer to manager
     AnimalManager *aManager;
+    int getExpenditureFromUI();
 };
 
 #endif // ANIMALINPUTDIAG_H
