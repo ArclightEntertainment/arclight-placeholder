@@ -5,7 +5,7 @@ ClientProfile::ClientProfile()
 
 }
 
-ClientProfile::ClientProfile(int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect)
+ClientProfile::ClientProfile(int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, FiveScale lOfMobility, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect)
 {
   age = a;
   hasChildrenUnderTwelve = hasUnderTwelve;
@@ -14,7 +14,6 @@ ClientProfile::ClientProfile(int a, bool hasUnderTwelve, bool hasPet, int ownExp
   budgetPerMonth = budget;
   timeAvailabilityPerDay = timeAvail;
   levelOfMobility = lOfMobility;
-  levelOfEnergy = lOfEnergy;
   levelOfPatience = lOfPatience;
   previousExperience = prevExp;
   physicalAffection = physAffect;

@@ -17,9 +17,10 @@ private:
     int shelterID;
     std::string name;
     int age;
+    int lifeExpectancy;
     char sex;
     Species species;
-    ThreeScale levelOfCare;
+    ThreeScale levelOfEnergy;
 
     //social information
     ThreeScale trainingLevel;
@@ -42,8 +43,8 @@ private:
 public:
 //Constructor and population functions
     Animal();
-    Animal(std::string n, int a, char sx, std::string sp, std::string b, int cL);
-    Animal(int sid, int expenditure, std::string n, int a, char sx, std::string sp, std::string b, int cL);
+    Animal(std::string name, int age, int lifeExpectancy, char sex, std::string speciesName, std::string breedName, int levelOfEnergy);
+    Animal(int sid, int expenditure, std::string n, int a, int lE, char sx, std::string sp, std::string b, int lOE);
     void populateSocial(int trLevel, int taLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel);
     void populateHistory(bool imm, std::string dietString, std::string mobilityString, std::string disabilityString, std::string bio, std::string aHist);
 
@@ -54,12 +55,13 @@ public:
     inline int getShelterID() const {return shelterID;}
     inline std::string getName() const {return name;}
     inline int getAge() const {return age;}
+    inline int getLifeExpectancy() const {return lifeExpectancy;}
     inline char getSex() const {return sex;}
     inline std::string getSexString() const {return (sex == 'M') ? "Male" : "Female";}
     inline std::string getSpecies() const {return species.getSpecies();}
     inline std::string getBreed() const {return species.getBreed();}
     //inline int getEstimatedCost() const {return species.getCostPerMonth();}
-    inline ThreeScale getLevelOfCare() const {return levelOfCare;}
+    inline ThreeScale getLevelOfEnergy() const {return levelOfEnergy;}
 
     //socialInfo
     inline ThreeScale getTrainingLevel() const {return trainingLevel;}
@@ -78,7 +80,7 @@ public:
     inline std::string getAbuseHistory() const {return abuseHistory;}
     inline std::string getBiography() const {return biography;}
 
-    inline std::string getLevelOfCareString()const{return (levelOfCare == 0) ? "Low" : (levelOfCare == 1) ? "Average" : "High";}
+    inline std::string getLevelOfEnergyString()const{return (levelOfEnergy == 0) ? "Low" : (levelOfEnergy == 1) ? "Average" : "High";}
     inline std::string getTrainingString()const{return (trainingLevel == 0) ? "Untrained" : (trainingLevel == 1) ? "House Trained" : "Well Trained";}
     inline std::string getTrainabilityString()const{return (trainabilityLevel == 0) ? "Disobedient" : (trainabilityLevel == 1) ? "Basic" : "High Level";}
     inline std::string getAffForPeopleString()const{return (affinityForPeople == 0) ? "Low" : (affinityForPeople == 1) ? "Average" : "High";}
@@ -97,8 +99,8 @@ public:
     inline void setSex(char s) {sex = s;}
     //inline void setSpecies(int estimate, std::string s, std::string b="") {species.setSpecies(estimate, s, b);}
     inline void setSpecies(Species *s) {species = *s;}
-    inline void setDisabled(ThreeScale d) {levelOfCare = d;}
-    inline void setDisabled(int l) {levelOfCare = (l == 0) ? ThreeScale::LOW : ((l == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);}
+    inline void setDisabled(ThreeScale d) {levelOfEnergy = d;}
+    inline void setDisabled(int l) {levelOfEnergy = (l == 0) ? ThreeScale::LOW : ((l == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);}
 
     //social
     inline void setTraining(ThreeScale hT)       {trainingLevel=hT;}

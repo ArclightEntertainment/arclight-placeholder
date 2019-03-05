@@ -18,7 +18,6 @@ private:
   int timeAvailabilityPerDay;
   bool hasPets;
   FiveScale levelOfMobility;
-  FiveScale levelOfEnergy;
   FiveScale levelOfPatience;
   FiveScale previousExperience;
   FiveScale physicalAffection;
@@ -26,7 +25,7 @@ private:
 public:
 // Constructor
   ClientProfile();
-  ClientProfile(int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect);
+  ClientProfile(int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, FiveScale lOfMobility, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect);
 
 //Operator Overloads
   ClientProfile(const ClientProfile& a_profile);
@@ -39,7 +38,6 @@ public:
   inline int getBudgetPerMonth()                const {return budgetPerMonth;}
   inline int getTimeAvailabilityPerDay()        const {return timeAvailabilityPerDay;}
   inline FiveScale getLevelOfMobility()         const {return levelOfMobility;}
-  inline FiveScale getLevelOfEnergy()           const {return levelOfEnergy;}
   inline FiveScale getLevelOfPatience()         const {return levelOfPatience;}
   inline FiveScale getPreviousExperience()      const {return previousExperience;}
   inline FiveScale getPhysicalAffection()       const {return physicalAffection;}
@@ -52,7 +50,6 @@ public:
   inline void setBudgetPerMonth(int budget)                  {budgetPerMonth = budget;}
   inline void setTimeAvailabilityPerDay(int timeAvail)       {timeAvailabilityPerDay = timeAvail;}
   inline void setLevelOfMobility(FiveScale lOfMobility)      {levelOfMobility = lOfMobility;}
-  inline void setLevelOfEnergy(FiveScale lOfEnergy)          {levelOfEnergy = lOfEnergy;}
   inline void setLevelOfPatience(FiveScale lOfPatience)      {levelOfPatience = lOfPatience;}
   inline void setPreviousExperience(FiveScale prevEx)        {previousExperience = prevEx;}
   inline void setPhysicalAffection(FiveScale physAffect)     {physicalAffection = physAffect;}

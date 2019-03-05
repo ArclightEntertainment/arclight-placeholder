@@ -37,19 +37,21 @@ void AnimalInputDiag::handleButtonSave()
     bool species = QString::compare(ui->speciesSelector->currentText(), "Species");  //!= Species
     bool sex = QString::compare(ui->sexSelector->currentText(), "Sex");  //!= Sex
     bool age = QString::compare(ui->ageSpinBox->text(), "0");
+    bool life = QString::compare(ui->maxLifeSpinBox->text(), "0");
     bool expenditure = getExpenditureFromUI();
     //verify -> populate
-    if (name && species && sex && age && id && expenditure)
+    if (name && species && sex && age && id && expenditure && life)
     {
         int index = aManager -> addAnimal(
                     ui->idLineEdit->text().toInt(),
                     getExpenditureFromUI(),
                     ui->nameLineEdit->text().toStdString(),
                     ui->ageSpinBox->text().toInt(),
+                    ui->maxLifeSpinBox->text().toInt(),
                     ui->sexSelector->currentText().at(0).toLatin1(),
                     ui->speciesSelector->currentText().toStdString(),
                     ui->breedLineEdit->text().toStdString(),
-                    ui->careSlider->value()
+                    ui->energySlider->value()
                     );
         aManager->updateAnimalSocial(
                     index,
@@ -88,6 +90,7 @@ void AnimalInputDiag::handleButtonSave()
         if (!species){warnString.append("Species Missing!\n");}
         if (!sex){warnString.append("Sex Missing!\n");}
         if (!age){warnString.append("Age Missing!\n");}
+        if (!life){warnString.append("Life Expectancy Missing!\n");}
 
         warningBox.setInformativeText(QString::fromStdString(warnString));
         warningBox.setStandardButtons(QMessageBox::Ok);

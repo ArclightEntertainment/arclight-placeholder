@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>722</width>
+    <width>721</width>
     <height>719</height>
    </rect>
   </property>
@@ -148,21 +148,61 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="careLevelLayout">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QLineEdit" name="careLineEdit">
+           <widget class="QLabel" name="maxAgeLabel">
+            <property name="text">
+             <string>Average Life Expectancy:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="maxAgeLineEdit">
             <property name="maximumSize">
              <size>
-              <width>100</width>
+              <width>45</width>
               <height>16777215</height>
              </size>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="careLevelText">
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="energyLevelLayout">
+          <item>
+           <widget class="QLineEdit" name="energyLineEdit">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="energyLevelText">
             <property name="text">
-             <string> level of care required</string>
+             <string>Energy (compared with average)</string>
             </property>
            </widget>
           </item>
