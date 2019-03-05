@@ -1043,7 +1043,7 @@ INSERT OR REPLACE INTO Animals(
 		"Incredibly slow",
 		"Limps around",
 		"",
-		"Slow, Old, and dying"
+		"Meanders around, very old"
 );
 
 INSERT OR REPLACE INTO Animals(
