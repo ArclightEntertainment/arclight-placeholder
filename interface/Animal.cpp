@@ -11,7 +11,7 @@ Animal::Animal()
 }
 
 //Basic constructor
-Animal::Animal(std::string n, int a, int lE, char sx, std::string sp, std::string b, int lOE)
+Animal::Animal(std::string n, int a, int lE, char sx, std::string sp, std::string b, int lOE, int lOC)
 {
     shelterID = 0;
     name = n;
@@ -21,9 +21,10 @@ Animal::Animal(std::string n, int a, int lE, char sx, std::string sp, std::strin
     Species s(0, sp, b);
     species = s;
     levelOfEnergy = toThreeScale(lOE);
+    levelOfCare = toThreeScale(lOC);
 }
 //constructor coming from Database
-Animal::Animal(int sid, int expenditure, std::string n, int a, int lE, char sx, std::string sp, std::string b, int lOE)
+Animal::Animal(int sid, int expenditure, std::string n, int a, int lE, char sx, std::string sp, std::string b, int lOE, int lOC)
 {
     shelterID = sid;
     //std::cout<<shelterID<< " " << sid <<std::endl;
@@ -34,6 +35,7 @@ Animal::Animal(int sid, int expenditure, std::string n, int a, int lE, char sx, 
     Species s(expenditure, sp, b);
     species = s;
     levelOfEnergy = toThreeScale(lOE);
+    levelOfCare = toThreeScale(lOC);
 
     estimatedCostPerMonth = expenditure;
 }

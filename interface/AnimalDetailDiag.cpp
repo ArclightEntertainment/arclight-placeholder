@@ -74,6 +74,8 @@ void AnimalDetailDiag::updateFields()
     lineEdits[18]->setText(QString::number(aSubject->getEstimatedCost()));
     lineEdits[19] = ui->maxAgeLineEdit;
     lineEdits[19]->setText(QString::number(aSubject->getLifeExpectancy()));
+    lineEdits[20] = ui->careLineEdit;
+    lineEdits[20]->setText(QString::fromStdString(aSubject->getLevelOfCareString()));
 
     for (int i = 0; i < NUMLINES; i++)
     {

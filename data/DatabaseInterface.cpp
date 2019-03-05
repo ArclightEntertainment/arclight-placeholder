@@ -142,7 +142,7 @@ Animal** DatabaseInterface::getAnimalArray()
         std::string animalDisabilityNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 17)));
         std::string animalAbuseHistory = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 18)));
         std::string animalBiography = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 19)));
-        animalArray[i] = Animal(shelterID, animalEstimatedCostPerMonth, animalName, animalAge, 0, animalSex, animalSpecies, animalBreed, animalLevelOfCare);
+        animalArray[i] = Animal(shelterID, animalEstimatedCostPerMonth, animalName, animalAge, 0, animalSex, animalSpecies, animalBreed, 1, animalLevelOfCare);
         //animalArray[i] = Animal(shelterID, animalEstimatedCostPerMonth, animalName, animalAge, animalSex, animalSpecies, animalBreed, animalLevelOfCare);
         animalArray[i].populateHistory(true, animalDietNeeds, animalMobilityNeeds, animalDisabilityNeeds, animalBiography, animalAbuseHistory);
         animalArray[i].populateSocial(animalTrainingLevel, aniamlTrainabiltyLevel, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproacability, animalTimeCommitment);

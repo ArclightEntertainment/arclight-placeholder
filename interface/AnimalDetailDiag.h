@@ -25,7 +25,7 @@ private slots:
     void handleButtonClose();
 private:
     //UI Elements
-    const int NUMLINES = 20;
+    const int NUMLINES = 21;
     const int NUMTEXT = 2;
     const int NUMBARS = 7;
     Ui::AnimalDetailDiag *ui;

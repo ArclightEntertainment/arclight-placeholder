@@ -16,9 +16,9 @@ AnimalManager::AnimalManager(int i)
 }
 
 //Creates a new animal with basic information, returns it's index in the array.
-int AnimalManager::addAnimal(int id, int expenditure, std::string n, int a, int lE, char sx, std::string sp, std::string b, int cL)
+int AnimalManager::addAnimal(int id, int expenditure, std::string n, int a, int lE, char sx, std::string sp, std::string b, int eL, int cL)
 {
-    animalCollection[numAnimals++] = *new Animal(id, expenditure, n, a, lE, sx, sp, b, cL);
+    animalCollection[numAnimals++] = *new Animal(id, expenditure, n, a, lE, sx, sp, b, eL, cL);
     resize();
     nextShelterID++;
     return numAnimals-1;

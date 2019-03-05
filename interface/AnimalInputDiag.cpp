@@ -51,6 +51,7 @@ void AnimalInputDiag::handleButtonSave()
                     ui->sexSelector->currentText().at(0).toLatin1(),
                     ui->speciesSelector->currentText().toStdString(),
                     ui->breedLineEdit->text().toStdString(),
+                    ui->careSlider->value(),
                     ui->energySlider->value()
                     );
         aManager->updateAnimalSocial(
