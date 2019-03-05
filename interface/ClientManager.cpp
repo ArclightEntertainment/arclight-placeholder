@@ -37,7 +37,6 @@ void ClientManager::populateClientProfile(int index, int a, bool hasUnderTwelve,
 //Finalize client at index, send it to database
 void ClientManager::pushClientToDB(int index)
 {
-    //clientCollection[index].setID(DatabaseInterface::pushDBClient(clientCollection[index]));
     DatabaseInterface::pushDBClient(clientCollection[index]);
 }
 
@@ -71,7 +70,6 @@ void ClientManager::resize()
             newArray[i] = clientCollection[i];
         }
         clientCollection = newArray;
-        //std::cout<<"Doubled!"<<std::endl;
     }
 }
 
@@ -93,11 +91,9 @@ Client* ClientManager::getClientWithName(std::string n)
     {
         if (clientCollection[i].getName().compare(n) == 0)
         {
-            std::cout<<"Found Client With Name: " << n << std::endl;
             return &clientCollection[i];
         }
     }
-    std::cout<<"No Client With Name: " << n << std::endl;
     return NULL;
 }
 

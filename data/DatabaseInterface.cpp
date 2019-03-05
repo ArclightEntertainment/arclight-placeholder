@@ -145,7 +145,6 @@ Animal** DatabaseInterface::getAnimalArray()
         std::string animalAbuseHistory = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 20)));
         std::string animalBiography = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 21)));
         animalArray[i] = Animal(shelterID, animalEstimatedCostPerMonth, animalName, animalAge, animalLifeExpectancy, animalSex, animalSpecies, animalBreed, animalLevelOfEnergy, animalLevelOfCare);
-        //animalArray[i] = Animal(shelterID, animalEstimatedCostPerMonth, animalName, animalAge, animalSex, animalSpecies, animalBreed, animalLevelOfCare);
         animalArray[i].populateHistory(true, animalDietNeeds, animalMobilityNeeds, animalDisabilityNeeds, animalBiography, animalAbuseHistory);
         animalArray[i].populateSocial(animalTrainingLevel, aniamlTrainabiltyLevel, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproacability, animalTimeCommitment);
         i++;
@@ -223,16 +222,11 @@ Client** DatabaseInterface::getClientArray()
         std::string addressPostalCode = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 21)));
         clientArray[i] = Client(clientID, clientPrefTitle, clientFName, clientLName, clientPhoneNumber);
         clientArray[i].populateAddress(addressStreetLine1, addressStreetLine2, addressCity, addressSubnationalDivision, addressCountry, addressPostalCode);
-        //clientArray[i].populateProfile(clientAge, clientHasPets, clientHasChildrenUnderTwelve, clientLengthOfOwnershipExpectation, clientMonthlyBudgetForAnimal,
-        //                               clientAvailabilityPerDay, clientLevelOfMobility, clientLevelOfEnergy,
-        //                               clientLevelOfPatience, clientPreviousExperience, clientPhysicalAffection);
         clientArray[i].populateProfile(clientAge, clientHasPets, clientHasChildrenUnderTwelve, clientLengthOfOwnershipExpectation, clientMonthlyBudgetForAnimal,
                                                 clientAvailabilityPerDay, clientLevelOfMobility,
                                                 clientLevelOfPatience, clientPreviousExperience, clientPhysicalAffection);
 
         i++;
-
-        //std::cout << clientFName << " " << clientLName << " " << clientID;
     }
     sqlite3_close_v2(db);
     return &clientArray;
@@ -273,8 +267,6 @@ void DatabaseInterface::pushDBAnimal(Animal &animal)
             sqlite3_bind_text(stmt, 20, animal.getDisabilityNeeds().c_str(), animal.getSpecies().length(), SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 21, animal.getAbuseHistory().c_str(), animal.getAbuseHistory().length(), SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 22, animal.getBiography().c_str(), animal.getBiography().length(), SQLITE_TRANSIENT);
-
-            std::cout << sql << std::endl;
 
             if (sqlite3_step(stmt) != SQLITE_DONE){std::cout << "Didn't Insert Item!" << std::endl;}
             sqlite3_finalize(stmt);
@@ -322,7 +314,6 @@ void DatabaseInterface::pushDBClient(Client &client)
         rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, NULL);
         if(rc == SQLITE_OK)
         {
-            //Address adr = client.getAddress();
             sqlite3_bind_int(stmt, 1, client.getClientID());
             sqlite3_bind_text(stmt, 2, client.getAddress().getStreetLine1().c_str(), client.getAddress().getStreetLine1().length(), SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 3, client.getAddress().getStreetLine2().c_str(), client.getAddress().getStreetLine2().length(), SQLITE_TRANSIENT);

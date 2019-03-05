@@ -98,23 +98,16 @@ void AnimalDetailDiag::updateFields()
     QProgressBar *progBars[NUMBARS];
     progBars[0] = ui->trainingBar;
     progBars[0]->setValue(aSubject->getTrainingLevel());
-    qDebug() << "TrainingLevel: " << progBars[0]->value() << " " << aSubject->getTrainingLevel();
     progBars[1] = ui->trainabilityBar;
     progBars[1]->setValue(aSubject->getTrainabilityLevel());
-    qDebug() << "TrainabilityLevel: " << progBars[1]->value() << " " << aSubject->getTrainabilityLevel();
     progBars[2] = ui->adultAffinityBar;
     progBars[2]->setValue(aSubject->getAffForPeople());
-    qDebug() << "adultAff: " << progBars[2]->value() << " " << aSubject->getAffForPeople();
     progBars[3] = ui->childAffinityBar;
     progBars[3]->setValue(aSubject->getAffForChildren());
-    qDebug() << "childAff: " << progBars[3]->value() << " " << aSubject->getAffForChildren();
     progBars[4] = ui->animalAffinityBar;
     progBars[4]->setValue(aSubject->getAffForAnimals());
-    qDebug() << "animAff: " << progBars[4]->value() << " " << aSubject->getAffForAnimals();
     progBars[5] = ui->approachabilityBar;
     progBars[5]->setValue(aSubject->getApproachability());
-    qDebug() << "Approach: " << progBars[5]->value() << " " << aSubject->getApproachability();
     progBars[6] = ui->timeCommitmentBar;
     progBars[6]->setValue(aSubject->getTimeCommitment());
-    qDebug() << "timeComm: " << progBars[6]->value() << " " << aSubject->getTimeCommitment();
 }

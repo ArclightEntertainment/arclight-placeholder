@@ -40,7 +40,6 @@ void ClientListView::handleButtonDetail()
 //Update the ListView, inserts all values
 void ClientListView::updateListView()
 {
-    //std::cout<< manager->getNumClients() << std::endl;
     clientList->setRowCount(manager->getNumClients());
 
     QStringList columnNames = {"Title", "First Name", "Last Name", "ID"};

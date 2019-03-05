@@ -34,15 +34,12 @@ void AnimalListView::handleButtonDetail()
     QModelIndex currentIndex = animalList->currentIndex();
     int id = animalList->item(currentIndex.row(), animalList->columnCount()-1)->text().toInt();
     AnimalDetailDiag diag(manager, manager->getAnimalWithId(id), this);
-    //std::string name = animalList->item(currentIndex.row(), 0)->text().toStdString();
-    //AnimalDetailDiag diag(manager, manager->getAnimalWithName(name), this);
     diag.exec();
 }
 
 //Update the ListView, inserts all values
 void AnimalListView::updateListView()
 {
-    //std::cout<< manager->getNumAnimals() << std::endl;
     animalList->setRowCount(manager->getNumAnimals());
 
     QStringList columnNames = {"Name", "Species", "Breed", "Age", "Sex", "ID"};
@@ -59,7 +56,6 @@ void AnimalListView::updateListView()
         QTableWidgetItem *age = new QTableWidgetItem (QString::number(a[i].getAge()));
         QTableWidgetItem *sex = new QTableWidgetItem (QString(QChar::fromLatin1(a[i].getSex())));
         QTableWidgetItem *id = new QTableWidgetItem (QString::number(a[i].getShelterID()));
-        std::cout << "AAA: " << name->text().toStdString() << " " << id->text().toInt() << std::endl;
         //set all as un-editable
         name->setFlags(name->flags() ^ Qt::ItemIsEditable);
         species->setFlags(species->flags() ^ Qt::ItemIsEditable);
