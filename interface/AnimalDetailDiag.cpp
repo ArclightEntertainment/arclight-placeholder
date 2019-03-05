@@ -46,8 +46,8 @@ void AnimalDetailDiag::updateFields()
     lineEdits[4]->setText(QString::fromStdString(aSubject->getSexString()));
     lineEdits[5] = ui->ageLineEdit;
     lineEdits[5]->setText(QString::number(aSubject->getAge()));
-    lineEdits[6] = ui->careLineEdit;
-    lineEdits[6]->setText(QString::fromStdString(aSubject->getLevelOfCareString()));
+    lineEdits[6] = ui->energyLineEdit;
+    lineEdits[6]->setText(QString::fromStdString(aSubject->getLevelOfEnergyString()));
     lineEdits[7] = ui->trainingLineEdit;
     lineEdits[7]->setText(QString::fromStdString(aSubject->getTrainingString()));
     lineEdits[8] = ui->trainabilityLineEdit;
@@ -70,6 +70,10 @@ void AnimalDetailDiag::updateFields()
     lineEdits[16]->setText(QString::fromStdString(aSubject->getDisabilityNeeds()));
     lineEdits[17] = ui->immunizedLineEdit;
     lineEdits[17]->setText((aSubject->isImmunized()) ? QString("Yes") : QString("No"));
+    lineEdits[18] = ui->expenditureLineEdit;
+    lineEdits[18]->setText(QString::number(aSubject->getEstimatedCost()));
+    lineEdits[19] = ui->maxAgeLineEdit;
+    lineEdits[19]->setText(QString::number(aSubject->getLifeExpectancy()));
 
     for (int i = 0; i < NUMLINES; i++)
     {

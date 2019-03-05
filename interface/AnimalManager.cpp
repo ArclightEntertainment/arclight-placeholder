@@ -5,19 +5,22 @@
 AnimalManager::AnimalManager()
 {
     animalCollection = new Animal[30];
+    nextShelterID = 0;
 }
 
 //Can instantiate with a specific count
 AnimalManager::AnimalManager(int i)
 {
     animalCollection = new Animal[i];
+    nextShelterID = 0;
 }
 
 //Creates a new animal with basic information, returns it's index in the array.
-int AnimalManager::addAnimal(std::string n, int a, char sx, std::string sp, std::string b, int cL)
+int AnimalManager::addAnimal(int id, int expenditure, std::string n, int a, int lE, char sx, std::string sp, std::string b, int cL)
 {
-    animalCollection[numAnimals++] = *new Animal(n, a, sx, sp, b, cL);
+    animalCollection[numAnimals++] = *new Animal(id, expenditure, n, a, lE, sx, sp, b, cL);
     resize();
+    nextShelterID++;
     return numAnimals-1;
 }
 
@@ -36,7 +39,8 @@ void AnimalManager::updateAnimalHistory(int index, bool imm, std::string dietStr
 //Finalize animal at index, send it to database
 void AnimalManager::pushAnimalToDB(int index)
 {
-    animalCollection[index].setShelterID(DatabaseInterface::pushDBAnimal(animalCollection[index]));
+    //animalCollection[index].setShelterID(DatabaseInterface::pushDBAnimal(animalCollection[index]));
+    DatabaseInterface::pushDBAnimal(animalCollection[index]);
 }
 
 //check input id against id's of every other animal in db, if used, then
@@ -50,6 +54,11 @@ int AnimalManager::checkID(int id)
         }
     }
     return 1;
+}
+
+int AnimalManager::getNextID()
+{
+    return nextShelterID+1;
 }
 
 void AnimalManager::resize()
@@ -91,11 +100,3 @@ Animal* AnimalManager::getAnimalWithName(std::string n)
     return NULL;
 }
 
-//used for testing only. Input desired code segments to run here
-void AnimalManager::testFunc()
-{
-    Animal a = Animal(0, "Jake", 1, 'M', "Cat", "", 1);
-    Animal b = Animal(a);
-    //std::cout<<a.getName() << " " << a.getAge() << " " << a.getSpecies() << std::endl;
-    //std::cout<<b.getName() << " " << b.getAge() << " " << b.getSpecies() << std::endl;
-}

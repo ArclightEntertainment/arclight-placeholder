@@ -24,7 +24,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QTableWidget" name="animalTableWidget"/>
+     <widget class="QTableWidget" name="tableWidget"/>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">

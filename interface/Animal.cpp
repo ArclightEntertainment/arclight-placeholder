@@ -5,31 +5,37 @@ Animal::Animal()
     shelterID = 0;
     name = "";
     age = 0;
+    lifeExpectancy = 0;
     sex = ' ';
     species = Species();
 }
 
 //Basic constructor
-Animal::Animal(std::string n, int a, char sx, std::string sp, std::string b, int cL)
+Animal::Animal(std::string n, int a, int lE, char sx, std::string sp, std::string b, int lOE)
 {
     shelterID = 0;
     name = n;
     age = a;
+    lifeExpectancy = lE;
     sex = sx;
     Species s(0, sp, b);
     species = s;
-    levelOfCare = toThreeScale(cL);
+    levelOfEnergy = toThreeScale(lOE);
 }
 //constructor coming from Database
-Animal::Animal(int sid, std::string n, int a, char sx, std::string sp, std::string b, int cL)
+Animal::Animal(int sid, int expenditure, std::string n, int a, int lE, char sx, std::string sp, std::string b, int lOE)
 {
     shelterID = sid;
+    //std::cout<<shelterID<< " " << sid <<std::endl;
     name = n;
     age = a;
+    lifeExpectancy = lE;
     sex = sx;
-    Species s(0, sp, b);
+    Species s(expenditure, sp, b);
     species = s;
-    levelOfCare = toThreeScale(cL);
+    levelOfEnergy = toThreeScale(lOE);
+
+    estimatedCostPerMonth = expenditure;
 }
 
 //populate social values. Input ints, convert to Levels
@@ -62,9 +68,11 @@ Animal::Animal(const Animal &a_animal)
     shelterID = a_animal.getShelterID();
     name = a_animal.getName();
     age = a_animal.getAge();
+    lifeExpectancy = a_animal.getLifeExpectancy();
     sex = a_animal.getSex();
+    //species = Species(a_animal.getEstimatedCost(), a_animal.getSpecies(), a_animal.getBreed());
     species = Species(a_animal.getEstimatedCost(), a_animal.getSpecies(), a_animal.getBreed());
-    levelOfCare = a_animal.getLevelOfCare();
+    levelOfEnergy = a_animal.getLevelOfEnergy();
 
     //social information
     trainingLevel = a_animal.getTrainingLevel();
