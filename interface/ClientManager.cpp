@@ -29,9 +29,9 @@ void ClientManager::populateClientAddress(int index, std::string sl1, std::strin
     clientCollection[index].populateAddress(sl1, sl2, ct, sub, c, pc);
 }
 
-void ClientManager::populateClientProfile(int index, int a, bool hasUnderTwelve, int ownExp, int budget, int spaceSqFt, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect)
+void ClientManager::populateClientProfile(int index, int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect)
 {
-    clientCollection[index].populateProfile(a, hasUnderTwelve, ownExp, budget, timeAvail, lOfMobility, lOfEnergy, lOfPatience, prevExp, physAffect);
+    clientCollection[index].populateProfile(a, hasUnderTwelve, hasPet, ownExp, budget, timeAvail, lOfMobility, lOfEnergy, lOfPatience, prevExp, physAffect);
 }
 
 //Finalize client at index, send it to database

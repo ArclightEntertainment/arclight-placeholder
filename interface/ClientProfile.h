@@ -16,6 +16,7 @@ private:
   int lengthOfOwnershipExpectation;
   int budgetPerMonth;
   int timeAvailabilityPerDay;
+  bool hasPets;
   FiveScale levelOfMobility;
   FiveScale levelOfEnergy;
   FiveScale levelOfPatience;
@@ -25,7 +26,7 @@ private:
 public:
 // Constructor
   ClientProfile();
-  ClientProfile(int a, bool hasUnderTwelve, int ownExp, int budget, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect);
+  ClientProfile(int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect);
 
 //Operator Overloads
   ClientProfile(const ClientProfile& a_profile);
@@ -33,6 +34,7 @@ public:
 // Getters
   inline int getAge()                           const {return age;}
   inline bool getHasChildrenUnderTwelve()       const {return hasChildrenUnderTwelve;}
+  inline bool getHasPets()                      const {return hasPets;}
   inline int getLengthOfOwnershipExpectation()  const {return lengthOfOwnershipExpectation;}
   inline int getBudgetPerMonth()                const {return budgetPerMonth;}
   inline int getTimeAvailabilityPerDay()        const {return timeAvailabilityPerDay;}
@@ -45,6 +47,7 @@ public:
 // Setters
   inline void setAge(int a)                                  {age = a;}
   inline void setHasChildrenUnderTwelve(bool hasUnderTwelve) {hasChildrenUnderTwelve = hasUnderTwelve;}
+  inline void setHasPets(bool hasPet)                        {hasPets = hasPet;}
   inline void setLengthOfOwnershipExpectation(int ownExp)    {lengthOfOwnershipExpectation = ownExp;}
   inline void setBudgetPerMonth(int budget)                  {budgetPerMonth = budget;}
   inline void setTimeAvailabilityPerDay(int timeAvail)       {timeAvailabilityPerDay = timeAvail;}

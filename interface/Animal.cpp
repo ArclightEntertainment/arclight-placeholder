@@ -67,7 +67,7 @@ Animal::Animal(const Animal &a_animal)
     age = a_animal.getAge();
     sex = a_animal.getSex();
     //species = Species(a_animal.getEstimatedCost(), a_animal.getSpecies(), a_animal.getBreed());
-    species = Species(a_animal.getCostPerMonth(), a_animal.getSpecies(), a_animal.getBreed());
+    species = Species(a_animal.getEstimatedCost(), a_animal.getSpecies(), a_animal.getBreed());
     levelOfCare = a_animal.getLevelOfCare();
 
     //social information

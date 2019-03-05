@@ -69,10 +69,11 @@ void Client::populateAddress(std::string sl1, std::string sl2, std::string ct, s
 }
 
 //populate profile
-void Client::populateProfile(int a, bool hasUnderTwelve, int ownExp, int budget, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect)
+void Client::populateProfile(int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect)
 {
   profile.setAge(a);
   profile.setHasChildrenUnderTwelve(hasUnderTwelve);
+  profile.setHasPets(hasPet);
   profile.setLevelOfMobility(lOfMobility);
   profile.setLengthOfOwnershipExpectation(ownExp);
   profile.setBudgetPerMonth(budget);

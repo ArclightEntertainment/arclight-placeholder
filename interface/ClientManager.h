@@ -13,7 +13,7 @@ public:
     ClientManager(int cCount);
     int addClient(std::string t, int iD, std::string fn, std::string ln, std::string pn);
     void populateClientAddress(int index, std::string sl1, std::string sl2, std::string ct, std::string sub, std::string c, std::string pc);
-    void populateClientProfile(int index, int a, bool hasUnderTwelve, int ownExp, int budget, int spaceSqFt, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect);
+    void populateClientProfile(int index, int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, FiveScale lOfMobility, FiveScale lOfEnergy, FiveScale lOfPatience, FiveScale prevExp, FiveScale physAffect);
     void pushClientToDB(int index);
     int checkID(int id);
     int getNextID();

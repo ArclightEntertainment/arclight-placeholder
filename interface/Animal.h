@@ -87,7 +87,7 @@ public:
     inline std::string getApproachabilityString()const{return (approachability == 0) ? "Shy" : (approachability == 1) ? "Tentative" : "Comfortable";}
     inline std::string getTimeCommitmentString()const{return (timeCommitment == 0) ? "Low" : (timeCommitment == 1) ? "Average" : "High";}
 
-    inline int getCostPerMonth()const{return estimatedCostPerMonth;}
+    inline int getEstimatedCost()const{return estimatedCostPerMonth;}
 
 
 //Setters
