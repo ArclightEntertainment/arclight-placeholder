@@ -32,8 +32,10 @@ void AnimalListView::handleButtonDetail()
 
 {
     QModelIndex currentIndex = animalList->currentIndex();
-    std::string name = animalList->item(currentIndex.row(), 0)->text().toStdString();
-    AnimalDetailDiag diag(manager, manager->getAnimalWithName(name), this);
+    int id = animalList->item(currentIndex.row(), animalList->columnCount()-1)->text().toInt();
+    AnimalDetailDiag diag(manager, manager->getAnimalWithId(id), this);
+    //std::string name = animalList->item(currentIndex.row(), 0)->text().toStdString();
+    //AnimalDetailDiag diag(manager, manager->getAnimalWithName(name), this);
     diag.exec();
 }
 

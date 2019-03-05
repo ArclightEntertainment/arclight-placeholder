@@ -142,7 +142,8 @@ Animal** DatabaseInterface::getAnimalArray()
         std::string animalDisabilityNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 17)));
         std::string animalAbuseHistory = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 18)));
         std::string animalBiography = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 19)));
-        animalArray[i] = Animal(shelterID, animalEstimatedCostPerMonth, animalName, animalAge, animalSex, animalSpecies, animalBreed, animalLevelOfCare);
+        animalArray[i] = Animal(shelterID, animalEstimatedCostPerMonth, animalName, animalAge, 0, animalSex, animalSpecies, animalBreed, animalLevelOfCare);
+        //animalArray[i] = Animal(shelterID, animalEstimatedCostPerMonth, animalName, animalAge, animalSex, animalSpecies, animalBreed, animalLevelOfCare);
         animalArray[i].populateHistory(true, animalDietNeeds, animalMobilityNeeds, animalDisabilityNeeds, animalBiography, animalAbuseHistory);
         animalArray[i].populateSocial(animalTrainingLevel, aniamlTrainabiltyLevel, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproacability, animalTimeCommitment);
         i++;
@@ -221,9 +222,13 @@ Client** DatabaseInterface::getClientArray()
         std::string addressPostalCode = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 22)));
         clientArray[i] = Client(clientID, clientPrefTitle, clientFName, clientLName, clientPhoneNumber);
         clientArray[i].populateAddress(addressStreetLine1, addressStreetLine2, addressCity, addressSubnationalDivision, addressCountry, addressPostalCode);
+        //clientArray[i].populateProfile(clientAge, clientHasPets, clientHasChildrenUnderTwelve, clientLengthOfOwnershipExpectation, clientMonthlyBudgetForAnimal,
+        //                               clientAvailabilityPerDay, clientLevelOfMobility, clientLevelOfEnergy,
+        //                               clientLevelOfPatience, clientPreviousExperience, clientPhysicalAffection);
         clientArray[i].populateProfile(clientAge, clientHasPets, clientHasChildrenUnderTwelve, clientLengthOfOwnershipExpectation, clientMonthlyBudgetForAnimal,
-                                       clientAvailabilityPerDay, clientLevelOfMobility, clientLevelOfEnergy,
-                                       clientLevelOfPatience, clientPreviousExperience, clientPhysicalAffection);
+                                                clientAvailabilityPerDay, clientLevelOfMobility,
+                                                clientLevelOfPatience, clientPreviousExperience, clientPhysicalAffection);
+
         i++;
 
         //std::cout << clientFName << " " << clientLName << " " << clientID;
@@ -251,7 +256,7 @@ void DatabaseInterface::pushDBAnimal(Animal &animal)
             char sex = animal.getSex();
             char *psex = &sex;
             sqlite3_bind_text(stmt, 6, psex, 1, SQLITE_TRANSIENT);
-            sqlite3_bind_int(stmt, 7, animal.getLevelOfCare());
+            //sqlite3_bind_int(stmt, 7, animal.getLevelOfCare());
             sqlite3_bind_int(stmt, 8, animal.getEstimatedCost());
             sqlite3_bind_int(stmt, 9, animal.getTrainingLevel());
             sqlite3_bind_int(stmt, 10, animal.getTrainabilityLevel());
@@ -302,7 +307,7 @@ void DatabaseInterface::pushDBClient(Client &client)
             sqlite3_bind_int(stmt, 10, client.getClientProfile().getBudgetPerMonth());
             sqlite3_bind_int(stmt, 11, client.getClientProfile().getTimeAvailabilityPerDay());
             sqlite3_bind_int(stmt, 12, client.getClientProfile().getLevelOfMobility());
-            sqlite3_bind_int(stmt, 13, client.getClientProfile().getLevelOfEnergy());
+            //sqlite3_bind_int(stmt, 13, client.getClientProfile().getLevelOfEnergy());
             sqlite3_bind_int(stmt, 14, client.getClientProfile().getLevelOfPatience());
             sqlite3_bind_int(stmt, 15, client.getClientProfile().getPreviousExperience());
             sqlite3_bind_int(stmt, 16, client.getClientProfile().getPhysicalAffection());
