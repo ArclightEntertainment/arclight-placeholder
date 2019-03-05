@@ -128,21 +128,23 @@ Animal** DatabaseInterface::getAnimalArray()
         std::string animalBreed = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
         int animalAge = sqlite3_column_int(stmt, 4);
         char animalSex = sqlite3_column_text(stmt, 5)[0];
-        int animalEstimatedCostPerMonth = sqlite3_column_int(stmt, 6);
-        ThreeScale animalLevelOfCare = toThreeScale(sqlite3_column_int(stmt, 7));
-        ThreeScale animalTrainingLevel = toThreeScale(sqlite3_column_int(stmt, 8));
-        ThreeScale aniamlTrainabiltyLevel = toThreeScale(sqlite3_column_int(stmt, 9));
-        ThreeScale animalAffinityForPeople = toThreeScale(sqlite3_column_int(stmt, 10));
-        ThreeScale animalAffinityForChildren = toThreeScale(sqlite3_column_int(stmt, 11));
-        ThreeScale animalAffinityForAnimals = toThreeScale(sqlite3_column_int(stmt, 12));
-        ThreeScale animalApproacability = toThreeScale(sqlite3_column_int(stmt, 13));
-        ThreeScale animalTimeCommitment = toThreeScale(sqlite3_column_int(stmt, 14));
-        std::string animalDietNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 15)));
-        std::string animalMobilityNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 16)));
-        std::string animalDisabilityNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 17)));
-        std::string animalAbuseHistory = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 18)));
-        std::string animalBiography = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 19)));
-        animalArray[i] = Animal(shelterID, animalEstimatedCostPerMonth, animalName, animalAge, 0, animalSex, animalSpecies, animalBreed, 1, animalLevelOfCare);
+        int animalLifeExpectancy = sqlite3_column_int(stmt,6);
+        int animalEstimatedCostPerMonth = sqlite3_column_int(stmt, 7);
+        ThreeScale animalLevelOfCare = toThreeScale(sqlite3_column_int(stmt, 8));
+        ThreeScale animalLevelOfEnergy = toThreeScale(sqlite3_column_int(stmt,9));
+        ThreeScale animalTrainingLevel = toThreeScale(sqlite3_column_int(stmt, 10));
+        ThreeScale aniamlTrainabiltyLevel = toThreeScale(sqlite3_column_int(stmt, 11));
+        ThreeScale animalAffinityForPeople = toThreeScale(sqlite3_column_int(stmt, 12));
+        ThreeScale animalAffinityForChildren = toThreeScale(sqlite3_column_int(stmt, 13));
+        ThreeScale animalAffinityForAnimals = toThreeScale(sqlite3_column_int(stmt, 14));
+        ThreeScale animalApproacability = toThreeScale(sqlite3_column_int(stmt, 15));
+        ThreeScale animalTimeCommitment = toThreeScale(sqlite3_column_int(stmt, 16));
+        std::string animalDietNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 17)));
+        std::string animalMobilityNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 18)));
+        std::string animalDisabilityNeeds = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 19)));
+        std::string animalAbuseHistory = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 20)));
+        std::string animalBiography = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 21)));
+        animalArray[i] = Animal(shelterID, animalEstimatedCostPerMonth, animalName, animalAge, animalLifeExpectancy, animalSex, animalSpecies, animalBreed, animalLevelOfEnergy, animalLevelOfCare);
         //animalArray[i] = Animal(shelterID, animalEstimatedCostPerMonth, animalName, animalAge, animalSex, animalSpecies, animalBreed, animalLevelOfCare);
         animalArray[i].populateHistory(true, animalDietNeeds, animalMobilityNeeds, animalDisabilityNeeds, animalBiography, animalAbuseHistory);
         animalArray[i].populateSocial(animalTrainingLevel, aniamlTrainabiltyLevel, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproacability, animalTimeCommitment);
@@ -210,16 +212,15 @@ Client** DatabaseInterface::getClientArray()
         int clientMonthlyBudgetForAnimal = sqlite3_column_int(stmt, 9);
         int clientAvailabilityPerDay = sqlite3_column_int(stmt, 10);
         FiveScale clientLevelOfMobility = toFiveScale(sqlite3_column_int(stmt, 11));
-        FiveScale clientLevelOfEnergy = toFiveScale(sqlite3_column_int(stmt, 12));
-        FiveScale clientLevelOfPatience = toFiveScale(sqlite3_column_int(stmt, 13));
-        FiveScale clientPreviousExperience = toFiveScale(sqlite3_column_int(stmt, 14));
-        FiveScale clientPhysicalAffection = toFiveScale(sqlite3_column_int(stmt, 15));
-        std::string addressStreetLine1 = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 17)));
-        std::string addressStreetLine2 = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 18)));
-        std::string addressCity = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 19)));
-        std::string addressSubnationalDivision = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 20)));
-        std::string addressCountry = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 21)));
-        std::string addressPostalCode = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 22)));
+        FiveScale clientLevelOfPatience = toFiveScale(sqlite3_column_int(stmt, 12));
+        FiveScale clientPreviousExperience = toFiveScale(sqlite3_column_int(stmt, 13));
+        FiveScale clientPhysicalAffection = toFiveScale(sqlite3_column_int(stmt, 14));
+        std::string addressStreetLine1 = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 16)));
+        std::string addressStreetLine2 = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 17)));
+        std::string addressCity = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 18)));
+        std::string addressSubnationalDivision = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 19)));
+        std::string addressCountry = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 20)));
+        std::string addressPostalCode = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 21)));
         clientArray[i] = Client(clientID, clientPrefTitle, clientFName, clientLName, clientPhoneNumber);
         clientArray[i].populateAddress(addressStreetLine1, addressStreetLine2, addressCity, addressSubnationalDivision, addressCountry, addressPostalCode);
         //clientArray[i].populateProfile(clientAge, clientHasPets, clientHasChildrenUnderTwelve, clientLengthOfOwnershipExpectation, clientMonthlyBudgetForAnimal,
@@ -244,7 +245,7 @@ void DatabaseInterface::pushDBAnimal(Animal &animal)
 
     if (sqlite3_open("data/data.db", &db) == SQLITE_OK)
     {
-        std::string sql = "INSERT OR REPLACE INTO Animals (shelterID, animalName, animalSpecies, animalBreed, animalAge, animalSex, animalLevelOfCare, animalEstimatedCostPerMonth, animalTrainingLevel, animalTrainabilityLevel, animalAffinityForPeople, animalAffinityForChildren, animalAffinityForAnimals, animalApproachability, animalTimeCommitment, animalDietNeeds, animalMobilityNeeds, animalDisablityNeeds, animalAbuseHistory, animalBiography) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        std::string sql = "INSERT OR REPLACE INTO Animals(shelterID,animalName,animalSpecies,animalBreed,animalAge,animalLifeExpectancy,animalSex,animalLevelOfCare,animalLevelOfEnergy,animalEstimatedCostPerMonth,animalTrainingLevel,animalTrainabilityLevel,animalAffinityForPeople,animalAffinityForChildren,animalAffinityForAnimals,animalApproachability,animalTimeCommitment,animalDietNeeds,animalMobilityNeeds,animalDisablityNeeds,animalAbuseHistory,animalBiography)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, NULL);
         if (rc == SQLITE_OK)
         {
@@ -253,23 +254,25 @@ void DatabaseInterface::pushDBAnimal(Animal &animal)
             sqlite3_bind_text(stmt, 3, animal.getSpecies().c_str(), animal.getSpecies().length(), SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 4, animal.getBreed().c_str(), animal.getBreed().length(), SQLITE_TRANSIENT);
             sqlite3_bind_int(stmt, 5, animal.getAge());
+            sqlite3_bind_int(stmt, 6, animal.getLifeExpectancy());
             char sex = animal.getSex();
             char *psex = &sex;
-            sqlite3_bind_text(stmt, 6, psex, 1, SQLITE_TRANSIENT);
-            //sqlite3_bind_int(stmt, 7, animal.getLevelOfCare());
-            sqlite3_bind_int(stmt, 8, animal.getEstimatedCost());
-            sqlite3_bind_int(stmt, 9, animal.getTrainingLevel());
-            sqlite3_bind_int(stmt, 10, animal.getTrainabilityLevel());
-            sqlite3_bind_int(stmt, 11, animal.getAffForPeople());
-            sqlite3_bind_int(stmt, 12, animal.getAffForChildren());
-            sqlite3_bind_int(stmt, 13, animal.getAffForAnimals());
-            sqlite3_bind_int(stmt, 14, animal.getApproachability());
-            sqlite3_bind_int(stmt, 15, animal.getTimeCommitment());
-            sqlite3_bind_text(stmt, 16, animal.getDietNeeds().c_str(), animal.getDietNeeds().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 17, animal.getMobilityNeeds().c_str(), animal.getMobilityNeeds().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 18, animal.getDisabilityNeeds().c_str(), animal.getSpecies().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 19, animal.getAbuseHistory().c_str(), animal.getAbuseHistory().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 20, animal.getBiography().c_str(), animal.getBiography().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 7, psex, 1, SQLITE_TRANSIENT);
+            sqlite3_bind_int(stmt, 8, animal.getLevelOfCare());
+            sqlite3_bind_int(stmt, 9, animal.getLevelOfEnergy());
+            sqlite3_bind_int(stmt, 10, animal.getEstimatedCost());
+            sqlite3_bind_int(stmt, 11, animal.getTrainingLevel());
+            sqlite3_bind_int(stmt, 12, animal.getTrainabilityLevel());
+            sqlite3_bind_int(stmt, 13, animal.getAffForPeople());
+            sqlite3_bind_int(stmt, 14, animal.getAffForChildren());
+            sqlite3_bind_int(stmt, 15, animal.getAffForAnimals());
+            sqlite3_bind_int(stmt, 16, animal.getApproachability());
+            sqlite3_bind_int(stmt, 17, animal.getTimeCommitment());
+            sqlite3_bind_text(stmt, 18, animal.getDietNeeds().c_str(), animal.getDietNeeds().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 19, animal.getMobilityNeeds().c_str(), animal.getMobilityNeeds().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 20, animal.getDisabilityNeeds().c_str(), animal.getSpecies().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 21, animal.getAbuseHistory().c_str(), animal.getAbuseHistory().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 22, animal.getBiography().c_str(), animal.getBiography().length(), SQLITE_TRANSIENT);
 
             std::cout << sql << std::endl;
 
@@ -291,7 +294,7 @@ void DatabaseInterface::pushDBClient(Client &client)
     sqlite3_stmt *stmt = 0;
     if (sqlite3_open("data/data.db", &db) == SQLITE_OK)
     {
-        std::string sql = "INSERT OR REPLACE INTO Clients(clientID,clientFName,clientLName,clientPrefTitle,clientPhoneNumber,clientAge,clientHasChildrenUnderTwelve,clientHasPets,clientLengthOfOwnershipExpectation,clientMonthlyBudgetForAnimal,clientAvailabilityPerDay,clientLevelOfMobility,clientLevelOfEnergy,clientLevelOfPatience,clientPreviousExperience,clientPhysicalAffection) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        std::string sql = "INSERT OR REPLACE INTO Clients(clientID,clientFName,clientLName,clientPrefTitle,clientPhoneNumber,clientAge,clientHasChildrenUnderTwelve,clientHasPets,clientLengthOfOwnershipExpectation,clientMonthlyBudgetForAnimal,clientAvailabilityPerDay,clientLevelOfMobility,clientLevelOfPatience,clientPreviousExperience,clientPhysicalAffection) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, NULL);
         if(rc == SQLITE_OK)
         {
@@ -307,10 +310,9 @@ void DatabaseInterface::pushDBClient(Client &client)
             sqlite3_bind_int(stmt, 10, client.getClientProfile().getBudgetPerMonth());
             sqlite3_bind_int(stmt, 11, client.getClientProfile().getTimeAvailabilityPerDay());
             sqlite3_bind_int(stmt, 12, client.getClientProfile().getLevelOfMobility());
-            //sqlite3_bind_int(stmt, 13, client.getClientProfile().getLevelOfEnergy());
-            sqlite3_bind_int(stmt, 14, client.getClientProfile().getLevelOfPatience());
-            sqlite3_bind_int(stmt, 15, client.getClientProfile().getPreviousExperience());
-            sqlite3_bind_int(stmt, 16, client.getClientProfile().getPhysicalAffection());
+            sqlite3_bind_int(stmt, 13, client.getClientProfile().getLevelOfPatience());
+            sqlite3_bind_int(stmt, 14, client.getClientProfile().getPreviousExperience());
+            sqlite3_bind_int(stmt, 15, client.getClientProfile().getPhysicalAffection());
 
             if (sqlite3_step(stmt) != SQLITE_DONE){std::cout << "Didn't Insert Item!" << std::endl;}
         }
