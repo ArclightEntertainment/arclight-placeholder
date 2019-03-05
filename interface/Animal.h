@@ -20,6 +20,7 @@ private:
     int lifeExpectancy;
     char sex;
     Species species;
+    ThreeScale levelOfCare;
     ThreeScale levelOfEnergy;
 
     //social information
@@ -43,8 +44,8 @@ private:
 public:
 //Constructor and population functions
     Animal();
-    Animal(std::string name, int age, int lifeExpectancy, char sex, std::string speciesName, std::string breedName, int levelOfEnergy);
-    Animal(int sid, int expenditure, std::string n, int a, int lE, char sx, std::string sp, std::string b, int lOE);
+    Animal(std::string name, int age, int lifeExpectancy, char sex, std::string speciesName, std::string breedName, int levelOfEnergy, int levelOfCare);
+    Animal(int sid, int expenditure, std::string n, int a, int lE, char sx, std::string sp, std::string b, int lOE, int lOC);
     void populateSocial(int trLevel, int taLevel, int peopleLevel, int childLevel, int animalLevel, int approachLevel, int tiLevel);
     void populateHistory(bool imm, std::string dietString, std::string mobilityString, std::string disabilityString, std::string bio, std::string aHist);
 
@@ -62,6 +63,7 @@ public:
     inline std::string getBreed() const {return species.getBreed();}
     //inline int getEstimatedCost() const {return species.getCostPerMonth();}
     inline ThreeScale getLevelOfEnergy() const {return levelOfEnergy;}
+    inline ThreeScale getLevelOfCare() const {return levelOfCare;}
 
     //socialInfo
     inline ThreeScale getTrainingLevel() const {return trainingLevel;}
@@ -81,6 +83,7 @@ public:
     inline std::string getBiography() const {return biography;}
 
     inline std::string getLevelOfEnergyString()const{return (levelOfEnergy == 0) ? "Low" : (levelOfEnergy == 1) ? "Average" : "High";}
+    inline std::string getLevelOfCareString()const{return (levelOfCare == 0) ? "Low" : (levelOfCare == 1) ? "Average" : "High";}
     inline std::string getTrainingString()const{return (trainingLevel == 0) ? "Untrained" : (trainingLevel == 1) ? "House Trained" : "Well Trained";}
     inline std::string getTrainabilityString()const{return (trainabilityLevel == 0) ? "Disobedient" : (trainabilityLevel == 1) ? "Basic" : "High Level";}
     inline std::string getAffForPeopleString()const{return (affinityForPeople == 0) ? "Low" : (affinityForPeople == 1) ? "Average" : "High";}
