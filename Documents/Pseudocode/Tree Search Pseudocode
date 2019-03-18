@@ -1,0 +1,181 @@
+### Helper function to make first recursive call
+def AnimalToClientLinkedList buildTree(int numAnimals, int numClients, AnimalToClientLinkedList candidates, int numAnimalCandidates, int numClientCandidates, (function) abTest):
+    return buildABTreeRec(numAnimals, numClients, 0.0, 0, candidates, abTest)
+
+### Recursive tree building function
+def AnimalToClientLinkedList buildTreeRec(int numAnimals, int numClients, float currentAvg, int depth, AnimalToClientLinkedList candidates, int numAnimalCandidates, int numClientCandidates, (function) shouldBePruned):
+
+    AnimalToClientLinkedList currentOptimalMatchPath = AnimalToClientLinkedList()
+
+    if (!candidates.isEmpty()):
+        # if either of these values has been expended without candidates being empty, then logically the
+        # candidates have not been reducing properly (see getCopyWithoutPairsContaining function)
+        if ((numAnimals <= 0 || numClients <= 0)):
+            throw CandidatePairNotProperlyRemovedError
+
+        # Candidate with next highest priority (assuming the list was sorted when passed to the buildTree func)
+        AnimalToClientNode nextCandidate = candidates.getHead()
+
+        # Consider all branches (production system)
+        while (nextCandidate != null):
+            remainingCandidates = candidates.getCopyWithoutPairsContaining(nextCandidate.getAnimal(), nextCandidate.getClient())
+
+            # Perform pruning test
+            if (!shouldBePruned(numAnimals-1, numClients-1, remainingCandidates, currentOptimalMatchPath.getCompatibilityFactor())):
+                float nextAvgOffset = nextCandidate.getCompatibility() / nextDepth
+                float nextAcceptabilityFactor = currentOptimalMatchPath.getCompatibilityFactor() + nextAvgOffset
+                AnimalToClientNode candidateSubtreePath = buildTreeRec(nextAcceptabilityFactor, depth+1, remainingCandidates, (function) abTest).put(nextCandidate)
+
+                # See if subpath is more optimal and store if so
+                if (candidateSubtreePath.getCompatibilityFactor() > currentOptimalMatchPath.getCompatibilityFactor()):
+                    currentOptimalMatchPath = candidateSubtreePath
+
+            currNode = currNode.next()
+
+    return currentOptimalMatchPath
+
+# Determines if tree is not worth exploring. True if so.
+def bool shouldBePruned(int numAnimals, int numClients, AnimalToClientLinkedList candidates, float threshold):
+
+    int listSize = 0
+    AnimalToClientLinkedList highestRelevancyPairs = AnimalToClientLinkedList()
+    AnimalToClientNode currNode = candidates.head()
+
+    bool moreAnimalsThanClients = (numAnimals > numClients)
+    int maxNumMatches = (moreAnimalsThanClients) ? numAnimals : numClients
+
+    #!!! Change to be pointer array
+    ### Keep track of most optimal *individual* matches. Greedy.
+    Animal[] animalsAccountedFor = Animal[maxNumMatches]
+    Client[] clientsAccountedFor = Client[maxNumMatches]
+
+    while (size < maxNumMatches):
+        if (currNode == null):
+            throw UnexpectedEndOfLinkedListError
+
+        # If neither entities are represented in the arrays yet, add this node to them
+        if (moreAnimalsThanClients):
+            if (!contains(animalsAccountedFor, currNode.getAnimal())):
+                highestRelevancyPairs.append(currNode)
+                animalsAccountedFor[listSize] = currNode.getAnimal()
+                clientsAccountedFor[listSize] = currNode.getClient()
+                size++
+        else:
+            if (!contains(clientsAccountedFor, currNode.getClient())):
+                highestRelevancyPairs.append(currNode)
+                animalsAccountedFor[listSize] = currNode.getAnimal()
+                clientsAccountedFor[listSize] = currNode.getClient()
+                size++
+
+        currNode = currNode.next()
+
+    return (highestRelevancyPairs.getCompatibilityFactor() > threshold)
+
+### Doubly-linked list for handling AnimalToClientNodes
+class AnimalToClientLinkedList:
+    AnimalToClientNode head
+    AnimalToClientNode tail
+    int length
+    float compatibilitySum
+
+    def int height():
+        return length
+
+    def int length():
+        return length
+
+    def AnimalToClientLinkedList():
+        head = null
+        tail = head
+        length = 0
+        compatibilitySum = 0.0
+
+    ### Add data contents of node as new node to end of list
+    def void append(AnimalToClientNode node):
+        AnimalToClientNode copyNode = AnimalToClientNode(node.getAnimal(), node.getClient());
+
+        copyNode.setPrev(tail)
+        if (tail != null):
+            tail.setNext(copyNode)
+        tail = copyNode
+
+        compatibilitySum += node.getCompatibility()
+        length++
+
+    ### Add data contents of node as new node to start of list
+    def void put(AnimalToClientNode node):
+        AnimalToClientNode copyNode = AnimalToClientNode(node.getAnimal(), node.getClient());
+
+        copyNode.setNext(head)
+        if (head != null):
+            head.setPrev(copyNode)
+        head = copyNode
+
+        compatibilitySum += node.getCompatibility()
+        length++
+
+    def bool isEmpty():
+        return (head == null)
+
+    ### Get the average compatibility value across all nodes
+    ###     Assumes that the object has properly kept track of length and compatibilitySum
+    def float getCompatibilityFactor():
+        return compatibilitySum / length
+
+    ### return copy of the list, having removed any nodes containing the provided animal or client
+    def AnimalToClientLinkedList getCopyWithoutPairsContaining(Animal animal, Client client):
+        AnimalToClientLinkedList newCopy = AnimalToClientLinkedList()
+        AnimalToClientNode currNode = head
+
+        while (currentNode != null):
+            nextNode = currNode.next()
+
+            # Need to ensure comparision works for references/pointers, whatever is being used
+            if (!currNode.getAnimal() == animal && !currNode.getClient() == client):
+                AnimalToClientNode copyNode = AnimalToClientNode(animal, client)
+                newCopy.append(currNode)
+
+            currNode = currNode.next()
+
+        return newCopy
+
+def determineCompatibility(Animal a, Client c):
+    # determine compatibility
+
+### Node to hold
+class AnimalToClientNode:
+    Animal animal
+    Client client
+    float compatibility
+    AnimalToClientNode next
+    AnimalToClientNode prev
+
+    def AnimalToClientCandidate(Animal a, Client c):
+        animal = a
+        client = c
+        compatibility = determineCompatibility(a, c)
+        next = null
+        prev = null
+
+    def Animal getAnimal():
+        return animal
+
+    def Animal getClient():
+        return client
+
+    def float getCompatibility():
+        return compatibility
+
+    def AnimalToClientNode prev():
+        return prev
+
+    def AnimalToClientNode next():
+        return next
+
+    def void setNext(AnimalToClientNode successor):
+        # Assume you are not concerned if next already defined
+        next = successor
+
+    def void setPrev(AnimalToClientNode predessessor):
+        # Assume you are not concerned if prev already defined
+        prev = predessessor
