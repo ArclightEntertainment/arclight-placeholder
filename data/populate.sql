@@ -1,7 +1,7 @@
 .open data.db
 
 CREATE TABLE IF NOT EXISTS Animal(
-	iD INTEGER NOT NULL,
+	id INTEGER NOT NULL,
 	name text NOT NULL,
 	species text NOT NULL,
 	breed text NOT NULL,
@@ -24,14 +24,15 @@ CREATE TABLE IF NOT EXISTS Animal(
 	abuseHistory text NOT NULL,
 	biography text NOT NULL,
 
-	FOREIGN KEY(species, breed) REFERENCES AnimalsBreedsRelationship(speciesName, breedName)
+	FOREIGN KEY(breed, species) REFERENCES AnimalBreedRelationship(breedName, speciesName),
+
 	PRIMARY KEY(id)
 );
 
 CREATE TABLE IF NOT EXISTS Species(
 	name text NOT NULL,
 
-	primary key(name)
+	PRIMARY KEY(name)
 );
 
 CREATE TABLE IF NOT EXISTS Breed(
@@ -39,15 +40,19 @@ CREATE TABLE IF NOT EXISTS Breed(
 	name text NOT NULL,
 
 	FOREIGN KEY(speciesName) REFERENCES Species(name),
+
 	PRIMARY KEY(speciesName, name)
 );
 
 CREATE TABLE IF NOT EXISTS AnimalBreedRelationship(
 	animalID INTEGER NOT NULL,
+	speciesName text NOT NULL,
 	breedName text NOT NULL,
 
 	FOREIGN KEY(animalID) REFERENCES Animals(id),
-	FOREIGN KEY(breedName) REFERENCES Breeds(name)
+	FOREIGN KEY(speciesName, breedName) REFERENCES Breed(speciesName, name),
+
+	PRIMARY KEY(animalID)
 );
 
 /* NO BOOLEANS, 0 is false, 1 is true*/
@@ -68,7 +73,7 @@ CREATE TABLE IF NOT EXISTS Client(
 	previousExperience INTEGER NOT NULL,
 	physicalAffection INTEGER NOT NULL,
 
-	primary key(id)
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE IF NOT EXISTS Address(
@@ -80,15 +85,17 @@ CREATE TABLE IF NOT EXISTS Address(
 	country text NOT NULL,
 	postalCode text NOT NULL,
 
-	FOREIGN KEY(clientID) REFERENCES Clients(id),
+	FOREIGN KEY(clientID) REFERENCES Client(id),
+
 	PRIMARY KEY(clientID)
 );
 
-/*begin transaction;
+begin transaction;
 
-end transaction;*/
 .read populate/populate_species.sql
 .read populate/populate_breeds.sql
 .read populate/populate_animals.sql
 .read populate/populate_clients.sql
 .read populate/populate_addresses.sql
+
+end transaction;
