@@ -40,7 +40,6 @@ private:
     AnimalManager *manager;
 
     void updateListView();
-    void resizeCols(int numElements, int * allElements);
 };
 
 #endif // ANIMALListView_H

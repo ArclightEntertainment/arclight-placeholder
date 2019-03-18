@@ -74,21 +74,11 @@ void ClientListView::updateListView()
     clientList->setColumnWidth(1, 200); //FName
     clientList->setColumnWidth(2, 200); //LName
     clientList->setColumnWidth(3, 60); //ID
-    int arr[4] = {40, 200, 200, 60};
-    resizeCols(4, arr);
+    //int arr[4] = {40, 200, 200, 60};
+    clientList->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    clientList->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     //sort ascending
     clientList->sortByColumn(0, Qt::SortOrder::AscendingOrder);
-}
-
-void ClientListView::resizeCols(int colCount, int * weights)
-{
-    for (int i = 0; i < colCount; i++)
-    {
-    clientList->setColumnWidth(i, weights[i]);
-    }
-    clientList->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    clientList->horizontalHeader()->setStretchLastSection(true);
-    clientList->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 }
 
 //destructor

@@ -39,7 +39,6 @@ private:
     ClientManager *manager;
 
     void updateListView();
-    void resizeCols(int colCount, int * weights);
 };
 
 #endif // CLIENTLISTVIEW_H

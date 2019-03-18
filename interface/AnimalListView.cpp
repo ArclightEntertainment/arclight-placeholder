@@ -73,21 +73,11 @@ void AnimalListView::updateListView()
         animalList->setItem(i, 5, id);    //ShelterID
     }
     //set dimensions
-    int arr [6] = {120, 120, 106, 56, 42, 42};
-    resizeCols(6, arr);
+    //int arr [6] = {120, 120, 106, 56, 42, 42};
+    animalList->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    animalList->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     //sort ascending
     animalList->sortByColumn(animalList->columnCount()-1, Qt::SortOrder::AscendingOrder);
-}
-
-void AnimalListView::resizeCols(int colCount, int * weights)
-{
-    for (int i = 0; i < colCount; i++)
-    {
-    animalList->setColumnWidth(i, weights[i]);
-    }
-    animalList->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    animalList->horizontalHeader()->setStretchLastSection(true);
-    animalList->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 }
 
 //destructor
