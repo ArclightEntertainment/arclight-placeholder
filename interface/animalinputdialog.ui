@@ -25,7 +25,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="basic">
         <attribute name="title">
@@ -868,19 +868,29 @@
   <tabstop>nameLineEdit</tabstop>
   <tabstop>speciesSelector</tabstop>
   <tabstop>breedLineEdit</tabstop>
+  <tabstop>expenditureLineEdit</tabstop>
   <tabstop>sexSelector</tabstop>
-  <tabstop>cancelButton</tabstop>
+  <tabstop>ageSpinBox</tabstop>
+  <tabstop>maxLifeSpinBox</tabstop>
+  <tabstop>careSlider</tabstop>
+  <tabstop>bioTextEdit</tabstop>
   <tabstop>saveButton</tabstop>
+  <tabstop>cancelButton</tabstop>
   <tabstop>infoTabWidget</tabstop>
   <tabstop>trainingSlider</tabstop>
+  <tabstop>trainabilitySlider</tabstop>
   <tabstop>peopleSlider</tabstop>
   <tabstop>childSlider</tabstop>
   <tabstop>animalSlider</tabstop>
   <tabstop>approachabilitySlider</tabstop>
   <tabstop>timeSlider</tabstop>
+  <tabstop>energySlider</tabstop>
   <tabstop>immunizedCheckbox</tabstop>
+  <tabstop>dietLineEdit</tabstop>
+  <tabstop>mobilityLineEdit</tabstop>
+  <tabstop>disabLineEdit</tabstop>
   <tabstop>aHistTextEdit</tabstop>
-  <tabstop>bioTextEdit</tabstop>
+  <tabstop>idLineEdit</tabstop>
  </tabstops>
  <resources/>
  <connections/>

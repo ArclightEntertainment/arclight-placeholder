@@ -32,11 +32,11 @@ void ClientDetailDiag::handleButtonEdit()
 {
     if (editMode == false)
     {
-        editButton->setText("Edit");
+        editButton->setText("Save");
     }
     else
     {
-        editButton->setText("Save");
+        editButton->setText("Edit");
     }
     editMode = !editMode;
     setEditable(editMode);
