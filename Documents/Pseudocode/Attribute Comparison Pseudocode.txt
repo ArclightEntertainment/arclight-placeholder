@@ -1,0 +1,110 @@
+Pseudo code for compatability function:
+
+def compatability(animal, client):
+
+
+	float totalRating = 0;
+	float overCost = (animal.Estimated Cost Per Month - client.Estimated Monthly Budget)/(client.Estimated Monthly Budget)
+
+
+	if(animal.species.name is in client.definiteNoList || 
+	  (animal.affinityChildren == 0 && client.childrenUnderTwelve == True) ||
+	  (client.Length of Ownership Expectation - (animal.Species.LengthOfLifeEstimate - animal.Age)) >= 4 ||
+	  if overCost >=0.25)
+		return -1
+
+
+	if (client.Patience - (4 - (animal.Affinity for People)*2)) < 0
+		totalRating += (4 - (animal.Affinity for People)*2) - client.Patience) * 0.04
+	
+
+	if (client.Physical Affection - (4 - (animal.Affinity for People)*2)) < 0
+		totalRating += (4 - (animal.Affinity for People)*2) - client.Physical Affection) * 0.06
+
+	
+	if (client.Previous Experience - (animal.Level of Care)*2) < 0
+		totalRating += ((animal.Level of Care)*2 - client.Previous Experience) * 0.04
+		
+		
+	if (client.Previous Experience - (4 - (animal.Training Level)*2)) < 0
+		totalRating += ((4 - (animal.Training Level)*2) - client.Previous Experience) * 0.06
+		
+		
+	if (client.Patience - (4 - (animal.Trainability)*2)) < 0
+		totalRating += ((4-(animal.Trainability)*2) - client.Patience) * 0.04
+		
+		
+	if (client.Previous Experience - (4 - (animal.Trainability)*2)) < 0
+		totalRating += ((4 - (animal.Trainability)*2) - client.Previous Experience) * 0.04
+		
+		
+	if (client.Patience - (4 - (animal.Approachability)*2)) < 0
+		totalRating += ((4 - (animal.Approachability)*2) - client.Patience) 0.06
+		
+		
+	if (client.Previous Experience - (4 - (animal.Approachability)*2)) < 0
+		totalRating += ((4 - (animal.Approachability)*2) - client.Previous Experience) * 0.02
+
+
+	if(animal.Species.Name is in client.Species Preference List)
+		totalRating -= 4 * 0.1
+
+
+	if (client.Level of Mobility - (animal.Level of Care)*2) < 0
+		totalRating += ((animal.Level of Care)*2 - client.Level of Mobility) * 0.06
+
+
+	if (client.Level of Mobility - (4 - (animal.Training Level)*2)) < 0
+		totalRating += ((4 - (animal.Training Level)*2) - client.Level of Mobility) * 0.02
+
+
+	if (client.Patience - (4 - (animal.Training Level)*2)) < 0
+		totalRating += ((4 - (animal.Training Level)*2) - client.Patience) * 0.06
+		
+
+	if (client.Level of Mobility - (animal.Energy Level)*2) < 0
+		totalRating += ((animal.Energy Level)*2 - client.Level of Mobility) * 0.06		
+
+
+	if (client.Time Availability Per Day/30 - (4 - (animal.Training Level)*2)) < 0
+		totalRating += ((4 - (animal.Training Level)*2) - client.Time Availability Per Day/30) * 0.04
+
+
+	if(animal.Time Commitment == 0 && 15 - client.Time Availability > 0)
+		totalRating += ((15 - client.Time Availability)/15)*4 * 0.06
+	else if(animal.Time Commitment == 1 && 60 - client.Time Availability > 0)
+		totalRating += ((60 - client.Time Availability)/60)*4 * 0.06
+	else if(animal.Time Commitment == 2 && 150 - client.Time Availability > 0)
+		totalRating += ((150 - client.Time Availability)/150)*4 * 0.06
+
+
+	if (client.Time Availability Per Day/30 - (4 - animal.Trainability)*2) < 0
+		totalRating += ((4 - animal.Trainability*2) - client.Time Availability Per Day/30) * 0.04
+	
+
+	if(animal.Level of Care == 0 && 15 - client.Time Availability > 0)
+		totalRating += ((15 - client.Time Availability)/15)*4 * 0.06
+	else if(animal.Level of Care == 1 && 60 - client.Time Availability > 0)
+		totalRating += ((60 - client.Time Availability)/60)*4 * 0.06
+	else if(animal.Level of Care == 2 && 150 - client.Time Availability > 0)
+		totalRating += ((150 - client.Time Availability)/150)*4 * 0.06
+
+
+	if(overcost > 0 && overcost < 0.25) 
+		totalRating += overCost*16 *0.06
+
+
+	if(client.Has Other Pets == True)
+		totalRating += (4 - (animal.Affinity for Animals * 2)) * 0.06
+		
+		
+	if(client.Has Children Under Twelve == True)
+		totalRating += (4 - (animal.Affinity for Children * 2)) * 0.06
+	
+	
+	if (client.Length of Ownership Expectation - (animal.Species.LengthOfLifeEstimate - animal.Age)) < 4 && > 0:
+		totalRating += abs(client.Length of Ownership Expectation - (animal.Species.LengthOfLifeEstimate - animal.Age))
+		
+		
+	return totalRating/4.0
+	
