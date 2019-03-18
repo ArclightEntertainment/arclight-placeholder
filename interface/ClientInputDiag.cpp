@@ -41,7 +41,6 @@ std::string ClientInputDiag::getPhoneNumberFromUI()
         if (isdigit(startString[i]))
         {
             totalString += startString[i];
-            //std::cout << totalString << std::endl;
         }
     }
 
@@ -58,7 +57,6 @@ void ClientInputDiag::handleButtonSave()
     //verify -> populate
     if (checkInputValid())
     {
-        std::cout << (ui->firstNameLineEdit->text().toStdString() + " " + ui->lastNameLineEdit->text().toStdString()) << std::endl;
         int index = clientManager->addClient(ui->titleComboBox->currentText().toStdString(),
                                              newClientID,
                                              ui->firstNameLineEdit->text().toStdString(),
@@ -122,7 +120,6 @@ bool ClientInputDiag::checkInputValid()
 //close on cancel
 void ClientInputDiag::handleButtonCancel()
 {
-    std::cout << "Cancel!" << std::endl;
     close();
 }
 

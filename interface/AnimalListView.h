@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <qstring.h>
 
+#include "mytablewidgetitem.h"
 #include "AnimalManager.h"
 #include "AnimalDetailDiag.h"
 

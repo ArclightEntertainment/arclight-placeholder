@@ -33,14 +33,14 @@ void ClientListView::handleButtonDetail()
 {
     QModelIndex currentIndex = clientList->currentIndex();
     int id = clientList->item(currentIndex.row(), clientList->columnCount()-1)->text().toInt();
-    ClientDetailDiag diag(manager, manager->getClientWithId(id), this);
+    ClientDetailDiag diag(manager, manager->getClientWithId(id), 0, this);
+    diag.setWindowTitle(QString::fromStdString(manager->getClientWithId(id)->getNameWithTitle()));
     diag.exec();
 }
 
 //Update the ListView, inserts all values
 void ClientListView::updateListView()
 {
-    //std::cout<< manager->getNumClients() << std::endl;
     clientList->setRowCount(manager->getNumClients());
 
     QStringList columnNames = {"Title", "First Name", "Last Name", "ID"};
@@ -70,12 +70,13 @@ void ClientListView::updateListView()
         clientList->setItem(i, 3, id);    //ID
     }
     //set dimensions
-    clientList->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    clientList->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     clientList->setColumnWidth(0, 40); //Title
     clientList->setColumnWidth(1, 200); //FName
     clientList->setColumnWidth(2, 200); //LName
     clientList->setColumnWidth(3, 60); //ID
+    //int arr[4] = {40, 200, 200, 60};
+    clientList->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    clientList->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     //sort ascending
     clientList->sortByColumn(0, Qt::SortOrder::AscendingOrder);
 }
