@@ -3,6 +3,10 @@
 
 #include <QCoreApplication>
 #include <QMessageBox>
+#include <QLineEdit>
+#include <QTextEdit>
+#include <QProgressBar>
+#include <QSlider>
 #include <QDialog>
 #include <QMainWindow>
 #include <QDebug>
@@ -19,21 +23,30 @@ class AnimalDetailDiag : public QDialog
     Q_OBJECT
 
 public:
-    explicit AnimalDetailDiag(AnimalManager *manager, Animal* subject, QWidget *parent = 0);
+    explicit AnimalDetailDiag(AnimalManager *manager, Animal* subject, bool canEdit=false, QWidget *parent = 0);
     ~AnimalDetailDiag();
 private slots:
     void handleButtonClose();
+    void handleButtonEdit();
 private:
+    bool editMode;
     //UI Elements
-    const int NUMLINES = 21;
-    const int NUMTEXT = 2;
-    const int NUMBARS = 7;
+    static const int NUMLINES = 21;
+    QLineEdit *lineEdits[NUMLINES];
+    static const int NUMTEXT = 2;
+    QTextEdit *textEdits[NUMTEXT];
+    static const int NUMBARS = 9;
+    QProgressBar *progBars[NUMBARS];
+    QSlider *sliders[NUMBARS];
+
     Ui::AnimalDetailDiag *ui;
     QPushButton *closeButton;
+    QPushButton *editButton;
     //pointer to manager + subject
     AnimalManager *aManager;
     Animal *aSubject;
     //update field values, remove edit privileges
     void updateFields();
+    void setEditable (bool canEdit);
 };
 #endif // ANIMALDETAILDIAG_H
