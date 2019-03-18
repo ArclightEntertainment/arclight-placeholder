@@ -1,0 +1,173 @@
+begin transaction;
+
+INSERT OR REPLACE INTO Client(
+		id,
+		fName,
+		lName,
+		prefTitle,
+		phoneNumber,
+		age,
+		hasChildrenUnderTwelve,
+		hasPets,
+		lengthOfOwnershipExpectation,
+		monthlyBudgetForAnimal,
+		availabilityPerDay,
+		levelOfMobility,
+		levelOfPatience,
+		previousExperience,
+		physicalAffection
+	)VALUES(
+		0,
+		"Brian",
+		"LeBlanc",
+		"Mr.",
+		"6131234567",
+		20,
+		0,
+		1,
+		5,
+		200,
+		150,
+		4,
+		2,
+		3,
+		3
+);
+
+INSERT OR REPLACE INTO Client(
+		id,
+		fName,
+		lName,
+		prefTitle,
+		phoneNumber,
+		age,
+		hasChildrenUnderTwelve,
+		hasPets,
+		lengthOfOwnershipExpectation,
+		monthlyBudgetForAnimal,
+		availabilityPerDay,
+		levelOfMobility,
+		levelOfPatience,
+		previousExperience,
+		physicalAffection
+	)VALUES(
+		1,
+		"Brian",
+		"Grickites",
+		"Mr.",
+		"6131112222",
+		23,
+		0,
+		1,
+		10,
+		250,
+		90,
+		1,
+		0,
+		4,
+		2
+);
+
+INSERT OR REPLACE INTO Client(
+		id,
+		fName,
+		lName,
+		prefTitle,
+		phoneNumber,
+		age,
+		hasChildrenUnderTwelve,
+		hasPets,
+		lengthOfOwnershipExpectation,
+		monthlyBudgetForAnimal,
+		availabilityPerDay,
+		levelOfMobility,
+		levelOfPatience,
+		previousExperience,
+		physicalAffection
+	)VALUES(
+		2,
+		"Shalin",
+		"Lathigra",
+		"Mrs.",
+		"6139991234",
+		17,
+		0,
+		0,
+		2,
+		75,
+		45,
+		2,
+		4,
+		2,
+		0
+);
+
+INSERT OR REPLACE INTO Client(
+		id,
+		fName,
+		lName,
+		prefTitle,
+		phoneNumber,
+		age,
+		hasChildrenUnderTwelve,
+		hasPets,
+		lengthOfOwnershipExpectation,
+		monthlyBudgetForAnimal,
+		availabilityPerDay,
+		levelOfMobility,
+		levelOfPatience,
+		previousExperience,
+		physicalAffection
+	)VALUES(
+		3,
+		"Aaron",
+		"Ramos-Lazette",
+		"",
+		"16148005656",
+		35,
+		1,
+		1,
+		15,
+		350,
+		180,
+		3,
+		3,
+		4,
+		4
+);
+
+INSERT OR REPLACE INTO Client(
+		id,
+		fName,
+		lName,
+		prefTitle,
+		phoneNumber,
+		age,
+		hasChildrenUnderTwelve,
+		hasPets,
+		lengthOfOwnershipExpectation,
+		monthlyBudgetForAnimal,
+		availabilityPerDay,
+		levelOfMobility,
+		levelOfPatience,
+		previousExperience,
+		physicalAffection
+	)VALUES(
+		4,
+		"Barbara",
+		"Smith",
+		"Ms.",
+		"6131114200",
+		53,
+		1,
+		0,
+		8,
+		50,
+		30,
+		2,
+		1,
+		1,
+		4
+);
+
+end transaction;
