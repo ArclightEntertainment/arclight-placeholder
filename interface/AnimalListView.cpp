@@ -29,11 +29,11 @@ void AnimalListView::handleButtonClose()
     close();
 }
 void AnimalListView::handleButtonDetail()
-
 {
     QModelIndex currentIndex = animalList->currentIndex();
     int id = animalList->item(currentIndex.row(), animalList->columnCount()-1)->text().toInt();
-    AnimalDetailDiag diag(manager, manager->getAnimalWithId(id), this);
+    AnimalDetailDiag diag(manager, manager->getAnimalWithId(id), false, this);
+    diag.setWindowTitle(QString::fromStdString(manager->getAnimalWithId(id)->getName() + " Profile"));
     diag.exec();
 }
 
@@ -50,12 +50,12 @@ void AnimalListView::updateListView()
     for(int i = 0; i < manager->getNumAnimals(); i++)
     {
         //Create item widgets for row
-        QTableWidgetItem *name = new QTableWidgetItem (QString::fromStdString(a[i].getName()));
-        QTableWidgetItem *species = new QTableWidgetItem (QString::fromStdString(a[i].getSpecies()));
-        QTableWidgetItem *breed = new QTableWidgetItem (QString::fromStdString(a[i].getBreed()));
-        QTableWidgetItem *age = new QTableWidgetItem (QString::number(a[i].getAge()));
-        QTableWidgetItem *sex = new QTableWidgetItem (QString(QChar::fromLatin1(a[i].getSex())));
-        QTableWidgetItem *id = new QTableWidgetItem (QString::number(a[i].getShelterID()));
+        MyTableWidgetItem *name = new MyTableWidgetItem (QString::fromStdString(a[i].getName()));
+        MyTableWidgetItem *species = new MyTableWidgetItem (QString::fromStdString(a[i].getSpecies()));
+        MyTableWidgetItem *breed = new MyTableWidgetItem (QString::fromStdString(a[i].getBreed()));
+        MyTableWidgetItem *age = new MyTableWidgetItem (QString::number(a[i].getAge()));
+        MyTableWidgetItem *sex = new MyTableWidgetItem (QString(QChar::fromLatin1(a[i].getSex())));
+        MyTableWidgetItem *id = new MyTableWidgetItem (QString::number(a[i].getShelterID()));
         //set all as un-editable
         name->setFlags(name->flags() ^ Qt::ItemIsEditable);
         species->setFlags(species->flags() ^ Qt::ItemIsEditable);
@@ -73,16 +73,21 @@ void AnimalListView::updateListView()
         animalList->setItem(i, 5, id);    //ShelterID
     }
     //set dimensions
-    animalList->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    animalList->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    animalList->setColumnWidth(0, 120); //Name
-    animalList->setColumnWidth(1, 120); //Species
-    animalList->setColumnWidth(2, 106); //Breed
-    animalList->setColumnWidth(3, 56); //Age
-    animalList->setColumnWidth(4, 42); //Sex
-    animalList->setColumnWidth(5, 42); //ShelterID
+    int arr [6] = {120, 120, 106, 56, 42, 42};
+    resizeCols(6, arr);
     //sort ascending
     animalList->sortByColumn(animalList->columnCount()-1, Qt::SortOrder::AscendingOrder);
+}
+
+void AnimalListView::resizeCols(int colCount, int * weights)
+{
+    for (int i = 0; i < colCount; i++)
+    {
+    animalList->setColumnWidth(i, weights[i]);
+    }
+    animalList->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    animalList->horizontalHeader()->setStretchLastSection(true);
+    animalList->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 }
 
 //destructor
