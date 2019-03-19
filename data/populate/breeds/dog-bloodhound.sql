@@ -3,7 +3,7 @@ INSERT OR REPLACE INTO Breed(
 		name,
 		estimatedCostPerMonth
 	)VALUES(
-		"Cat",
-		"Tabby",
+		"Dog",
+		"Bloodhound",
 		15
 );
