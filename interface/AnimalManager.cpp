@@ -98,3 +98,14 @@ Animal* AnimalManager::getAnimalWithName(std::string n)
     return NULL;
 }
 
+int AnimalManager::indexOfAnimalWithID (int id)
+{
+    for (int i = 0; i < numAnimals; i++)
+    {
+        if (animalCollection[i].getShelterID() == id)
+        {
+            return i;
+        }
+    }
+    return -1;
+}

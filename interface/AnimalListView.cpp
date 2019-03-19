@@ -35,6 +35,7 @@ void AnimalListView::handleButtonDetail()
     AnimalDetailDiag diag(manager, manager->getAnimalWithId(id), false, this);
     diag.setWindowTitle(QString::fromStdString(manager->getAnimalWithId(id)->getName() + " Profile"));
     diag.exec();
+    updateListView();
 }
 
 //Update the ListView, inserts all values

@@ -75,9 +75,35 @@
            </item>
            <item>
             <widget class="QLineEdit" name="speciesLineEdit">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="styleSheet">
               <string notr="true"/>
              </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="speciesComboBox">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string>Cat</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Dog</string>
+              </property>
+             </item>
             </widget>
            </item>
            <item>
@@ -94,7 +120,14 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="breedLineEdit"/>
+            <widget class="QLineEdit" name="breedLineEdit">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -114,6 +147,26 @@
                <height>16777215</height>
               </size>
              </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="sexComboBox">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string>Female</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Male</string>
+              </property>
+             </item>
             </widget>
            </item>
            <item>
@@ -143,6 +196,16 @@
             </widget>
            </item>
            <item>
+            <widget class="QSpinBox" name="ageSpinBox">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QLabel" name="ageText">
              <property name="text">
               <string>years old</string>
@@ -152,7 +215,7 @@
           </layout>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <layout class="QHBoxLayout" name="maxAgeLayout">
            <item>
             <widget class="QLabel" name="maxAgeLabel">
              <property name="text">
@@ -162,6 +225,12 @@
            </item>
            <item>
             <widget class="QLineEdit" name="maxAgeLineEdit">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="maximumSize">
               <size>
                <width>45</width>
@@ -171,9 +240,22 @@
             </widget>
            </item>
            <item>
+            <widget class="QSpinBox" name="maxAgeSpinBox">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="horizontalSpacer_4">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Expanding</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -186,7 +268,7 @@
           </layout>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <layout class="QHBoxLayout" name="immunizedLayout">
            <item>
             <widget class="QLabel" name="immunizedLabel">
              <property name="layoutDirection">
@@ -213,6 +295,19 @@
                <width>50</width>
                <height>16777215</height>
               </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="immunizedCheckBox">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
              </property>
             </widget>
            </item>
@@ -442,7 +537,7 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <layout class="QGridLayout" name="layout_0">
+          <layout class="QGridLayout" name="trainingLayout">
            <item row="0" column="0">
             <widget class="QProgressBar" name="trainingBar">
              <property name="maximumSize">
@@ -471,10 +566,26 @@
              </property>
             </widget>
            </item>
+           <item row="0" column="1">
+            <widget class="QSlider" name="trainingSlider">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>2</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
          <item row="1" column="1">
-          <layout class="QGridLayout" name="layout_1">
+          <layout class="QGridLayout" name="trainabilityLayout">
            <item row="0" column="0">
             <widget class="QProgressBar" name="trainabilityBar">
              <property name="maximumSize">
@@ -494,10 +605,26 @@
              </property>
             </widget>
            </item>
+           <item row="0" column="1">
+            <widget class="QSlider" name="trainabilitySlider">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>2</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
          <item row="2" column="1">
-          <layout class="QGridLayout" name="layout_2">
+          <layout class="QGridLayout" name="adultAffinityLayout">
            <item row="0" column="0">
             <widget class="QProgressBar" name="adultAffinityBar">
              <property name="maximumSize">
@@ -517,10 +644,26 @@
              </property>
             </widget>
            </item>
+           <item row="0" column="1">
+            <widget class="QSlider" name="adultAffinitySlider">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>2</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
          <item row="3" column="1">
-          <layout class="QGridLayout" name="layout_3">
+          <layout class="QGridLayout" name="childAffinityLayout">
            <item row="0" column="0">
             <widget class="QProgressBar" name="childAffinityBar">
              <property name="maximumSize">
@@ -540,10 +683,26 @@
              </property>
             </widget>
            </item>
+           <item row="0" column="1">
+            <widget class="QSlider" name="childAffinitySlider">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>2</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
          <item row="4" column="1">
-          <layout class="QGridLayout" name="layout_4">
+          <layout class="QGridLayout" name="animalAffinityLayout">
            <item row="0" column="0">
             <widget class="QProgressBar" name="animalAffinityBar">
              <property name="maximumSize">
@@ -563,10 +722,26 @@
              </property>
             </widget>
            </item>
+           <item row="0" column="1">
+            <widget class="QSlider" name="animalAffinitySlider">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>2</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
          <item row="5" column="1">
-          <layout class="QGridLayout" name="layout_5">
+          <layout class="QGridLayout" name="approachabilityLayout">
            <item row="0" column="0">
             <widget class="QProgressBar" name="approachabilityBar">
              <property name="maximumSize">
@@ -586,10 +761,26 @@
              </property>
             </widget>
            </item>
+           <item row="0" column="1">
+            <widget class="QSlider" name="approachabilitySlider">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>2</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
          <item row="6" column="1">
-          <layout class="QGridLayout" name="layout_6">
+          <layout class="QGridLayout" name="timeCommitmentLayout">
            <item row="0" column="0">
             <widget class="QProgressBar" name="timeCommitmentBar">
              <property name="maximumSize">
@@ -609,10 +800,26 @@
              </property>
             </widget>
            </item>
+           <item row="0" column="1">
+            <widget class="QSlider" name="timeCommitmentSlider">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>2</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
          <item row="7" column="1">
-          <layout class="QGridLayout" name="layout_7">
+          <layout class="QGridLayout" name="energyLayout">
            <item row="0" column="0">
             <widget class="QProgressBar" name="energyBar">
              <property name="maximumSize">
@@ -629,6 +836,22 @@
              </property>
              <property name="textVisible">
               <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSlider" name="energySlider">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>2</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
             </widget>
            </item>
@@ -652,6 +875,22 @@
              </property>
              <property name="textVisible">
               <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSlider" name="careSlider">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>2</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
             </widget>
            </item>
