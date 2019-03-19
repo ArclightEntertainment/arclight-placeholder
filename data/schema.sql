@@ -6,9 +6,9 @@ CREATE TABLE IF NOT EXISTS Animal(
 	age text NOT NULL,
 	lifeExpectancy INTEGER NOT NULL,
 	sex char NOT NULL,
+	immunized INTEGER NOT NULL,
 	levelOfCare INTEGER NOT NULL,
 	levelOfEnergy INTEGER NOT NULL,
-	/*estimatedCostPerMonth moved to Breed*/
 	trainingLevel INTEGER NOT NULL,
 	trainabilityLevel INTEGER NOT NULL,
 	affinityForPeople INTEGER NOT NULL,
