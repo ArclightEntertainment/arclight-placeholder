@@ -41,7 +41,9 @@ SOURCES += \
     interface/ClientManager.cpp \
     interface/ClientListView.cpp \
     interface/ClientDetailDiag.cpp \
-    interface/mytablewidgetitem.cpp
+    interface/mytablewidgetitem.cpp \
+    data/collection.cpp \
+    data/arraycollection.cpp
 
 HEADERS += \
     data/DatabaseInterface.h \
@@ -60,7 +62,10 @@ HEADERS += \
     interface/ClientManager.h \
     interface/ClientListView.h \
     interface/ClientDetailDiag.h \
-    interface/mytablewidgetitem.h
+    interface/mytablewidgetitem.h \
+    data/collection.h \
+    data/abstractcollection.h \
+    data/arraycollection.h
 
 FORMS += \
     interface/listview.ui \

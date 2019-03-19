@@ -1,6 +1,8 @@
 #include "MainWindow.h"
 #include <QApplication>
 #include "./data/DatabaseInterface.h"
+#include "./data/arraycollection.h"
+#include "./data/arraycollection.cpp"
 
 int main(int argc, char *argv[])
 {
@@ -51,5 +53,6 @@ int main(int argc, char *argv[])
         Client ClientArr[ClientCount];
         w.setClientArr(ClientArr, ClientCount);
     }
+
     return a.exec();
 }

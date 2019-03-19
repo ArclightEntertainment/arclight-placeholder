@@ -1,0 +1,3 @@
+#ifndef COLLECTION_H
+#define COLLECTION_H
+#endif // COLLECTION_H
