@@ -67,7 +67,8 @@ SOURCES       = data/DatabaseInterface.cpp \
 		interface/ClientListView.cpp \
 		interface/ClientDetailDiag.cpp \
 		interface/mytablewidgetitem.cpp \
-		data/arraycollection.cpp moc_MainWindow.cpp \
+		data/ArrayCollection.cpp \
+		data/Entity.cpp moc_MainWindow.cpp \
 		moc_AnimalInputDiag.cpp \
 		moc_AnimalListView.cpp \
 		moc_AnimalDetailDiag.cpp \
@@ -91,7 +92,8 @@ OBJECTS       = DatabaseInterface.o \
 		ClientListView.o \
 		ClientDetailDiag.o \
 		mytablewidgetitem.o \
-		arraycollection.o \
+		ArrayCollection.o \
+		Entity.o \
 		moc_MainWindow.o \
 		moc_AnimalInputDiag.o \
 		moc_AnimalListView.o \
@@ -206,9 +208,10 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/ClientListView.h \
 		interface/ClientDetailDiag.h \
 		interface/mytablewidgetitem.h \
-		data/abstractcollection.h \
-		data/arraycollection.h \
-		data/description.h data/DatabaseInterface.cpp \
+		data/Entity.h \
+		data/Description.h \
+		data/ArrayCollection.h \
+		data/AbstractCollection.h data/DatabaseInterface.cpp \
 		interface/main.cpp \
 		interface/Animal.cpp \
 		interface/AnimalManager.cpp \
@@ -225,7 +228,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/ClientListView.cpp \
 		interface/ClientDetailDiag.cpp \
 		interface/mytablewidgetitem.cpp \
-		data/arraycollection.cpp
+		data/ArrayCollection.cpp \
+		data/Entity.cpp
 QMAKE_TARGET  = cuACS
 DESTDIR       = 
 TARGET        = cuACS
@@ -441,8 +445,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.h interface/Animal.h interface/AnimalManager.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/Client.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientManager.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h data/abstractcollection.h data/arraycollection.h data/description.h $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/Client.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientManager.cpp interface/ClientListView.cpp interface/ClientDetailDiag.cpp interface/mytablewidgetitem.cpp data/arraycollection.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseInterface.h interface/Animal.h interface/AnimalManager.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/Client.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientManager.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h data/Entity.h data/Description.h data/ArrayCollection.h data/AbstractCollection.h $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseInterface.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/Client.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientManager.cpp interface/ClientListView.cpp interface/ClientDetailDiag.cpp interface/mytablewidgetitem.cpp data/ArrayCollection.cpp data/Entity.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents interface/listview.ui interface/mainwindow.ui interface/animaldetaildialog.ui interface/animalinputdialog.ui interface/clientinputdialog.ui interface/clientdetaildialog.ui $(DISTDIR)/
 
 
@@ -623,9 +627,10 @@ main.o: interface/main.cpp interface/MainWindow.h \
 		interface/ClientListView.h \
 		interface/ClientDetailDiag.h \
 		data/DatabaseInterface.h \
-		data/arraycollection.h \
-		data/abstractcollection.h \
-		data/description.h
+		data/ArrayCollection.h \
+		data/AbstractCollection.h \
+		data/Description.h \
+		data/Entity.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o interface/main.cpp
 
 Animal.o: interface/Animal.cpp interface/Animal.h \
@@ -745,9 +750,19 @@ ClientDetailDiag.o: interface/ClientDetailDiag.cpp interface/ClientDetailDiag.h 
 mytablewidgetitem.o: interface/mytablewidgetitem.cpp interface/mytablewidgetitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mytablewidgetitem.o interface/mytablewidgetitem.cpp
 
-arraycollection.o: data/arraycollection.cpp data/arraycollection.h \
-		data/abstractcollection.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o arraycollection.o data/arraycollection.cpp
+ArrayCollection.o: data/ArrayCollection.cpp data/ArrayCollection.h \
+		data/AbstractCollection.h \
+		interface/Levels.h \
+		data/Description.h \
+		data/Entity.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ArrayCollection.o data/ArrayCollection.cpp
+
+Entity.o: data/Entity.cpp data/Entity.h \
+		data/Description.h \
+		data/ArrayCollection.h \
+		data/AbstractCollection.h \
+		interface/Levels.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Entity.o data/Entity.cpp
 
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp

@@ -1,8 +1,104 @@
 #include "MainWindow.h"
 #include <QApplication>
 #include "./data/DatabaseInterface.h"
-#include "./data/arraycollection.h"
-#include "./data/description.h"
+#include "./data/ArrayCollection.h"
+#include "./data/Description.h"
+#include "./data/Entity.h"
+
+void testAnimals()
+{
+    ArrayCollection<UAnimal*> * animals = new ArrayCollection<UAnimal*>();
+    Iterator<UAnimal*> * animalIterator = animals->CreateIterator();
+
+    ArrayCollection<UClient*> * clients = new ArrayCollection<UClient*>();
+    Iterator<UClient*> * clientIterator = clients->CreateIterator();
+
+    int numEntities = 10;
+    int numAttributes = 5;
+
+
+    for (int i = 0; i < numEntities; i++)
+    {
+        UAnimal * anim = new UAnimal();
+        UClient * cli = new UClient();
+        std::string aName = "";
+        std::string cName = "";
+        for (int j = 0; j < i; j++)
+        {
+            aName.append("a");
+            cName.append("c");
+        }
+        anim->setID(i)->setAge(i)->setName(aName);
+        cli->setID(i + numEntities + 1)->setAge(i + numEntities + 1)->setName(cName);
+
+        for (int j = 0; j < numAttributes; j++)
+        {
+            std::string boolName="Bool: ";
+            std::string intName="Int: ";
+            std::string stringName="String: ";
+
+            boolName.append(std::to_string(i));
+            intName.append(std::to_string(i));
+            stringName.append(std::to_string(i));
+
+            Description<bool> someBool = Description<bool>(boolName, i % numAttributes, (i % 2));
+            Description<int> someInt = Description<int>(intName, numAttributes + i % numAttributes, i);
+            Description<std::string> someString = Description<std::string>(stringName, 2 * numAttributes + i % numAttributes, stringName);
+
+            anim->addBoolDesc(someBool)->addIntDesc(someInt)->addStringDesc(someString);
+            cli->addBoolDesc(someBool)->addIntDesc(someInt)->addStringDesc(someString);
+
+        }
+
+        animals->Append(anim);
+        clients->Append(cli);
+    }
+
+    std::cout<<"\n\nPRINT OUT ALL CLIENTS + ATTRIBUTES"<<std::endl;
+    while (!clientIterator->IsDone())
+    {
+        UClient * temp = clientIterator->CurrentItem();
+        Iterator<Description<bool>> * bools = temp->getBoolIterator();
+        Iterator<Description<int>> * ints = temp->getIntIterator();
+        Iterator<Description<std::string>> * strings = temp->getStringIterator();
+        while (!bools->IsDone() && !ints->IsDone() && !strings->IsDone())
+        {
+            std::cout<<"CLIENT: " << temp->getName() <<"- ";
+            std::cout<<bools->CurrentItem().getName()       << " / " <<      bools->CurrentItem().getAttributeID()       << " / "   << bools->CurrentItem().getValue() << " -- ";
+            std::cout<<ints->CurrentItem().getName()        << " / " <<      ints->CurrentItem().getAttributeID()        << " / "   << ints->CurrentItem().getValue() << " -- ";
+            std::cout<<strings->CurrentItem().getName()     << " / " <<      strings->CurrentItem().getAttributeID()     << " / "   << strings->CurrentItem().getValue();
+            std::cout<<std::endl;
+            bools->Next();
+            ints->Next();
+            strings->Next();
+        }
+        clientIterator->Next();
+        std::cout<<std::endl;
+    }
+
+    std::cout<<"\n\nPRINT OUT ALL ANIMALS + ATTRIBUTES"<<std::endl;
+    while (!animalIterator->IsDone())
+    {
+        UAnimal * temp = animalIterator->CurrentItem();
+        Iterator<Description<bool>> * bools = temp->getBoolIterator();
+        Iterator<Description<int>> * ints = temp->getIntIterator();
+        Iterator<Description<std::string>> * strings = temp->getStringIterator();
+        while (!bools->IsDone() && !ints->IsDone() && !strings->IsDone())
+        {
+            std::cout<<"ANIMAL: " << temp->getName() <<"- ";
+            std::cout<<bools->CurrentItem().getName()       << " / " <<      bools->CurrentItem().getAttributeID()       << " / "   << bools->CurrentItem().getValue() << " -- ";
+            std::cout<<ints->CurrentItem().getName()        << " / " <<      ints->CurrentItem().getAttributeID()        << " / "   << ints->CurrentItem().getValue() << " -- ";
+            std::cout<<strings->CurrentItem().getName()     << " / " <<      strings->CurrentItem().getAttributeID()     << " / "   << strings->CurrentItem().getValue();
+            std::cout<<std::endl;
+            bools->Next();
+            ints->Next();
+            strings->Next();
+        }
+        animalIterator->Next();
+        std::cout<<std::endl;
+    }
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -35,12 +131,7 @@ int main(int argc, char *argv[])
 
     if (animalCount > 0)
     {
-        w.setAnimalArr(animalArr, animalCount);//
-        //
-        //
-        //
-        //
-        //
+        w.setAnimalArr(animalArr, animalCount);
     }
     else
     {
@@ -59,39 +150,7 @@ int main(int argc, char *argv[])
         w.setClientArr(ClientArr, ClientCount);
     }
 
-    //ArrayCollection<Description<int>> * ints = new ArrayCollection<Description<int>>();
-    //ArrayCollection<Description<std::string>> * strings = new ArrayCollection<Description<std::string>>();
-    //ArrayCollection<Description<ThreeScale>> * threes = new ArrayCollection<Description<ThreeScale>>();
-    //for (int i = 0; i < 342; i+=3)
-    //{
-    //    ints->Append(Description<int>("ID", i,10000 + i));
-    //    std::string name = "Dougie: " + std::to_string(i+1);
-    //    strings->Append(Description<std::string>("Name", i+1, name));
-    //    threes->Append(Description<ThreeScale>("energyLevel", i+2, ThreeScale::HIGH));
-    //}
-    //
-    //Iterator<Description<int>> * int_iter = ints->CreateIterator();
-    //Iterator<Description<std::string>> * string_iter = strings->CreateIterator();
-    //Iterator<Description<ThreeScale>> * three_iter = threes->CreateIterator();
-    //
-    //while (!int_iter->IsDone())
-    //{
-    //    std::cout << "Int: " << int_iter->CurrentItem().getValue() << std::endl;
-    //    int_iter->Next();
-    //}
-
-    while (!string_iter->IsDone())
-    {
-        std::cout << "String: " << string_iter->CurrentItem().getValue() << std::endl;
-        string_iter->Next();
-    }
-
-    while (!three_iter->IsDone())
-    {
-        std::cout << "ThreeScale: " << ((three_iter->CurrentItem().getValue() == ThreeScale::HIGH) ? "HIGH" : ((three_iter->CurrentItem().getValue() == ThreeScale::MEDIUM) ? "MEDIUM" : ((three_iter->CurrentItem().getValue() == ThreeScale::LOW) ? "LOW" :  "UNDFTS"))) << std::endl;
-        three_iter->Next();
-    }
-
+    testAnimals();
 
     return a.exec();
 }

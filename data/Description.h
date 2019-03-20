@@ -6,16 +6,16 @@ template <class T>
 class Description
 {
 public:
-    Description(){}
+    Description():name(""), attributeID(), value(){}
     Description(std::string n, int aID, T v) : name(n), attributeID(aID), value(v){}
     ~Description(){}
     T getValue() {return value;}
     int getAttributeID() {return attributeID;}
     std::string getName() {return name;}
 private:
-    T value;
-    int attributeID;
     std::string name;
+    int attributeID;
+    T value;
 };
 
 #endif // DESCRIPTION_H

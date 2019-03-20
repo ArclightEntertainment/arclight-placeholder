@@ -1,8 +1,9 @@
 #include <iostream>
 
-#include "arraycollection.h"
+#include "ArrayCollection.h"
 #include "./interface/Levels.h"
-#include "./data/description.h"
+#include "./data/Description.h"
+#include "./data/Entity.h"
 
 
 template <class Item>
@@ -63,7 +64,7 @@ const Item& ArrayCollection<Item>::Get(unsigned int index) const
 {
     if (index >= count)
     {
-        return Item();
+        //return Item();
     }
     return arr[index];
 }
@@ -103,10 +104,13 @@ Item ArrayCollectionIterator<Item>::CurrentItem() const
 {
     if (IsDone())
     {
-        return Item();
+        //return Item();
     }
     return arrCollection->Get(index);
 }
 template class ArrayCollection<Description<int>>;
 template class ArrayCollection<Description<std::string>>;
-template class ArrayCollection<Description<ThreeScale>>;
+template class ArrayCollection<Description<bool>>;
+template class ArrayCollection<UAnimal*>;
+template class ArrayCollection<UClient*>;
+template class ArrayCollection<Entity*>;
