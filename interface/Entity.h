@@ -16,17 +16,17 @@ public:
     Entity * setAge(int a){age=a; return this;}
     Entity * setName(std::string n){name=n; return this;}
 
-    Entity * addBoolDesc(Description<bool> desc){boolCollection.Append(desc); return this;}
-    Entity * addIntDesc(Description<int> desc){intCollection.Append(desc); return this;}
-    Entity * addStringDesc(Description<std::string> desc){stringCollection.Append(desc); return this;}
+    Entity * addBoolDesc(Description<bool> desc){boolCollection.append(desc); return this;}
+    Entity * addIntDesc(Description<int> desc){intCollection.append(desc); return this;}
+    Entity * addStringDesc(Description<std::string> desc){stringCollection.append(desc); return this;}
 
     int getID(){return ID;}
     int getAge(){return age;}
     std::string getName(){return name;}
 
-    Iterator<Description<bool>> * getBoolIterator() {return boolCollection.CreateIterator();}
-    Iterator<Description<int>> * getIntIterator() {return intCollection.CreateIterator();}
-    Iterator<Description<std::string>> * getStringIterator(){return stringCollection.CreateIterator();}
+    Iterator<Description<bool>> * getBoolIterator() {return boolCollection.createIterator();}
+    Iterator<Description<int>> * getIntIterator() {return intCollection.createIterator();}
+    Iterator<Description<std::string>> * getStringIterator(){return stringCollection.createIterator();}
 
 private:
     int ID;

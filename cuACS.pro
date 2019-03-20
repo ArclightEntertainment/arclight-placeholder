@@ -42,9 +42,9 @@ SOURCES += \
     interface/ClientListView.cpp \
     interface/ClientDetailDiag.cpp \
     interface/mytablewidgetitem.cpp \
-    data/ArrayCollection.cpp \
-    data/Entity.cpp \
-    data/EntityBuilder.cpp
+    interface/ArrayCollection.cpp \
+    interface/Entity.cpp \
+    interface/EntityBuilder.cpp
 
 HEADERS += \
     data/DatabaseInterface.h \
@@ -64,11 +64,11 @@ HEADERS += \
     interface/ClientListView.h \
     interface/ClientDetailDiag.h \
     interface/mytablewidgetitem.h \
-    data/Entity.h \
-    data/Description.h \
-    data/ArrayCollection.h \
-    data/AbstractCollection.h \
-    data/EntityBuilder.h
+    interface/Entity.h \
+    interface/Description.h \
+    interface/ArrayCollection.h \
+    interface/AbstractCollection.h \
+    interface/EntityBuilder.h
 
 FORMS += \
     interface/listview.ui \

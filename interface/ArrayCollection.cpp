@@ -2,12 +2,12 @@
 
 #include "ArrayCollection.h"
 #include "./interface/Levels.h"
-#include "./data/Description.h"
-#include "./data/Entity.h"
+#include "./interface/Description.h"
+#include "./interface/Entity.h"
 
 
 template <class Item>
-ArrayCollection<Item>::ArrayCollection() : count(0), length(START_LENGTH)
+ArrayCollection<Item>::ArrayCollection() : numElements(0), maxNumElements(START_LENGTH)
 {
     arr = new Item[START_LENGTH];
 }
@@ -20,49 +20,45 @@ ArrayCollection<Item>::~ArrayCollection()
 }
 
 template <class Item>
-Iterator<Item> * ArrayCollection<Item>::CreateIterator() const
+Iterator<Item> * ArrayCollection<Item>::createIterator() const
 {
     return new ArrayCollectionIterator<Item>(this);
 }
 
 template <class Item>
-unsigned int ArrayCollection<Item>::Count() const
+unsigned int ArrayCollection<Item>::count() const
 {
-    return count;
+    return numElements;
 }
 
 template <class Item>
-unsigned int ArrayCollection<Item>::Length() const
+unsigned int ArrayCollection<Item>::length() const
 {
-    return length;
+    return maxNumElements;
 }
 
 template <class Item>
-void ArrayCollection<Item>::Append (Item item)
+void ArrayCollection<Item>::append (Item item)
 {
-    arr[count] = item;
-    count ++;
+    arr[numElements] = item;
+    numElements ++;
 
-    //std::cout<< "Current Count: " << count;
-    //std::cout<< " Max Length: " << length <<std::endl;
-
-    if (count == length-1)
+    if (numElements == maxNumElements-1)
     {
-        std::cout<<"Reached Max Length: " << length <<std::endl;
-        Item * newArr = new Item[length * 2];
-        for (int i = 0; i < (int)length; i ++)
+        Item * newArr = new Item[maxNumElements * 2];
+        for (int i = 0; i < (int)maxNumElements; i ++)
         {
             newArr[i] = arr[i];
         }
-        length *= 2;
+        maxNumElements *= 2;
         arr = newArr;
     }
 }
 
 template <class Item>
-const Item& ArrayCollection<Item>::Get(unsigned int index) const
+const Item& ArrayCollection<Item>::get(unsigned int index) const
 {
-    if (index >= count)
+    if (index >= numElements)
     {
         //return Item();
     }
@@ -82,31 +78,31 @@ ArrayCollectionIterator<Item>::~ArrayCollectionIterator ()
 }
 
 template <class Item>
-void ArrayCollectionIterator<Item>::First()
+void ArrayCollectionIterator<Item>::first()
 {
     index = 0;
 }
 
 template <class Item>
-void ArrayCollectionIterator<Item>::Next()
+void ArrayCollectionIterator<Item>::next()
 {
     index ++;
 }
 
 template <class Item>
-bool ArrayCollectionIterator<Item>::IsDone() const
+bool ArrayCollectionIterator<Item>::isDone() const
 {
-    return (arrCollection->Count() <= index);
+    return (arrCollection->count() <= index);
 }
 
 template <class Item>
-Item ArrayCollectionIterator<Item>::CurrentItem() const
+Item ArrayCollectionIterator<Item>::currentItem() const
 {
-    if (IsDone())
+    if (isDone())
     {
         //return Item();
     }
-    return arrCollection->Get(index);
+    return arrCollection->get(index);
 }
 template class ArrayCollection<Description<int>>;
 template class ArrayCollection<Description<std::string>>;

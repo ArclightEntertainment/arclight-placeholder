@@ -67,9 +67,9 @@ SOURCES       = data/DatabaseInterface.cpp \
 		interface/ClientListView.cpp \
 		interface/ClientDetailDiag.cpp \
 		interface/mytablewidgetitem.cpp \
-		data/ArrayCollection.cpp \
-		data/Entity.cpp \
-		data/EntityBuilder.cpp moc_MainWindow.cpp \
+		interface/ArrayCollection.cpp \
+		interface/Entity.cpp \
+		interface/EntityBuilder.cpp moc_MainWindow.cpp \
 		moc_AnimalInputDiag.cpp \
 		moc_AnimalListView.cpp \
 		moc_AnimalDetailDiag.cpp \
@@ -210,11 +210,11 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/ClientListView.h \
 		interface/ClientDetailDiag.h \
 		interface/mytablewidgetitem.h \
-		data/Entity.h \
-		data/Description.h \
-		data/ArrayCollection.h \
-		data/AbstractCollection.h \
-		data/EntityBuilder.h data/DatabaseInterface.cpp \
+		interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
+		interface/EntityBuilder.h data/DatabaseInterface.cpp \
 		interface/main.cpp \
 		interface/Animal.cpp \
 		interface/AnimalManager.cpp \
@@ -231,9 +231,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/ClientListView.cpp \
 		interface/ClientDetailDiag.cpp \
 		interface/mytablewidgetitem.cpp \
-		data/ArrayCollection.cpp \
-		data/Entity.cpp \
-		data/EntityBuilder.cpp
+		interface/ArrayCollection.cpp \
+		interface/Entity.cpp \
+		interface/EntityBuilder.cpp
 QMAKE_TARGET  = cuACS
 DESTDIR       = 
 TARGET        = cuACS
@@ -449,8 +449,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.h interface/Animal.h interface/AnimalManager.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/Client.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientManager.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h data/Entity.h data/Description.h data/ArrayCollection.h data/AbstractCollection.h data/EntityBuilder.h $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/Client.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientManager.cpp interface/ClientListView.cpp interface/ClientDetailDiag.cpp interface/mytablewidgetitem.cpp data/ArrayCollection.cpp data/Entity.cpp data/EntityBuilder.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseInterface.h interface/Animal.h interface/AnimalManager.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/Client.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientManager.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h interface/Entity.h interface/Description.h interface/ArrayCollection.h interface/AbstractCollection.h interface/EntityBuilder.h $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseInterface.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/Client.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientManager.cpp interface/ClientListView.cpp interface/ClientDetailDiag.cpp interface/mytablewidgetitem.cpp interface/ArrayCollection.cpp interface/Entity.cpp interface/EntityBuilder.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents interface/listview.ui interface/mainwindow.ui interface/animaldetaildialog.ui interface/animalinputdialog.ui interface/clientinputdialog.ui interface/clientdetaildialog.ui $(DISTDIR)/
 
 
@@ -630,11 +630,7 @@ main.o: interface/main.cpp interface/MainWindow.h \
 		interface/AnimalDetailDiag.h \
 		interface/ClientListView.h \
 		interface/ClientDetailDiag.h \
-		data/DatabaseInterface.h \
-		data/ArrayCollection.h \
-		data/AbstractCollection.h \
-		data/Description.h \
-		data/Entity.h
+		data/DatabaseInterface.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o interface/main.cpp
 
 Animal.o: interface/Animal.cpp interface/Animal.h \
@@ -754,27 +750,22 @@ ClientDetailDiag.o: interface/ClientDetailDiag.cpp interface/ClientDetailDiag.h 
 mytablewidgetitem.o: interface/mytablewidgetitem.cpp interface/mytablewidgetitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mytablewidgetitem.o interface/mytablewidgetitem.cpp
 
-ArrayCollection.o: data/ArrayCollection.cpp data/ArrayCollection.h \
-		data/AbstractCollection.h \
+ArrayCollection.o: interface/ArrayCollection.cpp interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
 		interface/Levels.h \
-		data/Description.h \
-		data/Entity.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ArrayCollection.o data/ArrayCollection.cpp
+		interface/Description.h \
+		interface/Entity.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ArrayCollection.o interface/ArrayCollection.cpp
 
-Entity.o: data/Entity.cpp data/Entity.h \
-		data/Description.h \
-		data/ArrayCollection.h \
-		data/AbstractCollection.h \
+Entity.o: interface/Entity.cpp interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
 		interface/Levels.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Entity.o data/Entity.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Entity.o interface/Entity.cpp
 
-EntityBuilder.o: data/EntityBuilder.cpp data/EntityBuilder.h \
-		data/Entity.h \
-		data/Description.h \
-		data/ArrayCollection.h \
-		data/AbstractCollection.h \
-		interface/Levels.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o EntityBuilder.o data/EntityBuilder.cpp
+EntityBuilder.o: interface/EntityBuilder.cpp interface/EntityBuilder.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o EntityBuilder.o interface/EntityBuilder.cpp
 
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp

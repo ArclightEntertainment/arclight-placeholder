@@ -8,10 +8,10 @@
 void testAnimals()
 {
     ArrayCollection<UAnimal*> * animals = new ArrayCollection<UAnimal*>();
-    Iterator<UAnimal*> * animalIterator = animals->CreateIterator();
+    Iterator<UAnimal*> * animalIterator = animals->createIterator();
 
     ArrayCollection<UClient*> * clients = new ArrayCollection<UClient*>();
-    Iterator<UClient*> * clientIterator = clients->CreateIterator();
+    Iterator<UClient*> * clientIterator = clients->createIterator();
 
     int numEntities = 10;
     int numAttributes = 5;
@@ -52,51 +52,51 @@ void testAnimals()
 
 
         //******* CHANGE TO BUILD AFTER IT IS IMPLEMENTED
-        animals->Append(anim->getEntity());
-        clients->Append(cli->getEntity());
+        animals->append(anim->getEntity());
+        clients->append(cli->getEntity());
     }
 
     std::cout<<"\n\nPRINT OUT ALL CLIENTS + ATTRIBUTES"<<std::endl;
-    while (!clientIterator->IsDone())
+    while (!clientIterator->isDone())
     {
-        UClient * temp = clientIterator->CurrentItem();
+        UClient * temp = clientIterator->currentItem();
         Iterator<Description<bool>> * bools = temp->getBoolIterator();
         Iterator<Description<int>> * ints = temp->getIntIterator();
         Iterator<Description<std::string>> * strings = temp->getStringIterator();
-        while (!bools->IsDone() && !ints->IsDone() && !strings->IsDone())
+        while (!bools->isDone() && !ints->isDone() && !strings->isDone())
         {
             std::cout<<"CLIENT: " << temp->getName() <<"- ";
-            std::cout<<bools->CurrentItem().getName()       << " / " <<      bools->CurrentItem().getAttributeID()       << " / "   << bools->CurrentItem().getValue() << " -- ";
-            std::cout<<ints->CurrentItem().getName()        << " / " <<      ints->CurrentItem().getAttributeID()        << " / "   << ints->CurrentItem().getValue() << " -- ";
-            std::cout<<strings->CurrentItem().getName()     << " / " <<      strings->CurrentItem().getAttributeID()     << " / "   << strings->CurrentItem().getValue();
+            std::cout<<bools->currentItem().getName()       << " / " <<      bools->currentItem().getAttributeID()       << " / "   << bools->currentItem().getValue() << " -- ";
+            std::cout<<ints->currentItem().getName()        << " / " <<      ints->currentItem().getAttributeID()        << " / "   << ints->currentItem().getValue() << " -- ";
+            std::cout<<strings->currentItem().getName()     << " / " <<      strings->currentItem().getAttributeID()     << " / "   << strings->currentItem().getValue();
             std::cout<<std::endl;
-            bools->Next();
-            ints->Next();
-            strings->Next();
+            bools->next();
+            ints->next();
+            strings->next();
         }
-        clientIterator->Next();
+        clientIterator->next();
         std::cout<<std::endl;
     }
 
     std::cout<<"\n\nPRINT OUT ALL ANIMALS + ATTRIBUTES"<<std::endl;
-    while (!animalIterator->IsDone())
+    while (!animalIterator->isDone())
     {
-        UAnimal * temp = animalIterator->CurrentItem();
+        UAnimal * temp = animalIterator->currentItem();
         Iterator<Description<bool>> * bools = temp->getBoolIterator();
         Iterator<Description<int>> * ints = temp->getIntIterator();
         Iterator<Description<std::string>> * strings = temp->getStringIterator();
-        while (!bools->IsDone() && !ints->IsDone() && !strings->IsDone())
+        while (!bools->isDone() && !ints->isDone() && !strings->isDone())
         {
             std::cout<<"ANIMAL: " << temp->getName() <<"- ";
-            std::cout<<bools->CurrentItem().getName()       << " / " <<      bools->CurrentItem().getAttributeID()       << " / "   << bools->CurrentItem().getValue() << " -- ";
-            std::cout<<ints->CurrentItem().getName()        << " / " <<      ints->CurrentItem().getAttributeID()        << " / "   << ints->CurrentItem().getValue() << " -- ";
-            std::cout<<strings->CurrentItem().getName()     << " / " <<      strings->CurrentItem().getAttributeID()     << " / "   << strings->CurrentItem().getValue();
+            std::cout<<bools->currentItem().getName()       << " / " <<      bools->currentItem().getAttributeID()       << " / "   << bools->currentItem().getValue() << " -- ";
+            std::cout<<ints->currentItem().getName()        << " / " <<      ints->currentItem().getAttributeID()        << " / "   << ints->currentItem().getValue() << " -- ";
+            std::cout<<strings->currentItem().getName()     << " / " <<      strings->currentItem().getAttributeID()     << " / "   << strings->currentItem().getValue();
             std::cout<<std::endl;
-            bools->Next();
-            ints->Next();
-            strings->Next();
+            bools->next();
+            ints->next();
+            strings->next();
         }
-        animalIterator->Next();
+        animalIterator->next();
         std::cout<<std::endl;
     }
 }

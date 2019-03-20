@@ -2,7 +2,7 @@
 #define ARRAYCOLLECTION_H
 
 #define START_LENGTH 30
-#include "./data/AbstractCollection.h"
+#include "./interface//AbstractCollection.h"
 
 //Iterator implementation based off of the one found here: https://www.robertlarsononline.com/2017/04/24/iterator-pattern-using-cplusplus/
 
@@ -12,16 +12,16 @@ class ArrayCollection : public Collection <Item>
 public:
     ArrayCollection();
     virtual ~ArrayCollection();
-    virtual Iterator<Item> * CreateIterator() const;
-    virtual unsigned int Count() const;
-    virtual unsigned int Length() const;
-    virtual void Append (Item item);
-    virtual const Item& Get(unsigned int index) const;
+    virtual Iterator<Item> * createIterator() const;
+    virtual unsigned int count() const;
+    virtual unsigned int length() const;
+    virtual void append (Item item);
+    virtual const Item& get(unsigned int index) const;
 
 private:
     Item * arr;
-    unsigned int count;
-    unsigned int length;
+    unsigned int numElements;
+    unsigned int maxNumElements;
 };
 
 
@@ -31,10 +31,10 @@ class ArrayCollectionIterator : public Iterator <Item>
 public:
     ArrayCollectionIterator(const ArrayCollection<Item> * arrC);
     virtual ~ArrayCollectionIterator ();
-    virtual void First();
-    virtual void Next();
-    virtual bool IsDone() const;
-    virtual Item CurrentItem() const;
+    virtual void first();
+    virtual void next();
+    virtual bool isDone() const;
+    virtual Item currentItem() const;
 
 private:
     const ArrayCollection<Item> * arrCollection;
