@@ -264,7 +264,7 @@ void DatabaseInterface::pushDBAnimal(Animal &animal)
             sqlite3_bind_int(stmt, 17, animal.getTimeCommitment());
             sqlite3_bind_text(stmt, 18, animal.getDietNeeds().c_str(), animal.getDietNeeds().length(), SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 19, animal.getMobilityNeeds().c_str(), animal.getMobilityNeeds().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 20, animal.getDisabilityNeeds().c_str(), animal.getSpecies().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 20, animal.getDisabilityNeeds().c_str(), animal.getDisabilityNeeds().length(), SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 21, animal.getAbuseHistory().c_str(), animal.getAbuseHistory().length(), SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 22, animal.getBiography().c_str(), animal.getBiography().length(), SQLITE_TRANSIENT);
 
