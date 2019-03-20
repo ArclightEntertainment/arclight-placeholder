@@ -1,102 +1,76 @@
 #include "MainWindow.h"
 #include <QApplication>
 #include "./data/DatabaseInterface.h"
-#include "./data/ArrayCollection.h"
-#include "./data/Description.h"
-#include "./data/EntityBuilder.h"
+#include "./interface/ArrayCollection.h"
+#include "./interface/Description.h"
+#include "./interface/EntityBuilder.h"
 
-void testAnimals()
+void testClients()
 {
-    ArrayCollection<UAnimal*> * animals = new ArrayCollection<UAnimal*>();
-    Iterator<UAnimal*> * animalIterator = animals->createIterator();
-
+    bool doPrint = false;
     ArrayCollection<UClient*> * clients = new ArrayCollection<UClient*>();
     Iterator<UClient*> * clientIterator = clients->createIterator();
 
-    int numEntities = 10;
-    int numAttributes = 5;
+    int numEntities = 25;
+    int numAttributes = 21;
 
 
     for (int i = 0; i < numEntities; i++)
     {
-        AnimalBuilder * anim = new AnimalBuilder();
-        ClientBuilder * cli = new ClientBuilder();
-        std::string aName = "";
-        std::string cName = "";
-        for (int j = 0; j < i; j++)
-        {
-            aName.append("a");
-            cName.append("c");
-        }
-        anim->setID(i)->setAge(i)->setName(aName);
+        EntityBuilder * cli = new ClientBuilder();
+        std::string cName = "Client #" + std::to_string(i);
+
         cli->setID(i + numEntities + 1)->setAge(i + numEntities + 1)->setName(cName);
+
 
         for (int j = 0; j < numAttributes; j++)
         {
-            std::string boolName="Bool: ";
-            std::string intName="Int: ";
-            std::string stringName="String: ";
+            std::string string = "Value (";
+            string.append(std::to_string(j));
+            string.append(")");
 
-            boolName.append(std::to_string(i));
-            intName.append(std::to_string(i));
-            stringName.append(std::to_string(i));
-
-            Description<bool> someBool = Description<bool>(boolName, i % numAttributes, (i % 2));
-            Description<int> someInt = Description<int>(intName, numAttributes + i % numAttributes, i);
-            Description<std::string> someString = Description<std::string>(stringName, 2 * numAttributes + i % numAttributes, stringName);
-
-            anim->addBoolDesc(someBool)->addIntDesc(someInt)->addStringDesc(someString);
-            cli->addBoolDesc(someBool)->addIntDesc(someInt)->addStringDesc(someString);
-
+            if (j % 3 == 0){cli->addBoolDesc(Description<bool>("Bool ", j, j%2));}
+            if (j % 3 == 1){cli->addIntDesc(Description<int>("Int ", j, j));}
+            if (j % 3 == 2){cli->addStringDesc(Description<std::string>("String ", j, string));}
         }
 
-
-        //******* CHANGE TO BUILD AFTER IT IS IMPLEMENTED
-        animals->append(anim->getEntity());
-        clients->append(cli->getEntity());
+        UClient * client = (UClient*)cli->build();
+        if (client != NULL)
+        {
+            clients->append(client);
+        }
     }
 
     std::cout<<"\n\nPRINT OUT ALL CLIENTS + ATTRIBUTES"<<std::endl;
-    while (!clientIterator->isDone())
+    while (!clientIterator->isDone() && doPrint)
     {
         UClient * temp = clientIterator->currentItem();
         Iterator<Description<bool>> * bools = temp->getBoolIterator();
         Iterator<Description<int>> * ints = temp->getIntIterator();
         Iterator<Description<std::string>> * strings = temp->getStringIterator();
-        while (!bools->isDone() && !ints->isDone() && !strings->isDone())
+
+        while (!bools->isDone())
         {
-            std::cout<<"CLIENT: " << temp->getName() <<"- ";
-            std::cout<<bools->currentItem().getName()       << " / " <<      bools->currentItem().getAttributeID()       << " / "   << bools->currentItem().getValue() << " -- ";
-            std::cout<<ints->currentItem().getName()        << " / " <<      ints->currentItem().getAttributeID()        << " / "   << ints->currentItem().getValue() << " -- ";
-            std::cout<<strings->currentItem().getName()     << " / " <<      strings->currentItem().getAttributeID()     << " / "   << strings->currentItem().getValue();
+            std::cout<< temp->getName() << ": Bools: ";
+            std::cout<<bools->currentItem().getName() << "/" << bools->currentItem().getAttributeID() << "/" << bools->currentItem().getValue();
             std::cout<<std::endl;
             bools->next();
+        }
+        while (!ints->isDone())
+        {
+            std::cout<< temp->getName() << ": Ints: ";
+            std::cout<<ints->currentItem().getName() << "/" << ints->currentItem().getAttributeID() << "/" << ints->currentItem().getValue();
+            std::cout<<std::endl;
             ints->next();
+        }
+        while (!strings->isDone())
+        {
+            std::cout<< temp->getName() << ": Strings: ";
+            std::cout<<strings->currentItem().getName() << "/" << strings->currentItem().getAttributeID() << "/" << strings->currentItem().getValue();
+            std::cout<<std::endl;
             strings->next();
         }
         clientIterator->next();
-        std::cout<<std::endl;
-    }
-
-    std::cout<<"\n\nPRINT OUT ALL ANIMALS + ATTRIBUTES"<<std::endl;
-    while (!animalIterator->isDone())
-    {
-        UAnimal * temp = animalIterator->currentItem();
-        Iterator<Description<bool>> * bools = temp->getBoolIterator();
-        Iterator<Description<int>> * ints = temp->getIntIterator();
-        Iterator<Description<std::string>> * strings = temp->getStringIterator();
-        while (!bools->isDone() && !ints->isDone() && !strings->isDone())
-        {
-            std::cout<<"ANIMAL: " << temp->getName() <<"- ";
-            std::cout<<bools->currentItem().getName()       << " / " <<      bools->currentItem().getAttributeID()       << " / "   << bools->currentItem().getValue() << " -- ";
-            std::cout<<ints->currentItem().getName()        << " / " <<      ints->currentItem().getAttributeID()        << " / "   << ints->currentItem().getValue() << " -- ";
-            std::cout<<strings->currentItem().getName()     << " / " <<      strings->currentItem().getAttributeID()     << " / "   << strings->currentItem().getValue();
-            std::cout<<std::endl;
-            bools->next();
-            ints->next();
-            strings->next();
-        }
-        animalIterator->next();
         std::cout<<std::endl;
     }
 }
@@ -152,7 +126,7 @@ int main(int argc, char *argv[])
         w.setClientArr(ClientArr, ClientCount);
     }
 
-    testAnimals();
+    testClients();
 
     return a.exec();
 }
