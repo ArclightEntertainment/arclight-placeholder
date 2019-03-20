@@ -24,6 +24,7 @@ private:
     unsigned int length;
 };
 
+
 template <class Item>
 class ArrayCollectionIterator : public Iterator <Item>
 {

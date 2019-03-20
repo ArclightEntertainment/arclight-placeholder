@@ -1,5 +1,9 @@
-#include "arraycollection.h"
 #include <iostream>
+
+#include "arraycollection.h"
+#include "./interface/Levels.h"
+#include "./data/description.h"
+
 
 template <class Item>
 ArrayCollection<Item>::ArrayCollection() : count(0), length(START_LENGTH)
@@ -45,7 +49,7 @@ void ArrayCollection<Item>::Append (Item item)
     {
         std::cout<<"Reached Max Length: " << length <<std::endl;
         Item * newArr = new Item[length * 2];
-        for (int i = 0; i < length; i ++)
+        for (int i = 0; i < (int)length; i ++)
         {
             newArr[i] = arr[i];
         }
@@ -103,3 +107,6 @@ Item ArrayCollectionIterator<Item>::CurrentItem() const
     }
     return arrCollection->Get(index);
 }
+template class ArrayCollection<Description<int>>;
+template class ArrayCollection<Description<std::string>>;
+template class ArrayCollection<Description<ThreeScale>>;
