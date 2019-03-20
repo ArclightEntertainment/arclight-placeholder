@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS Animal(
 	name text NOT NULL,
 	species text NOT NULL,
 	breed text NOT NULL,
-	age text NOT NULL,
+	age INTEGER NOT NULL,
 	lifeExpectancy INTEGER NOT NULL,
 	sex char NOT NULL,
 	immunized INTEGER NOT NULL,
