@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include <iostream>
 
 Entity::Entity() : ID(-1), age(-1), name(""), boolCollection(), intCollection(), stringCollection()
 {

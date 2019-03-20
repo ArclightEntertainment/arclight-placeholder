@@ -3,7 +3,7 @@
 #include "./data/DatabaseInterface.h"
 #include "./data/ArrayCollection.h"
 #include "./data/Description.h"
-#include "./data/Entity.h"
+#include "./data/EntityBuilder.h"
 
 void testAnimals()
 {
@@ -19,8 +19,8 @@ void testAnimals()
 
     for (int i = 0; i < numEntities; i++)
     {
-        UAnimal * anim = new UAnimal();
-        UClient * cli = new UClient();
+        AnimalBuilder * anim = new AnimalBuilder();
+        ClientBuilder * cli = new ClientBuilder();
         std::string aName = "";
         std::string cName = "";
         for (int j = 0; j < i; j++)
@@ -50,8 +50,10 @@ void testAnimals()
 
         }
 
-        animals->Append(anim);
-        clients->Append(cli);
+
+        //******* CHANGE TO BUILD AFTER IT IS IMPLEMENTED
+        animals->Append(anim->getEntity());
+        clients->Append(cli->getEntity());
     }
 
     std::cout<<"\n\nPRINT OUT ALL CLIENTS + ATTRIBUTES"<<std::endl;
@@ -150,7 +152,7 @@ int main(int argc, char *argv[])
         w.setClientArr(ClientArr, ClientCount);
     }
 
-    //testAnimals();
+    testAnimals();
 
     return a.exec();
 }

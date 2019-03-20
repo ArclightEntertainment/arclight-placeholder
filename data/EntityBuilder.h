@@ -2,6 +2,8 @@
 #define ENTITYBUILDER_H
 #include "./data/Entity.h"
 
+#include <iostream>
+
 class EntityBuilder
 {
 public:
@@ -14,8 +16,8 @@ public:
     virtual EntityBuilder * setAge(int a)=0;
     virtual EntityBuilder * setName(std::string n)=0;
     virtual void reset()=0;
-    virtual Entity getEntity()=0;
-    virtual Entity build()=0;
+    virtual Entity * getEntity()=0;
+    virtual Entity * build()=0;
 };
 
 class ClientBuilder : EntityBuilder
@@ -23,18 +25,18 @@ class ClientBuilder : EntityBuilder
 public:
     ClientBuilder();
     ~ClientBuilder();
-    EntityBuilder * addBoolDesc(Description<bool> desc) {entity.addBoolDesc(desc); return this;}
-    EntityBuilder * addIntDesc(Description<int> desc) {entity.addIntDesc(desc); return this;}
-    EntityBuilder * addStringDesc(Description<std::string> desc) {entity.addStringDesc(desc); return this;}
-    EntityBuilder * setID(int id) {entity.setID(id); return this;}
-    EntityBuilder * setAge(int a) {entity.setAge(a); return this;}
-    EntityBuilder * setName(std::string n) {entity.setName(n); return this;}
+    EntityBuilder * addBoolDesc(Description<bool> desc) {entity->addBoolDesc(desc); return this;}
+    EntityBuilder * addIntDesc(Description<int> desc) {entity->addIntDesc(desc); return this;}
+    EntityBuilder * addStringDesc(Description<std::string> desc) {entity->addStringDesc(desc); return this;}
+    EntityBuilder * setID(int id) {entity->setID(id); return this;}
+    EntityBuilder * setAge(int a) {entity->setAge(a); return this;}
+    EntityBuilder * setName(std::string n) {entity->setName(n); return this;}
 
-    void reset() {entity = UClient();}
-    Entity getEntity() {return entity;}
-    Entity build(){}
+    void reset() {entity = new UClient();}
+    UClient * getEntity() {return entity;}
+    UClient * build(){}
 private:
-    UClient entity;
+    UClient * entity;
 };
 
 class AnimalBuilder : EntityBuilder
@@ -42,18 +44,18 @@ class AnimalBuilder : EntityBuilder
 public:
     AnimalBuilder();
     ~AnimalBuilder();
-    EntityBuilder * addBoolDesc(Description<bool> desc) {entity.addBoolDesc(desc); return this;}
-    EntityBuilder * addIntDesc(Description<int> desc) {entity.addIntDesc(desc); return this;}
-    EntityBuilder * addStringDesc(Description<std::string> desc) {entity.addStringDesc(desc); return this;}
-    EntityBuilder * setID(int id) {entity.setID(id); return this;}
-    EntityBuilder * setAge(int a) {entity.setAge(a); return this;}
-    EntityBuilder * setName(std::string n) {entity.setName(n); return this;}
+    EntityBuilder * addBoolDesc(Description<bool> desc) {entity->addBoolDesc(desc); return this;}
+    EntityBuilder * addIntDesc(Description<int> desc) {entity->addIntDesc(desc); return this;}
+    EntityBuilder * addStringDesc(Description<std::string> desc) {entity->addStringDesc(desc); return this;}
+    EntityBuilder * setID(int id) {entity->setID(id); return this;}
+    EntityBuilder * setAge(int a) {entity->setAge(a); return this;}
+    EntityBuilder * setName(std::string n) {entity->setName(n); return this;}
 
-    void reset() {entity = UAnimal();}
-    Entity getEntity() {return entity;}
-    Entity build(){}
+    void reset() {entity = new UAnimal();}
+    UAnimal * getEntity() {return entity;}
+    UAnimal * build(){}
 private:
-    UAnimal entity;
+    UAnimal * entity;
 };
 #endif // ENTITYBUILDER_H
 
