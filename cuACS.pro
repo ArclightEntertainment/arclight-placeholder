@@ -43,7 +43,8 @@ SOURCES += \
     interface/ClientDetailDiag.cpp \
     interface/mytablewidgetitem.cpp \
     data/ArrayCollection.cpp \
-    data/Entity.cpp
+    data/Entity.cpp \
+    data/EntityBuilder.cpp
 
 HEADERS += \
     data/DatabaseInterface.h \
@@ -66,7 +67,8 @@ HEADERS += \
     data/Entity.h \
     data/Description.h \
     data/ArrayCollection.h \
-    data/AbstractCollection.h
+    data/AbstractCollection.h \
+    data/EntityBuilder.h
 
 FORMS += \
     interface/listview.ui \

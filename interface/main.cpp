@@ -150,7 +150,7 @@ int main(int argc, char *argv[])
         w.setClientArr(ClientArr, ClientCount);
     }
 
-    testAnimals();
+    //testAnimals();
 
     return a.exec();
 }
