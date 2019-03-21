@@ -5,6 +5,7 @@
 #include <string>
 #include "../data/DatabaseController.h"
 #include "./EntityBuilder.h"
+#include "./AbstractCollection.h"
 
 class CUACSController
 {
@@ -12,7 +13,8 @@ public:
     CUACSController();
     ~CUACSController();
     //static const std::string DB_PATH;
-    void printAnimalList();
+    UAnimal* getAnimal();
+    Iterator<UAnimal*>* getAnimalIterator();
 private:
     DatabaseController *dbController;
     EntityBuilder *animalBuilder;

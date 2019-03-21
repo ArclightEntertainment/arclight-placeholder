@@ -41,6 +41,7 @@ void ArrayCollection<Item>::append (Item item)
 {
     arr[numElements] = item;
     numElements ++;
+    //std::cout << "Adding " << ((&item == NULL) ? "sadness" : "happyboi") << " in a list of size " << numElements << std::endl;
 
     if (numElements == maxNumElements-1)
     {
@@ -59,7 +60,7 @@ const Item& ArrayCollection<Item>::get(unsigned int index) const
 {
     if (index >= numElements)
     {
-        //return Item();
+        return Item();
     }
     return arr[index];
 }
@@ -91,7 +92,7 @@ void ArrayCollectionIterator<Item>::next()
 template <class Item>
 bool ArrayCollectionIterator<Item>::isDone() const
 {
-    return (arrCollection->count() <= index);
+    return (index >= arrCollection->count());
 }
 
 template <class Item>
@@ -99,7 +100,8 @@ Item ArrayCollectionIterator<Item>::currentItem() const
 {
     if (isDone())
     {
-        //return Item();
+        return Item();
+        //return NULL;
     }
     return arrCollection->get(index);
 }
