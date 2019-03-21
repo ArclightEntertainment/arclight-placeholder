@@ -37,6 +37,7 @@ void ClientDetailDiag::handleButtonEdit()
     }
     else
     {
+        updateCurrentClient();
         editButton->setText("Edit");
     }
     editMode = !editMode;
@@ -57,7 +58,7 @@ void ClientDetailDiag::updateFields()
     lineEdits[0] = ui->titleLineEdit;
     lineEdits[0]->setText(QString::fromStdString(aSubject->getString(6)));
     lineEdits[1] = ui->nameLineEdit;
-    lineEdits[1]->setText(QString::fromStdString(aSubject->getName() + " " + aSubject->getString(5)));
+    lineEdits[1]->setText(QString::fromStdString(aSubject->getName()));
     lineEdits[2] = ui->phoneLineEdit;
     lineEdits[2]->setText(QString::fromStdString(aSubject->getString(7)));
     lineEdits[3] = ui->postalLineEdit;
@@ -72,15 +73,31 @@ void ClientDetailDiag::updateFields()
     lineEdits[7]->setText(QString::fromStdString(aSubject->getString(8)));
     lineEdits[8] = ui->add2LineEdit;
     lineEdits[8]->setText(QString::fromStdString(aSubject->getString(9)));
-    lineEdits[9] = ui->idLineEdit;
-    lineEdits[9]->setText(QString::number(aSubject->getID()));
-    lineEdits[9]->setReadOnly(true);
-    lineEdits[9]->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
+    lineEdits[9] = ui->lNameLineEdit;
+    lineEdits[9]->setText(QString::fromStdString(aSubject->getString(5)));
+
+
+    lineEdits[10] = ui->idLineEdit;
+    lineEdits[10]->setText(QString::number(aSubject->getID()));
+    lineEdits[10]->setReadOnly(true);
+    lineEdits[10]->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
+
 }
 void ClientDetailDiag::updateCurrentClient()
 {
-    aSubject->setName(ui->nameLineEdit->text.toStdString())
+
+    aSubject->setName(ui->nameLineEdit->text().toStdString());
+    aSubject->setString(5, ui->lNameLineEdit->text().toStdString());
+    aSubject->setString(6, ui->titleLineEdit->text().toStdString());
+    aSubject->setString(7, ui->phoneLineEdit->text().toStdString());
+    aSubject->setString(13, ui->postalLineEdit->text().toStdString());
+    aSubject->setString(10, ui->cityLineEdit->text().toStdString());
+    aSubject->setString(11, ui->provLineEdit->text().toStdString());
+    aSubject->setString(12, ui->countryLineEdit->text().toStdString());
+    aSubject->setString(8, ui->add1LineEdit->text().toStdString());
+    aSubject->setString(9, ui->add2LineEdit->text().toStdString());
 }
+
 
 void ClientDetailDiag::setEditable (bool canEdit)
 {

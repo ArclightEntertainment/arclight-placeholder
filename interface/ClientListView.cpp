@@ -35,6 +35,7 @@ void ClientListView::handleButtonDetail()
     ClientDetailDiag diag(mediator, mediator->getClientWithId(id), false, this);
     diag.setWindowTitle(QString::fromStdString(mediator->getClientWithId(id)->getName() + "'s Profile"));
     diag.exec();
+    updateListView();
 }
 
 //Update the ListView, inserts all values
@@ -51,7 +52,6 @@ void ClientListView::updateListView()
     while(!a->isDone())
     {
         //Create item widgets for row
-        std::cout<<a->currentItem()->getName()<<std::endl;
         QTableWidgetItem *title = new QTableWidgetItem (QString::fromStdString(a->currentItem()->getString(6)));
         QTableWidgetItem *lname = new QTableWidgetItem (QString::fromStdString(a->currentItem()->getString(5)));
         QTableWidgetItem *fname = new QTableWidgetItem (QString::fromStdString(a->currentItem()->getName()));

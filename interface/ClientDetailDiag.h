@@ -28,7 +28,7 @@ private slots:
     void handleButtonEdit();
 private:
     //UI Elements
-    static const int NUMLINES = 10;
+    static const int NUMLINES = 11;
     Ui::ClientDetailDiag *ui;
     QPushButton *closeButton;
     QPushButton *editButton;
@@ -41,6 +41,8 @@ private:
     bool editMode;
     void updateFields();
     std::string getPhoneNumberFromUI();
+    void updateCurrentClient();
+    void parseName();
 
     void setEditable (bool canEdit);
 };
