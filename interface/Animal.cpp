@@ -27,7 +27,6 @@ Animal::Animal(std::string n, int a, int lE, char sx, std::string sp, std::strin
 Animal::Animal(int sid, int expenditure, std::string n, int a, int lE, char sx, std::string sp, std::string b, int lOE, int lOC)
 {
     shelterID = sid;
-    //std::cout<<shelterID<< " " << sid <<std::endl;
     name = n;
     age = a;
     lifeExpectancy = lE;
@@ -72,7 +71,6 @@ Animal::Animal(const Animal &a_animal)
     age = a_animal.getAge();
     lifeExpectancy = a_animal.getLifeExpectancy();
     sex = a_animal.getSex();
-    //species = Species(a_animal.getEstimatedCost(), a_animal.getSpecies(), a_animal.getBreed());
     species = Species(a_animal.getEstimatedCost(), a_animal.getSpecies(), a_animal.getBreed());
     levelOfEnergy = a_animal.getLevelOfEnergy();
 

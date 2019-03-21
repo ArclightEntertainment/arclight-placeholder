@@ -39,7 +39,6 @@ void AnimalManager::updateAnimalHistory(int index, bool imm, std::string dietStr
 //Finalize animal at index, send it to database
 void AnimalManager::pushAnimalToDB(int index)
 {
-    //animalCollection[index].setShelterID(DatabaseInterface::pushDBAnimal(animalCollection[index]));
     DatabaseInterface::pushDBAnimal(animalCollection[index]);
 }
 
@@ -72,7 +71,6 @@ void AnimalManager::resize()
             newArray[i] = animalCollection[i];
         }
         animalCollection = newArray;
-        //std::cout<<"Doubled!"<<std::endl;
     }
 }
 

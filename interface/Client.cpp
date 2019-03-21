@@ -33,7 +33,6 @@ std::string Client::getPhoneNumberString()
         if (isdigit(startString[i]))
         {
             totalString += startString[i];
-            //std::cout << totalString << std::endl;
         }
     }
 

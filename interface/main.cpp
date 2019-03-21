@@ -28,7 +28,6 @@ int main(int argc, char *argv[])
 
     for(int i=0; i<clientCount; i++){
         clientArr[i] = *client;
-        std::cout << client->getNameWithTitle() << " " << client->getClientID() << std::endl;
         client++;
     }
 

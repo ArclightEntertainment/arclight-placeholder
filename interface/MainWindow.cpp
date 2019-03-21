@@ -32,7 +32,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::handleButtonAnimalInput()
 {
-    //std::cout << "Pushed Input Button!" << std::endl;
     AnimalInputDiag diag(animalManager, this);
     diag.setWindowTitle("Input Animal");
     diag.exec();
@@ -40,14 +39,12 @@ void MainWindow::handleButtonAnimalInput()
 
 void MainWindow::handleButtonAnimalView()
 {
-    //std::cout << "Pushed View Button!" << std::endl;
     AnimalListView diag(animalManager, this);
     diag.setWindowTitle("Animal List");
     diag.exec();
 }
 void MainWindow::handleButtonClientInput()
 {
-    //std::cout << "Pushed Input Button!" << std::endl;
     ClientInputDiag diag(clientManager, this);
     diag.setWindowTitle("Input Client");
     diag.exec();
@@ -55,7 +52,6 @@ void MainWindow::handleButtonClientInput()
 
 void MainWindow::handleButtonClientView()
 {
-   std::cout << "Pushed View Button!" << std::endl;
    ClientListView diag(clientManager, this);
    diag.setWindowTitle("Client List");
    diag.exec();
