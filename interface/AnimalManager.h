@@ -24,6 +24,7 @@ public:
     inline void setArr(Animal *arr, int numAn){animalCollection = arr; numAnimals = numAn; maxNumAnimals = numAn; resize();setNextShelterID();}
     void resize();
     inline void printAll(){for (int i = 0; i < numAnimals; i++){std::cout<<animalCollection[i].getName() << " " << animalCollection[i].getShelterID() << std::endl;}}
+    int indexOfAnimalWithID (int id);
 private:
     Animal *animalCollection;
     int numAnimals;
