@@ -1,0 +1,34 @@
+
+INSERT OR REPLACE INTO Client(
+		id,
+		fName,
+		lName,
+		prefTitle,
+		phoneNumber,
+		age,
+		hasChildrenUnderTwelve,
+		hasPets,
+		lengthOfOwnershipExpectation,
+		monthlyBudgetForAnimal,
+		availabilityPerDay,
+		levelOfMobility,
+		levelOfPatience,
+		previousExperience,
+		physicalAffection
+	)VALUES(
+		15,
+		"Jeanne",
+		"Dalton",
+		"Ms.",
+		"6137910572",
+		85,
+		0,
+		1,
+		8,
+		50,
+		30,
+		2,
+		1,
+		1,
+		1
+);
