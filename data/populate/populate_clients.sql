@@ -3,3 +3,19 @@
 .read populate/clients/2.sql
 .read populate/clients/3.sql
 .read populate/clients/4.sql
+.read populate/clients/5.sql
+.read populate/clients/6.sql
+.read populate/clients/7.sql
+.read populate/clients/8.sql
+.read populate/clients/9.sql
+.read populate/clients/10.sql
+.read populate/clients/11.sql
+.read populate/clients/12.sql
+.read populate/clients/13.sql
+.read populate/clients/14.sql
+.read populate/clients/15.sql
+.read populate/clients/16.sql
+.read populate/clients/17.sql
+.read populate/clients/18.sql
+.read populate/clients/19.sql
+
