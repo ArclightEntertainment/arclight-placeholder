@@ -126,7 +126,7 @@ void AnimalDetailDiag::updateFields()
     progBars[6] = ui->timeCommitmentBar;
     progBars[6]->setValue(aSubject->getInt(16));
     progBars[7] = ui->energyBar;
-    progBars[7]->setValue(aSubject->getInt(17));
+    progBars[7]->setValue(aSubject->getInt(9));
     progBars[8] = ui->careBar;
     progBars[8]->setValue(aSubject->getInt(8));
 
