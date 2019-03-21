@@ -8,10 +8,11 @@ class Description
 public:
     Description():name(""), attributeID(), value(){}
     Description(std::string n, int aID, T v) : name(n), attributeID(aID), value(v){}
+    Description(const Description<T> & desc) {name = desc.getName(); attributeID = desc.getAttributeID(); value = desc.getValue();}
     ~Description(){}
-    T getValue() {return value;}
-    int getAttributeID() {return attributeID;}
-    std::string getName() {return name;}
+    T getValue() const {return value;}
+    int getAttributeID() const {return attributeID;}
+    std::string getName() const {return name;}
 private:
     std::string name;
     int attributeID;
