@@ -71,15 +71,13 @@ SOURCES       = data/DatabaseInterface.cpp \
 		interface/ArrayCollection.cpp \
 		interface/Entity.cpp \
 		interface/EntityBuilder.cpp \
-		interface/CUACSController.cpp \
-		interface/old.cpp moc_MainWindow.cpp \
+		interface/CUACSController.cpp moc_MainWindow.cpp \
 		moc_AnimalInputDiag.cpp \
 		moc_AnimalListView.cpp \
 		moc_AnimalDetailDiag.cpp \
 		moc_ClientInputDiag.cpp \
 		moc_ClientListView.cpp \
-		moc_ClientDetailDiag.cpp \
-		moc_old.cpp
+		moc_ClientDetailDiag.cpp
 OBJECTS       = DatabaseInterface.o \
 		DatabaseController.o \
 		main.o \
@@ -102,15 +100,13 @@ OBJECTS       = DatabaseInterface.o \
 		Entity.o \
 		EntityBuilder.o \
 		CUACSController.o \
-		old.o \
 		moc_MainWindow.o \
 		moc_AnimalInputDiag.o \
 		moc_AnimalListView.o \
 		moc_AnimalDetailDiag.o \
 		moc_ClientInputDiag.o \
 		moc_ClientListView.o \
-		moc_ClientDetailDiag.o \
-		moc_old.o
+		moc_ClientDetailDiag.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -224,8 +220,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/ArrayCollection.h \
 		interface/AbstractCollection.h \
 		interface/EntityBuilder.h \
-		interface/CUACSController.h \
-		interface/old.h data/DatabaseInterface.cpp \
+		interface/CUACSController.h data/DatabaseInterface.cpp \
 		data/DatabaseController.cpp \
 		interface/main.cpp \
 		interface/Animal.cpp \
@@ -246,8 +241,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/ArrayCollection.cpp \
 		interface/Entity.cpp \
 		interface/EntityBuilder.cpp \
-		interface/CUACSController.cpp \
-		interface/old.cpp
+		interface/CUACSController.cpp
 QMAKE_TARGET  = cuACS
 DESTDIR       = 
 TARGET        = cuACS
@@ -463,8 +457,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.h data/DatabaseController.h interface/Animal.h interface/AnimalManager.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/Client.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientManager.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h interface/Entity.h interface/Description.h interface/ArrayCollection.h interface/AbstractCollection.h interface/EntityBuilder.h interface/CUACSController.h interface/old.h $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.cpp data/DatabaseController.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/Client.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientManager.cpp interface/ClientListView.cpp interface/ClientDetailDiag.cpp interface/mytablewidgetitem.cpp interface/ArrayCollection.cpp interface/Entity.cpp interface/EntityBuilder.cpp interface/CUACSController.cpp interface/old.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseInterface.h data/DatabaseController.h interface/Animal.h interface/AnimalManager.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/Client.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientManager.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h interface/Entity.h interface/Description.h interface/ArrayCollection.h interface/AbstractCollection.h interface/EntityBuilder.h interface/CUACSController.h $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseInterface.cpp data/DatabaseController.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/Client.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientManager.cpp interface/ClientListView.cpp interface/ClientDetailDiag.cpp interface/mytablewidgetitem.cpp interface/ArrayCollection.cpp interface/Entity.cpp interface/EntityBuilder.cpp interface/CUACSController.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents interface/listview.ui interface/mainwindow.ui interface/animaldetaildialog.ui interface/animalinputdialog.ui interface/clientinputdialog.ui interface/clientdetaildialog.ui $(DISTDIR)/
 
 
@@ -497,9 +491,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp moc_ClientListView.cpp moc_ClientDetailDiag.cpp moc_old.cpp
+compiler_moc_header_make_all: moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp moc_ClientListView.cpp moc_ClientDetailDiag.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp moc_ClientListView.cpp moc_ClientDetailDiag.cpp moc_old.cpp
+	-$(DEL_FILE) moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp moc_ClientListView.cpp moc_ClientDetailDiag.cpp
 moc_MainWindow.cpp: interface/CUACSController.h \
 		data/DatabaseController.h \
 		interface/EntityBuilder.h \
@@ -512,13 +506,10 @@ moc_MainWindow.cpp: interface/CUACSController.h \
 		interface/AnimalListView.h \
 		interface/mytablewidgetitem.h \
 		interface/AnimalDetailDiag.h \
-		interface/AnimalManager.h \
-		interface/Animal.h \
-		interface/species.h \
-		interface/Levels.h \
 		interface/ClientListView.h \
 		interface/ClientManager.h \
 		interface/Client.h \
+		interface/Levels.h \
 		interface/Address.h \
 		interface/ClientProfile.h \
 		interface/ClientDetailDiag.h \
@@ -548,19 +539,18 @@ moc_AnimalListView.cpp: interface/mytablewidgetitem.h \
 		interface/ArrayCollection.h \
 		interface/AbstractCollection.h \
 		interface/AnimalDetailDiag.h \
-		interface/AnimalManager.h \
-		interface/Animal.h \
-		interface/species.h \
-		interface/Levels.h \
 		interface/AnimalListView.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include interface/AnimalListView.h -o moc_AnimalListView.cpp
 
-moc_AnimalDetailDiag.cpp: interface/AnimalManager.h \
-		interface/Animal.h \
-		interface/species.h \
-		interface/Levels.h \
+moc_AnimalDetailDiag.cpp: interface/CUACSController.h \
+		data/DatabaseController.h \
+		interface/EntityBuilder.h \
+		interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
 		interface/AnimalDetailDiag.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -598,18 +588,6 @@ moc_ClientDetailDiag.cpp: interface/ClientManager.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include interface/ClientDetailDiag.h -o moc_ClientDetailDiag.cpp
-
-moc_old.cpp: interface/CUACSController.h \
-		data/DatabaseController.h \
-		interface/EntityBuilder.h \
-		interface/Entity.h \
-		interface/Description.h \
-		interface/ArrayCollection.h \
-		interface/AbstractCollection.h \
-		interface/old.h \
-		moc_predefs.h \
-		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include interface/old.h -o moc_old.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -675,13 +653,10 @@ main.o: interface/main.cpp interface/MainWindow.h \
 		interface/AnimalListView.h \
 		interface/mytablewidgetitem.h \
 		interface/AnimalDetailDiag.h \
-		interface/AnimalManager.h \
-		interface/Animal.h \
-		interface/species.h \
-		interface/Levels.h \
 		interface/ClientListView.h \
 		interface/ClientManager.h \
 		interface/Client.h \
+		interface/Levels.h \
 		interface/Address.h \
 		interface/ClientProfile.h \
 		interface/ClientDetailDiag.h
@@ -715,13 +690,10 @@ MainWindow.o: interface/MainWindow.cpp interface/MainWindow.h \
 		interface/AnimalListView.h \
 		interface/mytablewidgetitem.h \
 		interface/AnimalDetailDiag.h \
-		interface/AnimalManager.h \
-		interface/Animal.h \
-		interface/species.h \
-		interface/Levels.h \
 		interface/ClientListView.h \
 		interface/ClientManager.h \
 		interface/Client.h \
+		interface/Levels.h \
 		interface/Address.h \
 		interface/ClientProfile.h \
 		interface/ClientDetailDiag.h \
@@ -749,18 +721,17 @@ AnimalListView.o: interface/AnimalListView.cpp interface/AnimalListView.h \
 		interface/ArrayCollection.h \
 		interface/AbstractCollection.h \
 		interface/AnimalDetailDiag.h \
-		interface/AnimalManager.h \
-		interface/Animal.h \
-		interface/species.h \
-		interface/Levels.h \
 		ui_listview.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AnimalListView.o interface/AnimalListView.cpp
 
 AnimalDetailDiag.o: interface/AnimalDetailDiag.cpp interface/AnimalDetailDiag.h \
-		interface/AnimalManager.h \
-		interface/Animal.h \
-		interface/species.h \
-		interface/Levels.h \
+		interface/CUACSController.h \
+		data/DatabaseController.h \
+		interface/EntityBuilder.h \
+		interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
 		ui_animaldetaildialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AnimalDetailDiag.o interface/AnimalDetailDiag.cpp
 
@@ -851,14 +822,6 @@ CUACSController.o: interface/CUACSController.cpp interface/CUACSController.h \
 		interface/AbstractCollection.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CUACSController.o interface/CUACSController.cpp
 
-old.o: interface/old.cpp interface/AnimalDetailDiag.h \
-		interface/AnimalManager.h \
-		interface/Animal.h \
-		interface/species.h \
-		interface/Levels.h \
-		ui_animaldetaildialog.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o old.o interface/old.cpp
-
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp
 
@@ -879,9 +842,6 @@ moc_ClientListView.o: moc_ClientListView.cpp
 
 moc_ClientDetailDiag.o: moc_ClientDetailDiag.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ClientDetailDiag.o moc_ClientDetailDiag.cpp
-
-moc_old.o: moc_old.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_old.o moc_old.cpp
 
 ####### Install
 
