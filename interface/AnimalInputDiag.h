@@ -9,7 +9,7 @@
 #include <QDebug>
 #include <qstring.h>
 
-#include "AnimalManager.h"
+#include "interface/CUACSController.h"
 
 namespace Ui {
 class AnimalInputDiag;
@@ -20,8 +20,8 @@ class AnimalInputDiag : public QDialog
     Q_OBJECT
 
 public:
-    explicit AnimalInputDiag(AnimalManager *manager, QWidget *parent = 0);
-    ~AnimalInputDiag();
+    explicit AnimalInputDiag(CUACSController *med, QWidget *parent = 0);
+    virtual ~AnimalInputDiag();
 private slots:
     void handleButtonSave();
     void handleButtonCancel();
@@ -31,7 +31,7 @@ private:
     QPushButton *saveButton;
     QPushButton *cancelButton;
     //pointer to manager
-    AnimalManager *aManager;
+    CUACSController *mediator;
     int getExpenditureFromUI();
 };
 
