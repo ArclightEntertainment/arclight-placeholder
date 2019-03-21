@@ -65,6 +65,14 @@ const Item& ArrayCollection<Item>::get(unsigned int index) const
     return arr[index];
 }
 
+
+
+template <class Item>
+void ArrayCollection<Item>::setValue (int index, Item newVal)
+{
+    arr[index] = newVal;
+}
+
 template <class Item>
 ArrayCollectionIterator<Item>::ArrayCollectionIterator(const ArrayCollection<Item> * arrC) : arrCollection(arrC), index (0)
 {

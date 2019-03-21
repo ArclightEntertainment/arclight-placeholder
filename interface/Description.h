@@ -1,7 +1,7 @@
 #ifndef DESCRIPTION_H
 #define DESCRIPTION_H
 #include <string>
-
+#include <iostream>
 template <class T>
 class Description
 {
@@ -12,6 +12,9 @@ public:
     T getValue() {return value;}
     int getAttributeID() {return attributeID;}
     std::string getName() {return name;}
+    void setValue(T v) {value=v;}
+    void setAttributeID(int i) {attributeID=i;}
+    void setName(std::string n) {name=n;}
 private:
     std::string name;
     int attributeID;

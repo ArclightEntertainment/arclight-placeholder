@@ -32,7 +32,7 @@ public:
     void populateClientProfile(int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, int lOfMobility, int lOfPatience, int prevExp, int physAffect);
     void finalizeClient();
 
-    Iterator<UAnimal *> * createAnimalIterator () {return animalCollection.createIterator();}
+    Iterator<UAnimal *> * createAnimalIterator () {std::cout<<animalCollection.count() << std::endl; return animalCollection.createIterator();}
     Iterator<UClient *> * createClientIterator () {return clientCollection.createIterator();}
 private:
     DatabaseController *dbController;

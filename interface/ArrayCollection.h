@@ -17,6 +17,7 @@ public:
     virtual unsigned int length() const;
     virtual void append (Item item);
     virtual const Item& get(unsigned int index) const;
+    void setValue (int index, Item newVal);
 
 private:
     Item * arr;

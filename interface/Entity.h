@@ -27,6 +27,10 @@ public:
     std::string getString (int id);
     bool getBool (int id);
 
+    void setInt (int id, int val);
+    void setString (int id, std::string val);
+    void setBool (int id, bool val);
+
     Iterator<Description<bool>> * getBoolIterator() {return boolCollection.createIterator();}
     Iterator<Description<int>> * getIntIterator() {return intCollection.createIterator();}
     Iterator<Description<std::string>> * getStringIterator(){return stringCollection.createIterator();}
