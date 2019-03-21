@@ -12,17 +12,15 @@ MainWindow::MainWindow(QWidget *parent) :
     animalInputButton = ui->animalInputButton;
     clientViewButton = ui->clientViewButton;
     clientInputButton = ui->clientInputButton;
-    //TEST: testButton = ui->testButton;
 
     //connect buttons to slots
     connect(animalInputButton, SIGNAL(released()), this,SLOT(handleButtonAnimalInput()));
     connect(animalViewButton, SIGNAL(released()), this,SLOT(handleButtonAnimalView()));
     connect(clientInputButton, SIGNAL(released()), this,SLOT(handleButtonClientInput()));
     connect(clientViewButton, SIGNAL(released()), this,SLOT(handleButtonClientView()));
-    //TEST: connect(testButton, SIGNAL(released()), this,SLOT(handleButtonTest()));
 
-    animalManager = new AnimalManager();
-    clientManager = new ClientManager();
+    mediator = new CUACSController();
+    animalIterator = mediator->getAnimalIterator();
 }
 
 MainWindow::~MainWindow()
@@ -32,27 +30,27 @@ MainWindow::~MainWindow()
 
 void MainWindow::handleButtonAnimalInput()
 {
-    AnimalInputDiag diag(animalManager, this);
+    AnimalInputDiag diag(mediator, this);
     diag.setWindowTitle("Input Animal");
     diag.exec();
 }
 
 void MainWindow::handleButtonAnimalView()
 {
-    AnimalListView diag(animalManager, this);
+    AnimalListView diag(mediator, this);
     diag.setWindowTitle("Animal List");
     diag.exec();
 }
 void MainWindow::handleButtonClientInput()
 {
-    ClientInputDiag diag(clientManager, this);
+    ClientInputDiag diag(mediator, this);
     diag.setWindowTitle("Input Client");
     diag.exec();
 }
 
 void MainWindow::handleButtonClientView()
 {
-   ClientListView diag(clientManager, this);
-   diag.setWindowTitle("Client List");
-   diag.exec();
+   //ClientListView diag(mediator, this);
+   //diag.setWindowTitle("Client List");
+   //diag.exec();
 }
