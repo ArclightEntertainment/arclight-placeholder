@@ -61,7 +61,6 @@ public:
     inline std::string getSexString() const {return (sex == 'M') ? "Male" : "Female";}
     inline std::string getSpecies() const {return species.getSpecies();}
     inline std::string getBreed() const {return species.getBreed();}
-    //inline int getEstimatedCost() const {return species.getCostPerMonth();}
     inline ThreeScale getLevelOfEnergy() const {return levelOfEnergy;}
     inline ThreeScale getLevelOfCare() const {return levelOfCare;}
 
@@ -99,14 +98,19 @@ public:
     inline void setShelterID(int id) {shelterID = id; std::cout<<shelterID<<std::endl;}
     inline void setName(std::string n) {name = n;}
     inline void setAge(int a) {age = a;}
+    inline void setLifeExpectancy(int lE) {lifeExpectancy = lE;}
+    inline void setEstimatedCost(int eC) {estimatedCostPerMonth = eC;}
     inline void setSex(char s) {sex = s;}
     //inline void setSpecies(int estimate, std::string s, std::string b="") {species.setSpecies(estimate, s, b);}
     inline void setSpecies(Species *s) {species = *s;}
-    inline void setDisabled(ThreeScale d) {levelOfEnergy = d;}
-    inline void setDisabled(int l) {levelOfEnergy = (l == 0) ? ThreeScale::LOW : ((l == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);}
+    inline void setEnergy(ThreeScale d) {levelOfEnergy = d;}
+    inline void setEnergy(int l) {levelOfEnergy = (l == 0) ? ThreeScale::LOW : ((l == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);}
+    inline void setCareLevel(ThreeScale d) {levelOfCare = d;}
+    inline void setCareLevel(int l) {levelOfCare = (l == 0) ? ThreeScale::LOW : ((l == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);}
 
     //social
     inline void setTraining(ThreeScale hT)       {trainingLevel=hT;}
+    inline void setTrainability(ThreeScale hT)       {trainabilityLevel=hT;}
     inline void setAffForAdults(ThreeScale a)    {affinityForPeople = a;}
     inline void setAffForChildren(ThreeScale a)  {affinityForChildren = a;}
     inline void setAffForAnimals(ThreeScale a)   {affinityForAnimals = a;}
@@ -114,6 +118,7 @@ public:
     inline void setTimeCommitment(ThreeScale tC) {timeCommitment = tC;}
 
     inline void setTraining         (int l) {trainingLevel =         (l == 0) ? ThreeScale::LOW : ((l == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);}
+    inline void setTrainability     (int l) {trainabilityLevel =         (l == 0) ? ThreeScale::LOW : ((l == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);}
     inline void setAffForAdults     (int l) {affinityForPeople =     (l == 0) ? ThreeScale::LOW : ((l == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);}
     inline void setAffForChildren   (int l) {affinityForChildren =   (l == 0) ? ThreeScale::LOW : ((l == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);}
     inline void setAffForAnimals    (int l) {affinityForAnimals =    (l == 0) ? ThreeScale::LOW : ((l == 1) ? ThreeScale::MEDIUM : ThreeScale::HIGH);}
