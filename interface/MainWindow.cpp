@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mediator = new CUACSController();
     animalIterator = mediator->getAnimalIterator();
+    clientIterator = mediator->getClientIterator();
 }
 
 MainWindow::~MainWindow()
@@ -50,7 +51,7 @@ void MainWindow::handleButtonClientInput()
 
 void MainWindow::handleButtonClientView()
 {
-   //ClientListView diag(mediator, this);
-   //diag.setWindowTitle("Client List");
-   //diag.exec();
+   ClientListView diag(mediator, this);
+   diag.setWindowTitle("Client List");
+   diag.exec();
 }

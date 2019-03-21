@@ -14,6 +14,7 @@ public:
     ~CUACSController();
     //static const std::string DB_PATH;
     Iterator<UAnimal*>* getAnimalIterator();
+    Iterator<UClient*>* getClientIterator();
     unsigned int getNumEntities (char type) {return (type == 'c') ? clientCollection.count() : animalCollection.count();}
 
     Entity * getAnimalWithId(int id);
@@ -33,7 +34,7 @@ public:
     void finalizeClient();
 
     Iterator<UAnimal *> * createAnimalIterator () {std::cout<<animalCollection.count() << std::endl; return animalCollection.createIterator();}
-    Iterator<UClient *> * createClientIterator () {return clientCollection.createIterator();}
+    Iterator<UClient *> * createClientIterator () {std::cout<<clientCollection.count() << std::endl; return clientCollection.createIterator();}
 private:
     DatabaseController *dbController;
 

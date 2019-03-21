@@ -14,6 +14,86 @@ CUACSController::CUACSController()
 CUACSController::~CUACSController()
 {
 
+
+}
+
+Iterator<UClient*>* CUACSController::getClientIterator()
+{
+    if(isDBOpen)
+    {
+        dbController->setSQL("SELECT id, fName, hasChildrenUnderTwelve, hasPets, age, lName, prefTitle, phoneNumber, streetLine1, streetLine2, city, subnationalDivision, country, postalCode, lengthOfOwnershipExpectation, monthlyBudgetForAnimal, availabilityPerDay, levelOfMobility, levelOfPatience, previousExperience, physicalAffection FROM Client JOIN Address WHERE Client.id = Address.clientID");
+        while(dbController->step())
+        {
+            entity = new ClientBuilder();
+            while(dbController->stepCol() != -1)
+            {
+                int currCol = dbController->getCurrCol();
+                std::string colName = dbController->getColName();
+                switch(currCol)
+                {
+                  case 0:
+                  {
+                      entity->setID(dbController->getIntCol());
+                      break;
+                  }
+                  case 1:
+                  {
+                      entity->setName(dbController->getStringCol());
+                      break;
+                  }
+                  case 4:
+                  {
+                      entity->setAge(dbController->getIntCol());
+                      break;
+                  }
+                  case 2:
+                  case 3:
+                  {
+                    bool colValue = dbController->getIntCol();
+                    Description<bool> desc = Description<bool>(colName, currCol, colValue);
+                    entity->addBoolDesc(desc);
+                    break;
+                  }
+                  case 5:
+                  case 6:
+                  case 7:
+                  case 8:
+                  case 9:
+                  case 10:
+                  case 11:
+                  case 12:
+                  case 13:
+                  {
+                    std::string colValue = dbController->getStringCol();
+                    Description<std::string> desc = Description<std::string>(colName, currCol, colValue);
+                    entity->addStringDesc(desc);
+                    break;
+                  }
+                  case 14:
+                  case 15:
+                  case 16:
+                  case 17:
+                  case 18:
+                  case 19:
+                  case 20:
+                  {
+                    int colValue = dbController->getIntCol();
+                    Description<int> desc = Description<int>(colName, currCol, colValue);
+                    entity->addIntDesc(desc);
+                    break;
+                  }
+
+                }
+            }
+            UClient* client = (UClient*)entity->build();
+            std::cout << "Test:" << client->getName()<< std::endl;
+            if(client != NULL)
+            {
+                clientCollection.append(client);
+            }
+        }
+        return clientCollection.createIterator();
+    }
 }
 
 Iterator<UAnimal*>* CUACSController::getAnimalIterator()
@@ -87,12 +167,13 @@ Iterator<UAnimal*>* CUACSController::getAnimalIterator()
                 }
             }
             UAnimal* animal = (UAnimal*)entity->build();
+            //std::cout << animal->getName() << std::endl;
             if(animal != NULL){
                 animalCollection.append(animal);
             }
         }
+        return animalCollection.createIterator();
     }
-    return animalCollection.createIterator();
 }
 
 Entity * CUACSController::getAnimalWithId(int id)

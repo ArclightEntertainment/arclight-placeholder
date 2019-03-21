@@ -43,6 +43,7 @@ private:
     //TEST: QPushButton *testButton;
     CUACSController * mediator;
     Iterator<UAnimal*> * animalIterator;
+    Iterator<UClient*> * clientIterator;
 };
 
 #endif // MAINWINDOW_H
