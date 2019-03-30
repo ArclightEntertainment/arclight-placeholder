@@ -1,20 +1,21 @@
 #include "CandidateSet.h"
+#include <algorithm>
 
 CandidateSet::CandidateSet(int maxSize)
 {
-   candidates = new Candidate*[maxSize];
    size = 0;
-   setCompatibility = 0;
+   compatibilitySum = 0.0;
+   candidates = new AnimalClientPair*[maxSize];
 }
 
-Candidate* CandidateSet::get(int index)
+AnimalClientPair* CandidateSet::get(int index)
 {
-    return candidates[i];
+    return candidates[index];
 }
 
-Candidate* CandidateSet::remove(int index)
+AnimalClientPair* CandidateSet::remove(int index)
 {
-    Candidate* removed = get(index);
+    AnimalClientPair* removed = get(index);
     for (int i=index; i<size-1; i++)
     {
         candidates[i] = candidates[i+1];
@@ -26,7 +27,7 @@ Candidate* CandidateSet::remove(int index)
     return removed;
 }
 
-void CandidateSet::add(Candidate *pair)
+void CandidateSet::add(AnimalClientPair *pair)
 {
     candidates[size] = pair;
     compatibilitySum += pair->getCompatibility();
@@ -41,10 +42,10 @@ float CandidateSet::getSetCompatibility()
 void CandidateSet::sort()
 {
     std::sort(candidates, candidates + size,
-              [](Candidate* a, Candidate* b)
+              [](AnimalClientPair* a, AnimalClientPair* b)
     {
         return a->getCompatibility() > b->getCompatibility();
-    };
+    });
 }
 
 bool CandidateSet::containsAnimal(Animal *animal)

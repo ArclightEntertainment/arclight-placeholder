@@ -7,6 +7,6 @@
 class AttributeComparator
 {
 public:
-    static float calculateCompatability(Animal* animal, Client* client);
-}
+    static float calculateCompatibility(Animal* animal, Client* client);
+};
 #endif // ATTRIBUTECOMPARATOR_H

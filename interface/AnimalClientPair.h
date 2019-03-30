@@ -4,12 +4,12 @@
 #include "Animal.h"
 #include "Client.h"
 
-class AnimalClientPair :: AttributeComparator
+class AnimalClientPair
 {
 private:
     Animal *animal;
     Client *client;
-    float compatability;
+    float compatibility;
 
 public:
     AnimalClientPair(Animal *a, Client *c);

@@ -9,20 +9,20 @@
 class ACMController
 {
 private:
-    float threshold;
     int numAnimals;
     int numClients;
-    CandidateSet candidates;
+    float threshold;
+    CandidateSet * candidates;
 
-    CandidateSet *generateAndStoreSortedCandidates(Animal **animals, Client **clients) = 0;
-    CandidateSet *generateCandidate(ANimal *animal, Client *client) = 0;
-    CandidateSet *sortCandidates() = 0;
+    void generateAndStoreSortedCandidates(Animal **animals, Client **clients);
+    AnimalClientPair *generateCandidate(Animal *animal, Client *client);
+    void sortCandidates();
     bool isAcceptable(AnimalClientPair *pair);
-    //CandidateSet *filterCandidates() = 0;
-    //CandidateSet *getMatchSet() = 0;
+    //CandidateSet *filterCandidates();
+    //CandidateSet *getMatchSet();
 
 public:
-    ACMController(Animal **animals, Client **clients, float thresholdValue) = 0;
-    CandidateSet* run() = 0;
+    ACMController(Animal **animals, Client **clients, float thresholdValue);
+    CandidateSet* run();
 };
 #endif // ACMCONTROLLER_H

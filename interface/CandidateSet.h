@@ -5,29 +5,29 @@
 #include "Animal.h"
 #include "Client.h"
 
-using Candidate = AnimalClientPair;
+//using Candidate = AnimalClientPair;
 
 class CandidateSet
 {
 private:
-    float compatibilitySum;
     //float setCompatibility;
     int size;
-    Candidate **candidates;
+    float compatibilitySum;
+    AnimalClientPair **candidates;
 
 public:
-    CandidateSet(int maxSize) = 0;
-    float getSetCompatibility() = 0;
-    void add(Candidate *pair) = 0;
-    Candidate *get(int index) = 0;
-    Candidate *remove(int index) = 0;
-    void sort() = 0;
-    bool containsAnimal(Animal *animal) = 0;
-    bool containsClient(Client *client) = 0;
-    //int getSize() = 0;
-    //bool isPrunable() = 0;
-    //bool isEmpty() = 0;
-    //int compare(CandidateSet *other) = 0;
+    CandidateSet(int maxSize);
+    float getSetCompatibility();
+    void add(AnimalClientPair *pair);
+    AnimalClientPair *get(int index);
+    AnimalClientPair *remove(int index);
+    void sort();
+    bool containsAnimal(Animal *animal);
+    bool containsClient(Client *client);
+    //int getSize();
+    //bool isPrunable();
+    //bool isEmpty();
+    //int compare(CandidateSet *other);
     //CandidateSet *next();
     //CandidateSet(CandidateSet *other);
 };

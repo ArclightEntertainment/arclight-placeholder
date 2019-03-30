@@ -1,18 +1,17 @@
 #include "ACMController.h"
-#include <algorithm>
 
-ACMController::ACMController(Animal **animals, Clients **clients, float thresholdValue)
+ACMController::ACMController(Animal **animals, Client **clients, float thresholdValue)
 {
-    candidates = CandidateSet();
-
     numAnimals = sizeof(animals)/sizeof(Animal*);
     numClients = sizeof(clients)/sizeof(Client*);
     threshold = thresholdValue;
 
+    //int maxCandidateSetSize = numAnimals * numClients;
+    candidates = new CandidateSet(numAnimals * numClients);
     generateAndStoreSortedCandidates(animals, clients);
 }
 
-CandidateSet *ACMController::generateAndStoreSortedCandidates(Animal **animals, Client **clients)
+void ACMController::generateAndStoreSortedCandidates(Animal **animals, Client **clients)
 {
     for (int i=0; i<numAnimals; i++)
     {
@@ -21,7 +20,7 @@ CandidateSet *ACMController::generateAndStoreSortedCandidates(Animal **animals, 
             AnimalClientPair* pair = generateCandidate(animals[i], clients[j]);
             if (isAcceptable(pair))
             {
-                candidates.add(pair);
+                candidates->add(pair);
             }
         }
     }
@@ -36,9 +35,9 @@ AnimalClientPair *ACMController::generateCandidate(Animal *animal, Client *clien
 
 }
 
-CandidateSet *ACMController::sortCandidates()
+void ACMController::sortCandidates()
 {
-    candidates.sort();
+    candidates->sort();
 }
 
 bool ACMController::isAcceptable(AnimalClientPair *pair)
@@ -68,5 +67,5 @@ CandidateSet *ACMController::getMatchSet()
 CandidateSet *ACMController::run()
 {
     // Temporary
-    return &candidates;
+    return candidates;
 }

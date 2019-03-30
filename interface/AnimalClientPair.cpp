@@ -5,7 +5,7 @@ AnimalClientPair::AnimalClientPair(Animal *a, Client *c)
 {
     animal = a;
     client = c;
-    AttributeComparator::calculateCompatability(animal, client);
+    compatibility = AttributeComparator::calculateCompatibility(a, c);
 }
 
 Animal *AnimalClientPair::getAnimal()
@@ -18,7 +18,7 @@ Client *AnimalClientPair::getClient()
     return client;
 }
 
-float AnimalClientPair::getCompatability()
+float AnimalClientPair::getCompatibility()
 {
-    return compatability;
+    return compatibility;
 }
