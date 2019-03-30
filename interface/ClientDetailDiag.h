@@ -10,7 +10,7 @@
 #include <QDebug>
 #include <qstring.h>
 
-#include "CUACSController.h"
+#include "ClientManager.h"
 
 namespace Ui {
     class ClientDetailDiag;
@@ -21,7 +21,7 @@ class ClientDetailDiag : public QDialog
     Q_OBJECT
 
 public:
-    explicit ClientDetailDiag(CUACSController *med, Entity* subject, bool canEdit=false, QWidget *parent = 0);
+    explicit ClientDetailDiag(ClientManager *manager, Client* subject, bool canEdit=false, QWidget *parent = 0);
     ~ClientDetailDiag();
 private slots:
     void handleButtonClose();
@@ -35,8 +35,8 @@ private:
 
     QLineEdit *lineEdits[NUMLINES];
     //pointer to manager + subject
-    CUACSController *mediator;
-    Entity *aSubject;
+    ClientManager *aManager;
+    Client *aSubject;
     //update field values, remove edit privileges
     bool editMode;
     void updateFields();

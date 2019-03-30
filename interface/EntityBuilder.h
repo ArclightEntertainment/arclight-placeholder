@@ -4,7 +4,7 @@
 #define NUM_ANIMAL_DESC 22
 #define NUM_CLIENT_DESC 21
 
-#include "./interface/Entity.h"
+#include "./interface//Entity.h"
 
 #include <iostream>
 

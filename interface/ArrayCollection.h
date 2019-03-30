@@ -2,7 +2,7 @@
 #define ARRAYCOLLECTION_H
 
 #define START_LENGTH 30
-#include "./interface/AbstractCollection.h"
+#include "./interface//AbstractCollection.h"
 
 //Iterator implementation based off of the one found here: https://www.robertlarsononline.com/2017/04/24/iterator-pattern-using-cplusplus/
 
@@ -17,7 +17,6 @@ public:
     virtual unsigned int length() const;
     virtual void append (Item item);
     virtual const Item& get(unsigned int index) const;
-    void setValue (int index, Item newVal);
 
 private:
     Item * arr;

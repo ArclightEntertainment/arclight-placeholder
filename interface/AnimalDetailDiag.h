@@ -15,7 +15,7 @@
 #include <QDebug>
 #include <qstring.h>
 
-#include "CUACSController.h"
+#include "AnimalManager.h"
 
 namespace Ui {
     class AnimalDetailDiag;
@@ -26,12 +26,11 @@ class AnimalDetailDiag : public QDialog
     Q_OBJECT
 
 public:
-    explicit AnimalDetailDiag(CUACSController *med, Entity* subject, bool canEdit=false, QWidget *parent = 0);
+    explicit AnimalDetailDiag(AnimalManager *manager, Animal* subject, bool canEdit=false, QWidget *parent = 0);
     ~AnimalDetailDiag();
 private slots:
     void handleButtonClose();
     void handleButtonEdit();
-private:
 private:
     bool editMode;
     //UI Elements
@@ -55,8 +54,8 @@ private:
     QPushButton *closeButton;
     QPushButton *editButton;
     //pointer to manager + subject
-    CUACSController *mediator;
-    Entity *aSubject;
+    AnimalManager *aManager;
+    Animal *aSubject;
     //update field values, remove edit privileges
     void updateFields();
     void updateCurrentAnimal();

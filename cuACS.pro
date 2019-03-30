@@ -26,7 +26,6 @@ LIBS += -lsqlite3
 
 SOURCES += \
     data/DatabaseInterface.cpp \
-    data/DatabaseController.cpp \
     interface/main.cpp \
     interface/Animal.cpp \
     interface/AnimalManager.cpp \
@@ -46,17 +45,15 @@ SOURCES += \
     interface/ArrayCollection.cpp \
     interface/Entity.cpp \
     interface/EntityBuilder.cpp \
-    interface/CUACSController.cpp \
     interface/ACMController.cpp \
     interface/CandidateSet.cpp \
     interface/DecisionTreeDataItem.cpp \
     interface/OptimizedDecisionTree.cpp \
     interface/AnimalClientPair.cpp \
-    interface/AttributeComparator.cpp
+    interface/AttributeComparator.cpp \
 
 HEADERS += \
     data/DatabaseInterface.h \
-    data/DatabaseController.h \
     interface/Animal.h \
     interface/AnimalManager.h \
     interface/MainWindow.h \
@@ -84,7 +81,8 @@ HEADERS += \
     interface/OptimizedDecisionTree.h \
     interface/CandidateSet.h \
     interface/ACMController.h \
-    interface/AttributeComparator.h
+    interface/AttributeComparator.h \
+    interface/CUACSController.h
 
 FORMS += \
     interface/listview.ui \
