@@ -46,7 +46,13 @@ SOURCES += \
     interface/ArrayCollection.cpp \
     interface/Entity.cpp \
     interface/EntityBuilder.cpp \
-    interface/CUACSController.cpp
+    interface/CUACSController.cpp \
+    interface/ACMController.cpp \
+    interface/CandidateSet.cpp \
+    interface/DecisionTreeDataItem.cpp \
+    interface/OptimizedDecisionTree.cpp \
+    interface/AnimalClientPair.cpp \
+    interface/AttributeComparator.cpp
 
 HEADERS += \
     data/DatabaseInterface.h \
@@ -72,7 +78,13 @@ HEADERS += \
     interface/ArrayCollection.h \
     interface/AbstractCollection.h \
     interface/EntityBuilder.h \
-    interface/CUACSController.h
+    interface/CUACSController.h \
+    interface/AnimalClientPair.h \
+    interface/DecisionTreeDataItem.h \
+    interface/OptimizedDecisionTree.h \
+    interface/CandidateSet.h \
+    interface/ACMController.h \
+    interface/AttributeComparator.h
 
 FORMS += \
     interface/listview.ui \
