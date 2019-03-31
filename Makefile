@@ -586,11 +586,13 @@ moc_ClientListView.cpp: interface/CUACSController.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include interface/ClientListView.h -o moc_ClientListView.cpp
 
-moc_ClientDetailDiag.cpp: interface/ClientManager.h \
-		interface/Client.h \
-		interface/Levels.h \
-		interface/Address.h \
-		interface/ClientProfile.h \
+moc_ClientDetailDiag.cpp: interface/CUACSController.h \
+		data/DatabaseController.h \
+		interface/EntityBuilder.h \
+		interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
 		interface/ClientDetailDiag.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -797,11 +799,13 @@ ClientListView.o: interface/ClientListView.cpp interface/ClientListView.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientListView.o interface/ClientListView.cpp
 
 ClientDetailDiag.o: interface/ClientDetailDiag.cpp interface/ClientDetailDiag.h \
-		interface/ClientManager.h \
-		interface/Client.h \
-		interface/Levels.h \
-		interface/Address.h \
-		interface/ClientProfile.h \
+		interface/CUACSController.h \
+		data/DatabaseController.h \
+		interface/EntityBuilder.h \
+		interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
 		ui_clientdetaildialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientDetailDiag.o interface/ClientDetailDiag.cpp
 

@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QDialog>
 #include <QLineEdit>
+#include <QComboBox>
 #include <QMainWindow>
 #include <QDebug>
 #include <qstring.h>
@@ -29,20 +30,26 @@ private slots:
 private:
     //UI Elements
     static const int NUMLINES = 10;
+    static const int NUMCOMBO = 1;
+
+    QLineEdit *lineEdits[NUMLINES];
+    QComboBox *comboBoxes[NUMCOMBO];
+
     Ui::ClientDetailDiag *ui;
     QPushButton *closeButton;
     QPushButton *editButton;
 
-    QLineEdit *lineEdits[NUMLINES];
     //pointer to manager + subject
     CUACSController *mediator;
     Entity *aSubject;
     //update field values, remove edit privileges
     bool editMode;
+    void setFields();
     void updateFields();
     std::string getPhoneNumberFromUI();
 
     void setEditable (bool canEdit);
+    void updateCurrentClient();
 };
 
 #endif // CLIENTDETAILDIAG_H

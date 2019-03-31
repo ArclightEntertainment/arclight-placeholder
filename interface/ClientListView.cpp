@@ -35,6 +35,7 @@ void ClientListView::handleButtonDetail()
     ClientDetailDiag diag(mediator, mediator->getClientWithId(id), false, this);
     diag.setWindowTitle(QString::fromStdString(mediator->getClientWithId(id)->getName() + "'s Profile"));
     diag.exec();
+    updateListView();
 }
 
 //Update the ListView, inserts all values
