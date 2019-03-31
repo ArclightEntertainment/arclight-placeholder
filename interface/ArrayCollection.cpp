@@ -1,8 +1,9 @@
 #include <iostream>
 
 #include "ArrayCollection.h"
-#include "./Description.h"
-#include "./Entity.h"
+#include "./interface/Levels.h"
+#include "./interface/Description.h"
+#include "./interface/Entity.h"
 
 
 template <class Item>
@@ -59,16 +60,11 @@ const Item& ArrayCollection<Item>::get(unsigned int index) const
 {
     if (index >= numElements)
     {
-        return Item();
+        //return Item();
     }
     return arr[index];
 }
 
-template <class Item>
-void ArrayCollection<Item>::setValue (int index, Item newVal)
-{
-    arr[index] = newVal;
-}
 template <class Item>
 ArrayCollectionIterator<Item>::ArrayCollectionIterator(const ArrayCollection<Item> * arrC) : arrCollection(arrC), index (0)
 {
@@ -96,7 +92,7 @@ void ArrayCollectionIterator<Item>::next()
 template <class Item>
 bool ArrayCollectionIterator<Item>::isDone() const
 {
-    return (index >= arrCollection->count());
+    return (arrCollection->count() <= index);
 }
 
 template <class Item>
@@ -104,8 +100,7 @@ Item ArrayCollectionIterator<Item>::currentItem() const
 {
     if (isDone())
     {
-        return Item();
-        //return NULL;
+        //return Item();
     }
     return arrCollection->get(index);
 }

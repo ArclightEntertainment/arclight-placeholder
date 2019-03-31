@@ -11,7 +11,7 @@
 #include <qstring.h>
 
 #include "mytablewidgetitem.h"
-#include "interface/CUACSController.h"
+#include "AnimalManager.h"
 #include "AnimalDetailDiag.h"
 
 namespace Ui {
@@ -23,7 +23,7 @@ class AnimalListView : public QDialog
     Q_OBJECT
 
 public:
-    explicit AnimalListView(CUACSController *med, QWidget *parent = 0);
+    explicit AnimalListView(AnimalManager *aM, QWidget *parent = 0);
     ~AnimalListView();
 
 private slots:
@@ -37,7 +37,7 @@ private:
     QPushButton *detailsButton;
 
     //pointer to Animal Manager
-    CUACSController *mediator;
+    AnimalManager *manager;
 
     void updateListView();
 };
