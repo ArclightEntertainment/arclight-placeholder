@@ -53,3 +53,11 @@ private:
 };
 
 #endif // CLIENTDETAILDIAG_H
+
+/*
+ * 1id, 2fName,
+ * 6lName, 7prefTitle, 8phoneNumber, 9streetLine1, 10streetLine2, 11city, 12subnationalDivision, 13country, 14postalCode,
+ *
+ * 3hasChildrenUnderTwelve, 4hasPets, 5age,
+ * 15lengthOfOwnershipExpectation, 16monthlyBudgetForAnimal, 17availabilityPerDay, 18levelOfMobility, 19levelOfPatience, 20previousExperience, 21physicalAffection
+*/
