@@ -7,6 +7,8 @@
 #include <QDialog>
 #include <QLineEdit>
 #include <QComboBox>
+#include <QSpinBox>
+#include <QCheckBox>
 #include <QMainWindow>
 #include <QDebug>
 #include <qstring.h>
@@ -29,11 +31,15 @@ private slots:
     void handleButtonEdit();
 private:
     //UI Elements
-    static const int NUMLINES = 10;
+    static const int NUMLINES = 20;
     static const int NUMCOMBO = 1;
+    static const int NUMSPIN = 1;
+    static const int NUMCHECK = 1;
 
     QLineEdit *lineEdits[NUMLINES];
     QComboBox *comboBoxes[NUMCOMBO];
+    QSpinBox *spinBoxes[NUMSPIN];
+    QCheckBox *checkBoxes[NUMCHECK];
 
     Ui::ClientDetailDiag *ui;
     QPushButton *closeButton;
