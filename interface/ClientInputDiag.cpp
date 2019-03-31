@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-ClientInputDiag::ClientInputDiag(ClientManager *cm, QWidget *parent) :
+ClientInputDiag::ClientInputDiag(CUACSController *med, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ClientInputDiag)
 {
@@ -16,13 +16,13 @@ ClientInputDiag::ClientInputDiag(ClientManager *cm, QWidget *parent) :
     connect(cancelButton, SIGNAL(released()), this,SLOT(handleButtonCancel()));
 
 
-    clientManager = cm;
+    mediator = med;
 
     QValidator *pNumValidator = new QRegExpValidator(QRegExp("([0-9]|-|\\)|\\(|\\ ){1,20}"), this);
     QValidator *postValidator = new QRegExpValidator(QRegExp("([0-9]|[a-z]|[A-Z]|\\ ){1,7}"), this);
     QValidator *textValidator = new QRegExpValidator(QRegExp("([a-z]|[A-Z]|\\ ){1,30}"), this);
 
-    newClientID = clientManager->getNextID();
+    newClientID = mediator->getNextClientID();
     ui->idLineEdit->setText(QString::number(newClientID));
     ui->idLineEdit->setEnabled(false);
     ui->cityLineEdit->setValidator(textValidator);
@@ -57,15 +57,14 @@ void ClientInputDiag::handleButtonSave()
     //verify -> populate
     if (checkInputValid())
     {
-        int index = clientManager->addClient(ui->titleComboBox->currentText().toStdString(),
+        mediator->addClient(ui->titleComboBox->currentText().toStdString(),
                                              newClientID,
                                              ui->firstNameLineEdit->text().toStdString(),
                                              ui->lastNameLineEdit->text().toStdString(),
                                              getPhoneNumberFromUI()
                                              );
 
-        clientManager->populateClientAddress(index,
-                                             ui->add1LineEdit->text().toStdString(),
+        mediator->populateClientAddress(ui->add1LineEdit->text().toStdString(),
                                              ui->add2LineEdit->text().toStdString(),
                                              ui->cityLineEdit->text().toStdString(),
                                              ui->provLineEdit->text().toStdString(),
@@ -73,7 +72,8 @@ void ClientInputDiag::handleButtonSave()
                                              ui->postalLineEdit->text().toStdString()
                                              );
 
-        clientManager->pushClientToDB(index);
+        //mediator->pushClientToDB(index);
+        mediator->finalizeClient();
         close();
     }
 }
