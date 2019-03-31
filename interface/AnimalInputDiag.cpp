@@ -3,7 +3,7 @@
 #include <iostream>
 
 //Requires parent widget and manager
-AnimalInputDiag::AnimalInputDiag(CUACSController *med, QWidget *parent) :
+AnimalInputDiag::AnimalInputDiag(AnimalManager *manager, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AnimalInputDiag)
 {
@@ -23,9 +23,9 @@ AnimalInputDiag::AnimalInputDiag(CUACSController *med, QWidget *parent) :
     connect(saveButton, SIGNAL(released()), this,SLOT(handleButtonSave()));
     connect(cancelButton, SIGNAL(released()), this,SLOT(handleButtonCancel()));
 
-    mediator = med;
+    aManager = manager;
     ui->idLineEdit->setEnabled(false);
-    ui->idLineEdit->setText(QString::number(mediator->getNextAnimalID()));
+    ui->idLineEdit->setText(QString::number(aManager->getNextID()));
 }
 
 //Save Handler
@@ -33,27 +33,29 @@ void AnimalInputDiag::handleButtonSave()
 {
     //important values
     bool name = !ui->nameLineEdit->text().isEmpty();
+    bool id = aManager->checkID(ui->idLineEdit->text().toInt());
     bool species = QString::compare(ui->speciesSelector->currentText(), "Species");  //!= Species
     bool sex = QString::compare(ui->sexSelector->currentText(), "Sex");  //!= Sex
     bool age = QString::compare(ui->ageSpinBox->text(), "0");
     bool life = QString::compare(ui->maxLifeSpinBox->text(), "0");
     bool expenditure = getExpenditureFromUI();
     //verify -> populate
-    if (name && species && sex && age && expenditure && life)
+    if (name && species && sex && age && id && expenditure && life)
     {
-        mediator -> addAnimal(
+        int index = aManager -> addAnimal(
                     ui->idLineEdit->text().toInt(),
                     getExpenditureFromUI(),
                     ui->nameLineEdit->text().toStdString(),
                     ui->ageSpinBox->text().toInt(),
                     ui->maxLifeSpinBox->text().toInt(),
-                    ui->sexSelector->currentText().toStdString(),
+                    ui->sexSelector->currentText().at(0).toLatin1(),
                     ui->speciesSelector->currentText().toStdString(),
                     ui->breedLineEdit->text().toStdString(),
                     ui->careSlider->value(),
                     ui->energySlider->value()
                     );
-        mediator->updateAnimalSocial(
+        aManager->updateAnimalSocial(
+                    index,
                     ui->trainingSlider->value(),
                     ui->trainabilitySlider->value(),
                     ui->peopleSlider->value(),
@@ -62,7 +64,8 @@ void AnimalInputDiag::handleButtonSave()
                     ui->approachabilitySlider->value(),
                     ui->timeSlider->value()
                     );
-        mediator->updateAnimalHistory(
+        aManager->updateAnimalHistory(
+                    index,
                     ui->immunizedCheckbox->isChecked(),
                     ui->dietLineEdit->text().toStdString(),
                     ui->mobilityLineEdit->text().toStdString(),
@@ -71,8 +74,7 @@ void AnimalInputDiag::handleButtonSave()
                     ui->aHistTextEdit->toPlainText().toStdString()
                     );
         //push the animal to the DB
-        mediator->finalizeAnimal();
-        //mediator->pushAnimalToDB(index);
+        aManager->pushAnimalToDB(index);
         close();
     } else {
         //Create a warning dialog box, text based on what fields are missing
@@ -81,6 +83,11 @@ void AnimalInputDiag::handleButtonSave()
         std::string warnString = "";
 
         if (!name){warnString.append("Name Missing!\n");}
+        if (!id)
+        {
+            warnString.append("Shelter ID Missing or in use!\n");
+            warnString.append("Suggest using: " + std::to_string(aManager->getNextID()) + "\n");
+        }
         if (!species){warnString.append("Species Missing!\n");}
         if (!sex){warnString.append("Sex Missing!\n");}
         if (!age){warnString.append("Age Missing!\n");}

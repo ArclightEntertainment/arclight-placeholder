@@ -26,7 +26,6 @@ LIBS += -lsqlite3
 
 SOURCES += \
     data/DatabaseInterface.cpp \
-    data/DatabaseController.cpp \
     interface/main.cpp \
     interface/Animal.cpp \
     interface/AnimalManager.cpp \
@@ -45,12 +44,10 @@ SOURCES += \
     interface/mytablewidgetitem.cpp \
     interface/ArrayCollection.cpp \
     interface/Entity.cpp \
-    interface/EntityBuilder.cpp \
-    interface/CUACSController.cpp
+    interface/EntityBuilder.cpp
 
 HEADERS += \
     data/DatabaseInterface.h \
-    data/DatabaseController.h \
     interface/Animal.h \
     interface/AnimalManager.h \
     interface/MainWindow.h \
@@ -71,8 +68,7 @@ HEADERS += \
     interface/Description.h \
     interface/ArrayCollection.h \
     interface/AbstractCollection.h \
-    interface/EntityBuilder.h \
-    interface/CUACSController.h
+    interface/EntityBuilder.h
 
 FORMS += \
     interface/listview.ui \

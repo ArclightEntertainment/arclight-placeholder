@@ -3,7 +3,7 @@
 #include <iostream>
 
 //Constructor, requires QWidget and an ClientManager
-ClientListView::ClientListView(CUACSController *med, QWidget *parent) :
+ClientListView::ClientListView(ClientManager *aM, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ListView)
 {
@@ -19,7 +19,7 @@ ClientListView::ClientListView(CUACSController *med, QWidget *parent) :
     clientList->setSelectionBehavior(QAbstractItemView::SelectRows);
     clientList->setSelectionMode(QAbstractItemView::SingleSelection);
 
-    mediator = med;
+    manager = aM;
 
     updateListView();
 }
@@ -29,33 +29,33 @@ void ClientListView::handleButtonClose()
     close();
 }
 void ClientListView::handleButtonDetail()
+
 {
     QModelIndex currentIndex = clientList->currentIndex();
     int id = clientList->item(currentIndex.row(), clientList->columnCount()-1)->text().toInt();
-    ClientDetailDiag diag(mediator, mediator->getClientWithId(id), false, this);
-    diag.setWindowTitle(QString::fromStdString(mediator->getClientWithId(id)->getName() + "'s Profile"));
+    ClientDetailDiag diag(manager, manager->getClientWithId(id), 0, this);
+    diag.setWindowTitle(QString::fromStdString(manager->getClientWithId(id)->getNameWithTitle()));
     diag.exec();
 }
 
 //Update the ListView, inserts all values
 void ClientListView::updateListView()
 {
-    clientList->setRowCount(mediator->getNumEntities('c'));
+    clientList->setRowCount(manager->getNumClients());
 
     QStringList columnNames = {"Title", "First Name", "Last Name", "ID"};
     clientList->setColumnCount(columnNames.length());
     clientList->setHorizontalHeaderLabels(columnNames);
 
-    Iterator<UClient*> *a = mediator->createClientIterator();
-    int i = 0;
-    while(!a->isDone())
+    Client *a = manager->getClientCollection();
+
+    for(int i = 0; i < manager->getNumClients(); i++)
     {
         //Create item widgets for row
-        std::cout<<a->currentItem()->getName()<<std::endl;
-        QTableWidgetItem *title = new QTableWidgetItem (QString::fromStdString(a->currentItem()->getString(6)));
-        QTableWidgetItem *lname = new QTableWidgetItem (QString::fromStdString(a->currentItem()->getString(5)));
-        QTableWidgetItem *fname = new QTableWidgetItem (QString::fromStdString(a->currentItem()->getName()));
-        QTableWidgetItem *id = new QTableWidgetItem (QString::number(a->currentItem()->getID()));
+        QTableWidgetItem *title = new QTableWidgetItem (QString::fromStdString(a[i].getTitle()));
+        QTableWidgetItem *fname = new QTableWidgetItem (QString::fromStdString(a[i].getFirstName()));
+        QTableWidgetItem *lname = new QTableWidgetItem (QString::fromStdString(a[i].getLastName()));
+        QTableWidgetItem *id = new QTableWidgetItem (QString::number(a[i].getClientID()));
 
         //set all as un-editable
         title->setFlags(title->flags() ^ Qt::ItemIsEditable);
@@ -68,16 +68,13 @@ void ClientListView::updateListView()
         clientList->setItem(i, 1, fname);    //FName
         clientList->setItem(i, 2, lname);    //LName
         clientList->setItem(i, 3, id);    //ID
-
-        i++;
-        a->next();
     }
     //set dimensions
     clientList->setColumnWidth(0, 40); //Title
     clientList->setColumnWidth(1, 200); //FName
     clientList->setColumnWidth(2, 200); //LName
     clientList->setColumnWidth(3, 60); //ID
-
+    //int arr[4] = {40, 200, 200, 60};
     clientList->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     clientList->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     //sort ascending

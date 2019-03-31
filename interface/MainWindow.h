@@ -7,14 +7,12 @@
 #include <QPushButton>
 #include <QDialog>
 #include <QMainWindow>
-
-
-#include "interface/CUACSController.h"
-#include "data/DatabaseController.h"
 #include "AnimalInputDiag.h"
 #include "ClientInputDiag.h"
 #include "AnimalListView.h"
+#include "AnimalManager.h"
 #include "ClientListView.h"
+#include "ClientManager.h"
 
 namespace Ui {
 class MainWindow;
@@ -25,6 +23,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    inline void setAnimalArr(Animal * arr, int numAn){animalManager->setArr(arr, numAn);}
+    inline void setClientArr(Client * arr, int numCli){clientManager->setArr(arr, numCli);}
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
@@ -41,9 +41,8 @@ private:
     QPushButton *clientInputButton;
     QPushButton *clientViewButton;
     //TEST: QPushButton *testButton;
-    CUACSController * mediator;
-    Iterator<UAnimal*> * animalIterator;
-    Iterator<UClient*> * clientIterator;
+    AnimalManager *animalManager;
+    ClientManager *clientManager;
 };
 
 #endif // MAINWINDOW_H
