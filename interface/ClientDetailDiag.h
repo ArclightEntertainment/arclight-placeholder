@@ -9,6 +9,8 @@
 #include <QComboBox>
 #include <QSpinBox>
 #include <QCheckBox>
+#include <QSlider>
+#include <QProgressBar>
 #include <QMainWindow>
 #include <QDebug>
 #include <qstring.h>
@@ -33,13 +35,16 @@ private:
     //UI Elements
     static const int NUMLINES = 20;
     static const int NUMCOMBO = 1;
-    static const int NUMSPIN = 1;
-    static const int NUMCHECK = 1;
+    static const int NUMBAR = 4;
+    static const int NUMSPIN = 2;
+    static const int NUMCHECK = 2;
 
     QLineEdit *lineEdits[NUMLINES];
     QComboBox *comboBoxes[NUMCOMBO];
     QSpinBox *spinBoxes[NUMSPIN];
     QCheckBox *checkBoxes[NUMCHECK];
+    QSlider *sliders[NUMBAR];
+    QProgressBar *progressBars[NUMBAR];
 
     Ui::ClientDetailDiag *ui;
     QPushButton *closeButton;
