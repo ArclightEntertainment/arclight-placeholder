@@ -22,17 +22,22 @@ Entity * EntityBuilder::build()
     while (currentID < numDesc)
     {
         //std::cout<< "current: " << currentID << "/ numDesc: " << numDesc<< "/ bool: " << bool_iter->currentItem().getAttributeID() << "/ int: " << int_iter->currentItem().getAttributeID() << "/ string: " << string_iter->currentItem().getAttributeID() << std::endl;
-        if (bool_iter->currentItem().getAttributeID() == currentID)
+
+        if(currentID == 0 || currentID == 1 || currentID == 4){currentID++; continue;}
+        if (!bool_iter->isDone() || bool_iter->currentItem().getAttributeID() == currentID)
         {
-            bool_iter->next(); currentID++;
+            bool_iter->next();
+            currentID++;
         }
-        else if (int_iter->currentItem().getAttributeID() == currentID)
+        else if (!int_iter->isDone() || int_iter->currentItem().getAttributeID() == currentID)
         {
-            int_iter->next(); currentID++;
+            int_iter->next();
+            currentID++;
         }
-        else if (string_iter->currentItem().getAttributeID() == currentID)
+        else if (!string_iter->isDone() || string_iter->currentItem().getAttributeID() == currentID)
         {
-            string_iter->next(); currentID++;
+            string_iter->next();
+            currentID++;
         }
         else
         {

@@ -9,7 +9,7 @@
 #include <QDebug>
 #include <qstring.h>
 
-#include "ClientManager.h"
+#include "CUACSController.h"
 
 namespace Ui {
 class ClientInputDiag;
@@ -20,7 +20,7 @@ class ClientInputDiag : public QDialog
     Q_OBJECT
 
 public:
-    explicit ClientInputDiag(ClientManager* cm, QWidget *parent = 0);
+    explicit ClientInputDiag(CUACSController* med, QWidget *parent = 0);
     ~ClientInputDiag();
 
 private slots:
@@ -31,7 +31,7 @@ private:
     QPushButton *saveButton;
     QPushButton *cancelButton;
 
-    ClientManager* clientManager;
+    CUACSController* mediator;
 
     int newClientID;
 

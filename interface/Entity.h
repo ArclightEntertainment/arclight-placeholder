@@ -3,7 +3,6 @@
 
 #include "Description.h"
 #include "ArrayCollection.h"
-#include "./interface/Levels.h"
 #include <string>
 
 class Entity
@@ -23,6 +22,14 @@ public:
     int getID(){return ID;}
     int getAge(){return age;}
     std::string getName(){return name;}
+
+    int getInt (int id);
+    std::string getString (int id);
+    bool getBool (int id);
+
+    void setInt (int id, int val);
+    void setString (int id, std::string val);
+    void setBool (int id, bool val);
 
     Iterator<Description<bool>> * getBoolIterator() {return boolCollection.createIterator();}
     Iterator<Description<int>> * getIntIterator() {return intCollection.createIterator();}

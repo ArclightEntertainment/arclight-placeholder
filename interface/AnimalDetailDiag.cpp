@@ -3,7 +3,7 @@
 #include <iostream>
 
 //Requires parent widget and manager
-AnimalDetailDiag::AnimalDetailDiag(AnimalManager *manager, Animal *subject, bool canEdit, QWidget *parent) :
+AnimalDetailDiag::AnimalDetailDiag(CUACSController *med, Entity *subject, bool canEdit, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AnimalDetailDiag)
 {
@@ -18,7 +18,7 @@ AnimalDetailDiag::AnimalDetailDiag(AnimalManager *manager, Animal *subject, bool
 
     editMode = canEdit;
 
-    aManager = manager;
+    mediator = med;
     aSubject = subject;
     setFields();
     updateFields();
@@ -50,32 +50,6 @@ void AnimalDetailDiag::setFields()
     lineEdits[18] = ui->approachabilityLineEdit;
     lineEdits[19] = ui->timeCommitmentLineEdit;
     lineEdits[20] = ui->careLineEdit;
-
-
-    lineEdits[0]->setText(QString::number(aSubject->getShelterID()));
-    lineEdits[1]->setText(QString::fromStdString(aSubject->getName()));
-    lineEdits[2]->setText(QString::fromStdString(aSubject->getDietNeeds()));
-    lineEdits[3]->setText(QString::fromStdString(aSubject->getMobilityNeeds()));
-    lineEdits[4]->setText(QString::fromStdString(aSubject->getDisabilityNeeds()));
-    lineEdits[5]->setText(QString::number(aSubject->getEstimatedCost()));
-    lineEdits[6]->setText(QString::fromStdString(aSubject->getBreed()));
-
-    lineEdits[7]->setText(QString::fromStdString(aSubject->getSpecies()));
-    lineEdits[8]->setText(QString::fromStdString(aSubject->getSexString()));
-    lineEdits[9]->setText(QString::number(aSubject->getAge()));
-    lineEdits[10]->setText(QString::number(aSubject->getLifeExpectancy()));
-    lineEdits[11]->setText((aSubject->isImmunized()) ? QString("Yes") : QString("No"));
-
-    lineEdits[12]->setText(QString::fromStdString(aSubject->getLevelOfEnergyString()));
-    lineEdits[13]->setText(QString::fromStdString(aSubject->getTrainingString()));
-    lineEdits[14]->setText(QString::fromStdString(aSubject->getTrainabilityString()));
-    lineEdits[15]->setText(QString::fromStdString(aSubject->getAffForPeopleString()));
-    lineEdits[16]->setText(QString::fromStdString(aSubject->getAffForChildrenString()));
-    lineEdits[17]->setText(QString::fromStdString(aSubject->getAffForAnimalsString()));
-    lineEdits[18]->setText(QString::fromStdString(aSubject->getApproachabilityString()));
-    lineEdits[19]->setText(QString::fromStdString(aSubject->getTimeCommitmentString()));
-    lineEdits[20]->setText(QString::fromStdString(aSubject->getLevelOfCareString()));
-
 
     textEdits[0] = ui->bioTextEdit;
     textEdits[1] = ui->historyTextEdit;
@@ -143,32 +117,31 @@ void AnimalDetailDiag::updateCurrentAnimal()
 */
     aSubject->setName(ui->nameLineEdit->text().toStdString());
     aSubject->setAge(ui->ageSpinBox->text().toInt());
-    aSubject->setLifeExpectancy(ui->maxAgeLineEdit->text().toInt());
-    aSubject->setSex((ui->sexComboBox->currentText().toStdString() == "Female") ? 'F' : 'M');
-    aSubject->setImmunized(ui->immunizedCheckBox->isChecked());
-    aSubject->setEstimatedCost(getExpenditureFromUI());
-    aSubject->setBiography(ui->bioTextEdit->toPlainText().toStdString());
+    aSubject->setInt(5, ui->maxAgeLineEdit->text().toInt());
+    aSubject->setString(6, ui->sexComboBox->currentText().toStdString());
+    aSubject->setBool(7, ui->immunizedCheckBox->isChecked());
+    aSubject->setInt(22, getExpenditureFromUI());
+    aSubject->setString(21, ui->bioTextEdit->toPlainText().toStdString());
+    aSubject->setString(2, ui->speciesComboBox->currentText().toStdString());
+    aSubject->setString(3, ui->breedLineEdit->text().toStdString());
     //species stuff
+    aSubject->setString(17,ui->dietLineEdit->text().toStdString());
+    aSubject->setString(18,ui->mobilityLineEdit->text().toStdString());
+    aSubject->setString(19, ui->disabilityLineEdit->text().toStdString());
+    aSubject->setString(20, ui->historyTextEdit->toPlainText().toStdString());
 
-    aSubject->setDietNeeds(ui->dietLineEdit->text().toStdString());
-    aSubject->setMobilityNeeds(ui->mobilityLineEdit->text().toStdString());
-    aSubject->setDisabilityNeeds(ui->disabilityLineEdit->text().toStdString());
-    aSubject->setAbuseHistory(ui->historyTextEdit->toPlainText().toStdString());
+    aSubject->setInt(9, ui->energySlider->value());
+    aSubject->setInt(10, ui->trainingSlider->value());
+    aSubject->setInt(11, ui->trainabilitySlider->value());
+    aSubject->setInt(12, ui->adultAffinitySlider->value());
+    aSubject->setInt(13, ui->childAffinitySlider->value());
+    aSubject->setInt(14, ui->animalAffinitySlider->value());
+    aSubject->setInt(15, ui->approachabilitySlider->value());
+    aSubject->setInt(16, ui->timeCommitmentSlider->value());
+    aSubject->setInt(8, ui->careSlider->value());
 
-    aSubject->setEnergy(ui->energySlider->value());
-    aSubject->setTrainability(ui->trainabilitySlider->value());
-    aSubject->setTraining(ui->trainingSlider->value());
-    aSubject->setAffForAdults(ui->adultAffinitySlider->value());
-    aSubject->setAffForChildren(ui->childAffinitySlider->value());
-    aSubject->setAffForAnimals(ui->animalAffinitySlider->value());
-    aSubject->setApproachability(ui->approachabilitySlider->value());
-    aSubject->setTimeCommitment(ui->timeCommitmentSlider->value());
-    aSubject->setCareLevel(ui->careSlider->value());
+    //aManager->pushAnimalToDB(aManager->indexOfAnimalWithID(aSubject->getShelterID()));
 
-    if (aManager->indexOfAnimalWithID(aSubject->getShelterID()) >= 0)
-    {
-        aManager->pushAnimalToDB(aManager->indexOfAnimalWithID(aSubject->getShelterID()));
-    }
     updateFields();
 }
 
@@ -201,29 +174,29 @@ AnimalDetailDiag::~AnimalDetailDiag()
 void AnimalDetailDiag::updateFields()
 {
     //Fields
-    lineEdits[0]->setText(QString::number(aSubject->getShelterID()));
+    lineEdits[0]->setText(QString::number(aSubject->getID()));
     lineEdits[1]->setText(QString::fromStdString(aSubject->getName()));
-    lineEdits[2]->setText(QString::fromStdString(aSubject->getDietNeeds()));
-    lineEdits[3]->setText(QString::fromStdString(aSubject->getMobilityNeeds()));
-    lineEdits[4]->setText(QString::fromStdString(aSubject->getDisabilityNeeds()));
-    lineEdits[5]->setText(QString::number(aSubject->getEstimatedCost()));
-    lineEdits[6]->setText(QString::fromStdString(aSubject->getBreed()));
+    lineEdits[2]->setText(QString::fromStdString(aSubject->getString(17)));
+    lineEdits[3]->setText(QString::fromStdString(aSubject->getString(18)));
+    lineEdits[4]->setText(QString::fromStdString(aSubject->getString(19)));
+    lineEdits[5]->setText(QString::number(aSubject->getInt(22)));
+    lineEdits[6]->setText(QString::fromStdString(aSubject->getString(3)));
 
-    lineEdits[7]->setText(QString::fromStdString(aSubject->getSpecies()));
-    lineEdits[8]->setText(QString::fromStdString(aSubject->getSexString()));
+    lineEdits[7]->setText(QString::fromStdString(aSubject->getString(2)));
+    lineEdits[8]->setText(QString::fromStdString(aSubject->getString(6)));
     lineEdits[9]->setText(QString::number(aSubject->getAge()));
-    lineEdits[10]->setText(QString::number(aSubject->getLifeExpectancy()));
-    lineEdits[11]->setText((aSubject->isImmunized()) ? QString("Yes") : QString("No"));
+    lineEdits[10]->setText(QString::number(aSubject->getInt(5)));
+    lineEdits[11]->setText((aSubject->getBool(7)) ? QString("Yes") : QString("No"));
 
-    lineEdits[12]->setText(QString::fromStdString(aSubject->getLevelOfEnergyString()));
-    lineEdits[13]->setText(QString::fromStdString(aSubject->getTrainingString()));
-    lineEdits[14]->setText(QString::fromStdString(aSubject->getTrainabilityString()));
-    lineEdits[15]->setText(QString::fromStdString(aSubject->getAffForPeopleString()));
-    lineEdits[16]->setText(QString::fromStdString(aSubject->getAffForChildrenString()));
-    lineEdits[17]->setText(QString::fromStdString(aSubject->getAffForAnimalsString()));
-    lineEdits[18]->setText(QString::fromStdString(aSubject->getApproachabilityString()));
-    lineEdits[19]->setText(QString::fromStdString(aSubject->getTimeCommitmentString()));
-    lineEdits[20]->setText(QString::fromStdString(aSubject->getLevelOfCareString()));
+    lineEdits[12]->setText(QString::fromStdString((aSubject->getInt(9) == 0) ? "LOW" : (aSubject->getInt(9) == 1) ? "MEDIUM" : "HIGH"));
+    lineEdits[13]->setText(QString::fromStdString((aSubject->getInt(10) == 0) ? "LOW" : (aSubject->getInt(10) == 1) ? "MEDIUM" : "HIGH"));
+    lineEdits[14]->setText(QString::fromStdString((aSubject->getInt(11) == 0) ? "LOW" : (aSubject->getInt(11) == 1) ? "MEDIUM" : "HIGH"));
+    lineEdits[15]->setText(QString::fromStdString((aSubject->getInt(12) == 0) ? "LOW" : (aSubject->getInt(12) == 1) ? "MEDIUM" : "HIGH"));
+    lineEdits[16]->setText(QString::fromStdString((aSubject->getInt(13) == 0) ? "LOW" : (aSubject->getInt(13) == 1) ? "MEDIUM" : "HIGH"));
+    lineEdits[17]->setText(QString::fromStdString((aSubject->getInt(14) == 0) ? "LOW" : (aSubject->getInt(14) == 1) ? "MEDIUM" : "HIGH"));
+    lineEdits[18]->setText(QString::fromStdString((aSubject->getInt(15) == 0) ? "LOW" : (aSubject->getInt(15) == 1) ? "MEDIUM" : "HIGH"));
+    lineEdits[19]->setText(QString::fromStdString((aSubject->getInt(16) == 0) ? "LOW" : (aSubject->getInt(16) == 1) ? "MEDIUM" : "HIGH"));
+    lineEdits[20]->setText(QString::fromStdString((aSubject->getInt(8) == 0) ? "LOW" : (aSubject->getInt(8) == 1) ? "MEDIUM" : "HIGH"));
 
     lineEdits[0]->setReadOnly(true);
     lineEdits[0]->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
@@ -236,38 +209,44 @@ void AnimalDetailDiag::updateFields()
         }
     }
 
-    textEdits[0]->setText(QString::fromStdString(aSubject->getBiography()));
-    textEdits[1]->setText(QString::fromStdString(aSubject->getAbuseHistory()));
+    textEdits[0]->setText(QString::fromStdString(aSubject->getString(21)));
+    textEdits[1]->setText(QString::fromStdString(aSubject->getString(20)));
 
-    sliders[0]->setValue(aSubject->getTrainingLevel());
-    sliders[1]->setValue(aSubject->getTrainabilityLevel());
-    sliders[2]->setValue(aSubject->getAffForPeople());
-    sliders[3]->setValue(aSubject->getAffForChildren());
-    sliders[4]->setValue(aSubject->getAffForAnimals());
-    sliders[5]->setValue(aSubject->getApproachability());
-    sliders[6]->setValue(aSubject->getTimeCommitment());
-    sliders[7]->setValue(aSubject->getLevelOfEnergy());
-    sliders[8]->setValue(aSubject->getLevelOfCare());
+    sliders[0]->setValue(aSubject->getInt(10));
+    sliders[1]->setValue(aSubject->getInt(11));
+    sliders[2]->setValue(aSubject->getInt(12));
+    sliders[3]->setValue(aSubject->getInt(13));
+    sliders[4]->setValue(aSubject->getInt(14));
+    sliders[5]->setValue(aSubject->getInt(15));
+    sliders[6]->setValue(aSubject->getInt(16));
+    sliders[7]->setValue(aSubject->getInt(9));
+    sliders[8]->setValue(aSubject->getInt(8));
 
-    for (int i = 0; i < NUMBARS; i++)
-    {
-        progBars[i]->setValue(sliders[i]->value());
-    }
+        progBars[0]->setValue(aSubject->getInt(10));
+        progBars[1]->setValue(aSubject->getInt(11));
+        progBars[2]->setValue(aSubject->getInt(12));
+        progBars[3]->setValue(aSubject->getInt(13));
+        progBars[4]->setValue(aSubject->getInt(14));
+        progBars[5]->setValue(aSubject->getInt(15));
+        progBars[6]->setValue(aSubject->getInt(16));
+        progBars[7]->setValue(aSubject->getInt(9));
+        progBars[8]->setValue(aSubject->getInt(8));
 
     spinBoxes[0]->setValue(aSubject->getAge());
-    spinBoxes[1]->setValue(aSubject->getLifeExpectancy());
+    spinBoxes[1]->setValue(aSubject->getInt(5));
 
     for (int i = 0; i < NUMCOMBO; i++)
     {
         for (int j = 0; j < comboBoxes[i]->count(); j++)
         {
-            if (comboBoxes[i]->itemText(j).toStdString() == aSubject->getSexString() || comboBoxes[i]->itemText(j).toStdString() == aSubject->getSpecies())
+            if (comboBoxes[i]->itemText(j).toStdString() == aSubject->getString(6) || comboBoxes[i]->itemText(j).toStdString() == aSubject->getString(2))
+
             {
                 comboBoxes[i]->setCurrentIndex(j);
             }
         }
     }
-    checkBoxes[0]->setChecked(aSubject->isImmunized());
+    checkBoxes[0]->setChecked(aSubject->getBool(7));
 }
 
 void AnimalDetailDiag::setEditable (bool canEdit)

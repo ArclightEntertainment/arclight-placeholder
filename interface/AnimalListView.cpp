@@ -2,8 +2,8 @@
 #include "ui_listview.h"
 #include <iostream>
 
-//Constructor, requires QWidget and an AnimalManager
-AnimalListView::AnimalListView(AnimalManager *aM, QWidget *parent) :
+//Constructor, requires QWidget and an Animalmediator
+AnimalListView::AnimalListView(CUACSController *med, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ListView)
 {
@@ -19,7 +19,7 @@ AnimalListView::AnimalListView(AnimalManager *aM, QWidget *parent) :
     animalList->setSelectionBehavior(QAbstractItemView::SelectRows);
     animalList->setSelectionMode(QAbstractItemView::SingleSelection);
 
-    manager = aM;
+    mediator = med;
 
     updateListView();
 }
@@ -32,8 +32,8 @@ void AnimalListView::handleButtonDetail()
 {
     QModelIndex currentIndex = animalList->currentIndex();
     int id = animalList->item(currentIndex.row(), animalList->columnCount()-1)->text().toInt();
-    AnimalDetailDiag diag(manager, manager->getAnimalWithId(id), false, this);
-    diag.setWindowTitle(QString::fromStdString(manager->getAnimalWithId(id)->getName() + " Profile"));
+    AnimalDetailDiag diag(mediator, mediator->getAnimalWithId(id), false, this);
+    diag.setWindowTitle(QString::fromStdString(mediator->getAnimalWithId(id)->getName() + " Profile"));
     diag.exec();
     updateListView();
 }
@@ -41,22 +41,24 @@ void AnimalListView::handleButtonDetail()
 //Update the ListView, inserts all values
 void AnimalListView::updateListView()
 {
-    animalList->setRowCount(manager->getNumAnimals());
+    animalList->setRowCount(mediator->getNumEntities('a'));
 
     QStringList columnNames = {"Name", "Species", "Breed", "Age", "Sex", "ID"};
     animalList->setColumnCount(columnNames.length());
     animalList->setHorizontalHeaderLabels(columnNames);
 
-    Animal *a = manager->getAnimalCollection();
-    for(int i = 0; i < manager->getNumAnimals(); i++)
+    Iterator<UAnimal*> *a = mediator->createAnimalIterator();
+    int i = 0;
+    while(!a->isDone())
     {
+        std::cout<<a->currentItem()->getName()<<std::endl;
         //Create item widgets for row
-        MyTableWidgetItem *name = new MyTableWidgetItem (QString::fromStdString(a[i].getName()));
-        MyTableWidgetItem *species = new MyTableWidgetItem (QString::fromStdString(a[i].getSpecies()));
-        MyTableWidgetItem *breed = new MyTableWidgetItem (QString::fromStdString(a[i].getBreed()));
-        MyTableWidgetItem *age = new MyTableWidgetItem (QString::number(a[i].getAge()));
-        MyTableWidgetItem *sex = new MyTableWidgetItem (QString(QChar::fromLatin1(a[i].getSex())));
-        MyTableWidgetItem *id = new MyTableWidgetItem (QString::number(a[i].getShelterID()));
+        MyTableWidgetItem *name = new MyTableWidgetItem (QString::fromStdString         (a->currentItem()->getName()));
+        MyTableWidgetItem *species = new MyTableWidgetItem (QString::fromStdString      (a->currentItem()->getString(2)));
+        MyTableWidgetItem *breed = new MyTableWidgetItem (QString::fromStdString        (a->currentItem()->getString(3)));
+        MyTableWidgetItem *age = new MyTableWidgetItem (QString::number                 (a->currentItem()->getInt(4)));
+        MyTableWidgetItem *sex = new MyTableWidgetItem (QString::fromStdString          (a->currentItem()->getString(6)));
+        MyTableWidgetItem *id = new MyTableWidgetItem (QString::number                  (a->currentItem()->getID()));
         //set all as un-editable
         name->setFlags(name->flags() ^ Qt::ItemIsEditable);
         species->setFlags(species->flags() ^ Qt::ItemIsEditable);
@@ -72,6 +74,9 @@ void AnimalListView::updateListView()
         animalList->setItem(i, 3, age);    //Age
         animalList->setItem(i, 4, sex);    //Sex
         animalList->setItem(i, 5, id);    //ShelterID
+
+        i++;
+        a->next();
     }
     //set dimensions
     //int arr [6] = {120, 120, 106, 56, 42, 42};
