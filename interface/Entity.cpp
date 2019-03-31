@@ -32,8 +32,6 @@ UClient::~UClient()
 }
 
 
-
-
 int Entity::getInt (int id)
 {
     Iterator<Description<int>> * iter = getIntIterator();

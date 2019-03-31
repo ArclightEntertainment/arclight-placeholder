@@ -2,7 +2,7 @@
 #define ARRAYCOLLECTION_H
 
 #define START_LENGTH 30
-#include "./AbstractCollection.h"
+#include "./interface/AbstractCollection.h"
 
 //Iterator implementation based off of the one found here: https://www.robertlarsononline.com/2017/04/24/iterator-pattern-using-cplusplus/
 

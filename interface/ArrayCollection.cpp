@@ -41,7 +41,6 @@ void ArrayCollection<Item>::append (Item item)
 {
     arr[numElements] = item;
     numElements ++;
-    //std::cout << "Adding " << ((&item == NULL) ? "sadness" : "happyboi") << " in a list of size " << numElements << std::endl;
 
     if (numElements == maxNumElements-1)
     {
@@ -65,14 +64,11 @@ const Item& ArrayCollection<Item>::get(unsigned int index) const
     return arr[index];
 }
 
-
-
 template <class Item>
 void ArrayCollection<Item>::setValue (int index, Item newVal)
 {
     arr[index] = newVal;
 }
-
 template <class Item>
 ArrayCollectionIterator<Item>::ArrayCollectionIterator(const ArrayCollection<Item> * arrC) : arrCollection(arrC), index (0)
 {

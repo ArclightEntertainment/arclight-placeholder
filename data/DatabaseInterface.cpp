@@ -18,7 +18,7 @@ DatabaseInterface::~DatabaseInterface()
 
 int DatabaseInterface::getAnimalCount()
 {
-    sqlite3 *db;
+    /*sqlite3 *db;
     sqlite3_stmt *stmt = 0;
     char const *sql;
     int rc;
@@ -46,12 +46,13 @@ int DatabaseInterface::getAnimalCount()
     rc = sqlite3_finalize(stmt);
     sqlite3_close(db);
 
-    return animalCount;
+    return animalCount;*/
+    return 0;
 }
 
 int DatabaseInterface::getClientCount()
 {
-    sqlite3 *db;
+    /*sqlite3 *db;
     sqlite3_stmt *stmt = 0;
     char const *sql;
     int rc;
@@ -79,12 +80,13 @@ int DatabaseInterface::getClientCount()
     rc = sqlite3_finalize(stmt);
     sqlite3_close(db);
 
-    return clientCount;
+    return clientCount;*/
+    return 0;
 }
 
 Animal** DatabaseInterface::getAnimalArray()
 {
-    sqlite3 *db;
+    /*sqlite3 *db;
     sqlite3_stmt *stmt = 0;
     char const *sql;
     int rc;
@@ -156,12 +158,14 @@ Animal** DatabaseInterface::getAnimalArray()
     Animal animal = *&animalArray[0];
 
     // Return a pointer to the first element in the array
+    return &animalArray;*/
+    static Animal *animalArray = new Animal[0];
     return &animalArray;
 }
 
 Client** DatabaseInterface::getClientArray()
 {
-    sqlite3 *db;
+    /*sqlite3 *db;
     sqlite3_stmt *stmt = 0;
     char const *sql;
     int rc;
@@ -229,12 +233,14 @@ Client** DatabaseInterface::getClientArray()
         i++;
     }
     sqlite3_close_v2(db);
+    return &clientArray;*/
+    static Client *clientArray = new Client[0];
     return &clientArray;
 }
 
 void DatabaseInterface::pushDBAnimal(Animal &animal)
 {
-    sqlite3 *db;
+    /*sqlite3 *db;
     sqlite3_stmt *stmt;
 
     if (sqlite3_open("data/data.db", &db) == SQLITE_OK)
@@ -264,7 +270,7 @@ void DatabaseInterface::pushDBAnimal(Animal &animal)
             sqlite3_bind_int(stmt, 17, animal.getTimeCommitment());
             sqlite3_bind_text(stmt, 18, animal.getDietNeeds().c_str(), animal.getDietNeeds().length(), SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 19, animal.getMobilityNeeds().c_str(), animal.getMobilityNeeds().length(), SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 20, animal.getDisabilityNeeds().c_str(), animal.getSpecies().length(), SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 20, animal.getDisabilityNeeds().c_str(), animal.getDisabilityNeeds().length(), SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 21, animal.getAbuseHistory().c_str(), animal.getAbuseHistory().length(), SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 22, animal.getBiography().c_str(), animal.getBiography().length(), SQLITE_TRANSIENT);
 
@@ -277,12 +283,12 @@ void DatabaseInterface::pushDBAnimal(Animal &animal)
             fprintf(stderr, "pushDBAnimal(): Can't open database: %s\n", sqlite3_errmsg(db));
         }
         sqlite3_close_v2(db);
-    }
+    }*/
 }
 
 void DatabaseInterface::pushDBClient(Client &client)
 {
-    sqlite3 *db;
+    /*sqlite3 *db;
     sqlite3_stmt *stmt = 0;
     if (sqlite3_open("data/data.db", &db) == SQLITE_OK)
     {
@@ -330,5 +336,5 @@ void DatabaseInterface::pushDBClient(Client &client)
     else
     {
         fprintf(stderr, "pushDBClient(): Can't open database: %s\n", sqlite3_errmsg(db));
-    }
+    }*/
 }

@@ -51,7 +51,6 @@ void AnimalDetailDiag::setFields()
     lineEdits[19] = ui->timeCommitmentLineEdit;
     lineEdits[20] = ui->careLineEdit;
 
-
     textEdits[0] = ui->bioTextEdit;
     textEdits[1] = ui->historyTextEdit;
 
@@ -241,6 +240,7 @@ void AnimalDetailDiag::updateFields()
         for (int j = 0; j < comboBoxes[i]->count(); j++)
         {
             if (comboBoxes[i]->itemText(j).toStdString() == aSubject->getString(6) || comboBoxes[i]->itemText(j).toStdString() == aSubject->getString(2))
+
             {
                 comboBoxes[i]->setCurrentIndex(j);
             }
