@@ -250,7 +250,7 @@ TARGET        = cuACS
 first: all
 ####### Build rules
 
-$(TARGET): ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h ui_animalinputdialog.h ui_clientinputdialog.h ui_clientdetaildialog.h $(OBJECTS)  
+$(TARGET): ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h ui_animalinputdialog.h ui_clientinputdialog.h ui_clientdetaildialog.h ui_clientquizdialog.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: cuACS.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -459,7 +459,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents data/DatabaseInterface.h data/DatabaseController.h interface/Animal.h interface/AnimalManager.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/Client.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientManager.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h interface/Entity.h interface/Description.h interface/ArrayCollection.h interface/AbstractCollection.h interface/EntityBuilder.h interface/CUACSController.h $(DISTDIR)/
 	$(COPY_FILE) --parents data/DatabaseInterface.cpp data/DatabaseController.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/Client.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientManager.cpp interface/ClientListView.cpp interface/ClientDetailDiag.cpp interface/mytablewidgetitem.cpp interface/ArrayCollection.cpp interface/Entity.cpp interface/EntityBuilder.cpp interface/CUACSController.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents interface/listview.ui interface/mainwindow.ui interface/animaldetaildialog.ui interface/animalinputdialog.ui interface/clientinputdialog.ui interface/clientdetaildialog.ui $(DISTDIR)/
+	$(COPY_FILE) --parents interface/listview.ui interface/mainwindow.ui interface/animaldetaildialog.ui interface/animalinputdialog.ui interface/clientinputdialog.ui interface/clientdetaildialog.ui interface/clientquizdialog.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -586,11 +586,13 @@ moc_ClientListView.cpp: interface/CUACSController.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include interface/ClientListView.h -o moc_ClientListView.cpp
 
-moc_ClientDetailDiag.cpp: interface/ClientManager.h \
-		interface/Client.h \
-		interface/Levels.h \
-		interface/Address.h \
-		interface/ClientProfile.h \
+moc_ClientDetailDiag.cpp: interface/CUACSController.h \
+		data/DatabaseController.h \
+		interface/EntityBuilder.h \
+		interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
 		interface/ClientDetailDiag.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -598,9 +600,9 @@ moc_ClientDetailDiag.cpp: interface/ClientManager.h \
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h ui_animalinputdialog.h ui_clientinputdialog.h ui_clientdetaildialog.h
+compiler_uic_make_all: ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h ui_animalinputdialog.h ui_clientinputdialog.h ui_clientdetaildialog.h ui_clientquizdialog.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h ui_animalinputdialog.h ui_clientinputdialog.h ui_clientdetaildialog.h
+	-$(DEL_FILE) ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h ui_animalinputdialog.h ui_clientinputdialog.h ui_clientdetaildialog.h ui_clientquizdialog.h
 ui_listview.h: interface/listview.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic interface/listview.ui -o ui_listview.h
@@ -624,6 +626,10 @@ ui_clientinputdialog.h: interface/clientinputdialog.ui \
 ui_clientdetaildialog.h: interface/clientdetaildialog.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic interface/clientdetaildialog.ui -o ui_clientdetaildialog.h
+
+ui_clientquizdialog.h: interface/clientquizdialog.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic interface/clientquizdialog.ui -o ui_clientquizdialog.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -797,11 +803,13 @@ ClientListView.o: interface/ClientListView.cpp interface/ClientListView.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientListView.o interface/ClientListView.cpp
 
 ClientDetailDiag.o: interface/ClientDetailDiag.cpp interface/ClientDetailDiag.h \
-		interface/ClientManager.h \
-		interface/Client.h \
-		interface/Levels.h \
-		interface/Address.h \
-		interface/ClientProfile.h \
+		interface/CUACSController.h \
+		data/DatabaseController.h \
+		interface/EntityBuilder.h \
+		interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
 		ui_clientdetaildialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientDetailDiag.o interface/ClientDetailDiag.cpp
 

@@ -46,8 +46,7 @@ SOURCES += \
     interface/ArrayCollection.cpp \
     interface/Entity.cpp \
     interface/EntityBuilder.cpp \
-    interface/CUACSController.cpp \
-    interface/ClientQuizDialog.cpp
+    interface/CUACSController.cpp
 
 HEADERS += \
     data/DatabaseInterface.h \
@@ -73,8 +72,7 @@ HEADERS += \
     interface/ArrayCollection.h \
     interface/AbstractCollection.h \
     interface/EntityBuilder.h \
-    interface/CUACSController.h \
-    interface/ClientQuizDialog.h
+    interface/CUACSController.h
 
 FORMS += \
     interface/listview.ui \
