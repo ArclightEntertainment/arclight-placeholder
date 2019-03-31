@@ -4,12 +4,11 @@
 class OptimizedDecisionTree
 {
 private:
-    //DecisionTreeDataItem *explore(DecisionTreeDataItem * branch) = 0;
-    //DecisionTreeDataItem *next() = 0;
+    //DecisionTreeDataItem *explore(DecisionTreeDataItem * branch);
+    //DecisionTreeDataItem *next();
 
 public:
-    //OptimizedDecisionTree() = 0;
-    //void setData(DecisionTreeDataItem *newData) = 0;
-    //DecisionTreeDataItem *evaluate() = 0;
+    //OptimizedDecisionTree();
+    //DecisionTreeDataItem *evaluate();
 };
 #endif // OPTIMIZEDDECISIONTREE_H

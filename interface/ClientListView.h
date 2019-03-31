@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <qstring.h>
 
+#include "interface/CUACSController.h"
 #include "ClientManager.h"
 #include "ClientDetailDiag.h"
 
@@ -22,7 +23,7 @@ class ClientListView : public QDialog
     Q_OBJECT
 
 public:
-    explicit ClientListView(ClientManager *aM, QWidget *parent = 0);
+    explicit ClientListView(CUACSController *med, QWidget *parent = 0);
     ~ClientListView();
 
 private slots:
@@ -36,7 +37,7 @@ private:
     QPushButton *detailsButton;
 
     //pointer to Animal Manager
-    ClientManager *manager;
+    CUACSController *mediator;
 
     void updateListView();
 };
