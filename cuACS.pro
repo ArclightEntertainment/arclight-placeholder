@@ -53,7 +53,8 @@ SOURCES += \
     interface/CandidateSet.cpp \
     interface/DecisionTreeDataItem.cpp \
     interface/OptimizedDecisionTree.cpp \
-    interface/Tests.cpp
+    interface/Tests.cpp \
+    interface/ACMTreeController.cpp
 
 HEADERS += \
     data/DatabaseInterface.h \
@@ -87,7 +88,8 @@ HEADERS += \
     interface/DecisionTreeDataItem.h \
     interface/OptimizedDecisionTree.h \
     interface/Tests.h \
-    interface/Attributes.h
+    interface/Attributes.h \
+    interface/ACMTreeController.h
 
 FORMS += \
     interface/listview.ui \

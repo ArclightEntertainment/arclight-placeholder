@@ -88,3 +88,21 @@ std::string CandidateSet::toString()
 
     return stream.str();
 }
+
+CandidateSet *CandidateSet::disjointSubset(AnimalClientPair *exclusionaryPair)
+{
+    CandidateSet disjointSubset = CandidateSet(size);
+
+    for (int i=0; i<size; i++)
+    {
+        if (candidates[i]->getAnimal() == exclusionaryPair->getAnimal()
+                || candidates[i]->getClient() == exclusionaryPair->getClient())
+        {
+            i++;
+        }
+
+        disjointSubset.add(candidates[i]);
+    }
+
+    return &disjointSubset;
+}

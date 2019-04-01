@@ -78,7 +78,8 @@ SOURCES       = data/DatabaseInterface.cpp \
 		interface/CandidateSet.cpp \
 		interface/DecisionTreeDataItem.cpp \
 		interface/OptimizedDecisionTree.cpp \
-		interface/Tests.cpp moc_MainWindow.cpp \
+		interface/Tests.cpp \
+		interface/ACMTreeController.cpp moc_MainWindow.cpp \
 		moc_AnimalInputDiag.cpp \
 		moc_AnimalListView.cpp \
 		moc_AnimalDetailDiag.cpp \
@@ -114,6 +115,7 @@ OBJECTS       = DatabaseInterface.o \
 		DecisionTreeDataItem.o \
 		OptimizedDecisionTree.o \
 		Tests.o \
+		ACMTreeController.o \
 		moc_MainWindow.o \
 		moc_AnimalInputDiag.o \
 		moc_AnimalListView.o \
@@ -242,7 +244,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/DecisionTreeDataItem.h \
 		interface/OptimizedDecisionTree.h \
 		interface/Tests.h \
-		interface/Attributes.h data/DatabaseInterface.cpp \
+		interface/Attributes.h \
+		interface/ACMTreeController.h data/DatabaseInterface.cpp \
 		data/DatabaseController.cpp \
 		interface/main.cpp \
 		interface/Animal.cpp \
@@ -270,7 +273,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/CandidateSet.cpp \
 		interface/DecisionTreeDataItem.cpp \
 		interface/OptimizedDecisionTree.cpp \
-		interface/Tests.cpp
+		interface/Tests.cpp \
+		interface/ACMTreeController.cpp
 QMAKE_TARGET  = cuACS
 DESTDIR       = 
 TARGET        = cuACS
@@ -486,8 +490,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.h data/DatabaseController.h interface/Animal.h interface/AnimalManager.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/Client.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientManager.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h interface/Entity.h interface/Description.h interface/ArrayCollection.h interface/AbstractCollection.h interface/EntityBuilder.h interface/CUACSController.h interface/ACMController.h interface/AnimalClientPair.h interface/AttributeComparator.h interface/CandidateSet.h interface/DecisionTreeDataItem.h interface/OptimizedDecisionTree.h interface/Tests.h interface/Attributes.h $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.cpp data/DatabaseController.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/Client.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientManager.cpp interface/ClientListView.cpp interface/ClientDetailDiag.cpp interface/mytablewidgetitem.cpp interface/ArrayCollection.cpp interface/Entity.cpp interface/EntityBuilder.cpp interface/CUACSController.cpp interface/ACMController.cpp interface/AnimalClientPair.cpp interface/AttributeComparator.cpp interface/CandidateSet.cpp interface/DecisionTreeDataItem.cpp interface/OptimizedDecisionTree.cpp interface/Tests.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseInterface.h data/DatabaseController.h interface/Animal.h interface/AnimalManager.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/Client.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientManager.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h interface/Entity.h interface/Description.h interface/ArrayCollection.h interface/AbstractCollection.h interface/EntityBuilder.h interface/CUACSController.h interface/ACMController.h interface/AnimalClientPair.h interface/AttributeComparator.h interface/CandidateSet.h interface/DecisionTreeDataItem.h interface/OptimizedDecisionTree.h interface/Tests.h interface/Attributes.h interface/ACMTreeController.h $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseInterface.cpp data/DatabaseController.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/Client.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientManager.cpp interface/ClientListView.cpp interface/ClientDetailDiag.cpp interface/mytablewidgetitem.cpp interface/ArrayCollection.cpp interface/Entity.cpp interface/EntityBuilder.cpp interface/CUACSController.cpp interface/ACMController.cpp interface/AnimalClientPair.cpp interface/AttributeComparator.cpp interface/CandidateSet.cpp interface/DecisionTreeDataItem.cpp interface/OptimizedDecisionTree.cpp interface/Tests.cpp interface/ACMTreeController.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents interface/listview.ui interface/mainwindow.ui interface/animaldetaildialog.ui interface/animalinputdialog.ui interface/clientinputdialog.ui interface/clientdetaildialog.ui $(DISTDIR)/
 
 
@@ -533,6 +537,9 @@ moc_MainWindow.cpp: interface/CUACSController.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		interface/AnimalInputDiag.h \
 		interface/ClientInputDiag.h \
 		interface/AnimalListView.h \
@@ -560,6 +567,9 @@ moc_AnimalInputDiag.cpp: interface/CUACSController.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		interface/AnimalInputDiag.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -576,6 +586,9 @@ moc_AnimalListView.cpp: interface/mytablewidgetitem.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		interface/AnimalDetailDiag.h \
 		interface/AnimalListView.h \
 		moc_predefs.h \
@@ -592,6 +605,9 @@ moc_AnimalDetailDiag.cpp: interface/CUACSController.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		interface/AnimalDetailDiag.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -607,6 +623,9 @@ moc_ClientInputDiag.cpp: interface/CUACSController.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		interface/ClientInputDiag.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -622,6 +641,9 @@ moc_ClientListView.cpp: interface/CUACSController.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		interface/ClientManager.h \
 		interface/Client.h \
 		interface/Levels.h \
@@ -643,6 +665,9 @@ moc_ClientDetailDiag.cpp: interface/CUACSController.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		interface/ClientDetailDiag.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -710,6 +735,9 @@ main.o: interface/main.cpp interface/MainWindow.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		interface/AnimalInputDiag.h \
 		interface/ClientInputDiag.h \
 		interface/AnimalListView.h \
@@ -721,10 +749,7 @@ main.o: interface/main.cpp interface/MainWindow.h \
 		interface/Levels.h \
 		interface/Address.h \
 		interface/ClientProfile.h \
-		interface/ClientDetailDiag.h \
-		interface/Tests.h \
-		interface/Animal.h \
-		interface/species.h
+		interface/ClientDetailDiag.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o interface/main.cpp
 
 Animal.o: interface/Animal.cpp interface/Animal.h \
@@ -753,6 +778,9 @@ MainWindow.o: interface/MainWindow.cpp interface/MainWindow.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		interface/AnimalInputDiag.h \
 		interface/ClientInputDiag.h \
 		interface/AnimalListView.h \
@@ -782,6 +810,9 @@ AnimalInputDiag.o: interface/AnimalInputDiag.cpp interface/AnimalInputDiag.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		ui_animalinputdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AnimalInputDiag.o interface/AnimalInputDiag.cpp
 
@@ -797,6 +828,9 @@ AnimalListView.o: interface/AnimalListView.cpp interface/AnimalListView.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		interface/AnimalDetailDiag.h \
 		ui_listview.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AnimalListView.o interface/AnimalListView.cpp
@@ -812,6 +846,9 @@ AnimalDetailDiag.o: interface/AnimalDetailDiag.cpp interface/AnimalDetailDiag.h 
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		ui_animaldetaildialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AnimalDetailDiag.o interface/AnimalDetailDiag.cpp
 
@@ -842,6 +879,9 @@ ClientInputDiag.o: interface/ClientInputDiag.cpp interface/ClientInputDiag.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		ui_clientinputdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientInputDiag.o interface/ClientInputDiag.cpp
 
@@ -866,6 +906,9 @@ ClientListView.o: interface/ClientListView.cpp interface/ClientListView.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		interface/ClientManager.h \
 		interface/Client.h \
 		interface/Levels.h \
@@ -886,6 +929,9 @@ ClientDetailDiag.o: interface/ClientDetailDiag.cpp interface/ClientDetailDiag.h 
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		ui_clientdetaildialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientDetailDiag.o interface/ClientDetailDiag.cpp
 
@@ -920,7 +966,10 @@ CUACSController.o: interface/CUACSController.cpp interface/CUACSController.h \
 		interface/AbstractCollection.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
-		interface/CandidateSet.h
+		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CUACSController.o interface/CUACSController.cpp
 
 ACMController.o: interface/ACMController.cpp interface/ACMController.h \
@@ -930,7 +979,10 @@ ACMController.o: interface/ACMController.cpp interface/ACMController.h \
 		interface/Description.h \
 		interface/ArrayCollection.h \
 		interface/AbstractCollection.h \
-		interface/CandidateSet.h
+		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ACMController.o interface/ACMController.cpp
 
 AnimalClientPair.o: interface/AnimalClientPair.cpp interface/AnimalClientPair.h \
@@ -959,10 +1011,25 @@ CandidateSet.o: interface/CandidateSet.cpp interface/CandidateSet.h \
 		interface/AbstractCollection.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CandidateSet.o interface/CandidateSet.cpp
 
-DecisionTreeDataItem.o: interface/DecisionTreeDataItem.cpp interface/DecisionTreeDataItem.h
+DecisionTreeDataItem.o: interface/DecisionTreeDataItem.cpp interface/DecisionTreeDataItem.h \
+		interface/CandidateSet.h \
+		interface/AnimalClientPair.h \
+		interface/EntityBuilder.h \
+		interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DecisionTreeDataItem.o interface/DecisionTreeDataItem.cpp
 
-OptimizedDecisionTree.o: interface/OptimizedDecisionTree.cpp interface/OptimizedDecisionTree.h
+OptimizedDecisionTree.o: interface/OptimizedDecisionTree.cpp interface/OptimizedDecisionTree.h \
+		interface/CandidateSet.h \
+		interface/AnimalClientPair.h \
+		interface/EntityBuilder.h \
+		interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
+		interface/DecisionTreeDataItem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o OptimizedDecisionTree.o interface/OptimizedDecisionTree.cpp
 
 Tests.o: interface/Tests.cpp interface/Tests.h \
@@ -977,6 +1044,9 @@ Tests.o: interface/Tests.cpp interface/Tests.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
+		interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/DecisionTreeDataItem.h \
 		interface/AnimalInputDiag.h \
 		interface/ClientInputDiag.h \
 		interface/AnimalListView.h \
@@ -992,6 +1062,18 @@ Tests.o: interface/Tests.cpp interface/Tests.h \
 		interface/Animal.h \
 		interface/species.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Tests.o interface/Tests.cpp
+
+ACMTreeController.o: interface/ACMTreeController.cpp interface/ACMTreeController.h \
+		interface/OptimizedDecisionTree.h \
+		interface/CandidateSet.h \
+		interface/AnimalClientPair.h \
+		interface/EntityBuilder.h \
+		interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
+		interface/DecisionTreeDataItem.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ACMTreeController.o interface/ACMTreeController.cpp
 
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp

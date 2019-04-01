@@ -22,5 +22,8 @@ public:
     bool containsAnimal(UAnimal *animal);
     bool containsClient(UClient *client);
     std::string toString();
+    inline int getSize() { return size; }
+    inline bool isEmpty() { return size == 0; }
+    CandidateSet *disjointSubset(AnimalClientPair *exclusionaryPair);
 };
 #endif // CANDIDATESET_H
