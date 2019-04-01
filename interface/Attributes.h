@@ -4,31 +4,6 @@
 enum class AnimalAttribute : int
 {
     ID = 0,
-    FIRST_NAME = 1,
-    HAS_CHILDREN_UNDER_TWELVE = 2,
-    HAS_PETS = 3,
-    AGE = 4,
-    LAST_NAME = 5,
-    PREF_TITLE = 6,
-    PHONE_NUMBER = 7,
-    STREET_LINE_1 = 8,
-    STREET_LINE_2 = 9,
-    CITY = 10,
-    SUBNATIONAL_DIVISION = 11,
-    COUNTRY = 12,
-    POSTAL_CODE = 13,
-    LENGTH_OF_OWNERSHIP_EXPECTATION = 14,
-    MONTHLY_BUDGET_FOR_ANIMAL = 15,
-    AVAILABILITY_PER_DAY = 16,
-    LEVEL_OF_MOBILITY = 17,
-    LEVEL_OF_PATIENCE = 18,
-    PREVIOUS_EXPERIENCE = 19,
-    PHYSICAL_AFFECTION = 20,
-};
-
-enum class ClientAttribute : int
-{
-    ID = 0,
     NAME = 1,
     SPECIES = 2,
     BREED = 3,
@@ -50,6 +25,31 @@ enum class ClientAttribute : int
     DISABILITY_NEEDS = 19,
     ABUSE_HISTORY = 20,
     BIOGRAPHY = 21
+};
+
+enum class ClientAttribute : int
+{
+    ID = 0,
+    FIRST_NAME = 1,
+    HAS_CHILDREN_UNDER_TWELVE = 2,
+    HAS_PETS = 3,
+    AGE = 4,
+    LAST_NAME = 5,
+    PREF_TITLE = 6,
+    PHONE_NUMBER = 7,
+    STREET_LINE_1 = 8,
+    STREET_LINE_2 = 9,
+    CITY = 10,
+    SUBNATIONAL_DIVISION = 11,
+    COUNTRY = 12,
+    POSTAL_CODE = 13,
+    LENGTH_OF_OWNERSHIP_EXPECTATION = 14,
+    MONTHLY_BUDGET_FOR_ANIMAL = 15,
+    AVAILABILITY_PER_DAY = 16,
+    LEVEL_OF_MOBILITY = 17,
+    LEVEL_OF_PATIENCE = 18,
+    PREVIOUS_EXPERIENCE = 19,
+    PHYSICAL_AFFECTION = 20,
 };
 
 #endif // ATTRIBUTES_H
