@@ -8,7 +8,7 @@ private:
     //DecisionTreeDataItem *next();
 
 public:
-    //OptimizedDecisionTree();
+    //OptimizedDecisionTree(DecisionTreeData);
     //DecisionTreeDataItem *evaluate();
 };
 #endif // OPTIMIZEDDECISIONTREE_H

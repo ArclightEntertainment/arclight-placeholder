@@ -1,20 +1,19 @@
 #ifndef ANIMALCLIENTPAIR_H
 #define ANIMALCLIENTPAIR_H
 
-#include "Animal.h"
-#include "Client.h"
+#include "EntityBuilder.h"
 
 class AnimalClientPair
 {
 private:
-    Animal *animal;
-    Client *client;
+    UAnimal *animal;
+    UClient *client;
     float compatibility;
 
 public:
-    AnimalClientPair(Animal *a, Client *c);
-    Animal *getAnimal();
-    Client *getClient();
+    AnimalClientPair(UAnimal *a, UClient *c);
+    UAnimal *getAnimal();
+    UClient *getClient();
     float getCompatibility();
 };
 #endif // ANIMALCLIENTPAIR_H

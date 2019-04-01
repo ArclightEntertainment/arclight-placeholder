@@ -1,38 +1,47 @@
 #include "ACMController.h"
 
-ACMController::ACMController(Animal **animals, Client **clients, float thresholdValue)
+ACMController::ACMController(float thresholdValue)
 {
-    numAnimals = sizeof(animals)/sizeof(Animal*);
-    numClients = sizeof(clients)/sizeof(Client*);
+    numAnimals = 0;
+    numClients = 0;
     threshold = thresholdValue;
-
-    //int maxCandidateSetSize = numAnimals * numClients;
-    candidates = new CandidateSet(numAnimals * numClients);
-    generateAndStoreSortedCandidates(animals, clients);
 }
 
-void ACMController::generateAndStoreSortedCandidates(Animal **animals, Client **clients)
+void ACMController::generateCandidates(Iterator<UAnimal *> *animalIterator, Iterator<UClient *> *clientIterator)
 {
+    UAnimal *animals[numAnimals];
+    UClient *clients[numClients];
+
+    candidates = new CandidateSet(numAnimals * numClients);
+
+    int i, j;
+
+    i = -1;
+    while (!animalIterator->isDone())
+    {
+        animals[++i] = animalIterator->currentItem();
+        animalIterator->next();
+    }
+
+    j = -1;
+    while (!clientIterator->isDone())
+    {
+        clients[++j] = clientIterator->currentItem();
+        clientIterator->next();
+    }
+
     for (int i=0; i<numAnimals; i++)
     {
         for (int j=0; j<numClients; j++)
         {
-            AnimalClientPair* pair = generateCandidate(animals[i], clients[j]);
-            if (isAcceptable(pair))
-            {
-                candidates->add(pair);
-            }
+            candidates->add(generateCandidate(animals[i], clients[j]));
         }
     }
-
-    sortCandidates();
 }
 
-AnimalClientPair *ACMController::generateCandidate(Animal *animal, Client *client)
+AnimalClientPair *ACMController::generateCandidate(UAnimal *animal, UClient *client)
 {
     return new AnimalClientPair(animal, client);
-    //candidates.add(candidate);
-
 }
 
 void ACMController::sortCandidates()
@@ -40,29 +49,19 @@ void ACMController::sortCandidates()
     candidates->sort();
 }
 
+void ACMController::setup(int numA, Iterator<UAnimal *> *animalIterator, int numC, Iterator<UClient *> *clientIterator)
+{
+    numAnimals = numA;
+    numClients = numC;
+
+    generateCandidates(animalIterator, clientIterator);
+    sortCandidates();
+}
+
 bool ACMController::isAcceptable(AnimalClientPair *pair)
 {
     return pair->getCompatibility() >= threshold;
 }
-/*
-CandidateSet *ACMController::filterCandidates()
-{
-    int numUnfilteredCandidates = candidates.getSize();
-
-    for (int i=0; i<numUnfilteredCandidates; i++)
-    {
-        Candidate *candidate = candidates.get(i);
-        if (candidate.getCompatibility() < threshold)
-        {
-            candidates.remove(i);
-        }
-    }
-}
-
-CandidateSet *ACMController::getMatchSet()
-{
-
-}*/
 
 CandidateSet *ACMController::run()
 {

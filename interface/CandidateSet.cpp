@@ -1,5 +1,6 @@
 #include "CandidateSet.h"
 #include <algorithm>
+#include <sstream>
 
 CandidateSet::CandidateSet(int maxSize)
 {
@@ -48,7 +49,7 @@ void CandidateSet::sort()
     });
 }
 
-bool CandidateSet::containsAnimal(Animal *animal)
+bool CandidateSet::containsAnimal(UAnimal *animal)
 {
     for (int i=0; i<size; i++)
     {
@@ -60,7 +61,7 @@ bool CandidateSet::containsAnimal(Animal *animal)
     return false;
 }
 
-bool CandidateSet::containsClient(Client *client)
+bool CandidateSet::containsClient(UClient *client)
 {
     for (int i=0; i<size; i++)
     {
@@ -70,4 +71,20 @@ bool CandidateSet::containsClient(Client *client)
         }
     }
     return false;
+}
+
+std::string CandidateSet::toString()
+{
+    std::ostringstream stream;
+    stream << size << " pairs:\n[";
+
+    for (int i=0; i<size; i++)
+    {
+        stream << "\n(" << candidates[i]->getCompatibility() << "), "
+                << candidates[i]->getAnimal()->getName() << ", "
+                << candidates[i]->getClient()->getName();
+    }
+    stream << "\n]\n";
+
+    return stream.str();
 }

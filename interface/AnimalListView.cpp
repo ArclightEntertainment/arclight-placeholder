@@ -51,7 +51,6 @@ void AnimalListView::updateListView()
     int i = 0;
     while(!a->isDone())
     {
-        std::cout<<a->currentItem()->getName()<<std::endl;
         //Create item widgets for row
         MyTableWidgetItem *name = new MyTableWidgetItem (QString::fromStdString         (a->currentItem()->getName()));
         MyTableWidgetItem *species = new MyTableWidgetItem (QString::fromStdString      (a->currentItem()->getString(2)));

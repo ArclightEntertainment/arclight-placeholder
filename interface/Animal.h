@@ -95,7 +95,7 @@ public:
 
 
 //Setters
-    inline void setShelterID(int id) {shelterID = id; std::cout<<shelterID<<std::endl;}
+    inline void setShelterID(int id) {shelterID = id;}
     inline void setName(std::string n) {name = n;}
     inline void setAge(int a) {age = a;}
     inline void setLifeExpectancy(int lE) {lifeExpectancy = lE;}

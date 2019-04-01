@@ -1,19 +1,19 @@
 #include "AnimalClientPair.h"
 #include "AttributeComparator.h"
 
-AnimalClientPair::AnimalClientPair(Animal *a, Client *c)
+AnimalClientPair::AnimalClientPair(UAnimal *a, UClient *c)
 {
     animal = a;
     client = c;
     compatibility = AttributeComparator::calculateCompatibility(a, c);
 }
 
-Animal *AnimalClientPair::getAnimal()
+UAnimal *AnimalClientPair::getAnimal()
 {
     return animal;
 }
 
-Client *AnimalClientPair::getClient()
+UClient *AnimalClientPair::getClient()
 {
     return client;
 }

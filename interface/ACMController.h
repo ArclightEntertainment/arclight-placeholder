@@ -3,8 +3,7 @@
 
 #include "AnimalClientPair.h"
 #include "CandidateSet.h"
-#include "Animal.h"
-#include "Client.h"
+#include "EntityBuilder.h"
 
 class ACMController
 {
@@ -14,15 +13,15 @@ private:
     float threshold;
     CandidateSet * candidates;
 
-    void generateAndStoreSortedCandidates(Animal **animals, Client **clients);
-    AnimalClientPair *generateCandidate(Animal *animal, Client *client);
+    void generateCandidates(Iterator<UAnimal *> *animalIterator, Iterator<UClient *> *clientIterator);
+    AnimalClientPair *generateCandidate(UAnimal *animal, UClient *client);
     void sortCandidates();
     bool isAcceptable(AnimalClientPair *pair);
-    //CandidateSet *filterCandidates();
-    //CandidateSet *getMatchSet();
 
 public:
-    ACMController(Animal **animals, Client **clients, float thresholdValue);
+    ACMController(float thresholdValue);
     CandidateSet* run();
+    void setup(int numA, Iterator<UAnimal *> *animalIterator, int numC, Iterator<UClient *> *clientIterator);
+    inline CandidateSet *getCandidateSet() { return candidates; }
 };
 #endif // ACMCONTROLLER_H

@@ -21,8 +21,6 @@ Entity * EntityBuilder::build()
 
     while (currentID < numDesc)
     {
-        //std::cout<< "current: " << currentID << "/ numDesc: " << numDesc<< "/ bool: " << bool_iter->currentItem().getAttributeID() << "/ int: " << int_iter->currentItem().getAttributeID() << "/ string: " << string_iter->currentItem().getAttributeID() << std::endl;
-
         if(currentID == 0 || currentID == 1 || currentID == 4){currentID++; continue;}
         if (!bool_iter->isDone() || bool_iter->currentItem().getAttributeID() == currentID)
         {
@@ -44,7 +42,6 @@ Entity * EntityBuilder::build()
             return NULL;
         }
     }
-    //std::cout<<"Made Animal: " << entity->getName() <<std::endl;
     return entity;
 }
 

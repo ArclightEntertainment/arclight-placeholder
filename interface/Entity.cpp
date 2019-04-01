@@ -85,7 +85,6 @@ void Entity::setInt (int id, int val)
     {
         if (iter->currentItem().getAttributeID() == id)
         {
-            std::cout<<iter->currentItem().getValue() << " " << val;
             iter->currentItem().setValue(val);
             break;
         }

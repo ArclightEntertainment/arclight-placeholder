@@ -1,12 +1,12 @@
 #ifndef ATTRIBUTECOMPARATOR_H
 #define ATTRIBUTECOMPARATOR_H
 
-#include "Animal.h"
-#include "Client.h"
+#include "EntityBuilder.h"
+#include "AttributeComparator.h"
 
 class AttributeComparator
 {
 public:
-    static float calculateCompatibility(Animal* animal, Client* client);
+    static float calculateCompatibility(UAnimal *animal, UClient *client);
 };
 #endif // ATTRIBUTECOMPARATOR_H

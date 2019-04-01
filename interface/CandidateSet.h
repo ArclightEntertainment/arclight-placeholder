@@ -2,15 +2,12 @@
 #define CANDIDATESET_H
 
 #include "AnimalClientPair.h"
-#include "Animal.h"
-#include "Client.h"
-
-//using Candidate = AnimalClientPair;
+#include "EntityBuilder.h"
+#include <string>
 
 class CandidateSet
 {
 private:
-    //float setCompatibility;
     int size;
     float compatibilitySum;
     AnimalClientPair **candidates;
@@ -22,13 +19,8 @@ public:
     AnimalClientPair *get(int index);
     AnimalClientPair *remove(int index);
     void sort();
-    bool containsAnimal(Animal *animal);
-    bool containsClient(Client *client);
-    //int getSize();
-    //bool isPrunable();
-    //bool isEmpty();
-    //int compare(CandidateSet *other);
-    //CandidateSet *next();
-    //CandidateSet(CandidateSet *other);
+    bool containsAnimal(UAnimal *animal);
+    bool containsClient(UClient *client);
+    std::string toString();
 };
 #endif // CANDIDATESET_H
