@@ -66,7 +66,6 @@ private:
     void updateCurrentClient();
 
     void setPreferences(bool visible);
-    void setLayout(QLayout * layout, bool visible);
 };
 
 #endif // CLIENTDETAILDIAG_H

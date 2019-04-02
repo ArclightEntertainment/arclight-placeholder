@@ -32,6 +32,7 @@ void ClientListView::handleButtonDetail()
 {
     QModelIndex currentIndex = clientList->currentIndex();
     int id = clientList->item(currentIndex.row(), clientList->columnCount()-1)->text().toInt();
+
     ClientDetailDiag diag(mediator, mediator->getClientWithId(id), false, this);
     diag.setWindowTitle(QString::fromStdString(mediator->getClientWithId(id)->getName() + "'s Profile"));
     diag.exec();
