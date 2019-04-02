@@ -72,7 +72,8 @@ HEADERS += \
     interface/ArrayCollection.h \
     interface/AbstractCollection.h \
     interface/EntityBuilder.h \
-    interface/CUACSController.h
+    interface/CUACSController.h \
+    interface/Attributes.h
 
 FORMS += \
     interface/listview.ui \
