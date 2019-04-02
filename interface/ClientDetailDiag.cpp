@@ -11,9 +11,11 @@ ClientDetailDiag::ClientDetailDiag(CUACSController *med, Entity *subject, bool c
 
     closeButton = ui->closeButton;
     editButton = ui->editButton;
+    quizButton = ui->quizButton;
     //link buttons and functions
     connect(closeButton, SIGNAL(released()), this,SLOT(handleButtonClose()));
     connect(editButton, SIGNAL(released()), this,SLOT(handleButtonEdit()));
+    connect(quizButton, SIGNAL(released()), this,SLOT(handleButtonQuiz()));
 
     mediator = med;
     aSubject = subject;
@@ -23,9 +25,54 @@ ClientDetailDiag::ClientDetailDiag(CUACSController *med, Entity *subject, bool c
     setFields();
     updateFields();
     setEditable(canEdit);
+
+    std::cout << "call With: " << aSubject->getBool(99) << std::endl;
+    setPreferences(aSubject->getBool(99));
 }
 
+void ClientDetailDiag::setPreferences(bool visible)
+{
+    int numDone = 10;
+    for (int i = 0; i < NUMSPIN; i++)
+    {
+        spinBoxes[i]->setVisible(visible);
+        lineEdits[i + numDone]->setVisible(visible);
+    }
+    numDone += NUMSPIN;
+    for (int i = 0; i < NUMCHECK; i++)
+    {
+        checkBoxes[i]->setVisible(visible);
 
+        lineEdits[i + numDone]->setVisible(visible);
+    }
+    numDone += NUMCHECK;
+    for (int i = numDone; i < NUMLINES; i++)
+    {
+        lineEdits[i]->setVisible(visible);
+    }
+    for (int i = 0; i < NUMBAR; i++)
+    {
+        sliders[i]->setVisible(visible);
+        progBars[i]->setVisible(visible);
+    }
+
+    ui->ageLabel        ->setVisible(visible);
+    ui->lengthLabel     ->setVisible(visible);
+    ui->childrenLabel   ->setVisible(visible);
+    ui->petLabel        ->setVisible(visible);
+    ui->budgetLabel     ->setVisible(visible);
+    ui->timeLabel       ->setVisible(visible);
+    ui->mobilityLabel   ->setVisible(visible);
+    ui->patienceLabel   ->setVisible(visible);
+    ui->experienceLabel ->setVisible(visible);
+    ui->affectionLabel  ->setVisible(visible);
+}
+void ClientDetailDiag::handleButtonQuiz()
+{
+    QuestionnaireDialog diag(this);
+    diag.setWindowTitle("Matching Questionnaire");
+    diag.exec();
+}
 void ClientDetailDiag::handleButtonClose()
 {
     close();
@@ -44,19 +91,20 @@ void ClientDetailDiag::handleButtonEdit()
         QValidator *pNumValidator = new QRegExpValidator(QRegExp("([0-9]|-|\\)|\\(|\\ ){1,20}"), this);
         QValidator *postValidator = new QRegExpValidator(QRegExp("([0-9]|[a-z]|[A-Z]|\\ ){1,7}"), this);
         QValidator *textValidator = new QRegExpValidator(QRegExp("([A-Z]|[a-z]|-|.){1,50}"), this);
+        QValidator *numValidator = new QRegExpValidator(QRegExp("([0-9]|,){1,50}"), this);
 
         ui->cityLineEdit->setValidator(textValidator);
         ui->provLineEdit->setValidator(textValidator);
         ui->countryLineEdit->setValidator(textValidator);
         ui->phoneLineEdit->setValidator(pNumValidator);
         ui->postalLineEdit->setValidator(postValidator);
+        ui->budgetLineEdit->setValidator(numValidator);
+        ui->timeLineEdit->setValidator(numValidator);
 
         ui->nameLineEdit->setValidator(textValidator);
         editButton->setText("Save");
     }
     setEditable(editMode);
-
-
 }
 
 
@@ -67,6 +115,7 @@ ClientDetailDiag::~ClientDetailDiag()
 
 void ClientDetailDiag::setFields(){
     comboBoxes[0] = ui->titleComboBox;
+
     lineEdits[0] = ui->titleLineEdit;
     lineEdits[1] = ui->nameLineEdit;
     lineEdits[2] = ui->phoneLineEdit;
@@ -80,7 +129,33 @@ void ClientDetailDiag::setFields(){
     lineEdits[9]->setReadOnly(true);
     lineEdits[9]->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
 
-    //declare preference values here
+    lineEdits[10] = ui->budgetLineEdit;
+    lineEdits[11] = ui->timeLineEdit;
+    lineEdits[12] = ui->ageLineEdit;
+    lineEdits[13] = ui->lengthLineEdit;
+    lineEdits[14] = ui->childrenLineEdit;
+    lineEdits[15] = ui->petsLineEdit;
+    lineEdits[16] = ui->mobilityLineEdit;
+    lineEdits[17] = ui->patienceLineEdit;
+    lineEdits[18] = ui->experienceLineEdit;
+    lineEdits[19] = ui->affectionLineEdit;
+
+    spinBoxes[0] = ui->ageSpinBox;
+    spinBoxes[1] = ui->lengthSpinBox;
+
+    checkBoxes[0] = ui->childrenCheckBox;
+    checkBoxes[1] = ui->petsCheckBox;
+
+    sliders[0] = ui->mobilitySlider;
+    sliders[1] = ui->patienceSlider;
+    sliders[2] = ui->experienceSlider;
+    sliders[3] = ui->affectionSlider;
+
+    progBars[0] = ui->mobilityBar;
+    progBars[1] = ui->patienceBar;
+    progBars[2] = ui->experienceBar;
+    progBars[3] = ui->affectionBar;
+
 }
 void ClientDetailDiag::updateFields()
 {
@@ -99,6 +174,35 @@ void ClientDetailDiag::updateFields()
     lineEdits[8]->setText(QString::fromStdString(aSubject->getString(9)));
     lineEdits[9]->setText(QString::number(aSubject->getID()));
 
+
+    //fix values with correct ids
+    lineEdits[10]->setText(QString::number(aSubject->getInt(9)));
+    lineEdits[11]->setText(QString::number(aSubject->getInt(9)));
+    lineEdits[12]->setText(QString::fromStdString(aSubject->getString(9)));
+    lineEdits[13]->setText(QString::fromStdString(aSubject->getString(9)));
+    lineEdits[14]->setText(QString::number(aSubject->getInt(9)));
+    lineEdits[15]->setText(QString::number(aSubject->getInt(9)));
+    lineEdits[16]->setText(QString::fromStdString(aSubject->getString(9)));
+    lineEdits[17]->setText(QString::fromStdString(aSubject->getString(9)));
+    lineEdits[18]->setText(QString::fromStdString(aSubject->getString(9)));
+    lineEdits[19]->setText(QString::fromStdString(aSubject->getString(9)));
+
+    spinBoxes[0]->setValue(aSubject->getInt(9));
+    spinBoxes[1]->setValue(aSubject->getInt(9));
+
+    checkBoxes[0]->setChecked(aSubject->getBool(0));
+    checkBoxes[1]->setChecked(aSubject->getBool(1));
+
+    sliders[0]->setValue(aSubject->getInt(9));
+    sliders[1]->setValue(aSubject->getInt(9));
+    sliders[2]->setValue(aSubject->getInt(9));
+    sliders[3]->setValue(aSubject->getInt(9));
+
+    progBars[0]->setValue(aSubject->getInt(9));
+    progBars[1]->setValue(aSubject->getInt(9));
+    progBars[2]->setValue(aSubject->getInt(9));
+    progBars[3]->setValue(aSubject->getInt(9));
+
     //update the preference page values here
 }
 void ClientDetailDiag::updateCurrentClient()
@@ -108,6 +212,13 @@ void ClientDetailDiag::updateCurrentClient()
     //handle name updating
     //lineEdits[1]->setText(QString::fromStdString(aSubject->getName() + " " + aSubject->getString(5)));
 
+    std::string nameText = lineEdits[1]->text().toStdString();
+    std::string fName = nameText.substr(0, nameText.find(' ', 0));
+    std::string lName = nameText.substr(nameText.find(' ', 0) + 1, nameText.length());
+
+    aSubject->setName(fName);
+    aSubject->setString(5, lName);
+
     aSubject->setString(7, lineEdits[2]->text().toStdString());
     aSubject->setString(13, lineEdits[3]->text().toStdString());
     aSubject->setString(10, lineEdits[4]->text().toStdString());
@@ -116,12 +227,20 @@ void ClientDetailDiag::updateCurrentClient()
     aSubject->setString(8, lineEdits[7]->text().toStdString());
     aSubject->setString(9, lineEdits[8]->text().toStdString());
 
+    aSubject->setInt(5, sliders[0]->value());
+    aSubject->setInt(6, sliders[1]->value());
+    aSubject->setInt(7, sliders[2]->value());
+    aSubject->setInt(8, sliders[3]->value());
+
+    aSubject->setBool(10, checkBoxes[0]->isChecked());
+    aSubject->setBool(11, checkBoxes[1]->isChecked());
+
     updateFields();
 }
 
 void ClientDetailDiag::setEditable (bool canEdit)
 {
-    for (int i = 0; i < NUMLINES - 1; i++)
+    for (int i = 0; i < NUMLINES; i++)
     {
         lineEdits[i]->setReadOnly(!canEdit);
         if (canEdit)
@@ -134,44 +253,35 @@ void ClientDetailDiag::setEditable (bool canEdit)
         }
     }
 
-    int lineWidth = 16777215;
-    int otherWidth = 0;
-    if (canEdit)
-    {
-        lineWidth = 0;
-        otherWidth = 16777215;
-    }
-    /*Need to:
-    1. Species, Sex, Age, Max Age, Immunized. Set line Edits to 0, Set other to INTEGER_MAX_INT
-    2. Sliders Set Progress Bars to 0, other to MAX
-    number of ineditable == NUMLINES -(NUMBARS+NUMCHECK+NUMCOMBO+NUMSPIN)
-    */
-
-    //int numDone = NUMLINES -(NUMBARS+NUMCHECK+NUMCOMBO+NUMSPIN);
-    int numDone = NUMLINES - NUMCOMBO;
+    int maxWidth = 16777215;
     for (int i = 0; i < NUMCOMBO; i++)
     {
-        comboBoxes[i]->setMaximumWidth((editMode) ? 60 : 0);
-        lineEdits[i]->setMaximumWidth((editMode) ? 0 : 40);
+        comboBoxes[i]->setMaximumWidth((canEdit) ? 60 : 0);
+        lineEdits[i]->setMaximumWidth((canEdit) ? 0 : 40);
     }
-    numDone += NUMCOMBO;
-    //for (int i = 0; i < NUMSPIN; i++)
-    //{
-    //    spinBoxes[i]->setMaximumWidth(otherWidth);
-    //}
-    //numDone += NUMSPIN;
-    //for (int i = 0; i < NUMCHECK; i++)
-    //{
-    //    checkBoxes[i]->setCheckable(true);
-    //    checkBoxes[i]->setMaximumWidth(otherWidth);
-    //}
+
+    int numDone = 12;
+    for (int i = 0; i < NUMSPIN; i++)
+    {
+        spinBoxes[i]->setMaximumWidth((canEdit) ? 80 : 0);
+        lineEdits[i + numDone]->setMaximumWidth((canEdit) ? 0 : 60);
+    }
+    numDone += NUMSPIN;
+    for (int i = 0; i < NUMCHECK; i++)
+    {
+        checkBoxes[i]->setCheckable(canEdit);
+        checkBoxes[i]->setMaximumWidth((canEdit) ? maxWidth : 0);
+
+        lineEdits[i + numDone]->setMaximumWidth((canEdit) ? 0 : 60);
+    }
+    numDone += NUMCHECK;
     for (int i = numDone; i < NUMLINES; i++)
     {
-        lineEdits[i]->setMaximumWidth((lineWidth > otherWidth) ? lineWidth : otherWidth);
+        lineEdits[i]->setMaximumWidth((canEdit) ? 0 : 60);
     }
-    //for (int i = 0; i < NUMBARS; i++)
-    //{
-    //    sliders[i]->setMaximumWidth(otherWidth);
-    //    progBars[i]->setMaximumWidth(lineWidth);
-    //}
+    for (int i = 0; i < NUMBAR; i++)
+    {
+        sliders[i]->setMaximumWidth((canEdit) ? maxWidth : 0);
+        progBars[i]->setMaximumWidth((canEdit) ? 0 : maxWidth);
+    }
 }

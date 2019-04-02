@@ -1,6 +1,7 @@
 #include "AnimalDetailDiag.h"
 #include "ui_animaldetaildialog.h"
 #include <iostream>
+#include <QLabel>
 
 //Requires parent widget and manager
 AnimalDetailDiag::AnimalDetailDiag(CUACSController *med, Entity *subject, bool canEdit, QWidget *parent) :

@@ -16,6 +16,7 @@
 #include <qstring.h>
 
 #include "CUACSController.h"
+#include "QuestionnaireDialog.h"
 
 namespace Ui {
     class ClientDetailDiag;
@@ -31,6 +32,7 @@ public:
 private slots:
     void handleButtonClose();
     void handleButtonEdit();
+    void handleButtonQuiz();
 private:
     //UI Elements
     static const int NUMLINES = 20;
@@ -44,11 +46,12 @@ private:
     QSpinBox *spinBoxes[NUMSPIN];
     QCheckBox *checkBoxes[NUMCHECK];
     QSlider *sliders[NUMBAR];
-    QProgressBar *progressBars[NUMBAR];
+    QProgressBar *progBars[NUMBAR];
 
     Ui::ClientDetailDiag *ui;
     QPushButton *closeButton;
     QPushButton *editButton;
+    QPushButton *quizButton;
 
     //pointer to manager + subject
     CUACSController *mediator;
@@ -61,6 +64,9 @@ private:
 
     void setEditable (bool canEdit);
     void updateCurrentClient();
+
+    void setPreferences(bool visible);
+    void setLayout(QLayout * layout, bool visible);
 };
 
 #endif // CLIENTDETAILDIAG_H

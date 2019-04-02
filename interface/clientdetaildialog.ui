@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>493</width>
-    <height>467</height>
+    <width>462</width>
+    <height>477</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -120,7 +120,7 @@
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
-                 <width>80</width>
+                 <width>40</width>
                  <height>20</height>
                 </size>
                </property>
@@ -299,50 +299,6 @@
              </property>
             </spacer>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="buttonLayout_2">
-             <item>
-              <spacer name="horizontalSpacer_3">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QPushButton" name="editButton">
-               <property name="text">
-                <string>Edit</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="closeButton">
-               <property name="text">
-                <string>Close</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
           </layout>
          </item>
          <item>
@@ -368,65 +324,474 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <spacer name="verticalSpacer_8">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
+        <layout class="QVBoxLayout" name="preferenceLayout">
          <item>
-          <layout class="QHBoxLayout" name="sexAgeLayout">
+          <spacer name="verticalSpacer_8">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
-            <widget class="QLineEdit" name="ageLineEdit">
-             <property name="maximumSize">
-              <size>
-               <width>45</width>
-               <height>16777215</height>
-              </size>
+            <layout class="QHBoxLayout" name="sexAgeLayout">
+             <item>
+              <widget class="QLineEdit" name="ageLineEdit">
+               <property name="maximumSize">
+                <size>
+                 <width>45</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="ageSpinBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="ageLabel">
+               <property name="text">
+                <string>years old</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="maxAgeLayout">
+             <item>
+              <widget class="QLabel" name="lengthLabel">
+               <property name="text">
+                <string>Expected Length of Ownership?</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lengthLineEdit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>45</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="lengthSpinBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_6">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Expanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="childrenLayout">
+             <item>
+              <widget class="QLabel" name="childrenLabel">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>Children Under 12?</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="childrenLineEdit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>50</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="childrenCheckBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="petsLayout">
+             <item>
+              <widget class="QLabel" name="petLabel">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>Other Pets?</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="petsLineEdit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>50</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="petsCheckBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_8">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="budgetLayout">
+             <item>
+              <widget class="QLabel" name="budgetLabel">
+               <property name="text">
+                <string>Preferred Monthly Budget: $</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="budgetLineEdit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>200</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="timeLayout">
+             <item>
+              <widget class="QLabel" name="timeLabel">
+               <property name="text">
+                <string>Time Availability Per Day(mins):</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="timeLineEdit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>200</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="sliderLayout">
+           <item row="2" column="0">
+            <widget class="QLabel" name="experienceLabel">
+             <property name="text">
+              <string>Previous Experience:</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
-           <item>
-            <widget class="QSpinBox" name="ageSpinBox">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="ageText">
+           <item row="1" column="0">
+            <widget class="QLabel" name="patienceLabel">
              <property name="text">
-              <string>years old</string>
+              <string>Level of Patience:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="maxAgeLayout">
-           <item>
-            <widget class="QLabel" name="maxAgeLabel">
+           <item row="3" column="1">
+            <layout class="QGridLayout" name="affectionLayout">
+             <item row="0" column="0">
+              <widget class="QProgressBar" name="affectionBar">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>7</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="textVisible">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSlider" name="affectionSlider">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="sliderPosition">
+                <number>3</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="1">
+            <layout class="QGridLayout" name="mobilityLayout">
+             <item row="0" column="0">
+              <widget class="QProgressBar" name="mobilityBar">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>7</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="textVisible">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSlider" name="mobilitySlider">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="sliderPosition">
+                <number>3</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLineEdit" name="mobilityLineEdit"/>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="mobilityLabel">
              <property name="text">
-              <string>Expected Length of Ownership?</string>
+              <string>Level of Mobility:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
-           <item>
-            <widget class="QLineEdit" name="maxAgeLineEdit">
+           <item row="2" column="1">
+            <layout class="QGridLayout" name="experienceLayout">
+             <item row="0" column="0">
+              <widget class="QProgressBar" name="experienceBar">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>7</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="textVisible">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSlider" name="experienceSlider">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="sliderPosition">
+                <number>3</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLineEdit" name="experienceLineEdit">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -435,181 +800,75 @@
              </property>
              <property name="maximumSize">
               <size>
-               <width>45</width>
-               <height>16777215</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="maxAgeSpinBox">
-             <property name="maximumSize">
-              <size>
                <width>16777215</width>
                <height>16777215</height>
               </size>
              </property>
             </widget>
            </item>
-           <item>
-            <spacer name="horizontalSpacer_6">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Expanding</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="patienceLineEdit"/>
            </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="immunizedLayout">
-           <item>
-            <widget class="QLabel" name="immunizedLabel">
-             <property name="layoutDirection">
-              <enum>Qt::RightToLeft</enum>
-             </property>
+           <item row="3" column="0">
+            <widget class="QLabel" name="affectionLabel">
              <property name="text">
-              <string>Children Under 12?</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="immunizedLineEdit">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>50</width>
-               <height>16777215</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="immunizedCheckBox">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_7">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="immunizedLayout_2">
-           <item>
-            <widget class="QLabel" name="immunizedLabel_2">
-             <property name="layoutDirection">
-              <enum>Qt::RightToLeft</enum>
-             </property>
-             <property name="text">
-              <string>Other Pets?</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="immunizedLineEdit_2">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>50</width>
-               <height>16777215</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="immunizedCheckBox_2">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_8">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="careLevelLayout_2">
-           <item>
-            <widget class="QLabel" name="expenditureLabel">
-             <property name="text">
-              <string>Preferred Monthly Budget: $</string>
+              <string>Physical Affection:</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
-           <item>
-            <widget class="QLineEdit" name="expenditureLineEdit">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
+           <item row="1" column="1">
+            <layout class="QGridLayout" name="patienceLayout">
+             <item row="0" column="0">
+              <widget class="QProgressBar" name="patienceBar">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>7</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="textVisible">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSlider" name="patienceSlider">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="sliderPosition">
+                <number>3</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLineEdit" name="affectionLineEdit">
              <property name="maximumSize">
               <size>
-               <width>200</width>
+               <width>16777215</width>
                <height>16777215</height>
               </size>
              </property>
@@ -618,298 +877,104 @@
           </layout>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="careLevelLayout_3">
-           <item>
-            <widget class="QLabel" name="expenditureLabel_2">
-             <property name="text">
-              <string>Time Availability Per Day(mins):</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="expenditureLineEdit_2">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>16777215</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-          </layout>
+          <spacer name="verticalSpacer_7">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>
        <item>
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <layout class="QGridLayout" name="sliderLayout">
-         <item row="2" column="0">
-          <widget class="QLabel" name="experienceLabel">
-           <property name="text">
-            <string>Previous Experience:</string>
+        <layout class="QHBoxLayout" name="quizLayout">
+         <item>
+          <spacer name="horizontalSpacer_9">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="2">
-          <widget class="QLineEdit" name="affectionLineEdit">
-           <property name="maximumSize">
+           <property name="sizeHint" stdset="0">
             <size>
-             <width>16777215</width>
-             <height>16777215</height>
+             <width>40</width>
+             <height>20</height>
             </size>
            </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="quizButton">
+           <property name="text">
+            <string>Match Quiz</string>
+           </property>
           </widget>
          </item>
-         <item row="1" column="2">
-          <widget class="QLineEdit" name="patienceLineEdit"/>
-         </item>
-         <item row="2" column="2">
-          <widget class="QLineEdit" name="experienceLineEdit">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+         <item>
+          <spacer name="horizontalSpacer_10">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
-           <property name="maximumSize">
+           <property name="sizeHint" stdset="0">
             <size>
-             <width>16777215</width>
-             <height>16777215</height>
+             <width>40</width>
+             <height>20</height>
             </size>
            </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="affectionLabel">
-           <property name="text">
-            <string>Physical Affection:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLineEdit" name="mobilityLineEdit"/>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="patienceLabel">
-           <property name="text">
-            <string>Level of Patience:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="mobilityLabel">
-           <property name="text">
-            <string>Level of Mobility:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <layout class="QGridLayout" name="mobilityLayout">
-           <item row="0" column="0">
-            <widget class="QProgressBar" name="mobilityBar">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>7</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <number>2</number>
-             </property>
-             <property name="value">
-              <number>1</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QSlider" name="mobilitySlider">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <number>2</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="1" column="1">
-          <layout class="QGridLayout" name="patienceLayout">
-           <item row="0" column="0">
-            <widget class="QProgressBar" name="patienceBar">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>7</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <number>2</number>
-             </property>
-             <property name="value">
-              <number>1</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QSlider" name="patienceSlider">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <number>2</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="2" column="1">
-          <layout class="QGridLayout" name="experienceLayout">
-           <item row="0" column="0">
-            <widget class="QProgressBar" name="experienceBar">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>7</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <number>2</number>
-             </property>
-             <property name="value">
-              <number>1</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QSlider" name="experienceSlider">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <number>2</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="3" column="1">
-          <layout class="QGridLayout" name="affectionLayout">
-           <item row="0" column="0">
-            <widget class="QProgressBar" name="affectionBar">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>7</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <number>2</number>
-             </property>
-             <property name="value">
-              <number>1</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QSlider" name="affectionSlider">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <number>2</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-          </layout>
+          </spacer>
          </item>
         </layout>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_7">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
     </widget>
+   </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="buttonLayout">
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="editButton">
+       <property name="text">
+        <string>Edit</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="closeButton">
+       <property name="text">
+        <string>Close</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

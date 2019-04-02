@@ -46,7 +46,8 @@ SOURCES += \
     interface/ArrayCollection.cpp \
     interface/Entity.cpp \
     interface/EntityBuilder.cpp \
-    interface/CUACSController.cpp
+    interface/CUACSController.cpp \
+    interface/QuestionnaireDialog.cpp
 
 HEADERS += \
     data/DatabaseInterface.h \
@@ -72,7 +73,9 @@ HEADERS += \
     interface/ArrayCollection.h \
     interface/AbstractCollection.h \
     interface/EntityBuilder.h \
-    interface/CUACSController.h
+    interface/CUACSController.h \
+    interface/QuestionnaireDialog.h \
+    interface/QuestionnaireDialog.h
 
 FORMS += \
     interface/listview.ui \
@@ -80,4 +83,5 @@ FORMS += \
     interface/animaldetaildialog.ui \
     interface/animalinputdialog.ui \
     interface/clientinputdialog.ui \
-    interface/clientdetaildialog.ui
+    interface/clientdetaildialog.ui \
+    interface/questionnairedialog.ui
