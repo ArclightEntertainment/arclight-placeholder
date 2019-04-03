@@ -50,21 +50,16 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = data/DatabaseInterface.cpp \
-		data/DatabaseController.cpp \
+SOURCES       = data/DatabaseController.cpp \
 		interface/main.cpp \
-		interface/Animal.cpp \
-		interface/AnimalManager.cpp \
 		interface/MainWindow.cpp \
 		interface/AnimalInputDiag.cpp \
 		interface/AnimalListView.cpp \
 		interface/AnimalDetailDiag.cpp \
 		interface/species.cpp \
 		interface/Address.cpp \
-		interface/Client.cpp \
 		interface/ClientProfile.cpp \
 		interface/ClientInputDiag.cpp \
-		interface/ClientManager.cpp \
 		interface/ClientListView.cpp \
 		interface/ClientDetailDiag.cpp \
 		interface/mytablewidgetitem.cpp \
@@ -80,21 +75,16 @@ SOURCES       = data/DatabaseInterface.cpp \
 		moc_ClientListView.cpp \
 		moc_ClientDetailDiag.cpp \
 		moc_QuestionnaireDialog.cpp
-OBJECTS       = DatabaseInterface.o \
-		DatabaseController.o \
+OBJECTS       = DatabaseController.o \
 		main.o \
-		Animal.o \
-		AnimalManager.o \
 		MainWindow.o \
 		AnimalInputDiag.o \
 		AnimalListView.o \
 		AnimalDetailDiag.o \
 		species.o \
 		Address.o \
-		Client.o \
 		ClientProfile.o \
 		ClientInputDiag.o \
-		ClientManager.o \
 		ClientListView.o \
 		ClientDetailDiag.o \
 		mytablewidgetitem.o \
@@ -201,21 +191,16 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		cuACS.pro data/DatabaseInterface.h \
-		data/DatabaseController.h \
-		interface/Animal.h \
-		interface/AnimalManager.h \
+		cuACS.pro data/DatabaseController.h \
 		interface/MainWindow.h \
 		interface/AnimalInputDiag.h \
 		interface/AnimalListView.h \
 		interface/AnimalDetailDiag.h \
 		interface/species.h \
 		interface/Address.h \
-		interface/Client.h \
 		interface/ClientProfile.h \
 		interface/Levels.h \
 		interface/ClientInputDiag.h \
-		interface/ClientManager.h \
 		interface/ClientListView.h \
 		interface/ClientDetailDiag.h \
 		interface/mytablewidgetitem.h \
@@ -226,21 +211,16 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/EntityBuilder.h \
 		interface/CUACSController.h \
 		interface/QuestionnaireDialog.h \
-		interface/QuestionnaireDialog.h data/DatabaseInterface.cpp \
-		data/DatabaseController.cpp \
+		interface/QuestionnaireDialog.h data/DatabaseController.cpp \
 		interface/main.cpp \
-		interface/Animal.cpp \
-		interface/AnimalManager.cpp \
 		interface/MainWindow.cpp \
 		interface/AnimalInputDiag.cpp \
 		interface/AnimalListView.cpp \
 		interface/AnimalDetailDiag.cpp \
 		interface/species.cpp \
 		interface/Address.cpp \
-		interface/Client.cpp \
 		interface/ClientProfile.cpp \
 		interface/ClientInputDiag.cpp \
-		interface/ClientManager.cpp \
 		interface/ClientListView.cpp \
 		interface/ClientDetailDiag.cpp \
 		interface/mytablewidgetitem.cpp \
@@ -464,8 +444,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.h data/DatabaseController.h interface/Animal.h interface/AnimalManager.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/Client.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientManager.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h interface/Entity.h interface/Description.h interface/ArrayCollection.h interface/AbstractCollection.h interface/EntityBuilder.h interface/CUACSController.h interface/QuestionnaireDialog.h interface/QuestionnaireDialog.h $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseInterface.cpp data/DatabaseController.cpp interface/main.cpp interface/Animal.cpp interface/AnimalManager.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/Client.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientManager.cpp interface/ClientListView.cpp interface/ClientDetailDiag.cpp interface/mytablewidgetitem.cpp interface/ArrayCollection.cpp interface/Entity.cpp interface/EntityBuilder.cpp interface/CUACSController.cpp interface/QuestionnaireDialog.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseController.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h interface/Entity.h interface/Description.h interface/ArrayCollection.h interface/AbstractCollection.h interface/EntityBuilder.h interface/CUACSController.h interface/QuestionnaireDialog.h interface/QuestionnaireDialog.h $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseController.cpp interface/main.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientListView.cpp interface/ClientDetailDiag.cpp interface/mytablewidgetitem.cpp interface/ArrayCollection.cpp interface/Entity.cpp interface/EntityBuilder.cpp interface/CUACSController.cpp interface/QuestionnaireDialog.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents interface/listview.ui interface/mainwindow.ui interface/animaldetaildialog.ui interface/animalinputdialog.ui interface/clientinputdialog.ui interface/clientdetaildialog.ui interface/questionnairedialog.ui $(DISTDIR)/
 
 
@@ -514,12 +494,8 @@ moc_MainWindow.cpp: interface/CUACSController.h \
 		interface/mytablewidgetitem.h \
 		interface/AnimalDetailDiag.h \
 		interface/ClientListView.h \
-		interface/ClientManager.h \
-		interface/Client.h \
-		interface/Levels.h \
-		interface/Address.h \
-		interface/ClientProfile.h \
 		interface/ClientDetailDiag.h \
+		interface/QuestionnaireDialog.h \
 		interface/MainWindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -582,12 +558,8 @@ moc_ClientListView.cpp: interface/CUACSController.h \
 		interface/Description.h \
 		interface/ArrayCollection.h \
 		interface/AbstractCollection.h \
-		interface/ClientManager.h \
-		interface/Client.h \
-		interface/Levels.h \
-		interface/Address.h \
-		interface/ClientProfile.h \
 		interface/ClientDetailDiag.h \
+		interface/QuestionnaireDialog.h \
 		interface/ClientListView.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -600,12 +572,20 @@ moc_ClientDetailDiag.cpp: interface/CUACSController.h \
 		interface/Description.h \
 		interface/ArrayCollection.h \
 		interface/AbstractCollection.h \
+		interface/QuestionnaireDialog.h \
 		interface/ClientDetailDiag.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include interface/ClientDetailDiag.h -o moc_ClientDetailDiag.cpp
 
-moc_QuestionnaireDialog.cpp: interface/QuestionnaireDialog.h \
+moc_QuestionnaireDialog.cpp: interface/CUACSController.h \
+		data/DatabaseController.h \
+		interface/EntityBuilder.h \
+		interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
+		interface/QuestionnaireDialog.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include interface/QuestionnaireDialog.h -o moc_QuestionnaireDialog.cpp
@@ -653,15 +633,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-DatabaseInterface.o: data/DatabaseInterface.cpp data/DatabaseInterface.h \
-		interface/Animal.h \
-		interface/species.h \
-		interface/Levels.h \
-		interface/Client.h \
-		interface/Address.h \
-		interface/ClientProfile.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DatabaseInterface.o data/DatabaseInterface.cpp
-
 DatabaseController.o: data/DatabaseController.cpp data/DatabaseController.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DatabaseController.o data/DatabaseController.cpp
 
@@ -679,28 +650,9 @@ main.o: interface/main.cpp interface/MainWindow.h \
 		interface/mytablewidgetitem.h \
 		interface/AnimalDetailDiag.h \
 		interface/ClientListView.h \
-		interface/ClientManager.h \
-		interface/Client.h \
-		interface/Levels.h \
-		interface/Address.h \
-		interface/ClientProfile.h \
-		interface/ClientDetailDiag.h
+		interface/ClientDetailDiag.h \
+		interface/QuestionnaireDialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o interface/main.cpp
-
-Animal.o: interface/Animal.cpp interface/Animal.h \
-		interface/species.h \
-		interface/Levels.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Animal.o interface/Animal.cpp
-
-AnimalManager.o: interface/AnimalManager.cpp interface/AnimalManager.h \
-		interface/Animal.h \
-		interface/species.h \
-		interface/Levels.h \
-		data/DatabaseInterface.h \
-		interface/Client.h \
-		interface/Address.h \
-		interface/ClientProfile.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AnimalManager.o interface/AnimalManager.cpp
 
 MainWindow.o: interface/MainWindow.cpp interface/MainWindow.h \
 		interface/CUACSController.h \
@@ -716,12 +668,8 @@ MainWindow.o: interface/MainWindow.cpp interface/MainWindow.h \
 		interface/mytablewidgetitem.h \
 		interface/AnimalDetailDiag.h \
 		interface/ClientListView.h \
-		interface/ClientManager.h \
-		interface/Client.h \
-		interface/Levels.h \
-		interface/Address.h \
-		interface/ClientProfile.h \
 		interface/ClientDetailDiag.h \
+		interface/QuestionnaireDialog.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o interface/MainWindow.cpp
 
@@ -766,12 +714,6 @@ species.o: interface/species.cpp interface/species.h
 Address.o: interface/Address.cpp interface/Address.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Address.o interface/Address.cpp
 
-Client.o: interface/Client.cpp interface/Client.h \
-		interface/Levels.h \
-		interface/Address.h \
-		interface/ClientProfile.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Client.o interface/Client.cpp
-
 ClientProfile.o: interface/ClientProfile.cpp interface/ClientProfile.h \
 		interface/Levels.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientProfile.o interface/ClientProfile.cpp
@@ -787,16 +729,6 @@ ClientInputDiag.o: interface/ClientInputDiag.cpp interface/ClientInputDiag.h \
 		ui_clientinputdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientInputDiag.o interface/ClientInputDiag.cpp
 
-ClientManager.o: interface/ClientManager.cpp interface/ClientManager.h \
-		interface/Client.h \
-		interface/Levels.h \
-		interface/Address.h \
-		interface/ClientProfile.h \
-		data/DatabaseInterface.h \
-		interface/Animal.h \
-		interface/species.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientManager.o interface/ClientManager.cpp
-
 ClientListView.o: interface/ClientListView.cpp interface/ClientListView.h \
 		interface/CUACSController.h \
 		data/DatabaseController.h \
@@ -805,12 +737,8 @@ ClientListView.o: interface/ClientListView.cpp interface/ClientListView.h \
 		interface/Description.h \
 		interface/ArrayCollection.h \
 		interface/AbstractCollection.h \
-		interface/ClientManager.h \
-		interface/Client.h \
-		interface/Levels.h \
-		interface/Address.h \
-		interface/ClientProfile.h \
 		interface/ClientDetailDiag.h \
+		interface/QuestionnaireDialog.h \
 		ui_listview.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientListView.o interface/ClientListView.cpp
 
@@ -822,6 +750,7 @@ ClientDetailDiag.o: interface/ClientDetailDiag.cpp interface/ClientDetailDiag.h 
 		interface/Description.h \
 		interface/ArrayCollection.h \
 		interface/AbstractCollection.h \
+		interface/QuestionnaireDialog.h \
 		ui_clientdetaildialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ClientDetailDiag.o interface/ClientDetailDiag.cpp
 
@@ -857,6 +786,13 @@ CUACSController.o: interface/CUACSController.cpp interface/CUACSController.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CUACSController.o interface/CUACSController.cpp
 
 QuestionnaireDialog.o: interface/QuestionnaireDialog.cpp interface/QuestionnaireDialog.h \
+		interface/CUACSController.h \
+		data/DatabaseController.h \
+		interface/EntityBuilder.h \
+		interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
 		ui_questionnairedialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o QuestionnaireDialog.o interface/QuestionnaireDialog.cpp
 

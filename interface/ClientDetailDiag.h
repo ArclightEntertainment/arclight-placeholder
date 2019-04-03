@@ -61,10 +61,9 @@ private:
     void setFields();
     void updateFields();
     std::string getPhoneNumberFromUI();
-
-    void setEditable (bool canEdit);
     void updateCurrentClient();
-
+    void parseName();
+    void setEditable (bool canEdit);
     void setPreferences(bool visible);
 };
 

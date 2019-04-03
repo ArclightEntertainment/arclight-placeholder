@@ -48,7 +48,7 @@
      <item>
       <widget class="QLabel" name="questionLabel">
        <property name="text">
-        <string>Question String?</string>
+        <string>Press &quot;Continue&quot; to begin the survey.</string>
        </property>
       </widget>
      </item>

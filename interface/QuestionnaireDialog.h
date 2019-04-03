@@ -13,7 +13,9 @@
 #include <QLayout>
 #include <qstring.h>
 
-#include "Entity.h"
+#include <utility>
+
+#include "CUACSController.h"
 
 #define NUMQUESTIONS 10
 
@@ -27,16 +29,18 @@ class QuestionnaireDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit QuestionnaireDialog(Entity * target, QWidget *parent = 0);
+    explicit QuestionnaireDialog(CUACSController *med, Entity * target, QWidget *parent = 0);
     ~QuestionnaireDialog();
 
-
-    void setQuestion(std::string  question);
 private slots:
     void handleButtonClose();
     void handleButtonConfirm();
 
 private:
+    void setStage();
+    void clearLayout();
+    void addHSpacer();
+    void collectAnswer();
 
     Ui::QuestionnaireDialog *ui;
     QLabel * qText;
@@ -46,35 +50,38 @@ private:
 
     int current;
     Question ** questions;
+    std::pair<int, int> * answers;
+    int numAnswers;
+
     Entity * subject;
+    CUACSController * mediator;
 };
 
 #endif // QUESTIONNAIREDIALOG_H
 
 
 
-class Question : public QWidget
+class Question
 {
-    Q_OBJECT
 public:
-    Question(std::string q, QWidget *parent=nullptr);
-    Question(const Question & q) {widget = q.getWidget(); layout = q.getLayout(); qString = q.getString();}
+    Question(std::string q, int id);
     virtual int getValue()const=0;
-    virtual QWidget* getWidget()const{return widget;}
+    virtual int getID() const {return id;}
     virtual std::string getString()const{return qString;}
-    virtual QHBoxLayout * getLayout()const{return layout;}
+    virtual void addElements(QLayout * layout)=0;
+    virtual void setVisible(bool v)=0;
 protected:
-    QWidget * widget;
-    QHBoxLayout * layout;
     std::string qString;
+    int id;
 };
 
 class BoolQuestion : public Question
 {
-    Q_OBJECT
 public:
-    BoolQuestion(std::string q, QWidget *parent=nullptr);
+    BoolQuestion(std::string q, int id);
     int getValue()const;
+    virtual void addElements(QLayout * layout);
+    virtual void setVisible(bool v);
 private:
     QRadioButton * y;
     QRadioButton * n;
@@ -82,30 +89,35 @@ private:
 
 class LargeIntQuestion : public Question
 {
-    Q_OBJECT
 public:
-    LargeIntQuestion (std::string q, QWidget *parent=nullptr);
+    LargeIntQuestion (std::string q, int id);
     int getValue()const;
+    virtual void addElements(QLayout * layout);
+    virtual void setVisible(bool v);
 private:
     QLineEdit * valueText;
 };
 
 class SmallIntQuestion : public Question
 {
-    Q_OBJECT
 public:
-    SmallIntQuestion (std::string q, QWidget *parent=nullptr);
+    SmallIntQuestion (std::string q, int id);
     int getValue()const;
+    virtual void addElements(QLayout * layout);
+    virtual void setVisible(bool v);
 private:
     QSpinBox * spinBox;
 };
 
 class FiveLevelQuestion : public Question
 {
-    Q_OBJECT
 public:
-    FiveLevelQuestion (std::string q, QWidget *parent=nullptr);
+    FiveLevelQuestion (std::string q, int id);
     int getValue()const;
+    virtual void addElements(QLayout * layout);
+    virtual void setVisible(bool v);
 private:
     QSlider * slider;
+    QLabel * h;
+    QLabel * l;
 };

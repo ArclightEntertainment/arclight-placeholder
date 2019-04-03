@@ -70,8 +70,8 @@ void ClientDetailDiag::setPreferences(bool visible)
 }
 void ClientDetailDiag::handleButtonQuiz()
 {
-    QuestionnaireDialog diag(aSubject, this);
-    diag.setWindowTitle("Matching Questionnaire");
+    QuestionnaireDialog diag(mediator, aSubject, this);
+    diag.setWindowTitle("Matching QuestionWidgetnaire");
     diag.exec();
 }
 void ClientDetailDiag::handleButtonClose()
@@ -165,7 +165,9 @@ void ClientDetailDiag::updateFields()
     comboBoxes[0]->setCurrentIndex(comboBoxes[0]->findText(QString::fromStdString(aSubject->getString(6))));
 
     lineEdits[0]->setText(QString::fromStdString(aSubject->getString(6)));
+    lineEdits[1] = ui->nameLineEdit;
     lineEdits[1]->setText(QString::fromStdString(aSubject->getName() + " " + aSubject->getString(5)));
+    lineEdits[2] = ui->phoneLineEdit;
     lineEdits[2]->setText(QString::fromStdString(aSubject->getString(7)));
     lineEdits[3]->setText(QString::fromStdString(aSubject->getString(13)));
     lineEdits[4]->setText(QString::fromStdString(aSubject->getString(10)));
@@ -238,6 +240,7 @@ void ClientDetailDiag::updateCurrentClient()
 
     updateFields();
 }
+
 
 void ClientDetailDiag::setEditable (bool canEdit)
 {
