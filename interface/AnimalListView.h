@@ -13,6 +13,7 @@
 #include "mytablewidgetitem.h"
 #include "interface/CUACSController.h"
 #include "AnimalDetailDiag.h"
+#include "interface/Attributes.h"
 
 namespace Ui {
 class ListView;

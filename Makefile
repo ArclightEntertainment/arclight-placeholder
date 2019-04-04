@@ -211,7 +211,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/EntityBuilder.h \
 		interface/CUACSController.h \
 		interface/QuestionnaireDialog.h \
-		interface/QuestionnaireDialog.h data/DatabaseController.cpp \
+		interface/Attributes.h data/DatabaseController.cpp \
 		interface/main.cpp \
 		interface/MainWindow.cpp \
 		interface/AnimalInputDiag.cpp \
@@ -444,7 +444,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseController.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h interface/Entity.h interface/Description.h interface/ArrayCollection.h interface/AbstractCollection.h interface/EntityBuilder.h interface/CUACSController.h interface/QuestionnaireDialog.h interface/QuestionnaireDialog.h $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseController.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h interface/Entity.h interface/Description.h interface/ArrayCollection.h interface/AbstractCollection.h interface/EntityBuilder.h interface/CUACSController.h interface/QuestionnaireDialog.h interface/Attributes.h $(DISTDIR)/
 	$(COPY_FILE) --parents data/DatabaseController.cpp interface/main.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientListView.cpp interface/ClientDetailDiag.cpp interface/mytablewidgetitem.cpp interface/ArrayCollection.cpp interface/Entity.cpp interface/EntityBuilder.cpp interface/CUACSController.cpp interface/QuestionnaireDialog.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents interface/listview.ui interface/mainwindow.ui interface/animaldetaildialog.ui interface/animalinputdialog.ui interface/clientinputdialog.ui interface/clientdetaildialog.ui interface/questionnairedialog.ui $(DISTDIR)/
 
@@ -478,9 +478,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp moc_ClientListView.cpp moc_ClientDetailDiag.cpp moc_QuestionnaireDialog.cpp moc_QuestionnaireDialog.cpp
+compiler_moc_header_make_all: moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp moc_ClientListView.cpp moc_ClientDetailDiag.cpp moc_QuestionnaireDialog.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp moc_ClientListView.cpp moc_ClientDetailDiag.cpp moc_QuestionnaireDialog.cpp moc_QuestionnaireDialog.cpp
+	-$(DEL_FILE) moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp moc_ClientListView.cpp moc_ClientDetailDiag.cpp moc_QuestionnaireDialog.cpp
 moc_MainWindow.cpp: interface/CUACSController.h \
 		data/DatabaseController.h \
 		interface/EntityBuilder.h \

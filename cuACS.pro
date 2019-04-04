@@ -65,7 +65,7 @@ HEADERS += \
     interface/EntityBuilder.h \
     interface/CUACSController.h \
     interface/QuestionnaireDialog.h \
-    interface/QuestionnaireDialog.h
+    interface/Attributes.h
 
 FORMS += \
     interface/listview.ui \

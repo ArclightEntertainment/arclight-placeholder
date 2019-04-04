@@ -20,19 +20,19 @@ QuestionnaireDialog::QuestionnaireDialog(CUACSController *med, Entity * target, 
     connect(nextButton, SIGNAL(released()), this,SLOT(handleButtonConfirm()));
 
     questions = new Question*[NUMQUESTIONS];
-    answers = new std::pair<int, int>[NUMQUESTIONS];
+    answers = new std::pair<int, ClientAttribute>[NUMQUESTIONS];
     numAnswers=0;
 
-    questions[0] = new SmallIntQuestion(std::string("How old are you?"), 0);
-    questions[1] = new SmallIntQuestion(std::string("How long do you expect to be caring for your new pet?"), 0);
-    questions[2] = new BoolQuestion(std::string("Are there children under the age of 12 present in your home?"), 0);
-    questions[3] = new BoolQuestion(std::string("Is your pet likely to come in contact with other animals?"), 0);
-    questions[4] = new LargeIntQuestion(std::string("What is your maximum monthly budget for taking care of an animal?"), 0);
-    questions[5] = new SmallIntQuestion(std::string("How many minutes per day can you devote to caring for an animal?"), 0);
-    questions[6] = new FiveLevelQuestion(std::string("How physically mobile are you?\n(LOW = Extremely Limited, HIGH = Very Active)"), 0);
-    questions[7] = new FiveLevelQuestion(std::string("How patient do others consider you?\n(LOW = Short Tempered, HIGH = Zen AF Fam)"), 0);
-    questions[8] = new FiveLevelQuestion(std::string("How experienced are you with pets?\n(LOW = Never Before, HIGH = Many Years of experience)"), 0);
-    questions[9] = new FiveLevelQuestion(std::string("How physically affectionate are you with animals?\n(LOW = Shy, HIGH = Cuddle Machine)"), 0);
+    questions[0] = new SmallIntQuestion(std::string("How old are you?"), ClientAttribute::HAS_CHILDREN_UNDER_TWELVE);
+    questions[1] = new SmallIntQuestion(std::string("How long do you expect to be caring for your new pet?"), ClientAttribute::HAS_PETS);
+    questions[2] = new BoolQuestion(std::string("Are there children under the age of 12 present in your home?"), ClientAttribute::AGE);
+    questions[3] = new BoolQuestion(std::string("Is your pet likely to come in contact with other animals?"), ClientAttribute::LENGTH_OF_OWNERSHIP_EXPECTATION);
+    questions[4] = new LargeIntQuestion(std::string("What is your maximum monthly budget for taking care of an animal?"), ClientAttribute::MONTHLY_BUDGET_FOR_ANIMAL);
+    questions[5] = new SmallIntQuestion(std::string("How many minutes per day can you devote to caring for an animal?"), ClientAttribute::AVAILABILITY_PER_DAY);
+    questions[6] = new FiveLevelQuestion(std::string("How physically mobile are you?\n(LOW = Extremely Limited, HIGH = Very Active)"), ClientAttribute::LEVEL_OF_MOBILITY);
+    questions[7] = new FiveLevelQuestion(std::string("How patient do others consider you?\n(LOW = Short Tempered, HIGH = Zen AF Fam)"), ClientAttribute::LEVEL_OF_PATIENCE);
+    questions[8] = new FiveLevelQuestion(std::string("How experienced are you with pets?\n(LOW = Never Before, HIGH = Many Years of experience)"), ClientAttribute::PREVIOUS_EXPERIENCE);
+    questions[9] = new FiveLevelQuestion(std::string("How physically affectionate are you with animals?\n(LOW = Shy, HIGH = Cuddle Machine)"), ClientAttribute::PHYSICAL_AFFECTION);
 
 }
 void QuestionnaireDialog::handleButtonClose()
@@ -46,6 +46,19 @@ void QuestionnaireDialog::handleButtonConfirm()
 	collectAnswer();
 	current++;
 	setStage();
+	if (current == NUMQUESTIONS-1)
+	{
+	    nextButton->setText("Save");
+	}
+    }
+    else
+    {
+	//HANDLE CLIENT STUFF HERE!!!
+	for (int i = 0; i < numAnswers; i++)
+	{
+	    std::cout << "Value: " << std::get<0>(answers[i]) << " | ID: " << static_cast<int>(std::get<1>(answers[i])) << std::endl;
+	}
+	close();
     }
 }
 
@@ -76,6 +89,12 @@ void QuestionnaireDialog::addHSpacer()
 void QuestionnaireDialog::clearLayout()
 {
     questions[current-1]->setVisible(false);
+    questions[current-1]->removeElements(aLayout);
+
+    //handle removing all remaining spacers
+    while (auto item = aLayout->takeAt(0)) {
+	  aLayout->removeItem(item);
+    }
 }
 
 QuestionnaireDialog::~QuestionnaireDialog()
@@ -91,11 +110,11 @@ QuestionnaireDialog::~QuestionnaireDialog()
 \\######################################Question Classes######################################*/
 
 /*######################################Questions######################################*/
-Question::Question(std::string q, int i) : qString(q), id(i)
+Question::Question(std::string q, ClientAttribute i) : qString(q), id(i)
 {
 }
 /*######################################True False Questions######################################*/
-BoolQuestion::BoolQuestion(std::string q, int id) :
+BoolQuestion::BoolQuestion(std::string q, ClientAttribute id) :
     Question(q, id)
 {
     QButtonGroup * buttons = new QButtonGroup();    //functional group
@@ -113,17 +132,22 @@ void BoolQuestion::addElements(QLayout * layout)
     layout->addWidget(y);
     layout->addWidget(n);
 }
+void BoolQuestion::removeElements(QLayout * layout)
+{
+    layout->removeWidget(y);
+    layout->removeWidget(n);
+}
 void BoolQuestion::setVisible(bool v)
 {
     y->setVisible(v);
     n->setVisible(v);
 }
 /*######################################Large Int Questions######################################*/
-LargeIntQuestion::LargeIntQuestion(std::string q, int id) :
+LargeIntQuestion::LargeIntQuestion(std::string q, ClientAttribute id) :
     Question(q, id)
 {
     valueText = new QLineEdit();
-    QValidator *expValidator = new QRegExpValidator(QRegExp("([0-9]|,){1,3}"));
+    QValidator *expValidator = new QRegExpValidator(QRegExp("([0-9]|,){1,10}"));
     valueText->setValidator(expValidator);
 }
 int LargeIntQuestion::getValue()const
@@ -135,18 +159,22 @@ void LargeIntQuestion::addElements(QLayout * layout)
 {
     layout->addWidget(valueText);
 }
+void LargeIntQuestion::removeElements(QLayout * layout)
+{
+    layout->removeWidget(valueText);
+}
 void LargeIntQuestion::setVisible(bool v)
 {
     valueText->setVisible(v);
 }
 
 /*######################################Small Int Questions######################################*/
-SmallIntQuestion::SmallIntQuestion(std::string q, int id) :
+SmallIntQuestion::SmallIntQuestion(std::string q, ClientAttribute id) :
     Question(q, id)
 {
     spinBox = new QSpinBox();
 
-    spinBox->setMaximum(50);
+    spinBox->setMaximum(999);
 }
 int SmallIntQuestion::getValue()const
 {
@@ -157,12 +185,16 @@ void SmallIntQuestion::addElements(QLayout * layout)
 {
     layout->addWidget(spinBox);
 }
+void SmallIntQuestion::removeElements(QLayout * layout)
+{
+    layout->removeWidget(spinBox);
+}
 void SmallIntQuestion::setVisible(bool v)
 {
     spinBox->setVisible(v);
 }
 /*######################################Small Int Questions######################################*/
-FiveLevelQuestion::FiveLevelQuestion(std::string q, int id) :
+FiveLevelQuestion::FiveLevelQuestion(std::string q, ClientAttribute id) :
     Question(q, id)
 {
     h = new QLabel(QString("HIGH"));
@@ -178,9 +210,15 @@ int FiveLevelQuestion::getValue()const
 
 void FiveLevelQuestion::addElements(QLayout * layout)
 {
-    layout->addWidget(h);
-    layout->addWidget(slider);
     layout->addWidget(l);
+    layout->addWidget(slider);
+    layout->addWidget(h);
+}
+void FiveLevelQuestion::removeElements(QLayout * layout)
+{
+    layout->removeWidget(l);
+    layout->removeWidget(slider);
+    layout->removeWidget(h);
 }
 void FiveLevelQuestion::setVisible(bool v)
 {

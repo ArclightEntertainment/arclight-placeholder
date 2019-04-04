@@ -12,6 +12,7 @@
 
 #include "interface/CUACSController.h"
 #include "interface/ClientDetailDiag.h"
+#include "interface/Attributes.h"
 
 namespace Ui {
 class ListView;

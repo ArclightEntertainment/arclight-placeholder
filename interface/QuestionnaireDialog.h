@@ -15,6 +15,7 @@
 
 #include <utility>
 
+#include "interface/Attributes.h"
 #include "CUACSController.h"
 
 #define NUMQUESTIONS 10
@@ -50,7 +51,7 @@ private:
 
     int current;
     Question ** questions;
-    std::pair<int, int> * answers;
+    std::pair<int, ClientAttribute> * answers;
     int numAnswers;
 
     Entity * subject;
@@ -64,23 +65,25 @@ private:
 class Question
 {
 public:
-    Question(std::string q, int id);
+    Question(std::string q, ClientAttribute id);
     virtual int getValue()const=0;
-    virtual int getID() const {return id;}
+    virtual ClientAttribute getID() const {return id;}
     virtual std::string getString()const{return qString;}
     virtual void addElements(QLayout * layout)=0;
+    virtual void removeElements(QLayout * layout)=0;
     virtual void setVisible(bool v)=0;
 protected:
     std::string qString;
-    int id;
+    ClientAttribute id;
 };
 
 class BoolQuestion : public Question
 {
 public:
-    BoolQuestion(std::string q, int id);
+    BoolQuestion(std::string q, ClientAttribute id);
     int getValue()const;
     virtual void addElements(QLayout * layout);
+    virtual void removeElements(QLayout * layout);
     virtual void setVisible(bool v);
 private:
     QRadioButton * y;
@@ -90,9 +93,10 @@ private:
 class LargeIntQuestion : public Question
 {
 public:
-    LargeIntQuestion (std::string q, int id);
+    LargeIntQuestion(std::string q, ClientAttribute id);
     int getValue()const;
     virtual void addElements(QLayout * layout);
+    virtual void removeElements(QLayout * layout);
     virtual void setVisible(bool v);
 private:
     QLineEdit * valueText;
@@ -101,9 +105,10 @@ private:
 class SmallIntQuestion : public Question
 {
 public:
-    SmallIntQuestion (std::string q, int id);
+    SmallIntQuestion(std::string q, ClientAttribute id);
     int getValue()const;
     virtual void addElements(QLayout * layout);
+    virtual void removeElements(QLayout * layout);
     virtual void setVisible(bool v);
 private:
     QSpinBox * spinBox;
@@ -112,9 +117,10 @@ private:
 class FiveLevelQuestion : public Question
 {
 public:
-    FiveLevelQuestion (std::string q, int id);
+    FiveLevelQuestion(std::string q, ClientAttribute id);
     int getValue()const;
     virtual void addElements(QLayout * layout);
+    virtual void removeElements(QLayout * layout);
     virtual void setVisible(bool v);
 private:
     QSlider * slider;

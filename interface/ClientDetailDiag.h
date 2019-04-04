@@ -17,6 +17,7 @@
 
 #include "CUACSController.h"
 #include "QuestionnaireDialog.h"
+#include "interface/Attributes.h"
 
 namespace Ui {
     class ClientDetailDiag;
