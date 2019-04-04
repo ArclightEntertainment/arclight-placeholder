@@ -11,8 +11,8 @@
 #include <qstring.h>
 
 #include "interface/CUACSController.h"
-#include "ClientManager.h"
-#include "ClientDetailDiag.h"
+#include "interface/ClientDetailDiag.h"
+#include "interface/Attributes.h"
 
 namespace Ui {
 class ListView;

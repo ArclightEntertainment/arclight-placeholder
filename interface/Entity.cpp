@@ -72,7 +72,7 @@ bool Entity::getBool (int id)
         }
         iter->next();
     }
-    return 0;
+    return false;
 }
 
 

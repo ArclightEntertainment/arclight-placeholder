@@ -22,6 +22,10 @@ private:
   FiveScale previousExperience;
   FiveScale physicalAffection;
 
+  //default constructor
+  //set data function(s)
+  // once filled in, set a bool to show it's been set
+
 public:
 // Constructor
   ClientProfile();

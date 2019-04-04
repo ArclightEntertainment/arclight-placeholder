@@ -10,6 +10,7 @@
 #include <qstring.h>
 
 #include "CUACSController.h"
+#include "interface/Attributes.h"
 
 namespace Ui {
 class ClientInputDiag;

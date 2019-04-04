@@ -24,7 +24,8 @@ enum class AnimalAttribute : int
     MOBILITY_NEEDS = 18,
     DISABILITY_NEEDS = 19,
     ABUSE_HISTORY = 20,
-    BIOGRAPHY = 21
+    BIOGRAPHY = 21,
+    MONTHLY_EXPENDITURE = 22
 };
 
 enum class ClientAttribute : int
