@@ -27,8 +27,7 @@ ClientDetailDiag::ClientDetailDiag(CUACSController *med, Entity *subject, bool c
     setEditable(canEdit);
 
     std::cout << "call With: " << aSubject->getBool(99) << std::endl;
-    //setPreferences(aSubject->getBool(99));
-    setPreferences(true);
+    setPreferences(aSubject->getBool(99));
 }
 
 void ClientDetailDiag::setPreferences(bool visible)
@@ -73,6 +72,11 @@ void ClientDetailDiag::handleButtonQuiz()
     QuestionnaireDialog diag(mediator, aSubject, this);
     diag.setWindowTitle("Matching QuestionWidgetnaire");
     diag.exec();
+
+    setFields();
+    updateFields();
+
+    setPreferences(aSubject->getBool(99));
 }
 void ClientDetailDiag::handleButtonClose()
 {

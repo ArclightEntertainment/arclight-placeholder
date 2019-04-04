@@ -319,20 +319,21 @@ void CUACSController::populateClientAddress(std::string sl1, std::string sl2, st
     entity->addStringDesc(Description<std::string>("country",19,c));
     entity->addStringDesc(Description<std::string>("postalCode",20,pc));
 }
-void CUACSController::populateClientProfile(int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, int lOfMobility, int lOfPatience, int prevExp, int physAffect)
+void CUACSController::populateClientProfile(Entity * en, int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, int lOfMobility, int lOfPatience, int prevExp, int physAffect)
 {
 //int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget,
 //int timeAvail, int lOfMobility, int lOfPatience, int prevExp, int physAffect)
-    entity->addIntDesc(Description<int>("age", 5, a));
-    entity->addBoolDesc(Description<bool>("hasChildrenUnderTwelve", 6, hasUnderTwelve));
-    entity->addBoolDesc(Description<bool>("hasPets", 7, hasPet));
-    entity->addIntDesc(Description<int>("lengthOfOwnershipExpectation", 8, ownExp));
-    entity->addIntDesc(Description<int>("monthlyBudgetForAnimal", 9, budget));
-    entity->addIntDesc(Description<int>("availabilityPerDay", 10, timeAvail));
-    entity->addIntDesc(Description<int>("levelOfMobility", 11, lOfMobility));
-    entity->addIntDesc(Description<int>("levelOfPatience", 12, lOfPatience));
-    entity->addIntDesc(Description<int>("previousExperience", 13, prevExp));
-    entity->addIntDesc(Description<int>("physicalAffection", 14, physAffect));
+    en->addIntDesc(Description<int>("age", 5, a));
+    en->addBoolDesc(Description<bool>("hasChildrenUnderTwelve", 6, hasUnderTwelve));
+    en->addBoolDesc(Description<bool>("hasPets", 7, hasPet));
+    en->addIntDesc(Description<int>("lengthOfOwnershipExpectation", 8, ownExp));
+    en->addIntDesc(Description<int>("monthlyBudgetForAnimal", 9, budget));
+    en->addIntDesc(Description<int>("availabilityPerDay", 10, timeAvail));
+    en->addIntDesc(Description<int>("levelOfMobility", 11, lOfMobility));
+    en->addIntDesc(Description<int>("levelOfPatience", 12, lOfPatience));
+    en->addIntDesc(Description<int>("previousExperience", 13, prevExp));
+    en->addIntDesc(Description<int>("physicalAffection", 14, physAffect));
+    en->addBoolDesc(Description<bool>("profilePopulated", 99, true));
 }
 void CUACSController::finalizeClient()
 {
