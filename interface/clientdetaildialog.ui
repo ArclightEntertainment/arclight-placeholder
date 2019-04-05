@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>533</width>
-    <height>341</height>
+    <width>462</width>
+    <height>477</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,56 +15,291 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <spacer name="horizontalSpacer_5">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <spacer name="verticalSpacer_4">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Basic Info</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QLabel" name="titleLabel">
-           <property name="text">
-            <string>Title: </string>
+          <spacer name="horizontalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="titleLineEdit">
-           <property name="maximumSize">
+           <property name="sizeHint" stdset="0">
             <size>
              <width>40</width>
-             <height>16777215</height>
+             <height>20</height>
             </size>
            </property>
-          </widget>
+          </spacer>
          </item>
          <item>
-          <widget class="QLineEdit" name="nameLineEdit"/>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <spacer name="verticalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QLabel" name="titleLabel">
+               <property name="text">
+                <string>Title: </string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="titleLineEdit">
+               <property name="maximumSize">
+                <size>
+                 <width>40</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="titleComboBox">
+               <item>
+                <property name="text">
+                 <string>Title</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mr.</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ms.</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mrs.</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Dr.</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Other</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="nameLineEdit"/>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="idLabel">
+               <property name="text">
+                <string>ID:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="idLineEdit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>60</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="maxLength">
+                <number>5</number>
+               </property>
+               <property name="placeholderText">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QLabel" name="phoneLabel">
+               <property name="text">
+                <string>Phone #:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="phoneLineEdit"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="postalLabel">
+               <property name="text">
+                <string>Postal Code:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="postalLineEdit">
+               <property name="placeholderText">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_10">
+             <item>
+              <widget class="QLabel" name="cityLabel">
+               <property name="text">
+                <string>City:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="cityLineEdit"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="provLabel">
+               <property name="text">
+                <string>Prov./Terr:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="provLineEdit"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="countryLabel">
+               <property name="text">
+                <string>Country:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="countryLineEdit"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="add1Line">
+             <item>
+              <widget class="QLabel" name="add1Label">
+               <property name="text">
+                <string>Address #1:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="add1LineEdit"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="add2Line">
+             <item>
+              <widget class="QLabel" name="add2Label">
+               <property name="text">
+                <string>Address #2:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="add2LineEdit"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>30</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </item>
          <item>
           <widget class="QLineEdit" name="lNameLineEdit"/>
@@ -74,9 +309,6 @@
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
@@ -85,183 +317,587 @@
            </property>
           </spacer>
          </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="preferences">
+      <attribute name="title">
+       <string>Preferences</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QVBoxLayout" name="preferenceLayout">
          <item>
-          <widget class="QLabel" name="idLabel">
-           <property name="text">
-            <string>ID:</string>
+          <spacer name="verticalSpacer_8">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="idLineEdit">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
+           <property name="sizeHint" stdset="0">
             <size>
-             <width>60</width>
-             <height>16777215</height>
+             <width>20</width>
+             <height>40</height>
             </size>
            </property>
-           <property name="maxLength">
-            <number>5</number>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <layout class="QHBoxLayout" name="sexAgeLayout">
+             <item>
+              <widget class="QLineEdit" name="ageLineEdit">
+               <property name="maximumSize">
+                <size>
+                 <width>45</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="ageSpinBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="ageLabel">
+               <property name="text">
+                <string>years old</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="maxAgeLayout">
+             <item>
+              <widget class="QLabel" name="lengthLabel">
+               <property name="text">
+                <string>Expected Length of Ownership?</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lengthLineEdit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>45</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="lengthSpinBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_6">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Expanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="childrenLayout">
+             <item>
+              <widget class="QLabel" name="childrenLabel">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>Children Under 12?</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="childrenLineEdit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>50</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="childrenCheckBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="petsLayout">
+             <item>
+              <widget class="QLabel" name="petLabel">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>Other Pets?</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="petsLineEdit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>50</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="petsCheckBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_8">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="budgetLayout">
+             <item>
+              <widget class="QLabel" name="budgetLabel">
+               <property name="text">
+                <string>Preferred Monthly Budget: $</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="budgetLineEdit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>200</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="timeLayout">
+             <item>
+              <widget class="QLabel" name="timeLabel">
+               <property name="text">
+                <string>Time Availability Per Day(mins):</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="timeLineEdit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>200</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
            </property>
-           <property name="placeholderText">
-            <string/>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
            </property>
-          </widget>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="sliderLayout">
+           <item row="2" column="0">
+            <widget class="QLabel" name="experienceLabel">
+             <property name="text">
+              <string>Previous Experience:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="patienceLabel">
+             <property name="text">
+              <string>Level of Patience:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <layout class="QGridLayout" name="affectionLayout">
+             <item row="0" column="0">
+              <widget class="QProgressBar" name="affectionBar">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>7</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="textVisible">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSlider" name="affectionSlider">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="sliderPosition">
+                <number>3</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="1">
+            <layout class="QGridLayout" name="mobilityLayout">
+             <item row="0" column="0">
+              <widget class="QProgressBar" name="mobilityBar">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>7</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="textVisible">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSlider" name="mobilitySlider">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="sliderPosition">
+                <number>3</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLineEdit" name="mobilityLineEdit"/>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="mobilityLabel">
+             <property name="text">
+              <string>Level of Mobility:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <layout class="QGridLayout" name="experienceLayout">
+             <item row="0" column="0">
+              <widget class="QProgressBar" name="experienceBar">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>7</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="textVisible">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSlider" name="experienceSlider">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="sliderPosition">
+                <number>3</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLineEdit" name="experienceLineEdit">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="patienceLineEdit"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="affectionLabel">
+             <property name="text">
+              <string>Physical Affection:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <layout class="QGridLayout" name="patienceLayout">
+             <item row="0" column="0">
+              <widget class="QProgressBar" name="patienceBar">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>7</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="textVisible">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSlider" name="patienceSlider">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+               <property name="sliderPosition">
+                <number>3</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLineEdit" name="affectionLineEdit">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_7">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>
        <item>
-        <spacer name="verticalSpacer_5">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <layout class="QHBoxLayout" name="quizLayout">
          <item>
-          <widget class="QLabel" name="phoneLabel">
-           <property name="text">
-            <string>Phone #:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="phoneLineEdit"/>
-         </item>
-         <item>
-          <widget class="QLabel" name="postalLabel">
-           <property name="text">
-            <string>Postal Code:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="postalLineEdit">
-           <property name="placeholderText">
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_6">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_10">
-         <item>
-          <widget class="QLabel" name="cityLabel">
-           <property name="text">
-            <string>City:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="cityLineEdit"/>
-         </item>
-         <item>
-          <widget class="QLabel" name="provLabel">
-           <property name="text">
-            <string>Prov./Terr:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="provLineEdit"/>
-         </item>
-         <item>
-          <widget class="QLabel" name="countryLabel">
-           <property name="text">
-            <string>Country:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="countryLineEdit"/>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="add1Line">
-         <item>
-          <widget class="QLabel" name="add1Label">
-           <property name="text">
-            <string>Address #1:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="add1LineEdit"/>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="add2Line">
-         <item>
-          <widget class="QLabel" name="add2Label">
-           <property name="text">
-            <string>Address #2:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="add2LineEdit"/>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>30</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="buttonLayout_2">
-         <item>
-          <spacer name="horizontalSpacer_3">
+          <spacer name="horizontalSpacer_9">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -274,21 +910,14 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="editButton">
+          <widget class="QPushButton" name="quizButton">
            <property name="text">
-            <string>Edit</string>
+            <string>Match Quiz</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="closeButton">
-           <property name="text">
-            <string>Close</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_2">
+          <spacer name="horizontalSpacer_10">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -303,9 +932,40 @@
         </layout>
        </item>
       </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="buttonLayout">
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
      <item>
-      <spacer name="horizontalSpacer_4">
+      <widget class="QPushButton" name="editButton">
+       <property name="text">
+        <string>Edit</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="closeButton">
+       <property name="text">
+        <string>Close</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>

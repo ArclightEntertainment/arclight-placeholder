@@ -25,45 +25,36 @@ DEFINES += QT_DEPRECATED_WARNINGS
 LIBS += -lsqlite3
 
 SOURCES += \
-    data/DatabaseInterface.cpp \
     data/DatabaseController.cpp \
     interface/main.cpp \
-    interface/Animal.cpp \
-    interface/AnimalManager.cpp \
     interface/MainWindow.cpp \
     interface/AnimalInputDiag.cpp \
     interface/AnimalListView.cpp \
     interface/AnimalDetailDiag.cpp \
     interface/species.cpp \
     interface/Address.cpp \
-    interface/Client.cpp \
     interface/ClientProfile.cpp \
     interface/ClientInputDiag.cpp \
-    interface/ClientManager.cpp \
     interface/ClientListView.cpp \
     interface/ClientDetailDiag.cpp \
     interface/mytablewidgetitem.cpp \
     interface/ArrayCollection.cpp \
     interface/Entity.cpp \
     interface/EntityBuilder.cpp \
-    interface/CUACSController.cpp
+    interface/CUACSController.cpp \
+    interface/QuestionnaireDialog.cpp
 
 HEADERS += \
-    data/DatabaseInterface.h \
     data/DatabaseController.h \
-    interface/Animal.h \
-    interface/AnimalManager.h \
     interface/MainWindow.h \
     interface/AnimalInputDiag.h \
     interface/AnimalListView.h \
     interface/AnimalDetailDiag.h \
     interface/species.h \
     interface/Address.h \
-    interface/Client.h \
     interface/ClientProfile.h \
     interface/Levels.h \
     interface/ClientInputDiag.h \
-    interface/ClientManager.h \
     interface/ClientListView.h \
     interface/ClientDetailDiag.h \
     interface/mytablewidgetitem.h \
@@ -73,6 +64,7 @@ HEADERS += \
     interface/AbstractCollection.h \
     interface/EntityBuilder.h \
     interface/CUACSController.h \
+    interface/QuestionnaireDialog.h \
     interface/Attributes.h
 
 FORMS += \
@@ -81,4 +73,5 @@ FORMS += \
     interface/animaldetaildialog.ui \
     interface/animalinputdialog.ui \
     interface/clientinputdialog.ui \
-    interface/clientdetaildialog.ui
+    interface/clientdetaildialog.ui \
+    interface/questionnairedialog.ui
