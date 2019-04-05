@@ -51,6 +51,7 @@ enum class ClientAttribute : int
     LEVEL_OF_PATIENCE = 18,
     PREVIOUS_EXPERIENCE = 19,
     PHYSICAL_AFFECTION = 20,
+    POPULATED = 99
 };
 
 #endif // ATTRIBUTES_H

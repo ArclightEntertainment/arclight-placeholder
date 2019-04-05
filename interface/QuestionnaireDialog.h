@@ -42,6 +42,7 @@ private:
     void clearLayout();
     void addHSpacer();
     void collectAnswer();
+    void updateClient();
 
     Ui::QuestionnaireDialog *ui;
     QLabel * qText;

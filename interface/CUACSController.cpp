@@ -245,43 +245,43 @@ void CUACSController::addAnimal (int id,int expenditure,std::string name,int age
 {
     entity->reset();
     entity->setID(id);
-    entity->addIntDesc(Description<int>("id", 0, id));
-    entity->addIntDesc(Description<int>("expenditure", 22, expenditure));
+    entity->addIntDesc(Description<int>("id", static_cast<int>(AnimalAttribute::ID), id));
+    entity->addIntDesc(Description<int>("expenditure", static_cast<int>(AnimalAttribute::MONTHLY_EXPENDITURE), expenditure));
     entity->setName(name);
-    entity->addStringDesc(Description<std::string>("name", 1, name));
+    entity->addStringDesc(Description<std::string>("name", static_cast<int>(AnimalAttribute::NAME), name));
     entity->setAge(age);
-    entity->addIntDesc(Description<int>("age", 4, age));
-    entity->addIntDesc(Description<int>("lifeExpetancy", 5, maxAge));
-    entity->addStringDesc(Description<std::string>("sex", 6, sex));
-    entity->addStringDesc(Description<std::string>("species", 2, species));
-    entity->addStringDesc(Description<std::string>("breed", 3, breed));
-    entity->addIntDesc(Description<int>("levelOfCare", 8, care));
-    entity->addIntDesc(Description<int>("levelOfEnergy", 9, energy));
+    entity->addIntDesc(Description<int>("age", static_cast<int>(AnimalAttribute::AGE), age));
+    entity->addIntDesc(Description<int>("lifeExpetancy", static_cast<int>(AnimalAttribute::LIFE_EXPECTANCY), maxAge));
+    entity->addStringDesc(Description<std::string>("sex", static_cast<int>(AnimalAttribute::SEX), sex));
+    entity->addStringDesc(Description<std::string>("species", static_cast<int>(AnimalAttribute::SPECIES), species));
+    entity->addStringDesc(Description<std::string>("breed", static_cast<int>(AnimalAttribute::BREED), breed));
+    entity->addIntDesc(Description<int>("levelOfCare", static_cast<int>(AnimalAttribute::LEVEL_OF_CARE), care));
+    entity->addIntDesc(Description<int>("levelOfEnergy", static_cast<int>(AnimalAttribute::LEVEL_OF_ENERGY), energy));
 
     std::cout<<entity->getEntity()->getName()<<std::endl;
 }
 void CUACSController::updateAnimalSocial (int training,int trainability,int people,int child,int animal,int approach,int time)
 {
     //int training,int trainability,int people,int child,int animal,int approach,int time
-    entity->addIntDesc(Description<int>("trainingLevel", 10, training));
-    entity->addIntDesc(Description<int>("trainabilityLevel", 11, trainability));
-    entity->addIntDesc(Description<int>("affinityForPeople", 12, people));
-    entity->addIntDesc(Description<int>("affinityForChildren", 13, child));
-    entity->addIntDesc(Description<int>("affinityForAnimals", 14, animal));
-    entity->addIntDesc(Description<int>("approachability", 15, approach));
-    entity->addIntDesc(Description<int>("timeCommitment", 16, time));
+    entity->addIntDesc(Description<int>("trainingLevel", static_cast<int>(AnimalAttribute::TRAINING_LEVEL), training));
+    entity->addIntDesc(Description<int>("trainabilityLevel", static_cast<int>(AnimalAttribute::TRAINABILITY_LEVEL), trainability));
+    entity->addIntDesc(Description<int>("affinityForPeople", static_cast<int>(AnimalAttribute::AFFINITY_FOR_PEOPLE), people));
+    entity->addIntDesc(Description<int>("affinityForChildren", static_cast<int>(AnimalAttribute::AFFINITY_FOR_CHILDREN), child));
+    entity->addIntDesc(Description<int>("affinityForAnimals", static_cast<int>(AnimalAttribute::AFFINITY_FOR_ANIMALS), animal));
+    entity->addIntDesc(Description<int>("approachability", static_cast<int>(AnimalAttribute::APPROACHABILITY), approach));
+    entity->addIntDesc(Description<int>("timeCommitment", static_cast<int>(AnimalAttribute::TIME_COMMITMENT), time));
 
 }
 void CUACSController::updateAnimalHistory (bool imm,std::string diet,std::string mob,std::string disab,std::string bio,std::string aHist)
 {
     //bool imm,std::string diet,std::string mob,std::string disab,std::string bio,std::string aHist
 
-    entity->addBoolDesc(Description<bool>("immunized", 7, imm));
-    entity->addStringDesc(Description<std::string>("dietNeeds", 17, diet));
-    entity->addStringDesc(Description<std::string>("mobilityNeeds", 18, mob));
-    entity->addStringDesc(Description<std::string>("disabilityNeeds", 19, disab));
-    entity->addStringDesc(Description<std::string>("abuseHistory", 20, aHist));
-    entity->addStringDesc(Description<std::string>("biography", 21, bio));
+    entity->addBoolDesc(Description<bool>("immunized", static_cast<int>(AnimalAttribute::IMMUNIZED), imm));
+    entity->addStringDesc(Description<std::string>("dietNeeds", static_cast<int>(AnimalAttribute::DIET_NEEDS), diet));
+    entity->addStringDesc(Description<std::string>("mobilityNeeds", static_cast<int>(AnimalAttribute::MOBILITY_NEEDS), mob));
+    entity->addStringDesc(Description<std::string>("disabilityNeeds", static_cast<int>(AnimalAttribute::DISABILITY_NEEDS), disab));
+    entity->addStringDesc(Description<std::string>("abuseHistory", static_cast<int>(AnimalAttribute::ABUSE_HISTORY), aHist));
+    entity->addStringDesc(Description<std::string>("biography", static_cast<int>(AnimalAttribute::BIOGRAPHY), bio));
 }
 
 void CUACSController::finalizeAnimal()
@@ -304,37 +304,44 @@ void CUACSController::finalizeAnimal()
 void CUACSController::addClient(std::string t, int iD, std::string fn, std::string ln, std::string pn)
 {
     entity->reset();
-    entity->addStringDesc(Description<std::string>("prefTitle", 3, t));
-    entity->addIntDesc(Description<int>("id", 0, iD));
-    entity->addStringDesc(Description<std::string>("fName", 1, fn));
-    entity->addStringDesc(Description<std::string>("lName", 2, ln));
-    entity->addStringDesc(Description<std::string>("phoneNumber", 4, pn));
+    entity->addStringDesc(Description<std::string>("prefTitle", static_cast<int>(ClientAttribute::PREF_TITLE), t));
+    entity->addIntDesc(Description<int>("id", static_cast<int>(ClientAttribute::ID), iD));
+    entity->addStringDesc(Description<std::string>("fName", static_cast<int>(ClientAttribute::FIRST_NAME), fn));
+    entity->addStringDesc(Description<std::string>("lName", static_cast<int>(ClientAttribute::LAST_NAME), ln));
+    entity->addStringDesc(Description<std::string>("phoneNumber", static_cast<int>(ClientAttribute::PHONE_NUMBER), pn));
 }
 void CUACSController::populateClientAddress(std::string sl1, std::string sl2, std::string ct, std::string sub, std::string c, std::string pc)
 {
-    entity->addStringDesc(Description<std::string>("streetLine1",15,sl1));
-    entity->addStringDesc(Description<std::string>("streetLine1",16,sl2));
-    entity->addStringDesc(Description<std::string>("city",17,ct));
-    entity->addStringDesc(Description<std::string>("subnationalDivision",18,sub));
-    entity->addStringDesc(Description<std::string>("country",19,c));
-    entity->addStringDesc(Description<std::string>("postalCode",20,pc));
+    entity->addStringDesc(Description<std::string>("streetLine1",static_cast<int>(ClientAttribute::STREET_LINE_1),sl1));
+    entity->addStringDesc(Description<std::string>("streetLine1",static_cast<int>(ClientAttribute::STREET_LINE_2),sl2));
+    entity->addStringDesc(Description<std::string>("city",static_cast<int>(ClientAttribute::CITY),ct));
+    entity->addStringDesc(Description<std::string>("subnationalDivision",static_cast<int>(ClientAttribute::SUBNATIONAL_DIVISION),sub));
+    entity->addStringDesc(Description<std::string>("country",static_cast<int>(ClientAttribute::COUNTRY),c));
+    entity->addStringDesc(Description<std::string>("postalCode",static_cast<int>(ClientAttribute::POSTAL_CODE),pc));
 }
-void CUACSController::populateClientProfile(int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, int lOfMobility, int lOfPatience, int prevExp, int physAffect)
+void CUACSController::populateClientProfile(Entity * en, int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, int lOfMobility, int lOfPatience, int prevExp, int physAffect)
 {
 //int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget,
 //int timeAvail, int lOfMobility, int lOfPatience, int prevExp, int physAffect)
-    entity->addIntDesc(Description<int>("age", 5, a));
-    entity->addBoolDesc(Description<bool>("hasChildrenUnderTwelve", 6, hasUnderTwelve));
-    entity->addBoolDesc(Description<bool>("hasPets", 7, hasPet));
-    entity->addIntDesc(Description<int>("lengthOfOwnershipExpectation", 8, ownExp));
-    entity->addIntDesc(Description<int>("monthlyBudgetForAnimal", 9, budget));
-    entity->addIntDesc(Description<int>("availabilityPerDay", 10, timeAvail));
-    entity->addIntDesc(Description<int>("levelOfMobility", 11, lOfMobility));
-    entity->addIntDesc(Description<int>("levelOfPatience", 12, lOfPatience));
-    entity->addIntDesc(Description<int>("previousExperience", 13, prevExp));
-    entity->addIntDesc(Description<int>("physicalAffection", 14, physAffect));
+    std::cout<< a << " " << hasUnderTwelve << " " << hasPet << " " << ownExp << " " << budget << " " << timeAvail << " " << lOfMobility << " " << lOfPatience << " " << prevExp << " " << physAffect <<std::endl;
+    en->addIntDesc(Description<int>("age", static_cast<int>(ClientAttribute::AGE), a));
+    en->setAge(a);
+    en->addBoolDesc(Description<bool>("hasChildrenUnderTwelve", static_cast<int>(ClientAttribute::HAS_CHILDREN_UNDER_TWELVE), hasUnderTwelve));
+    en->addBoolDesc(Description<bool>("hasPets", static_cast<int>(ClientAttribute::HAS_PETS), hasPet));
+    en->addIntDesc(Description<int>("lengthOfOwnershipExpectation", static_cast<int>(ClientAttribute::LENGTH_OF_OWNERSHIP_EXPECTATION), ownExp));
+    en->addIntDesc(Description<int>("monthlyBudgetForAnimal", static_cast<int>(ClientAttribute::MONTHLY_BUDGET_FOR_ANIMAL), budget));
+    en->addIntDesc(Description<int>("availabilityPerDay", static_cast<int>(ClientAttribute::AVAILABILITY_PER_DAY), timeAvail));
+    en->addIntDesc(Description<int>("levelOfMobility", static_cast<int>(ClientAttribute::LEVEL_OF_MOBILITY), lOfMobility));
+    en->addIntDesc(Description<int>("levelOfPatience", static_cast<int>(ClientAttribute::LEVEL_OF_PATIENCE), lOfPatience));
+    en->addIntDesc(Description<int>("previousExperience", static_cast<int>(ClientAttribute::PREVIOUS_EXPERIENCE), prevExp));
+    en->addIntDesc(Description<int>("physicalAffection", static_cast<int>(ClientAttribute::PHYSICAL_AFFECTION), physAffect));
+    en->addBoolDesc(Description<bool>("profilePopulated", static_cast<int>(ClientAttribute::POPULATED), true));
 }
 void CUACSController::finalizeClient()
 {
-
+    UClient * newClient = (UClient*)entity->build();
+    if (newClient != NULL)
+    {
+	clientCollection.append(newClient);
+    }
 }

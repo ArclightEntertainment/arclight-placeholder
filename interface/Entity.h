@@ -15,9 +15,9 @@ public:
     Entity * setAge(int a){age=a; return this;}
     Entity * setName(std::string n){name=n; return this;}
 
-    Entity * addBoolDesc(Description<bool> desc){boolCollection.append(desc); return this;}
-    Entity * addIntDesc(Description<int> desc){intCollection.append(desc); return this;}
-    Entity * addStringDesc(Description<std::string> desc){stringCollection.append(desc); return this;}
+    Entity * addBoolDesc(Description<bool> desc);
+    Entity * addIntDesc(Description<int> desc);
+    Entity * addStringDesc(Description<std::string> desc);
 
     int getID(){return ID;}
     int getAge(){return age;}
@@ -34,6 +34,8 @@ public:
     Iterator<Description<bool>> * getBoolIterator() {return boolCollection.createIterator();}
     Iterator<Description<int>> * getIntIterator() {return intCollection.createIterator();}
     Iterator<Description<std::string>> * getStringIterator(){return stringCollection.createIterator();}
+
+    void checkInt(int id);
 
 private:
     int ID;

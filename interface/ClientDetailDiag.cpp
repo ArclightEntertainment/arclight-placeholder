@@ -26,11 +26,18 @@ ClientDetailDiag::ClientDetailDiag(CUACSController *med, Entity *subject, bool c
     updateFields();
     setEditable(canEdit);
 
-    std::cout << "call With: " << aSubject->getBool(99) << std::endl;
-    //setPreferences(aSubject->getBool(99));
-//    setPreferences(true);
+    setPreferences(aSubject->getBool(static_cast<int>(ClientAttribute::POPULATED)));
 }
+void ClientDetailDiag::handleButtonQuiz()
+{
+    QuestionnaireDialog diag(mediator, aSubject, this);
+    diag.setWindowTitle("Matching QuestionWidgetnaire");
+    diag.exec();
 
+    updateFields();
+    setEditable(false);
+    setPreferences(aSubject->getBool(static_cast<int>(ClientAttribute::POPULATED)));
+}
 void ClientDetailDiag::setPreferences(bool visible)
 {
     int numDone = 10;
@@ -53,12 +60,6 @@ void ClientDetailDiag::setPreferences(bool visible)
     ui->patienceLabel   ->setVisible(visible);
     ui->experienceLabel ->setVisible(visible);
     ui->affectionLabel  ->setVisible(visible);
-}
-void ClientDetailDiag::handleButtonQuiz()
-{
-    //QuestionnaireDialog diag(mediator, aSubject, this);
-    //diag.setWindowTitle("Matching QuestionWidgetnaire");
-    //diag.exec();
 }
 void ClientDetailDiag::handleButtonClose()
 {
@@ -85,7 +86,7 @@ void ClientDetailDiag::handleButtonEdit()
         ui->countryLineEdit->setValidator(textValidator);
         ui->phoneLineEdit->setValidator(pNumValidator);
         ui->postalLineEdit->setValidator(postValidator);
-        ui->budgetLineEdit->setValidator(numValidator);
+	ui->budgetLineEdit->setValidator(numValidator);
 	ui->timeLineEdit->setValidator(numValidator);
 
         ui->nameLineEdit->setValidator(textValidator);
@@ -158,26 +159,29 @@ void ClientDetailDiag::updateFields()
     lineEdits[11]->setText(QString::number(aSubject->getInt(static_cast<int>(ClientAttribute::AVAILABILITY_PER_DAY))));
     lineEdits[12]->setText(QString::number(aSubject->getInt(static_cast<int>(ClientAttribute::AGE))));
     lineEdits[13]->setText(QString::number(aSubject->getInt(static_cast<int>(ClientAttribute::LENGTH_OF_OWNERSHIP_EXPECTATION))));
-    lineEdits[14]->setText(QString::number(aSubject->getInt(static_cast<int>(ClientAttribute::HAS_CHILDREN_UNDER_TWELVE))));
-    lineEdits[15]->setText(QString::number(aSubject->getInt(static_cast<int>(ClientAttribute::HAS_PETS))));
-    lineEdits[16]->setText(QString::number(aSubject->getInt(static_cast<int>(ClientAttribute::LEVEL_OF_MOBILITY))));
-    lineEdits[17]->setText(QString::number(aSubject->getInt(static_cast<int>(ClientAttribute::LEVEL_OF_PATIENCE))));
-    lineEdits[18]->setText(QString::number(aSubject->getInt(static_cast<int>(ClientAttribute::PREVIOUS_EXPERIENCE))));
-    lineEdits[19]->setText(QString::number(aSubject->getInt(static_cast<int>(ClientAttribute::PHYSICAL_AFFECTION))));
+    lineEdits[14]->setText(QString::fromStdString((aSubject->getBool(static_cast<int>(ClientAttribute::HAS_CHILDREN_UNDER_TWELVE))) ? "Yes" : "No"));
+    lineEdits[15]->setText(QString::fromStdString((aSubject->getBool(static_cast<int>(ClientAttribute::HAS_PETS))) ? "Yes" : "No"));
 
-    progBars[0]->setValue(aSubject->getInt(static_cast<int>(ClientAttribute::LEVEL_OF_MOBILITY)));
-    progBars[1]->setValue(aSubject->getInt(static_cast<int>(ClientAttribute::LEVEL_OF_PATIENCE)));
-    progBars[2]->setValue(aSubject->getInt(static_cast<int>(ClientAttribute::PREVIOUS_EXPERIENCE)));
-    progBars[3]->setValue(aSubject->getInt(static_cast<int>(ClientAttribute::PHYSICAL_AFFECTION)));
+    int mob = static_cast<int>(ClientAttribute::LEVEL_OF_MOBILITY);
+    int pat = static_cast<int>(ClientAttribute::LEVEL_OF_PATIENCE);
+    int pre = static_cast<int>(ClientAttribute::PREVIOUS_EXPERIENCE);
+    int phy = static_cast<int>(ClientAttribute::PHYSICAL_AFFECTION);
+
+    lineEdits[16]->setText(QString::number(aSubject->getInt(mob)));
+    lineEdits[17]->setText(QString::number(aSubject->getInt(pat)));
+    lineEdits[18]->setText(QString::number(aSubject->getInt(pre)));
+    lineEdits[19]->setText(QString::number(aSubject->getInt(phy)));
+
+    progBars[0]->setValue(aSubject->getInt(mob));
+    progBars[1]->setValue(aSubject->getInt(pat));
+    progBars[2]->setValue(aSubject->getInt(pre));
+    progBars[3]->setValue(aSubject->getInt(phy));
 
     //update the preference page values here
 }
 void ClientDetailDiag::updateCurrentClient()
 {
     aSubject->setString(static_cast<int>(ClientAttribute::PREF_TITLE), comboBoxes[0]->currentText().toStdString());
-
-    //handle name updating
-    //lineEdits[1]->setText(QString::fromStdString(aSubject->getName() + " " + aSubject->getString(5)));
 
     std::string nameText = lineEdits[1]->text().toStdString();
     std::string fName = nameText.substr(0, nameText.find(' ', 0));
