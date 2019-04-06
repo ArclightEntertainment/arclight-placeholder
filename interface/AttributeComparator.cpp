@@ -5,6 +5,9 @@
 
 float AttributeComparator::calculateCompatibility(UAnimal *animal, UClient *client)
 {
+    float random = 100.0f*(static_cast <float> (rand()) / static_cast <float>(RAND_MAX));
+    return random;
+    /*
     //Temporary
     float totalRating = 0.0f;
     float overCost = (animal->species.eCostPerMonth - client->profile.budgetPerMonth)/client->profile.budgetPerMonth;
@@ -133,4 +136,5 @@ float AttributeComparator::calculateCompatibility(UAnimal *animal, UClient *clie
     //float random = 100.0f*(static_cast <float> (rand()) / static_cast <float>(RAND_MAX)); //1.0;
 
     return totalRating;
+    */
 }
