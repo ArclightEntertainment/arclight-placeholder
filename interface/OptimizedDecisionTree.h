@@ -13,15 +13,10 @@ private:
     DecisionTreeDataItem *data;
     bool firstIsMaximal(CandidateSet *a, CandidateSet *b);
     bool isPrunable(Branch *branch, float threshold, int intendedDepth);
-    //CandidateSet *maxDecision(CandidateSet *a, CandidateSet *b);
-    //DecisionTreeDataItem *explore(DecisionTreeDataItem * branch);
-    //DecisionTreeDataItem *next();
 
 public:
     OptimizedDecisionTree(int currentDepth);
     inline void setData(DecisionTreeDataItem *dataIn) { data = dataIn; }
     CandidateSet *findOptimalPath(int intendedDepth);
-    //OptimizedDecisionTree(CandidateSet *pathToNode);
-    //DecisionTreeDataItem *evaluate();
 };
 #endif // OPTIMIZEDDECISIONTREE_H

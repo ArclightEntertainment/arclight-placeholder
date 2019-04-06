@@ -11,25 +11,34 @@ private:
     int size;
     int numAnimals;
     int numClients;
+
     float compatibilitySum;
+
     AnimalClientPair **candidates;
+
     float getSetCompatibility();
 
 public:
     CandidateSet(int maxSize);
-    float getValue();
+
     void add(AnimalClientPair *pair);
     AnimalClientPair *get(int index);
     AnimalClientPair *remove(int index);
-    void sort();
-    bool containsAnimal(UAnimal *animal);
-    bool containsClient(UClient *client);
-    std::string toString();
+
     inline int getSize() { return size; }
     inline bool isEmpty() { return size == 0; }
-    CandidateSet *disjointSubset(AnimalClientPair *exclusionaryPair);
+    float getValue();
+
+    void sort();
+
+    int find(AnimalClientPair *pair);
+    bool containsAnimal(UAnimal *animal);
+    bool containsClient(UClient *client);
     int getNumAnimals();
     int getNumClients();
-    int find(AnimalClientPair *pair);
+
+    std::string toString();
+
+    CandidateSet *disjointSubset(AnimalClientPair *exclusionaryPair);
 };
 #endif // CANDIDATESET_H

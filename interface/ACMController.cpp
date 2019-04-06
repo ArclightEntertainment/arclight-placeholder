@@ -61,8 +61,6 @@ void ACMController::setup(int numA, Iterator<UAnimal *> *animalIterator, int num
 
     generateCandidates(animalIterator, clientIterator);
     sortCandidates();
-
-    //std::cout << "Candidates\n" << candidates->toString() << std::endl;
 }
 
 bool ACMController::isAcceptable(AnimalClientPair *pair)
@@ -73,8 +71,5 @@ bool ACMController::isAcceptable(AnimalClientPair *pair)
 CandidateSet *ACMController::run()
 {
     ACMTreeController *decisionTree = new ACMTreeController(candidates);
-
-    //Temporary
-    //return candidates;
     return decisionTree->makeDecision();
 }

@@ -1,11 +1,9 @@
 #include "CandidateSet.h"
 #include <algorithm>
 #include <sstream>
-#include <iostream>
 
 CandidateSet::CandidateSet(int maxSize)
 {
-   //std::cout << "CandidateSet::CandidateSet() -> size to allocate: " << maxSize << std::endl;
    size = 0;
    numClients = 0;
    numAnimals = 0;
@@ -128,11 +126,6 @@ std::string CandidateSet::toString()
 
 CandidateSet *CandidateSet::disjointSubset(AnimalClientPair *exclusionaryPair)
 {
-    //std::cout << "CandidateSet::disjointSubset -> size : " << size << std::endl;
-
-
-
-
     int index = find(exclusionaryPair);
     CandidateSet *disjointSubset = new CandidateSet(size-index);
 
@@ -152,7 +145,6 @@ CandidateSet *CandidateSet::disjointSubset(AnimalClientPair *exclusionaryPair)
 
 float CandidateSet::getValue()
 {
-    // Temporary
     return compatibilitySum / size;
 }
 
