@@ -4,7 +4,6 @@
 #include "AnimalClientPair.h"
 #include "CandidateSet.h"
 #include "EntityBuilder.h"
-#include "ACMTreeController.h"
 
 class ACMController
 {
@@ -13,7 +12,7 @@ private:
     int numClients;
     float threshold;
     CandidateSet *candidates;
-    ACMTreeController *decisionTree;
+    //ACMTreeController *decisionTree;
 
     void generateCandidates(Iterator<UAnimal *> *animalIterator, Iterator<UClient *> *clientIterator);
     AnimalClientPair *generateCandidate(UAnimal *animal, UClient *client);

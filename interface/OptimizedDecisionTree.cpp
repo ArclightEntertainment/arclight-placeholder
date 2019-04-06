@@ -19,9 +19,15 @@ OptimizedDecisionTree::OptimizedDecisionTree(int depthIn)
 
 CandidateSet *OptimizedDecisionTree::findOptimalPath()
 {
+    std::cout << "Depth: " << depth << std::endl;
+
+    //std::cout << "OptimizedDecisionTree::findOptimalPath()" << std::endl;
+
     // Base Case
     if (data->isDone())
     {
+        //std::cout << "findOptimalPath returning new, empty Candidate set" << std::endl;
+
         return new CandidateSet(depth);
     }
 
@@ -32,6 +38,8 @@ CandidateSet *OptimizedDecisionTree::findOptimalPath()
     {
         Branch *nextBranch = data->next();
 
+        //std::cout << "Branch size: " << nextBranch->getContext()->getSize() << std::endl;
+
         if (nextBranch->isPrunable())
         {
             continue;
@@ -41,21 +49,28 @@ CandidateSet *OptimizedDecisionTree::findOptimalPath()
         DecisionTreeDataItem *childData = new DecisionTreeDataItem(nextBranch->getContext());
         child->setData(childData);
 
+        //std::cout << "Child data set" << std::endl;
+
         if (!decision)
         {
             decision = child->findOptimalPath();
         }
         else
         {
-            decision = maxDecision(child->findOptimalPath(), decision);
+            CandidateSet *childResult = child->findOptimalPath();
+            if (childResult)
+            {
+                decision = maxDecision(childResult, decision);
+            }
         }
     }
-
     return decision;
 }
 
 CandidateSet *OptimizedDecisionTree::maxDecision(CandidateSet *a, CandidateSet *b)
 {
+    //std::cout << "OptimizedDecisionTree::maxDecision()" << std::endl;
+
     if (a->getSetCompatibility() < b->getSetCompatibility())
     {
         return b;

@@ -1,5 +1,6 @@
 #include "AnimalClientPair.h"
 #include "AttributeComparator.h"
+#include <sstream>
 
 AnimalClientPair::AnimalClientPair(UAnimal *a, UClient *c)
 {
@@ -21,4 +22,15 @@ UClient *AnimalClientPair::getClient()
 float AnimalClientPair::getCompatibility()
 {
     return compatibility;
+}
+
+std::string AnimalClientPair::toString()
+{
+    std::ostringstream stream;
+    stream << "(" << compatibility << "), "
+                    << animal->getName() << ", "
+                    << client->getName();
+
+    return stream.str();
+
 }

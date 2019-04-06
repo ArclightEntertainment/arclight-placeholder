@@ -1,4 +1,5 @@
 #include "ACMController.h"
+#include "ACMTreeController.h"
 
 ACMController::ACMController(float thresholdValue)
 {
@@ -56,6 +57,8 @@ void ACMController::setup(int numA, Iterator<UAnimal *> *animalIterator, int num
 
     generateCandidates(animalIterator, clientIterator);
     sortCandidates();
+
+    std::cout << "Candidates" << candidates->toString() << std::endl;
 }
 
 bool ACMController::isAcceptable(AnimalClientPair *pair)
@@ -65,11 +68,9 @@ bool ACMController::isAcceptable(AnimalClientPair *pair)
 
 CandidateSet *ACMController::run()
 {
-    // Temporary
-
-    //decisionTree = ACMTreeController(candidates);
+    ACMTreeController *decisionTree = new ACMTreeController(candidates);
 
     //Temporary
-    return candidates;
-
+    //return candidates;
+    return decisionTree->makeDecision();
 }

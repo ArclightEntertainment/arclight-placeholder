@@ -2,6 +2,7 @@
 #define ANIMALCLIENTPAIR_H
 
 #include "EntityBuilder.h"
+#include <string>
 
 class AnimalClientPair
 {
@@ -15,5 +16,6 @@ public:
     UAnimal *getAnimal();
     UClient *getClient();
     float getCompatibility();
+    std::string toString();
 };
 #endif // ANIMALCLIENTPAIR_H

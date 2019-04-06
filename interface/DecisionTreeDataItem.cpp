@@ -3,7 +3,7 @@
 Branch::Branch(AnimalClientPair *decisionIn, CandidateSet *resultantContext)
 {
     decision = decisionIn;
-    context = context->disjointSubset(decision);
+    context = resultantContext;
     value = decision->getCompatibility();
 }
 
@@ -62,14 +62,21 @@ DecisionTreeDataItem::DecisionTreeDataItem(CandidateSet)
 
 Branch *DecisionTreeDataItem::next()
 {
+    //std::cout << "DecisionTreeDataItem::next()" << std::endl;
+
     if (isDone())
     {
+        //std::cout << "next() returning null" << std::endl;
         return NULL;
     }
 
     AnimalClientPair *nextDataItem = dataSet->get(currentIndex);
+    std::cout << "Next data item: " << nextDataItem->toString() << std::endl;
+
     CandidateSet *nextSet = dataSet->disjointSubset(nextDataItem);
    // CandidateSet *nextSet = dataSet->getSubsetWithout(nextDataItem);
+   // std::cout << "past disjoin subset" << std::endl;
+
     Branch *branch = new Branch(nextDataItem, nextSet);
     //DecisionTreeDataItem *next = dataQueue
     //AnimalClientPair *choice = data->get(currentIndex);
@@ -82,7 +89,7 @@ Branch *DecisionTreeDataItem::next()
 
 bool DecisionTreeDataItem::isDone()
 {
-    return dataSet->isEmpty();
+    return currentIndex >= dataSet->getSize();
 }
 /*
 CandidateSet *DecisionTreeDataItem::getCurrentItem()

@@ -1,9 +1,12 @@
 #include "CandidateSet.h"
 #include <algorithm>
 #include <sstream>
+#include <iostream>
 
 CandidateSet::CandidateSet(int maxSize)
 {
+   //std::cout << "CandidateSet::CandidateSet() -> size to allocate: " << maxSize << std::endl;
+
    size = 0;
    compatibilitySum = 0.0;
    candidates = new AnimalClientPair*[maxSize];
@@ -80,9 +83,7 @@ std::string CandidateSet::toString()
 
     for (int i=0; i<size; i++)
     {
-        stream << "\n(" << candidates[i]->getCompatibility() << "), "
-                << candidates[i]->getAnimal()->getName() << ", "
-                << candidates[i]->getClient()->getName();
+        stream << "\n" << candidates[i]->toString();
     }
     stream << "\n]\n";
 
@@ -91,18 +92,21 @@ std::string CandidateSet::toString()
 
 CandidateSet *CandidateSet::disjointSubset(AnimalClientPair *exclusionaryPair)
 {
-    CandidateSet disjointSubset = CandidateSet(size);
+    //std::cout << "CandidateSet::disjointSubset -> size : " << size << std::endl;
+
+
+    CandidateSet *disjointSubset = new CandidateSet(size);
 
     for (int i=0; i<size; i++)
     {
         if (candidates[i]->getAnimal() == exclusionaryPair->getAnimal()
                 || candidates[i]->getClient() == exclusionaryPair->getClient())
         {
-            i++;
+            continue;
         }
 
-        disjointSubset.add(candidates[i]);
+        disjointSubset->add(candidates[i]);
     }
 
-    return &disjointSubset;
+    return disjointSubset;
 }

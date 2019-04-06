@@ -10,5 +10,6 @@ ACMTreeController::ACMTreeController(CandidateSet *treeData)
 
 CandidateSet *ACMTreeController::makeDecision()
 {
+    //std::cout << "ACMTreeController::makeDecision()" << std::endl;
     return root->findOptimalPath();
 }
