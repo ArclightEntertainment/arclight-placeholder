@@ -2,8 +2,6 @@
 #define TESTS_H
 
 #include "MainWindow.h"
-#include "Animal.h"
-#include "Client.h"
 
 class Tests
 {
