@@ -11,14 +11,16 @@ private:
     int depth;
     OptimizedDecisionTree *optimalSubtree;
     DecisionTreeDataItem *data;
-    CandidateSet *maxDecision(CandidateSet *a, CandidateSet *b);
+    bool firstIsMaximal(CandidateSet *a, CandidateSet *b);
+    bool isPrunable(Branch *branch, float threshold, int intendedDepth);
+    //CandidateSet *maxDecision(CandidateSet *a, CandidateSet *b);
     //DecisionTreeDataItem *explore(DecisionTreeDataItem * branch);
     //DecisionTreeDataItem *next();
 
 public:
-    OptimizedDecisionTree(int depthIn);
+    OptimizedDecisionTree(int currentDepth);
     inline void setData(DecisionTreeDataItem *dataIn) { data = dataIn; }
-    CandidateSet *findOptimalPath();
+    CandidateSet *findOptimalPath(int intendedDepth);
     //OptimizedDecisionTree(CandidateSet *pathToNode);
     //DecisionTreeDataItem *evaluate();
 };

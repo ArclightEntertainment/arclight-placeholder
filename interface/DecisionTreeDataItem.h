@@ -15,7 +15,7 @@ public:
     AnimalClientPair *getDecision();
     CandidateSet *getContext();
     float getValue();
-    bool isPrunable();
+    //bool isPrunable();
 };
 
 class DecisionTreeDataItem

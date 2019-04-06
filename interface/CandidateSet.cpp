@@ -6,8 +6,9 @@
 CandidateSet::CandidateSet(int maxSize)
 {
    //std::cout << "CandidateSet::CandidateSet() -> size to allocate: " << maxSize << std::endl;
-
    size = 0;
+   numClients = 0;
+   numAnimals = 0;
    compatibilitySum = 0.0;
    candidates = new AnimalClientPair*[maxSize];
 }
@@ -15,6 +16,21 @@ CandidateSet::CandidateSet(int maxSize)
 AnimalClientPair* CandidateSet::get(int index)
 {
     return candidates[index];
+}
+
+int CandidateSet::find(AnimalClientPair *pair)
+{
+    int index = -1;
+
+    for (int i=0; i<size; i++)
+    {
+        if (candidates[i] == pair)
+        {
+            index = i;
+            break;
+        }
+    }
+    return index;
 }
 
 AnimalClientPair* CandidateSet::remove(int index)
@@ -28,11 +44,31 @@ AnimalClientPair* CandidateSet::remove(int index)
     compatibilitySum -= removed->getCompatibility();
     size--;
 
+    if (!containsAnimal(removed->getAnimal()))
+    {
+        numAnimals--;
+    }
+
+    if (!containsClient(removed->getClient()))
+    {
+        numClients--;
+    }
+
     return removed;
 }
 
 void CandidateSet::add(AnimalClientPair *pair)
 {
+    if (!containsAnimal(pair->getAnimal()))
+    {
+        numAnimals++;
+    }
+
+    if (!containsClient(pair->getClient()))
+    {
+        numClients++;
+    }
+
     candidates[size] = pair;
     compatibilitySum += pair->getCompatibility();
     size++;
@@ -95,9 +131,12 @@ CandidateSet *CandidateSet::disjointSubset(AnimalClientPair *exclusionaryPair)
     //std::cout << "CandidateSet::disjointSubset -> size : " << size << std::endl;
 
 
-    CandidateSet *disjointSubset = new CandidateSet(size);
 
-    for (int i=0; i<size; i++)
+
+    int index = find(exclusionaryPair);
+    CandidateSet *disjointSubset = new CandidateSet(size-index);
+
+    for (int i=index; i<size; i++)
     {
         if (candidates[i]->getAnimal() == exclusionaryPair->getAnimal()
                 || candidates[i]->getClient() == exclusionaryPair->getClient())
@@ -109,4 +148,46 @@ CandidateSet *CandidateSet::disjointSubset(AnimalClientPair *exclusionaryPair)
     }
 
     return disjointSubset;
+}
+
+float CandidateSet::getValue()
+{
+    // Temporary
+    return compatibilitySum / size;
+}
+
+int CandidateSet::getNumAnimals()
+{
+    CandidateSet* pairsWithUnique = new CandidateSet(size);
+
+    for (int i=0; i<size; i++)
+    {
+        AnimalClientPair *pair = candidates[i];
+        UAnimal *animal = pair->getAnimal();
+
+        if (!pairsWithUnique->containsAnimal(animal))
+        {
+            pairsWithUnique->add(pair);
+        }
+    }
+
+    return pairsWithUnique->getSize();
+}
+
+int CandidateSet::getNumClients()
+{
+    CandidateSet* pairsWithUnique = new CandidateSet(size);
+
+    for (int i=0; i<size; i++)
+    {
+        AnimalClientPair *pair = candidates[i];
+        UClient *client = pair->getClient();
+
+        if (!pairsWithUnique->containsClient(client))
+        {
+            pairsWithUnique->add(pair);
+        }
+    }
+
+    return pairsWithUnique->getSize();
 }

@@ -10,7 +10,7 @@ CUACSController::CUACSController()
     animalCollection = ArrayCollection<UAnimal*>();
     clientCollection = ArrayCollection<UClient*>();
 
-    acmController = new ACMController(0.0f);
+    acmController = new ACMController(30.0f);
 }
 
 CUACSController::~CUACSController()

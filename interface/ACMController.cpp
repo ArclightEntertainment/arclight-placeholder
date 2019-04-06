@@ -35,7 +35,11 @@ void ACMController::generateCandidates(Iterator<UAnimal *> *animalIterator, Iter
     {
         for (int j=0; j<numClients; j++)
         {
-            candidates->add(generateCandidate(animals[i], clients[j]));
+            AnimalClientPair *newCandidate = generateCandidate(animals[i], clients[j]);
+            if (isAcceptable(newCandidate))
+            {
+                candidates->add(newCandidate);
+            }
         }
     }
 }
@@ -58,7 +62,7 @@ void ACMController::setup(int numA, Iterator<UAnimal *> *animalIterator, int num
     generateCandidates(animalIterator, clientIterator);
     sortCandidates();
 
-    std::cout << "Candidates" << candidates->toString() << std::endl;
+    //std::cout << "Candidates\n" << candidates->toString() << std::endl;
 }
 
 bool ACMController::isAcceptable(AnimalClientPair *pair)

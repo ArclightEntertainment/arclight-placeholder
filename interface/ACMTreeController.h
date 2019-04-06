@@ -8,6 +8,7 @@ class ACMTreeController
 {
 private:
     OptimizedDecisionTree *root;
+    int intendedDepth;
 
 public:
     ACMTreeController(CandidateSet *treeData);

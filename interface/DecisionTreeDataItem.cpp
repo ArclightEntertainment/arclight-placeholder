@@ -22,6 +22,7 @@ float Branch::getValue()
     return value;
 }
 
+/*
 bool Branch::isPrunable()
 {
     // Temporary
@@ -71,7 +72,7 @@ Branch *DecisionTreeDataItem::next()
     }
 
     AnimalClientPair *nextDataItem = dataSet->get(currentIndex);
-    std::cout << "Next data item: " << nextDataItem->toString() << std::endl;
+    //std::cout << "Next data item: " << nextDataItem->toString() << std::endl;
 
     CandidateSet *nextSet = dataSet->disjointSubset(nextDataItem);
    // CandidateSet *nextSet = dataSet->getSubsetWithout(nextDataItem);
