@@ -6,6 +6,7 @@
 #include "../data/DatabaseController.h"
 #include "./EntityBuilder.h"
 #include "ArrayCollection.h"
+#include "ACMController.h"
 #include "./Attributes.h"
 
 class CUACSController
@@ -18,6 +19,7 @@ public:
     Iterator<UClient*>* getClientIterator();
     unsigned int getNumEntities (char type) {return (type == 'c') ? clientCollection.count() : animalCollection.count();}
 
+    UAnimal **getAnimals();
     Entity * getAnimalWithId(int id);
     int getNextAnimalID();
 
@@ -26,6 +28,7 @@ public:
     void updateAnimalHistory (bool imm,std::string diet,std::string mob,std::string disab,std::string bio,std::string aHist);
     void finalizeAnimal();
 
+    UClient **getClients();
     Entity * getClientWithId(int id);
     int getNextClientID();
 
@@ -34,10 +37,14 @@ public:
     void populateClientProfile(Entity * entity, int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, int lOfMobility, int lOfPatience, int prevExp, int physAffect);
     void finalizeClient();
 
-    Iterator<UAnimal *> * createAnimalIterator () {std::cout<<animalCollection.count() << std::endl; return animalCollection.createIterator();}
-    Iterator<UClient *> * createClientIterator () {std::cout<<clientCollection.count() << std::endl; return clientCollection.createIterator();}
+    Iterator<UAnimal *> * createAnimalIterator () { return animalCollection.createIterator();}
+    Iterator<UClient *> * createClientIterator () { return clientCollection.createIterator();}
+
+    CandidateSet *launchACM();
+
 private:
     DatabaseController *dbController;
+    ACMController *acmController;
 
     ArrayCollection<UAnimal*> animalCollection;
     ArrayCollection<UClient*> clientCollection;

@@ -9,12 +9,20 @@ CUACSController::CUACSController()
 
     animalCollection = ArrayCollection<UAnimal*>();
     clientCollection = ArrayCollection<UClient*>();
+
+    acmController = new ACMController(30.0f);
 }
 
 CUACSController::~CUACSController()
 {
 
 
+}
+
+CandidateSet *CUACSController::launchACM()
+{
+    acmController->setup(animalCollection.count(), animalCollection.createIterator(), clientCollection.count(), clientCollection.createIterator());
+    return acmController->run();
 }
 
 Iterator<UClient*>* CUACSController::getClientIterator()
@@ -86,7 +94,6 @@ Iterator<UClient*>* CUACSController::getClientIterator()
                 }
             }
             UClient* client = (UClient*)entity->build();
-            std::cout << "Test:" << client->getName()<< std::endl;
             if(client != NULL)
             {
                 clientCollection.append(client);
@@ -98,11 +105,10 @@ Iterator<UClient*>* CUACSController::getClientIterator()
 
 Iterator<UAnimal*>* CUACSController::getAnimalIterator()
 {
-    //std::cout << "getAnimalIterator()" << std::endl;
     if(isDBOpen)
     {
+        int i = -1;
         dbController->setSQL("SELECT * FROM Animal");
-        dbController->step();
         while(dbController->step())
         {
             entity = new AnimalBuilder();
@@ -167,7 +173,6 @@ Iterator<UAnimal*>* CUACSController::getAnimalIterator()
                 }
             }
             UAnimal* animal = (UAnimal*)entity->build();
-            //std::cout << animal->getName() << std::endl;
             if(animal != NULL){
                 animalCollection.append(animal);
             }
@@ -274,8 +279,6 @@ void CUACSController::updateAnimalSocial (int training,int trainability,int peop
 }
 void CUACSController::updateAnimalHistory (bool imm,std::string diet,std::string mob,std::string disab,std::string bio,std::string aHist)
 {
-    //bool imm,std::string diet,std::string mob,std::string disab,std::string bio,std::string aHist
-
     entity->addBoolDesc(Description<bool>("immunized", static_cast<int>(AnimalAttribute::IMMUNIZED), imm));
     entity->addStringDesc(Description<std::string>("dietNeeds", static_cast<int>(AnimalAttribute::DIET_NEEDS), diet));
     entity->addStringDesc(Description<std::string>("mobilityNeeds", static_cast<int>(AnimalAttribute::MOBILITY_NEEDS), mob));

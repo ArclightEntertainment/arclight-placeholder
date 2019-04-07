@@ -1,5 +1,7 @@
 #include "MainWindow.h"
 #include "ui_mainwindow.h"
+#include <iostream>
+#include "Tests.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -22,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent) :
     mediator = new CUACSController();
     animalIterator = mediator->getAnimalIterator();
     clientIterator = mediator->getClientIterator();
+
+    Tests::testACM(mediator);
 }
 
 MainWindow::~MainWindow()
