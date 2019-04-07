@@ -51,7 +51,9 @@ SOURCES += \
     interface/Tests.cpp \
     interface/ACMTreeController.cpp \
     interface/QuestionnaireDialog.cpp \
-    interface/LoginDialog.cpp
+    interface/LoginDialog.cpp \
+    interface/ACMListView.cpp \
+    interface/ACMDetailDialog.cpp
 
 HEADERS += \
     data/DatabaseController.h \
@@ -84,7 +86,9 @@ HEADERS += \
     interface/ACMTreeController.h \
     interface/QuestionnaireDialog.h \
     interface/Attributes.h \
-    interface/LoginDialog.h
+    interface/LoginDialog.h \
+    interface/ACMListView.h \
+    interface/ACMDetailDialog.h
 
 FORMS += \
     interface/listview.ui \
@@ -94,4 +98,5 @@ FORMS += \
     interface/clientinputdialog.ui \
     interface/clientdetaildialog.ui \
     interface/questionnairedialog.ui \
-    interface/logindialog.ui
+    interface/logindialog.ui \
+    interface/acmdetaildialog.ui

@@ -2,6 +2,12 @@
 #include "ui_mainwindow.h"
 #include <iostream>
 #include "Tests.h"
+#include "AnimalInputDiag.h"
+#include "ClientInputDiag.h"
+#include "AnimalListView.h"
+#include "ClientListView.h"
+#include "ACMListView.h"
+#include "LoginDialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,11 +22,15 @@ MainWindow::MainWindow(QWidget *parent) :
     clientViewButton = ui->clientViewButton;
     clientInputButton = ui->clientInputButton;
 
+    acmButton = ui->acmButton;
+
     //connect buttons to slots
     connect(animalInputButton, SIGNAL(released()), this,SLOT(handleButtonAnimalInput()));
     connect(animalViewButton, SIGNAL(released()), this,SLOT(handleButtonAnimalView()));
     connect(clientInputButton, SIGNAL(released()), this,SLOT(handleButtonClientInput()));
     connect(clientViewButton, SIGNAL(released()), this,SLOT(handleButtonClientView()));
+
+    connect(acmButton, SIGNAL(released()), this,SLOT(handleButtonACM()));
 
     mediator = new CUACSController();
     animalIterator = mediator->getAnimalIterator();
@@ -89,4 +99,11 @@ void MainWindow::handleButtonClientView()
 	diag.setWindowTitle(QString::fromStdString(mediator->getClientWithId(currentID)->getName()));
 	diag.exec();
     }
+}
+
+void MainWindow::handleButtonACM()
+{
+    ACMListView diag(mediator, this);
+    diag.setWindowTitle("ACM Match List");
+    diag.exec();
 }
