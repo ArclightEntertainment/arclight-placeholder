@@ -24,7 +24,8 @@ enum class AnimalAttribute : int
     MOBILITY_NEEDS = 18,
     DISABILITY_NEEDS = 19,
     ABUSE_HISTORY = 20,
-    BIOGRAPHY = 21
+    BIOGRAPHY = 21,
+    MONTHLY_EXPENDITURE = 22
 };
 
 enum class ClientAttribute : int
@@ -50,6 +51,7 @@ enum class ClientAttribute : int
     LEVEL_OF_PATIENCE = 18,
     PREVIOUS_EXPERIENCE = 19,
     PHYSICAL_AFFECTION = 20,
+    POPULATED = 99
 };
 
 #endif // ATTRIBUTES_H

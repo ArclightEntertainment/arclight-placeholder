@@ -5,7 +5,7 @@
 QuestionnaireDialog::QuestionnaireDialog(CUACSController *med, Entity * target, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QuestionnaireDialog),
-    current(0),
+    current(-1),
     subject(target),
     mediator(med)
 {
@@ -22,7 +22,6 @@ QuestionnaireDialog::QuestionnaireDialog(CUACSController *med, Entity * target, 
     questions = new Question*[NUMQUESTIONS];
     answers = new std::pair<int, ClientAttribute>[NUMQUESTIONS];
     numAnswers=0;
-
     questions[0] = new SmallIntQuestion(std::string("How old are you?"), ClientAttribute::AGE);
     questions[1] = new BoolQuestion(std::string("Are there children under the age of 12 present in your home?"), ClientAttribute::HAS_CHILDREN_UNDER_TWELVE);
     questions[2] = new BoolQuestion(std::string("Is your pet likely to come in contact with other animals?"), ClientAttribute::HAS_PETS);
@@ -41,7 +40,12 @@ void QuestionnaireDialog::handleButtonClose()
 }
 void QuestionnaireDialog::handleButtonConfirm()
 {
-    if (current < NUMQUESTIONS)
+    if (current < 0)
+    {
+	current++;
+	setStage();
+    }
+    else if (current < NUMQUESTIONS)
     {
 	collectAnswer();
 	current++;

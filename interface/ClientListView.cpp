@@ -54,7 +54,7 @@ void ClientListView::updateListView()
     {
         //Create item widgets for row
 	QTableWidgetItem *title = new QTableWidgetItem (QString::fromStdString(a->currentItem()->getString(static_cast<int>(ClientAttribute::PREF_TITLE))));
-        QTableWidgetItem *lname = new QTableWidgetItem (QString::fromStdString(a->currentItem()->getString(5)));
+	QTableWidgetItem *lname = new QTableWidgetItem (QString::fromStdString(a->currentItem()->getString(static_cast<int>(ClientAttribute::LAST_NAME))));
         QTableWidgetItem *fname = new QTableWidgetItem (QString::fromStdString(a->currentItem()->getName()));
         QTableWidgetItem *id = new QTableWidgetItem (QString::number(a->currentItem()->getID()));
 

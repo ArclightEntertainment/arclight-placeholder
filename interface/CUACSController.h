@@ -7,6 +7,7 @@
 #include "./EntityBuilder.h"
 #include "ArrayCollection.h"
 #include "ACMController.h"
+#include "./Attributes.h"
 
 class CUACSController
 {

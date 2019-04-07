@@ -127,3 +127,82 @@ void Entity::setBool (int id, bool val)
     }
     boolCollection.setValue(i, Description<bool>(iter->currentItem().getName(), iter->currentItem().getAttributeID(), val));
 }
+
+
+Entity * Entity::addBoolDesc(Description<bool> desc)
+{
+
+    bool found = false;
+
+    Iterator<Description<bool>> * iter = getBoolIterator();
+    iter->first();
+    int i = 0;
+    while(!iter->isDone())
+    {
+	if (iter->currentItem().getAttributeID() == desc.getAttributeID())
+	{
+	    boolCollection.setValue(i, desc);
+	    found = true;
+	    break;
+	}
+	i++;
+	iter->next();
+    }
+    if (!found)
+    {
+	boolCollection.append(desc);
+    }
+    return this;
+}
+Entity * Entity::addIntDesc(Description<int> desc)
+{
+
+    bool found = false;
+
+    Iterator<Description<int>> * iter = getIntIterator();
+    iter->first();
+    int i = 0;
+    while(!iter->isDone())
+    {
+	if (iter->currentItem().getAttributeID() == desc.getAttributeID())
+	{
+	    std::cout<<"Old: "<<iter->currentItem().getName() << " " << iter->currentItem().getAttributeID()<<" " << iter->currentItem().getValue()<<std::endl;
+	    intCollection.setValue(i, desc);
+	    std::cout<<"New: "<<iter->currentItem().getName() << " " << iter->currentItem().getAttributeID()<<" " << iter->currentItem().getValue()<<std::endl;
+	    found = true;
+	    break;
+	}
+	i++;
+	iter->next();
+    }
+    if (!found)
+    {
+	intCollection.append(desc);
+    }
+    return this;
+}
+Entity * Entity::addStringDesc(Description<std::string> desc)
+{
+
+    bool found = false;
+
+    Iterator<Description<std::string>> * iter = getStringIterator();
+    iter->first();
+    int i = 0;
+    while(!iter->isDone())
+    {
+	if (iter->currentItem().getAttributeID() == desc.getAttributeID())
+	{
+	    stringCollection.setValue(i, desc);
+	    found = true;
+	    break;
+	}
+	i++;
+	iter->next();
+    }
+    if (!found)
+    {
+	stringCollection.append(desc);
+    }
+    return this;
+}
