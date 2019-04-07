@@ -6,6 +6,7 @@
 #include "../data/DatabaseController.h"
 #include "./EntityBuilder.h"
 #include "ArrayCollection.h"
+#include "./Attributes.h"
 
 class CUACSController
 {

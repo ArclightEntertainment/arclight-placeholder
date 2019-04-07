@@ -54,10 +54,10 @@ void AnimalListView::updateListView()
         std::cout<<a->currentItem()->getName()<<std::endl;
         //Create item widgets for row
         MyTableWidgetItem *name = new MyTableWidgetItem (QString::fromStdString         (a->currentItem()->getName()));
-        MyTableWidgetItem *species = new MyTableWidgetItem (QString::fromStdString      (a->currentItem()->getString(2)));
-        MyTableWidgetItem *breed = new MyTableWidgetItem (QString::fromStdString        (a->currentItem()->getString(3)));
-        MyTableWidgetItem *age = new MyTableWidgetItem (QString::number                 (a->currentItem()->getInt(4)));
-        MyTableWidgetItem *sex = new MyTableWidgetItem (QString::fromStdString          (a->currentItem()->getString(6)));
+	MyTableWidgetItem *species = new MyTableWidgetItem (QString::fromStdString      (a->currentItem()->getString(static_cast<int>(AnimalAttribute::SPECIES))));
+	MyTableWidgetItem *breed = new MyTableWidgetItem (QString::fromStdString        (a->currentItem()->getString(static_cast<int>(AnimalAttribute::BREED))));
+    MyTableWidgetItem *age = new MyTableWidgetItem (QString::number                 (a->currentItem()->getAge()));
+	MyTableWidgetItem *sex = new MyTableWidgetItem (QString::fromStdString          (a->currentItem()->getString(static_cast<int>(AnimalAttribute::SEX))));
         MyTableWidgetItem *id = new MyTableWidgetItem (QString::number                  (a->currentItem()->getID()));
         //set all as un-editable
         name->setFlags(name->flags() ^ Qt::ItemIsEditable);
