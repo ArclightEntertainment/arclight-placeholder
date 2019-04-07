@@ -41,7 +41,15 @@ SOURCES += \
     interface/ArrayCollection.cpp \
     interface/Entity.cpp \
     interface/EntityBuilder.cpp \
-    interface/CUACSController.cpp \
+    interface/CUACSController.cpp\
+    interface/ACMController.cpp \
+    interface/AnimalClientPair.cpp \
+    interface/AttributeComparator.cpp \
+    interface/CandidateSet.cpp \
+    interface/DecisionTreeDataItem.cpp \
+    interface/OptimizedDecisionTree.cpp \
+    interface/Tests.cpp \
+    interface/ACMTreeController.cpp \
     interface/QuestionnaireDialog.cpp \
     interface/LoginDialog.cpp
 
@@ -65,6 +73,15 @@ HEADERS += \
     interface/AbstractCollection.h \
     interface/EntityBuilder.h \
     interface/CUACSController.h \
+    interface/ACMController.h \
+    interface/AnimalClientPair.h \
+    interface/AttributeComparator.h \
+    interface/CandidateSet.h \
+    interface/DecisionTreeDataItem.h \
+    interface/OptimizedDecisionTree.h \
+    interface/Tests.h \
+    interface/Attributes.h \
+    interface/ACMTreeController.h \
     interface/QuestionnaireDialog.h \
     interface/Attributes.h \
     interface/LoginDialog.h

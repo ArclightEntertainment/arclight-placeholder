@@ -1,5 +1,7 @@
 #include "MainWindow.h"
 #include "ui_mainwindow.h"
+#include <iostream>
+#include "Tests.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -45,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	animalInputButton->setVisible(true);
 	clientViewButton->setText("View All Clients");
     }
+    Tests::testACM(mediator);
 }
 
 MainWindow::~MainWindow()
