@@ -50,7 +50,8 @@ SOURCES += \
     interface/OptimizedDecisionTree.cpp \
     interface/Tests.cpp \
     interface/ACMTreeController.cpp \
-    interface/QuestionnaireDialog.cpp
+    interface/QuestionnaireDialog.cpp \
+    interface/LoginDialog.cpp
 
 HEADERS += \
     data/DatabaseController.h \
@@ -82,6 +83,8 @@ HEADERS += \
     interface/Attributes.h \
     interface/ACMTreeController.h \
     interface/QuestionnaireDialog.h \
+    interface/Attributes.h \
+    interface/LoginDialog.h
 
 FORMS += \
     interface/listview.ui \
@@ -90,4 +93,5 @@ FORMS += \
     interface/animalinputdialog.ui \
     interface/clientinputdialog.ui \
     interface/clientdetaildialog.ui \
-    interface/questionnairedialog.ui
+    interface/questionnairedialog.ui \
+    interface/logindialog.ui

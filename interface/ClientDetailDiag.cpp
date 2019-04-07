@@ -79,7 +79,7 @@ void ClientDetailDiag::handleButtonEdit()
         QValidator *pNumValidator = new QRegExpValidator(QRegExp("([0-9]|-|\\)|\\(|\\ ){1,20}"), this);
         QValidator *postValidator = new QRegExpValidator(QRegExp("([0-9]|[a-z]|[A-Z]|\\ ){1,7}"), this);
         QValidator *textValidator = new QRegExpValidator(QRegExp("([A-Z]|[a-z]|-|.){1,50}"), this);
-        QValidator *numValidator = new QRegExpValidator(QRegExp("([0-9]|,){1,50}"), this);
+	QValidator *numValidator = new QRegExpValidator(QRegExp("([0-9]|,){1,5}"), this);
 
         ui->cityLineEdit->setValidator(textValidator);
         ui->provLineEdit->setValidator(textValidator);

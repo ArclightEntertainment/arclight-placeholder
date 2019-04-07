@@ -5,7 +5,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    currentID(-1)
 {
     ui->setupUi(this);
 
@@ -25,6 +26,27 @@ MainWindow::MainWindow(QWidget *parent) :
     animalIterator = mediator->getAnimalIterator();
     clientIterator = mediator->getClientIterator();
 
+    LoginDialog diag(&currentID, mediator, this);
+    diag.setWindowTitle("Login");
+    diag.exec();
+
+
+    if (currentID == -1)
+    {
+	close();
+    }
+    else if (currentID < 100000)
+    {
+	clientInputButton->setVisible(false);
+	animalInputButton->setVisible(false);
+	clientViewButton->setText("View Profile");
+    }
+    else
+    {
+	clientInputButton->setVisible(true);
+	animalInputButton->setVisible(true);
+	clientViewButton->setText("View All Clients");
+    }
     Tests::testACM(mediator);
 }
 
@@ -55,7 +77,16 @@ void MainWindow::handleButtonClientInput()
 
 void MainWindow::handleButtonClientView()
 {
-   ClientListView diag(mediator, this);
-   diag.setWindowTitle("Client List");
-   diag.exec();
+    if (currentID == 100001)
+    {
+	ClientListView diag(mediator, this);
+	diag.setWindowTitle("Client List");
+	diag.exec();
+    }
+    else
+    {
+	ClientDetailDiag diag(mediator, mediator->getClientWithId(currentID), false, this);
+	diag.setWindowTitle(QString::fromStdString(mediator->getClientWithId(currentID)->getName()));
+	diag.exec();
+    }
 }
