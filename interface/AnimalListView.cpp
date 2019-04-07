@@ -56,7 +56,7 @@ void AnimalListView::updateListView()
         MyTableWidgetItem *name = new MyTableWidgetItem (QString::fromStdString         (a->currentItem()->getName()));
 	MyTableWidgetItem *species = new MyTableWidgetItem (QString::fromStdString      (a->currentItem()->getString(static_cast<int>(AnimalAttribute::SPECIES))));
 	MyTableWidgetItem *breed = new MyTableWidgetItem (QString::fromStdString        (a->currentItem()->getString(static_cast<int>(AnimalAttribute::BREED))));
-	MyTableWidgetItem *age = new MyTableWidgetItem (QString::number                 (a->currentItem()->getInt(static_cast<int>(AnimalAttribute::AGE))));
+    MyTableWidgetItem *age = new MyTableWidgetItem (QString::number                 (a->currentItem()->getAge()));
 	MyTableWidgetItem *sex = new MyTableWidgetItem (QString::fromStdString          (a->currentItem()->getString(static_cast<int>(AnimalAttribute::SEX))));
         MyTableWidgetItem *id = new MyTableWidgetItem (QString::number                  (a->currentItem()->getID()));
         //set all as un-editable
