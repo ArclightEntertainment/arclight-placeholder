@@ -15,6 +15,7 @@
 #include "ClientInputDiag.h"
 #include "AnimalListView.h"
 #include "ClientListView.h"
+#include "LoginDialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -44,6 +45,8 @@ private:
     CUACSController * mediator;
     Iterator<UAnimal*> * animalIterator;
     Iterator<UClient*> * clientIterator;
+
+    int currentID;
 };
 
 #endif // MAINWINDOW_H

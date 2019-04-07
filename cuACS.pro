@@ -42,7 +42,8 @@ SOURCES += \
     interface/Entity.cpp \
     interface/EntityBuilder.cpp \
     interface/CUACSController.cpp \
-    interface/QuestionnaireDialog.cpp
+    interface/QuestionnaireDialog.cpp \
+    interface/LoginDialog.cpp
 
 HEADERS += \
     data/DatabaseController.h \
@@ -65,7 +66,8 @@ HEADERS += \
     interface/EntityBuilder.h \
     interface/CUACSController.h \
     interface/QuestionnaireDialog.h \
-    interface/Attributes.h
+    interface/Attributes.h \
+    interface/LoginDialog.h
 
 FORMS += \
     interface/listview.ui \
@@ -74,4 +76,5 @@ FORMS += \
     interface/animalinputdialog.ui \
     interface/clientinputdialog.ui \
     interface/clientdetaildialog.ui \
-    interface/questionnairedialog.ui
+    interface/questionnairedialog.ui \
+    interface/logindialog.ui

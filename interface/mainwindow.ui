@@ -30,7 +30,7 @@
     <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout">
       <item row="1" column="2">
-       <spacer name="horizontalSpacer">
+       <spacer name="mainSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
