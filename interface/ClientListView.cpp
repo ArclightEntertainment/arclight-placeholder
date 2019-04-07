@@ -3,7 +3,7 @@
 #include <iostream>
 
 //Constructor, requires QWidget and an ClientManager
-ClientListView::ClientListView(CUACSController *med, QWidget *parent) :
+ClientListView::ClientListView(CUACSController *med, int cID, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ListView)
 {
@@ -20,6 +20,7 @@ ClientListView::ClientListView(CUACSController *med, QWidget *parent) :
     clientList->setSelectionMode(QAbstractItemView::SingleSelection);
 
     mediator = med;
+    currentID = cID;
 
     updateListView();
 }
@@ -33,7 +34,7 @@ void ClientListView::handleButtonDetail()
     QModelIndex currentIndex = clientList->currentIndex();
     int id = clientList->item(currentIndex.row(), clientList->columnCount()-1)->text().toInt();
 
-    ClientDetailDiag diag(mediator, mediator->getClientWithId(id), false, this);
+    ClientDetailDiag diag(mediator, currentID, mediator->getClientWithId(id), false, this);
     diag.setWindowTitle(QString::fromStdString(mediator->getClientWithId(id)->getName() + "'s Profile"));
     diag.exec();
     updateListView();
