@@ -391,32 +391,29 @@ void CUACSController::finalizeAnimal()
 //entity->addIntDesc(Description<std::string>("dietNeeds", 17, diet));
 void CUACSController::addClient(std::string t, int iD, std::string fn, std::string ln, std::string pn)
 {
-    /*
-    entity->reset();
-    entity->addStringDesc(Description<std::string>("prefTitle", static_cast<int>(ClientAttribute::PREF_TITLE), t));
-    entity->addIntDesc(Description<int>("id", static_cast<int>(ClientAttribute::ID), iD));
-    entity->addStringDesc(Description<std::string>("fName", static_cast<int>(ClientAttribute::FIRST_NAME), fn));
-    entity->addStringDesc(Description<std::string>("lName", static_cast<int>(ClientAttribute::LAST_NAME), ln));
-    entity->addStringDesc(Description<std::string>("phoneNumber", static_cast<int>(ClientAttribute::PHONE_NUMBER), pn));
-    */
+    clientBuilder->reset();
+    clientBuilder->addStringDesc(Description<std::string>("prefTitle", static_cast<int>(ClientAttribute::PREF_TITLE), t));
+    clientBuilder->addIntDesc(Description<int>("id", static_cast<int>(ClientAttribute::ID), iD));
+    clientBuilder->setID(iD);
+    clientBuilder->addStringDesc(Description<std::string>("fName", static_cast<int>(ClientAttribute::FIRST_NAME), fn));
+    clientBuilder->setName(fn);
+    clientBuilder->addStringDesc(Description<std::string>("lName", static_cast<int>(ClientAttribute::LAST_NAME), ln));
+    clientBuilder->addStringDesc(Description<std::string>("phoneNumber", static_cast<int>(ClientAttribute::PHONE_NUMBER), pn));
 }
 void CUACSController::populateClientAddress(std::string sl1, std::string sl2, std::string ct, std::string sub, std::string c, std::string pc)
 {
-    /*
-    entity->addStringDesc(Description<std::string>("streetLine1",static_cast<int>(ClientAttribute::STREET_LINE_1),sl1));
-    entity->addStringDesc(Description<std::string>("streetLine1",static_cast<int>(ClientAttribute::STREET_LINE_2),sl2));
-    entity->addStringDesc(Description<std::string>("city",static_cast<int>(ClientAttribute::CITY),ct));
-    entity->addStringDesc(Description<std::string>("subnationalDivision",static_cast<int>(ClientAttribute::SUBNATIONAL_DIVISION),sub));
-    entity->addStringDesc(Description<std::string>("country",static_cast<int>(ClientAttribute::COUNTRY),c));
-    entity->addStringDesc(Description<std::string>("postalCode",static_cast<int>(ClientAttribute::POSTAL_CODE),pc));
-    */
+    clientBuilder->addStringDesc(Description<std::string>("streetLine1",static_cast<int>(ClientAttribute::STREET_LINE_1),sl1));
+    clientBuilder->addStringDesc(Description<std::string>("streetLine1",static_cast<int>(ClientAttribute::STREET_LINE_2),sl2));
+    clientBuilder->addStringDesc(Description<std::string>("city",static_cast<int>(ClientAttribute::CITY),ct));
+    clientBuilder->addStringDesc(Description<std::string>("subnationalDivision",static_cast<int>(ClientAttribute::SUBNATIONAL_DIVISION),sub));
+    clientBuilder->addStringDesc(Description<std::string>("country",static_cast<int>(ClientAttribute::COUNTRY),c));
+    clientBuilder->addStringDesc(Description<std::string>("postalCode",static_cast<int>(ClientAttribute::POSTAL_CODE),pc));
 }
-void CUACSController::populateClientProfile(Entity * en, int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, int lOfMobility, int lOfPatience, int prevExp, int physAffect)
+void CUACSController::populateClientProfile(int id, int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, int lOfMobility, int lOfPatience, int prevExp, int physAffect)
 {
 //int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget,
 //int timeAvail, int lOfMobility, int lOfPatience, int prevExp, int physAffect)
-    /*
-    std::cout<< a << " " << hasUnderTwelve << " " << hasPet << " " << ownExp << " " << budget << " " << timeAvail << " " << lOfMobility << " " << lOfPatience << " " << prevExp << " " << physAffect <<std::endl;
+    Entity * en = getClientWithId(id);
     en->addIntDesc(Description<int>("age", static_cast<int>(ClientAttribute::AGE), a));
     en->setAge(a);
     en->addBoolDesc(Description<bool>("hasChildrenUnderTwelve", static_cast<int>(ClientAttribute::HAS_CHILDREN_UNDER_TWELVE), hasUnderTwelve));
@@ -429,15 +426,26 @@ void CUACSController::populateClientProfile(Entity * en, int a, bool hasUnderTwe
     en->addIntDesc(Description<int>("previousExperience", static_cast<int>(ClientAttribute::PREVIOUS_EXPERIENCE), prevExp));
     en->addIntDesc(Description<int>("physicalAffection", static_cast<int>(ClientAttribute::PHYSICAL_AFFECTION), physAffect));
     en->addBoolDesc(Description<bool>("profilePopulated", static_cast<int>(ClientAttribute::POPULATED), true));
-    */
 }
 void CUACSController::finalizeClient()
 {
-    /*
-    UClient * newClient = (UClient*)entity->build();
+    std::cout << "finalizeClient" << std::endl;
+    clientBuilder->addIntDesc(Description<int>("age", static_cast<int>(ClientAttribute::AGE), -1));
+    clientBuilder->setAge(-1);
+    clientBuilder->addBoolDesc(Description<bool>("hasChildrenUnderTwelve", static_cast<int>(ClientAttribute::HAS_CHILDREN_UNDER_TWELVE), false));
+    clientBuilder->addBoolDesc(Description<bool>("hasPets", static_cast<int>(ClientAttribute::HAS_PETS), false));
+    clientBuilder->addIntDesc(Description<int>("lengthOfOwnershipExpectation", static_cast<int>(ClientAttribute::LENGTH_OF_OWNERSHIP_EXPECTATION), -1));
+    clientBuilder->addIntDesc(Description<int>("monthlyBudgetForAnimal", static_cast<int>(ClientAttribute::MONTHLY_BUDGET_FOR_ANIMAL), -1));
+    clientBuilder->addIntDesc(Description<int>("availabilityPerDay", static_cast<int>(ClientAttribute::AVAILABILITY_PER_DAY), -1));
+    clientBuilder->addIntDesc(Description<int>("levelOfMobility", static_cast<int>(ClientAttribute::LEVEL_OF_MOBILITY), -1));
+    clientBuilder->addIntDesc(Description<int>("levelOfPatience", static_cast<int>(ClientAttribute::LEVEL_OF_PATIENCE), -1));
+    clientBuilder->addIntDesc(Description<int>("previousExperience", static_cast<int>(ClientAttribute::PREVIOUS_EXPERIENCE), -1));
+    clientBuilder->addIntDesc(Description<int>("physicalAffection", static_cast<int>(ClientAttribute::PHYSICAL_AFFECTION), -1));
+    clientBuilder->addBoolDesc(Description<bool>("profilePopulated", static_cast<int>(ClientAttribute::POPULATED), false));
+    UClient * newClient = (UClient*)clientBuilder->build();
     if (newClient != NULL)
     {
-	clientCollection.append(newClient);
+        std::cout << "ADDED" << std::endl;
+        clientCollection.append(newClient);
     }
-    */
 }

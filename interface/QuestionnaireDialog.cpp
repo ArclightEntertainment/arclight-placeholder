@@ -69,7 +69,7 @@ void QuestionnaireDialog::updateClient()
 	std::cout << "Value: " << std::get<0>(answers[i]) << " | ID: " << static_cast<int>(std::get<1>(answers[i])) << std::endl;
     }
     mediator->populateClientProfile(
-		subject,
+        subject->getID(),
 		std::get<0>(answers[0]),
 		std::get<0>(answers[1]),
 		std::get<0>(answers[2]),
