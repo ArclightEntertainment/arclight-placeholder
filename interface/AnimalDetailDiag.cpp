@@ -119,7 +119,8 @@ void AnimalDetailDiag::updateCurrentAnimal()
     aSubject->setName(ui->nameLineEdit->text().toStdString());
     aSubject->setAge(ui->ageSpinBox->text().toInt());
     aSubject->setInt(static_cast<int>(AnimalAttribute::LIFE_EXPECTANCY), ui->maxAgeLineEdit->text().toInt());
-    aSubject->setString(static_cast<int>(AnimalAttribute::SEX), ui->sexComboBox->currentText().toStdString());
+    aSubject->setString(static_cast<int>(AnimalAttribute::SEX), ui->sexComboBox->currentText().toStdString().substr(0,1));
+    std::cout<<ui->sexComboBox->currentText().toStdString().substr(0,1)<<std::endl;
     aSubject->setBool(static_cast<int>(AnimalAttribute::IMMUNIZED), ui->immunizedCheckBox->isChecked());
     aSubject->setInt(static_cast<int>(AnimalAttribute::MONTHLY_EXPENDITURE), getExpenditureFromUI());
     aSubject->setString(static_cast<int>(AnimalAttribute::BIOGRAPHY), ui->bioTextEdit->toPlainText().toStdString());
@@ -167,6 +168,7 @@ int AnimalDetailDiag::getExpenditureFromUI()
         return 0;
     }
 }
+
 AnimalDetailDiag::~AnimalDetailDiag()
 {
     delete ui;
@@ -184,7 +186,7 @@ void AnimalDetailDiag::updateFields()
     lineEdits[6]->setText(QString::fromStdString(aSubject->getString(static_cast<int>(AnimalAttribute::BREED))));
 
     lineEdits[7]->setText(QString::fromStdString(aSubject->getString(static_cast<int>(AnimalAttribute::SPECIES))));
-    lineEdits[8]->setText(QString::fromStdString(aSubject->getString(static_cast<int>(AnimalAttribute::SEX))));
+    lineEdits[8]->setText(QString::fromStdString((aSubject->getString(static_cast<int>(AnimalAttribute::SEX)) == "F") ? "Female" : "Male"));
     lineEdits[9]->setText(QString::number(aSubject->getAge()));
     lineEdits[10]->setText(QString::number(aSubject->getInt(static_cast<int>(AnimalAttribute::LIFE_EXPECTANCY))));
     lineEdits[11]->setText((aSubject->getBool(static_cast<int>(AnimalAttribute::IMMUNIZED))) ? QString("Yes") : QString("No"));

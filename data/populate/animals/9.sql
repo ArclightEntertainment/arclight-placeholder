@@ -20,7 +20,8 @@ INSERT OR REPLACE INTO Animal(
 		mobilityNeeds,
 		disablityNeeds,
 		abuseHistory,
-		biography
+		biography,
+		estimatedCostPerMonth
 	)VALUES(
 		9,
 		"Clarence",
@@ -43,5 +44,6 @@ INSERT OR REPLACE INTO Animal(
 		"",
 		"",
 		"",
-		"A regal cat. Seems to think most people and animals are beneath him."
+		"A regal cat. Seems to think most people and animals are beneath him.",
+		80
 );
