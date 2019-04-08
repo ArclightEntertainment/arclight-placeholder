@@ -28,7 +28,7 @@ class ClientDetailDiag : public QDialog
     Q_OBJECT
 
 public:
-    explicit ClientDetailDiag(CUACSController *med, Entity* subject, bool canEdit=false, QWidget *parent = 0);
+    explicit ClientDetailDiag(CUACSController *med, int currentID, Entity* subject, bool canEdit=false, QWidget *parent = 0);
     ~ClientDetailDiag();
 private slots:
     void handleButtonClose();

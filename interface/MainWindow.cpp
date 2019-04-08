@@ -100,13 +100,13 @@ void MainWindow::handleButtonClientView()
 {
     if (currentID == 100001)
     {
-	ClientListView diag(mediator, this);
+	ClientListView diag(mediator, currentID, this);
 	diag.setWindowTitle("Client List");
 	diag.exec();
     }
     else
     {
-	ClientDetailDiag diag(mediator, mediator->getClientWithId(currentID), false, this);
+	ClientDetailDiag diag(mediator, currentID, mediator->getClientWithId(currentID), false, this);
 	diag.setWindowTitle(QString::fromStdString(mediator->getClientWithId(currentID)->getName()));
 	diag.exec();
     }
