@@ -298,7 +298,7 @@ void CUACSController::finalizeAnimal()
     {
         animalCollection.append(newAnimal);
 
-        std::string attributes[22];
+        std::string attributes[23];
         attributes[0] = std::to_string(newAnimal->getID());
         attributes[1] = newAnimal->getName();
         attributes[2] = newAnimal->getString(static_cast<int>(AnimalAttribute::SPECIES));
@@ -321,9 +321,10 @@ void CUACSController::finalizeAnimal()
         attributes[19] = newAnimal->getString(static_cast<int>(AnimalAttribute::DISABILITY_NEEDS));
         attributes[20] = newAnimal->getString(static_cast<int>(AnimalAttribute::ABUSE_HISTORY));
         attributes[21] = newAnimal->getString(static_cast<int>(AnimalAttribute::BIOGRAPHY));
+        attributes[22] = std::to_string(newAnimal->getInt(static_cast<int>(AnimalAttribute::MONTHLY_EXPENDITURE)));
 
-        std::string sql = "INSERT OR REPLACE INTO Animal(id,name,species,breed,age,lifeExpectancy,sex,immunized,levelOfCare,levelOfEnergy,trainingLevel,trainabilityLevel,affinityForPeople,affinityForChildren,affinityForAnimals,approachability,timeCommitment,dietNeeds,mobilityNeeds,disablityNeeds,abuseHistory,biography)VALUES(";
-        for(int i=0; i<22; i++)
+        std::string sql = "INSERT OR REPLACE INTO Animal(id,name,species,breed,age,lifeExpectancy,sex,immunized,levelOfCare,levelOfEnergy,trainingLevel,trainabilityLevel,affinityForPeople,affinityForChildren,affinityForAnimals,approachability,timeCommitment,dietNeeds,mobilityNeeds,disablityNeeds,abuseHistory,biography,estimatedCostPerMonth)VALUES(";
+        for(int i=0; i<23; i++)
         {
             switch(i)
             {
@@ -339,6 +340,7 @@ void CUACSController::finalizeAnimal()
                 case 14:
                 case 15:
                 case 16:
+                case 22:
                 {
                     sql += attributes[i];
                     break;
@@ -354,7 +356,7 @@ void CUACSController::finalizeAnimal()
                     break;
                 }
             }
-            if(i != 21)
+            if(i != 22)
             {
                 sql += ",";
             }

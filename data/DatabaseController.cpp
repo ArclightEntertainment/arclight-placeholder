@@ -64,11 +64,11 @@ int DatabaseController::getCurrCol() { return currCol; }
 bool DatabaseController::step()
 {
 	if(hasSQL)
-	{
-		rc = sqlite3_step(stmt);
-		if(rc != SQLITE_ROW)
-		{
-			sqlite3_finalize(stmt);
+    {
+        rc = sqlite3_step(stmt);
+        if(rc != SQLITE_ROW)
+        {
+            sqlite3_finalize(stmt);
             hasSQL = false;
 			return false;
 		}
