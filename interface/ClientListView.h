@@ -23,7 +23,7 @@ class ClientListView : public QDialog
     Q_OBJECT
 
 public:
-    explicit ClientListView(CUACSController *med, QWidget *parent = 0);
+    explicit ClientListView(CUACSController *med, int cID, QWidget *parent = 0);
     ~ClientListView();
 
 private slots:
@@ -38,6 +38,7 @@ private:
 
     //pointer to Animal Manager
     CUACSController *mediator;
+    int currentID;
 
     void updateListView();
 };

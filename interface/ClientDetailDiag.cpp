@@ -3,7 +3,7 @@
 #include <iostream>
 
 //Requires parent widget and manager
-ClientDetailDiag::ClientDetailDiag(CUACSController *med, Entity *subject, bool canEdit, QWidget *parent) :
+ClientDetailDiag::ClientDetailDiag(CUACSController *med, int currentID, Entity *subject, bool canEdit, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ClientDetailDiag)
 {
@@ -27,6 +27,12 @@ ClientDetailDiag::ClientDetailDiag(CUACSController *med, Entity *subject, bool c
     setEditable(canEdit);
 
     setPreferences(aSubject->getBool(static_cast<int>(ClientAttribute::POPULATED)));
+
+    if (currentID != subject->getID())
+    {
+	editButton->setVisible(false);
+	quizButton->setVisible(false);
+    }
 }
 void ClientDetailDiag::handleButtonQuiz()
 {
@@ -91,6 +97,7 @@ void ClientDetailDiag::handleButtonEdit()
 
         ui->nameLineEdit->setValidator(textValidator);
         editButton->setText("Save");
+
     }
     setEditable(editMode);
 }
