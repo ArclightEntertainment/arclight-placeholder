@@ -14,7 +14,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    currentID(-1)
+    currentID(100000)
 {
     ui->setupUi(this);
 
