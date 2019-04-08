@@ -20,7 +20,8 @@ INSERT OR REPLACE INTO Animal(
 		mobilityNeeds,
 		disablityNeeds,
 		abuseHistory,
-		biography
+		biography,
+		estimatedCostPerMonth
 	)VALUES(
 		11,
 		"David",
@@ -43,5 +44,6 @@ INSERT OR REPLACE INTO Animal(
 		"Very slow",
 		"",
 		"",
-		"Old husky, slow and very nice"
+		"Old husky, slow and very nice",
+		40
 );

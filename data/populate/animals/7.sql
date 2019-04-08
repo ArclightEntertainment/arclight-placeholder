@@ -20,7 +20,8 @@ INSERT OR REPLACE INTO Animal(
 		mobilityNeeds,
 		disablityNeeds,
 		abuseHistory,
-		biography
+		biography,
+		estimatedCostPerMonth
 	)VALUES(
 		7,
 		"Tanner",
@@ -43,5 +44,6 @@ INSERT OR REPLACE INTO Animal(
 		"",
 		"",
 		"Previously abused by a male owner, very aggressive towards males.",
-		"A small dog who hates most people."
+		"A small dog who hates most people.",
+		60
 );

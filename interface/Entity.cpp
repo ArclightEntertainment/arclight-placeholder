@@ -165,10 +165,8 @@ Entity * Entity::addIntDesc(Description<int> desc)
     while(!iter->isDone())
     {
 	if (iter->currentItem().getAttributeID() == desc.getAttributeID())
-	{
-	    std::cout<<"Old: "<<iter->currentItem().getName() << " " << iter->currentItem().getAttributeID()<<" " << iter->currentItem().getValue()<<std::endl;
-	    intCollection.setValue(i, desc);
-	    std::cout<<"New: "<<iter->currentItem().getName() << " " << iter->currentItem().getAttributeID()<<" " << iter->currentItem().getValue()<<std::endl;
+    {
+        intCollection.setValue(i, desc);
 	    found = true;
 	    break;
 	}
