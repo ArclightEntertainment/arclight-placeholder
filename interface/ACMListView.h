@@ -25,7 +25,7 @@ class ACMListView : public QDialog
     Q_OBJECT
 
 public:
-    explicit ACMListView(CUACSController *med, QWidget *parent = 0);
+    explicit ACMListView(CUACSController *med, int cID, QWidget *parent = 0);
     ~ACMListView();
 
 private slots:
@@ -43,6 +43,7 @@ private:
 
     CandidateSet * candidateSet;
 
+    int currentID;
     void updateListView();
 };
 

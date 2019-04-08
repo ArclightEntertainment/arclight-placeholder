@@ -5,11 +5,12 @@
 #include "ClientDetailDiag.h"
 #include "Attributes.h"
 
-ACMDetailDialog::ACMDetailDialog(CUACSController * med, AnimalClientPair * p, QWidget *parent) :
+ACMDetailDialog::ACMDetailDialog(CUACSController * med, int cID, AnimalClientPair * p, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ACMDetailDialog),
     pair(p),
-    mediator(med)
+    mediator(med),
+    currentID(cID)
 {
     ui->setupUi(this);
 
@@ -25,6 +26,8 @@ ACMDetailDialog::ACMDetailDialog(CUACSController * med, AnimalClientPair * p, QW
     populateClient();
 
     ui->compatabilityLineEdit->setText(QString::number(pair->getCompatibility()));
+    ui->compatabilityLineEdit->setReadOnly(true);
+    ui->compatabilityLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
 }
 
 void ACMDetailDialog::handleButtonAnimal()
@@ -35,7 +38,7 @@ void ACMDetailDialog::handleButtonAnimal()
 }
 void ACMDetailDialog::handleButtonClient()
 {
-    ClientDetailDiag diag(mediator, pair->getClient(), false, this);
+    ClientDetailDiag diag(mediator, currentID, pair->getClient(), false, this);
     diag.setWindowTitle(QString::fromStdString(pair->getClient()->getName()));
     diag.exec();
 }
@@ -48,28 +51,66 @@ void ACMDetailDialog::populateAnimal()
 {
     UAnimal * a = pair->getAnimal();
     ui->aNameLineEdit->setText(QString::fromStdString(a->getName()));
+    ui->aNameLineEdit->setReadOnly(true);
+    ui->aNameLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
     ui->aIDLineEdit->setText(QString::number(a->getID()));
+    ui->aIDLineEdit->setReadOnly(true);
+    ui->aIDLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
     ui->aSpeciesLineEdit->setText(QString::fromStdString(a->getString(static_cast<int>(AnimalAttribute::SPECIES))));
+    ui->aSpeciesLineEdit->setReadOnly(true);
+    ui->aSpeciesLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
     ui->aBreedLineEdit->setText(QString::fromStdString(a->getString(static_cast<int>(AnimalAttribute::BREED))));
-    ui->aSexLineEdit->setText(QString::fromStdString(a->getString(static_cast<int>(AnimalAttribute::SEX))));
-    ui->aAgeLineEdit->setText(QString::number(a->getInt(static_cast<int>(AnimalAttribute::AGE))));
+    ui->aBreedLineEdit->setReadOnly(true);
+    ui->aBreedLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
+    ui->aSexLineEdit->setText(QString::fromStdString((a->getString(static_cast<int>(AnimalAttribute::SEX)) == "M") ? "Male" : "Female"));
+    ui->aSexLineEdit->setReadOnly(true);
+    ui->aSexLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
+    ui->aAgeLineEdit->setText(QString::number(a->getAge()));
+    ui->aAgeLineEdit->setReadOnly(true);
+    ui->aAgeLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
     ui->aMaxAgeLineEdit->setText(QString::number(a->getInt(static_cast<int>(AnimalAttribute::LIFE_EXPECTANCY))));
+    ui->aMaxAgeLineEdit->setReadOnly(true);
+    ui->aMaxAgeLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
     ui->aImmunizedLineEdit->setText(QString::fromStdString((a->getBool(static_cast<int>(AnimalAttribute::IMMUNIZED)) ? "Yes" : "No")));
+    ui->aImmunizedLineEdit->setReadOnly(true);
+    ui->aImmunizedLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
     ui->aExpenditureLineEdit->setText(QString::number(a->getInt(static_cast<int>(AnimalAttribute::MONTHLY_EXPENDITURE))));
+    ui->aExpenditureLineEdit->setReadOnly(true);
+    ui->aExpenditureLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
 }
 void ACMDetailDialog::populateClient()
 {
     UClient * c = pair->getClient();
-    ui->cNameLineEdit->setText(QString::fromStdString(c->getName()));
+    ui->cNameLineEdit->setText(QString::fromStdString(c->getName() + " " + c->getString(static_cast<int>(ClientAttribute::LAST_NAME))));
+    ui->cNameLineEdit->setReadOnly(true);
+    ui->cNameLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
     ui->cTitleLineEdit->setText(QString::fromStdString(c->getString(static_cast<int>(ClientAttribute::PREF_TITLE))));
-    ui->cIDLineEdit->setText(QString::number(c->getInt(static_cast<int>(ClientAttribute::ID))));
+    ui->cTitleLineEdit->setReadOnly(true);
+    ui->cTitleLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
+    ui->cIDLineEdit->setText(QString::number(c->getID()));
+    ui->cIDLineEdit->setReadOnly(true);
+    ui->cIDLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
     ui->cPhoneLineEdit->setText(QString::fromStdString(c->getString(static_cast<int>(ClientAttribute::PHONE_NUMBER))));
+    ui->cPhoneLineEdit->setReadOnly(true);
+    ui->cPhoneLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
     ui->cPostalLineEdit->setText(QString::fromStdString(c->getString(static_cast<int>(ClientAttribute::POSTAL_CODE))));
+    ui->cPostalLineEdit->setReadOnly(true);
+    ui->cPostalLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
     ui->cCityLineEdit->setText(QString::fromStdString(c->getString(static_cast<int>(ClientAttribute::CITY))));
+    ui->cCityLineEdit->setReadOnly(true);
+    ui->cCityLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
     ui->cProvLineEdit->setText(QString::fromStdString(c->getString(static_cast<int>(ClientAttribute::SUBNATIONAL_DIVISION))));
+    ui->cProvLineEdit->setReadOnly(true);
+    ui->cProvLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
     ui->cCountryLineEdit->setText(QString::fromStdString(c->getString(static_cast<int>(ClientAttribute::COUNTRY))));
+    ui->cCountryLineEdit->setReadOnly(true);
+    ui->cCountryLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
     ui->cAdd1LineEdit->setText(QString::fromStdString(c->getString(static_cast<int>(ClientAttribute::STREET_LINE_1))));
+    ui->cAdd1LineEdit->setReadOnly(true);
+    ui->cAdd1LineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
     ui->cAdd2LineEdit->setText(QString::fromStdString(c->getString(static_cast<int>(ClientAttribute::STREET_LINE_2))));
+    ui->cAdd2LineEdit->setReadOnly(true);
+    ui->cAdd2LineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
 }
 
 ACMDetailDialog::~ACMDetailDialog()

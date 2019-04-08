@@ -14,7 +14,7 @@ class ACMDetailDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ACMDetailDialog(CUACSController * med, AnimalClientPair * p, QWidget *parent = 0);
+    explicit ACMDetailDialog(CUACSController * med, int cID, AnimalClientPair * p, QWidget *parent = 0);
     ~ACMDetailDialog();
 
 private slots:
@@ -30,6 +30,8 @@ private:
 
     AnimalClientPair * pair;
     CUACSController * mediator;
+
+    int currentID;
 
     void populateAnimal();
     void populateClient();

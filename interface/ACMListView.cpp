@@ -4,9 +4,10 @@
 #include "ACMDetailDialog.h"
 
 //Constructor, requires QWidget and an Animalmediator
-ACMListView::ACMListView(CUACSController *med, QWidget *parent) :
+ACMListView::ACMListView(CUACSController *med, int cID, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ListView)
+    ui(new Ui::ListView),
+    currentID(cID)
 {
     ui->setupUi(this);
 
@@ -35,8 +36,7 @@ void ACMListView::handleButtonDetail()
 {
     QModelIndex currentIndex = acmList->currentIndex();
     int i = acmList->item(currentIndex.row(), acmList->columnCount()-1)->text().toInt();
-    //std::cout << i << " " << candidateSet->get(i)->getAnimal()->getName() << " " << candidateSet->get(i)->getClient()->getName() << " " << candidateSet->get(i)->getCompatibility() << std::endl;
-    ACMDetailDialog diag(mediator, candidateSet->get(i), this);
+    ACMDetailDialog diag(mediator, currentID, candidateSet->get(i), this);
     diag.setWindowTitle(QString::fromStdString(candidateSet->get(i)->getClient()->getName() + " x " + candidateSet->get(i)->getAnimal()->getName()));
     diag.exec();
 }

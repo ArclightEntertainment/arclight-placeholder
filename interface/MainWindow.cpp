@@ -114,7 +114,7 @@ void MainWindow::handleButtonClientView()
 
 void MainWindow::handleButtonACM()
 {
-    ACMListView diag(mediator, this);
+    ACMListView diag(mediator, currentID, this);
     diag.setWindowTitle("ACM Match List");
     diag.exec();
 }
