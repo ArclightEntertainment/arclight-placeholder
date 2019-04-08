@@ -4,6 +4,30 @@
 #include <algorithm>
 #include <iomanip>
 
+// Headers for detailed ACM dialog
+static std::vector<std::string> commentHeader = {
+    "Patience -> Affinity For People",
+    "Physical Affection -> Affinity For People",
+    "Previous Pet Experience -> Level of Care",
+    "Previous Pet Experience -> Training Level",
+    "Level of Patience -> Trainability",
+    "Previous Pet Experience -> Trainability",
+    "Level of Patience -> Approachability",
+    "Previous Pet Experince -> Approachability",
+    "Level of Mobility -> Level of Care",
+    "Level of Mobility -> Training Level",
+
+    "Level of Patience -> Training Level",
+    "Level of Mobility -> Energy Level",
+    "Time Availability -> Training Level",
+
+    "Time Availability -> Required Time Commitment",
+    "Time Availability -> Trainability",
+    "Time Availability -> Required Care",
+    "Other Pets -> Pet Friendliness",
+};
+
+// struct mapping comparator header to value
 struct HeaderValue
 {
    std::string header;
@@ -35,30 +59,8 @@ float AnimalClientPair::getCompatibility()
 std::vector<std::string> AnimalClientPair::getCompatibilityComments()
 {
 
-    std::vector<std::string> commentHeader = {
-        "Patience -> Affinity For People",
-        "Physical Affection -> Affinity For People",
-        "Previous Pet Experience -> Level of Care",
-        "Previous Pet Experience -> Training Level",
-        "Level of Patience -> Trainability",
-        "Previous Pet Experience -> Trainability",
-        "Level of Patience -> Approachability",
-        "Previous Pet Experince -> Approachability",
-        "Level of Mobility -> Level of Care",
-        "Level of Mobility -> Training Level",
-
-        "Level of Patience -> Training Level",
-        "Level of Mobility -> Energy Level",
-        "Time Availability -> Training Level",
-
-        "Time Availability -> Required Time Commitment",
-        "Time Availability -> Trainability",
-        "Time Availability -> Required Care",
-        "Other Pets -> Pet Friendliness",
-    } ;
-
+    // Get values for comparators
     float values[17];
-
     values[0] = 100.0 - AttributeComparator::calculatePatienceAffinityForPeople(animal, client);
     values[1] = 100.0 - AttributeComparator::calculatePhysicalAffectionAffinityForPeople(animal, client);
     values[2] = 100.0 - AttributeComparator::calculatePreviousExperienceLevelOfCare(animal, client);
@@ -77,6 +79,7 @@ std::vector<std::string> AnimalClientPair::getCompatibilityComments()
     values[15] = 100.0 - AttributeComparator::calculateAvailabilityPerDayLevelOfCare(animal, client);
     values[16] = 100.0 - AttributeComparator::calculateHasPetsAffinityForAnimals(animal, client);
 
+    // Group comparator headers and their respective values
     HeaderValue pairs [17];
     for (int i=0; i<17; i++)
     {
@@ -84,14 +87,15 @@ std::vector<std::string> AnimalClientPair::getCompatibilityComments()
         pairs[i].value = values[i];
     }
 
+    // Sort with highest compatability first
     std::sort(pairs, pairs + 17,
               [](HeaderValue a, HeaderValue b)
     {
         return a.value > b.value;
     });
 
+    // Populate return string
     std::vector<std::string> strings = {};
-
     for (int i=0; i<17; i++)
     {
         std::ostringstream stream;
