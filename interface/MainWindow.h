@@ -11,10 +11,6 @@
 
 #include "interface/CUACSController.h"
 #include "data/DatabaseController.h"
-#include "AnimalInputDiag.h"
-#include "ClientInputDiag.h"
-#include "AnimalListView.h"
-#include "ClientListView.h"
 
 namespace Ui {
 class MainWindow;
@@ -33,17 +29,26 @@ private slots:
     void handleButtonAnimalInput();
     void handleButtonClientView();
     void handleButtonClientInput();
-    //TEST: void handleButtonTest();
+    void Login();
+
+    void handleButtonACM();
 private:
     Ui::MainWindow *ui;
     QPushButton *animalInputButton;
     QPushButton *animalViewButton;
     QPushButton *clientInputButton;
     QPushButton *clientViewButton;
+
+    QPushButton *acmButton;
+    QPushButton *logOutButton;
+
     //TEST: QPushButton *testButton;
     CUACSController * mediator;
     Iterator<UAnimal*> * animalIterator;
     Iterator<UClient*> * clientIterator;
+
+    int currentID;
+
 };
 
 #endif // MAINWINDOW_H

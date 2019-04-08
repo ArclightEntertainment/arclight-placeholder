@@ -167,6 +167,7 @@ int AnimalDetailDiag::getExpenditureFromUI()
         return 0;
     }
 }
+
 AnimalDetailDiag::~AnimalDetailDiag()
 {
     delete ui;

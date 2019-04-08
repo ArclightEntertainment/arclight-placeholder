@@ -1,5 +1,5 @@
-#ifndef CLIENTLISTVIEW_H
-#define CLIENTLISTVIEW_H
+#ifndef ACMListView_H
+#define ACMListView_H
 
 
 #include <QCoreApplication>
@@ -10,21 +10,23 @@
 #include <QDebug>
 #include <qstring.h>
 
+#include "mytablewidgetitem.h"
 #include "interface/CUACSController.h"
-#include "interface/ClientDetailDiag.h"
 #include "interface/Attributes.h"
+
+#include "interface/CandidateSet.h"
 
 namespace Ui {
 class ListView;
 }
 
-class ClientListView : public QDialog
+class ACMListView : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit ClientListView(CUACSController *med, int cID, QWidget *parent = 0);
-    ~ClientListView();
+    explicit ACMListView(CUACSController *med, int cID, QWidget *parent = 0);
+    ~ACMListView();
 
 private slots:
     void handleButtonClose();
@@ -32,16 +34,18 @@ private slots:
 private:
     //important UI Elements
     Ui::ListView *ui;
-    QTableWidget *clientList;
+    QTableWidget *acmList;
     QPushButton *closeButton;
     QPushButton *detailsButton;
 
     //pointer to Animal Manager
     CUACSController *mediator;
-    int currentID;
 
+    CandidateSet * candidateSet;
+
+    int currentID;
     void updateListView();
 };
 
-#endif // CLIENTLISTVIEW_H
+#endif // ACMListView_H
 

@@ -3,7 +3,7 @@
 #include <iostream>
 
 //Requires parent widget and manager
-ClientDetailDiag::ClientDetailDiag(CUACSController *med, Entity *subject, bool canEdit, QWidget *parent) :
+ClientDetailDiag::ClientDetailDiag(CUACSController *med, int currentID, Entity *subject, bool canEdit, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ClientDetailDiag)
 {
@@ -27,6 +27,12 @@ ClientDetailDiag::ClientDetailDiag(CUACSController *med, Entity *subject, bool c
     setEditable(canEdit);
 
     setPreferences(aSubject->getBool(static_cast<int>(ClientAttribute::POPULATED)));
+
+    if (currentID != subject->getID())
+    {
+	editButton->setVisible(false);
+	quizButton->setVisible(false);
+    }
 }
 void ClientDetailDiag::handleButtonQuiz()
 {
@@ -79,7 +85,7 @@ void ClientDetailDiag::handleButtonEdit()
         QValidator *pNumValidator = new QRegExpValidator(QRegExp("([0-9]|-|\\)|\\(|\\ ){1,20}"), this);
         QValidator *postValidator = new QRegExpValidator(QRegExp("([0-9]|[a-z]|[A-Z]|\\ ){1,7}"), this);
         QValidator *textValidator = new QRegExpValidator(QRegExp("([A-Z]|[a-z]|-|.){1,50}"), this);
-        QValidator *numValidator = new QRegExpValidator(QRegExp("([0-9]|,){1,50}"), this);
+	QValidator *numValidator = new QRegExpValidator(QRegExp("([0-9]|,){1,5}"), this);
 
         ui->cityLineEdit->setValidator(textValidator);
         ui->provLineEdit->setValidator(textValidator);
@@ -91,6 +97,7 @@ void ClientDetailDiag::handleButtonEdit()
 
         ui->nameLineEdit->setValidator(textValidator);
         editButton->setText("Save");
+
     }
     setEditable(editMode);
 }
