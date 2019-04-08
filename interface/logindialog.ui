@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>332</width>
+    <width>461</width>
     <height>136</height>
    </rect>
   </property>
@@ -44,16 +44,23 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="idLabel">
+      <widget class="QLabel" name="nameLabel">
        <property name="text">
-        <string>ID:</string>
+        <string>Name:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="idLineEdit">
+      <widget class="QLineEdit" name="fNameLineEdit">
        <property name="placeholderText">
-        <string>00000</string>
+        <string>Brian</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lNameLineEdit">
+       <property name="placeholderText">
+        <string>Grickites</string>
        </property>
       </widget>
      </item>

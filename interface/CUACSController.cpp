@@ -217,11 +217,25 @@ Entity * CUACSController::getClientWithId(int id)
 
     while (!iter->isDone())
     {
-        if (iter->currentItem()->getID() == id)
-        {
-            return iter->currentItem();
-        }
-        iter->next();
+	if (iter->currentItem()->getID() == id)
+	{
+	    return iter->currentItem();
+	}
+	iter->next();
+    }
+    return NULL;
+}
+Entity * CUACSController::getClientWithName(std::string fName, std::string lName)
+{
+    Iterator<UClient*> * iter = createClientIterator();
+
+    while (!iter->isDone())
+    {
+	if (iter->currentItem()->getName() == fName && iter->currentItem()->getString(static_cast<int>(ClientAttribute::LAST_NAME)) == lName)
+	{
+	    return iter->currentItem();
+	}
+	iter->next();
     }
     return NULL;
 }

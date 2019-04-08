@@ -11,15 +11,15 @@ LoginDialog::LoginDialog(int * i, CUACSController * med, QWidget *parent) :
     closeButton = ui->closeButton;
     staffButton = ui->staffButton;
     clientButton = ui->clientButton;
-    idLabel=ui->idLabel;
+    nameLabel=ui->nameLabel;
 
-    idLineEdit = ui->idLineEdit;
-    QValidator *numValidator = new QRegExpValidator(QRegExp("([0-9]|,){1,5}"), this);
-    idLineEdit->setValidator(numValidator);
-    idLabel->setVisible(false);
+    fNameLineEdit = ui->fNameLineEdit;
+    lNameLineEdit = ui->lNameLineEdit;
 
+    nameLabel->setVisible(false);
+    fNameLineEdit->setVisible(false);
+    lNameLineEdit->setVisible(false);
     loginButton->setVisible(false);
-    idLineEdit->setVisible(false);
     id = i;
     mediator = med;
 
@@ -32,10 +32,9 @@ LoginDialog::LoginDialog(int * i, CUACSController * med, QWidget *parent) :
 
 void LoginDialog::handleButtonLogin()
 {
-    int current = idLineEdit->text().toInt();
-    if (mediator->getClientWithId(current) != NULL)
+    if (mediator->getClientWithName(fNameLineEdit->text().toStdString(), lNameLineEdit->text().toStdString()) != NULL)
     {
-	*id = current;
+	*id = mediator->getClientWithName(fNameLineEdit->text().toStdString(), lNameLineEdit->text().toStdString())->getID();
 	close();
     }
     else
@@ -43,9 +42,11 @@ void LoginDialog::handleButtonLogin()
 	staffButton->setVisible(true);
 	clientButton->setVisible(true);
 	loginButton->setVisible(false);
-	idLineEdit->setVisible(false);
-	idLabel->setVisible(false);
-	idLineEdit->setText("");
+	nameLabel->setVisible(false);
+	fNameLineEdit->setVisible(false);
+	lNameLineEdit->setVisible(false);
+	fNameLineEdit->setText("");
+	lNameLineEdit->setText("");
     }
 }
 void LoginDialog::handleButtonClose()
@@ -62,7 +63,8 @@ void LoginDialog::handleButtonStaff()
 void LoginDialog::handleButtonClient()
 {
     loginButton->setVisible(true);
-    idLineEdit->setVisible(true);
+    fNameLineEdit->setVisible(true);
+    lNameLineEdit->setVisible(true);
     staffButton->setVisible(false);
     clientButton->setVisible(false);
 }

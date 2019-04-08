@@ -30,8 +30,9 @@ private:
     QPushButton * closeButton;
     QPushButton * staffButton;
     QPushButton * clientButton;
-    QLabel * idLabel;
-    QLineEdit * idLineEdit;
+    QLabel * nameLabel;
+    QLineEdit * fNameLineEdit;
+    QLineEdit * lNameLineEdit;
 
     int * id;
     CUACSController* mediator;

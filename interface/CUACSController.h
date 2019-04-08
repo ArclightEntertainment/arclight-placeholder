@@ -30,6 +30,7 @@ public:
 
     UClient **getClients();
     Entity * getClientWithId(int id);
+    Entity * getClientWithName(std::string fName, std::string lName);
     int getNextClientID();
 
     void addClient(std::string t, int iD, std::string fn, std::string ln, std::string pn);
