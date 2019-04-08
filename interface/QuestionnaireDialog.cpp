@@ -29,9 +29,9 @@ QuestionnaireDialog::QuestionnaireDialog(CUACSController *med, Entity * target, 
     questions[4] = new LargeIntQuestion(std::string("What is your maximum monthly budget for taking care of an animal?"), ClientAttribute::MONTHLY_BUDGET_FOR_ANIMAL);
     questions[5] = new SmallIntQuestion(std::string("How many minutes per day can you devote to caring for an animal?"), ClientAttribute::AVAILABILITY_PER_DAY);
     questions[6] = new FiveLevelQuestion(std::string("How physically mobile are you?\n(LOW = Extremely Limited, HIGH = Very Active)"), ClientAttribute::LEVEL_OF_MOBILITY);
-    questions[7] = new FiveLevelQuestion(std::string("How patient do others consider you?\n(LOW = Short Tempered, HIGH = Zen AF Fam)"), ClientAttribute::LEVEL_OF_PATIENCE);
-    questions[8] = new FiveLevelQuestion(std::string("How experienced are you with pets?\n(LOW = Never Before, HIGH = Many Years of experience)"), ClientAttribute::PREVIOUS_EXPERIENCE);
-    questions[9] = new FiveLevelQuestion(std::string("How physically affectionate are you with animals?\n(LOW = Shy, HIGH = Cuddle Machine)"), ClientAttribute::PHYSICAL_AFFECTION);
+    questions[7] = new FiveLevelQuestion(std::string("How patient do others consider you?\n(LOW = Short Tempered, HIGH = Very Patient)"), ClientAttribute::LEVEL_OF_PATIENCE);
+    questions[8] = new FiveLevelQuestion(std::string("How experienced are you with pets?\n(LOW = First Pet, HIGH = More than 5 Pets)"), ClientAttribute::PREVIOUS_EXPERIENCE);
+    questions[9] = new FiveLevelQuestion(std::string("How physically affectionate are you with animals?\n(LOW = Shy, HIGH = Very Physically Affectionate)"), ClientAttribute::PHYSICAL_AFFECTION);
 
 }
 void QuestionnaireDialog::handleButtonClose()

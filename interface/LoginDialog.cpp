@@ -33,11 +33,8 @@ LoginDialog::LoginDialog(int * i, CUACSController * med, QWidget *parent) :
 void LoginDialog::handleButtonLogin()
 {
     int current = idLineEdit->text().toInt();
-    //std::cout<<"current "<<current<<std::endl;
-    //std::cout<<"Other: "<<(mediator->getClientWithId(current)!=NULL)<<std::endl;
     if (mediator->getClientWithId(current) != NULL)
     {
-	std::cout<<"current "<<current<<std::endl;
 	*id = current;
 	close();
     }
@@ -53,7 +50,8 @@ void LoginDialog::handleButtonLogin()
 }
 void LoginDialog::handleButtonClose()
 {
-    *id = -1;
+    *id = 100000;
+    std::cout<<"*id: "<<*id<<std::endl;
     close();
 }
 void LoginDialog::handleButtonStaff()

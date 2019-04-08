@@ -76,7 +76,9 @@ SOURCES       = data/DatabaseController.cpp \
 		interface/Tests.cpp \
 		interface/ACMTreeController.cpp \
 		interface/QuestionnaireDialog.cpp \
-		interface/LoginDialog.cpp moc_MainWindow.cpp \
+		interface/LoginDialog.cpp \
+		interface/ACMListView.cpp \
+		interface/ACMDetailDialog.cpp moc_MainWindow.cpp \
 		moc_AnimalInputDiag.cpp \
 		moc_AnimalListView.cpp \
 		moc_AnimalDetailDiag.cpp \
@@ -84,7 +86,9 @@ SOURCES       = data/DatabaseController.cpp \
 		moc_ClientListView.cpp \
 		moc_ClientDetailDiag.cpp \
 		moc_QuestionnaireDialog.cpp \
-		moc_LoginDialog.cpp
+		moc_LoginDialog.cpp \
+		moc_ACMListView.cpp \
+		moc_ACMDetailDialog.cpp
 OBJECTS       = DatabaseController.o \
 		main.o \
 		MainWindow.o \
@@ -112,6 +116,8 @@ OBJECTS       = DatabaseController.o \
 		ACMTreeController.o \
 		QuestionnaireDialog.o \
 		LoginDialog.o \
+		ACMListView.o \
+		ACMDetailDialog.o \
 		moc_MainWindow.o \
 		moc_AnimalInputDiag.o \
 		moc_AnimalListView.o \
@@ -120,7 +126,9 @@ OBJECTS       = DatabaseController.o \
 		moc_ClientListView.o \
 		moc_ClientDetailDiag.o \
 		moc_QuestionnaireDialog.o \
-		moc_LoginDialog.o
+		moc_LoginDialog.o \
+		moc_ACMListView.o \
+		moc_ACMDetailDialog.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -241,7 +249,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/ACMTreeController.h \
 		interface/QuestionnaireDialog.h \
 		interface/Attributes.h \
-		interface/LoginDialog.h data/DatabaseController.cpp \
+		interface/LoginDialog.h \
+		interface/ACMListView.h \
+		interface/ACMDetailDialog.h data/DatabaseController.cpp \
 		interface/main.cpp \
 		interface/MainWindow.cpp \
 		interface/AnimalInputDiag.cpp \
@@ -267,7 +277,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		interface/Tests.cpp \
 		interface/ACMTreeController.cpp \
 		interface/QuestionnaireDialog.cpp \
-		interface/LoginDialog.cpp
+		interface/LoginDialog.cpp \
+		interface/ACMListView.cpp \
+		interface/ACMDetailDialog.cpp
 QMAKE_TARGET  = cuACS
 DESTDIR       = 
 TARGET        = cuACS
@@ -276,7 +288,7 @@ TARGET        = cuACS
 first: all
 ####### Build rules
 
-$(TARGET): ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h ui_animalinputdialog.h ui_clientinputdialog.h ui_clientdetaildialog.h ui_questionnairedialog.h ui_logindialog.h $(OBJECTS)  
+$(TARGET): ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h ui_animalinputdialog.h ui_clientinputdialog.h ui_clientdetaildialog.h ui_questionnairedialog.h ui_logindialog.h ui_acmdetaildialog.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: cuACS.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -483,9 +495,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseController.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h interface/Entity.h interface/Description.h interface/ArrayCollection.h interface/AbstractCollection.h interface/EntityBuilder.h interface/CUACSController.h interface/ACMController.h interface/AnimalClientPair.h interface/AttributeComparator.h interface/CandidateSet.h interface/DecisionTreeDataItem.h interface/OptimizedDecisionTree.h interface/Tests.h interface/Attributes.h interface/ACMTreeController.h interface/QuestionnaireDialog.h interface/Attributes.h interface/LoginDialog.h $(DISTDIR)/
-	$(COPY_FILE) --parents data/DatabaseController.cpp interface/main.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientListView.cpp interface/ClientDetailDiag.cpp interface/mytablewidgetitem.cpp interface/ArrayCollection.cpp interface/Entity.cpp interface/EntityBuilder.cpp interface/CUACSController.cpp interface/ACMController.cpp interface/AnimalClientPair.cpp interface/AttributeComparator.cpp interface/CandidateSet.cpp interface/DecisionTreeDataItem.cpp interface/OptimizedDecisionTree.cpp interface/Tests.cpp interface/ACMTreeController.cpp interface/QuestionnaireDialog.cpp interface/LoginDialog.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents interface/listview.ui interface/mainwindow.ui interface/animaldetaildialog.ui interface/animalinputdialog.ui interface/clientinputdialog.ui interface/clientdetaildialog.ui interface/questionnairedialog.ui interface/logindialog.ui $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseController.h interface/MainWindow.h interface/AnimalInputDiag.h interface/AnimalListView.h interface/AnimalDetailDiag.h interface/species.h interface/Address.h interface/ClientProfile.h interface/Levels.h interface/ClientInputDiag.h interface/ClientListView.h interface/ClientDetailDiag.h interface/mytablewidgetitem.h interface/Entity.h interface/Description.h interface/ArrayCollection.h interface/AbstractCollection.h interface/EntityBuilder.h interface/CUACSController.h interface/ACMController.h interface/AnimalClientPair.h interface/AttributeComparator.h interface/CandidateSet.h interface/DecisionTreeDataItem.h interface/OptimizedDecisionTree.h interface/Tests.h interface/Attributes.h interface/ACMTreeController.h interface/QuestionnaireDialog.h interface/Attributes.h interface/LoginDialog.h interface/ACMListView.h interface/ACMDetailDialog.h $(DISTDIR)/
+	$(COPY_FILE) --parents data/DatabaseController.cpp interface/main.cpp interface/MainWindow.cpp interface/AnimalInputDiag.cpp interface/AnimalListView.cpp interface/AnimalDetailDiag.cpp interface/species.cpp interface/Address.cpp interface/ClientProfile.cpp interface/ClientInputDiag.cpp interface/ClientListView.cpp interface/ClientDetailDiag.cpp interface/mytablewidgetitem.cpp interface/ArrayCollection.cpp interface/Entity.cpp interface/EntityBuilder.cpp interface/CUACSController.cpp interface/ACMController.cpp interface/AnimalClientPair.cpp interface/AttributeComparator.cpp interface/CandidateSet.cpp interface/DecisionTreeDataItem.cpp interface/OptimizedDecisionTree.cpp interface/Tests.cpp interface/ACMTreeController.cpp interface/QuestionnaireDialog.cpp interface/LoginDialog.cpp interface/ACMListView.cpp interface/ACMDetailDialog.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents interface/listview.ui interface/mainwindow.ui interface/animaldetaildialog.ui interface/animalinputdialog.ui interface/clientinputdialog.ui interface/clientdetaildialog.ui interface/questionnairedialog.ui interface/logindialog.ui interface/acmdetaildialog.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -517,9 +529,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp moc_ClientListView.cpp moc_ClientDetailDiag.cpp moc_QuestionnaireDialog.cpp moc_LoginDialog.cpp
+compiler_moc_header_make_all: moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp moc_ClientListView.cpp moc_ClientDetailDiag.cpp moc_QuestionnaireDialog.cpp moc_LoginDialog.cpp moc_ACMListView.cpp moc_ACMDetailDialog.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp moc_ClientListView.cpp moc_ClientDetailDiag.cpp moc_QuestionnaireDialog.cpp moc_LoginDialog.cpp
+	-$(DEL_FILE) moc_MainWindow.cpp moc_AnimalInputDiag.cpp moc_AnimalListView.cpp moc_AnimalDetailDiag.cpp moc_ClientInputDiag.cpp moc_ClientListView.cpp moc_ClientDetailDiag.cpp moc_QuestionnaireDialog.cpp moc_LoginDialog.cpp moc_ACMListView.cpp moc_ACMDetailDialog.cpp
 moc_MainWindow.cpp: interface/CUACSController.h \
 		data/DatabaseController.h \
 		interface/EntityBuilder.h \
@@ -531,15 +543,6 @@ moc_MainWindow.cpp: interface/CUACSController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
 		interface/Attributes.h \
-		interface/AnimalInputDiag.h \
-		interface/ClientInputDiag.h \
-		interface/AnimalListView.h \
-		interface/mytablewidgetitem.h \
-		interface/AnimalDetailDiag.h \
-		interface/ClientListView.h \
-		interface/ClientDetailDiag.h \
-		interface/QuestionnaireDialog.h \
-		interface/LoginDialog.h \
 		interface/MainWindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -678,11 +681,33 @@ moc_LoginDialog.cpp: interface/CUACSController.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include interface/LoginDialog.h -o moc_LoginDialog.cpp
 
+moc_ACMListView.cpp: interface/mytablewidgetitem.h \
+		interface/CUACSController.h \
+		data/DatabaseController.h \
+		interface/EntityBuilder.h \
+		interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
+		interface/ACMController.h \
+		interface/AnimalClientPair.h \
+		interface/CandidateSet.h \
+		interface/Attributes.h \
+		interface/ACMListView.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include interface/ACMListView.h -o moc_ACMListView.cpp
+
+moc_ACMDetailDialog.cpp: interface/ACMDetailDialog.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/cuACS -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include interface/ACMDetailDialog.h -o moc_ACMDetailDialog.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h ui_animalinputdialog.h ui_clientinputdialog.h ui_clientdetaildialog.h ui_questionnairedialog.h ui_logindialog.h
+compiler_uic_make_all: ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h ui_animalinputdialog.h ui_clientinputdialog.h ui_clientdetaildialog.h ui_questionnairedialog.h ui_logindialog.h ui_acmdetaildialog.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h ui_animalinputdialog.h ui_clientinputdialog.h ui_clientdetaildialog.h ui_questionnairedialog.h ui_logindialog.h
+	-$(DEL_FILE) ui_listview.h ui_mainwindow.h ui_animaldetaildialog.h ui_animalinputdialog.h ui_clientinputdialog.h ui_clientdetaildialog.h ui_questionnairedialog.h ui_logindialog.h ui_acmdetaildialog.h
 ui_listview.h: interface/listview.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic interface/listview.ui -o ui_listview.h
@@ -715,6 +740,10 @@ ui_logindialog.h: interface/logindialog.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic interface/logindialog.ui -o ui_logindialog.h
 
+ui_acmdetaildialog.h: interface/acmdetaildialog.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic interface/acmdetaildialog.ui -o ui_acmdetaildialog.h
+
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
 compiler_yacc_impl_make_all:
@@ -739,16 +768,7 @@ main.o: interface/main.cpp interface/MainWindow.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
-		interface/Attributes.h \
-		interface/AnimalInputDiag.h \
-		interface/ClientInputDiag.h \
-		interface/AnimalListView.h \
-		interface/mytablewidgetitem.h \
-		interface/AnimalDetailDiag.h \
-		interface/ClientListView.h \
-		interface/ClientDetailDiag.h \
-		interface/QuestionnaireDialog.h \
-		interface/LoginDialog.h
+		interface/Attributes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o interface/main.cpp
 
 MainWindow.o: interface/MainWindow.cpp interface/MainWindow.h \
@@ -763,6 +783,8 @@ MainWindow.o: interface/MainWindow.cpp interface/MainWindow.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
 		interface/Attributes.h \
+		ui_mainwindow.h \
+		interface/Tests.h \
 		interface/AnimalInputDiag.h \
 		interface/ClientInputDiag.h \
 		interface/AnimalListView.h \
@@ -771,9 +793,8 @@ MainWindow.o: interface/MainWindow.cpp interface/MainWindow.h \
 		interface/ClientListView.h \
 		interface/ClientDetailDiag.h \
 		interface/QuestionnaireDialog.h \
-		interface/LoginDialog.h \
-		ui_mainwindow.h \
-		interface/Tests.h
+		interface/ACMListView.h \
+		interface/LoginDialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o interface/MainWindow.cpp
 
 AnimalInputDiag.o: interface/AnimalInputDiag.cpp interface/AnimalInputDiag.h \
@@ -988,16 +1009,7 @@ Tests.o: interface/Tests.cpp interface/Tests.h \
 		interface/ACMController.h \
 		interface/AnimalClientPair.h \
 		interface/CandidateSet.h \
-		interface/Attributes.h \
-		interface/AnimalInputDiag.h \
-		interface/ClientInputDiag.h \
-		interface/AnimalListView.h \
-		interface/mytablewidgetitem.h \
-		interface/AnimalDetailDiag.h \
-		interface/ClientListView.h \
-		interface/ClientDetailDiag.h \
-		interface/QuestionnaireDialog.h \
-		interface/LoginDialog.h
+		interface/Attributes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Tests.o interface/Tests.cpp
 
 ACMTreeController.o: interface/ACMTreeController.cpp interface/ACMTreeController.h \
@@ -1042,6 +1054,26 @@ LoginDialog.o: interface/LoginDialog.cpp interface/LoginDialog.h \
 		ui_logindialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o LoginDialog.o interface/LoginDialog.cpp
 
+ACMListView.o: interface/ACMListView.cpp interface/ACMListView.h \
+		interface/mytablewidgetitem.h \
+		interface/CUACSController.h \
+		data/DatabaseController.h \
+		interface/EntityBuilder.h \
+		interface/Entity.h \
+		interface/Description.h \
+		interface/ArrayCollection.h \
+		interface/AbstractCollection.h \
+		interface/ACMController.h \
+		interface/AnimalClientPair.h \
+		interface/CandidateSet.h \
+		interface/Attributes.h \
+		ui_listview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ACMListView.o interface/ACMListView.cpp
+
+ACMDetailDialog.o: interface/ACMDetailDialog.cpp interface/ACMDetailDialog.h \
+		ui_acmdetaildialog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ACMDetailDialog.o interface/ACMDetailDialog.cpp
+
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp
 
@@ -1068,6 +1100,12 @@ moc_QuestionnaireDialog.o: moc_QuestionnaireDialog.cpp
 
 moc_LoginDialog.o: moc_LoginDialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_LoginDialog.o moc_LoginDialog.cpp
+
+moc_ACMListView.o: moc_ACMListView.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ACMListView.o moc_ACMListView.cpp
+
+moc_ACMDetailDialog.o: moc_ACMDetailDialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ACMDetailDialog.o moc_ACMDetailDialog.cpp
 
 ####### Install
 
