@@ -56,8 +56,8 @@ void ACMListView::updateListView()
         //Create item widgets for row
 	QTableWidgetItem *pet = new QTableWidgetItem (QString::fromStdString (candidateSet->get(i)->getAnimal()->getName()));
 	QTableWidgetItem *client = new QTableWidgetItem (QString::fromStdString (candidateSet->get(i)->getClient()->getName()));
-	QTableWidgetItem *compatability = new QTableWidgetItem (QString::number (candidateSet->get(i)->getCompatibility()));
-	QTableWidgetItem *j = new QTableWidgetItem (QString::number (i));
+	MyTableWidgetItem *compatability = new MyTableWidgetItem (QString::number (candidateSet->get(i)->getCompatibility()));
+	MyTableWidgetItem *j = new MyTableWidgetItem(QString::number (i));
 
         //set all as un-editable
 	pet->setFlags(pet->flags() ^ Qt::ItemIsEditable);
@@ -75,7 +75,7 @@ void ACMListView::updateListView()
     acmList->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     acmList->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     //sort ascending
-    acmList->sortByColumn(acmList->columnCount()-1, Qt::SortOrder::DescendingOrder);
+    acmList->sortByColumn(acmList->columnCount()-2, Qt::SortOrder::DescendingOrder);
 }
 
 //destructor

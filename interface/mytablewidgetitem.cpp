@@ -7,7 +7,7 @@ MyTableWidgetItem::MyTableWidgetItem (QString data)
 
 bool MyTableWidgetItem::operator <(const QTableWidgetItem &other) const
 {
-    return text().toInt() < other.text().toInt();
+    return text().toFloat() < other.text().toFloat();
 }
 
 QVariant MyTableWidgetItem::data(int role) const
