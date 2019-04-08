@@ -34,22 +34,21 @@ bool DatabaseController::openDB(std::string path)
 bool DatabaseController::setSQL(std::string s)
 {
 	if(isDBOpen)
-	{
+    {
 		if(hasSQL)
 		{
 			sqlite3_finalize(stmt);
-		}
+        }
 		sql = s;
-		rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, NULL);
-
+        rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, NULL);
 		if(rc == SQLITE_OK)
-		{
+        {
 			hasSQL = true;
 			colCount = sqlite3_column_count(stmt);
 			return true;
 		}
 		else
-		{
+        {
 			hasSQL = false;
 			sqlite3_finalize(stmt);
 			return false;
@@ -70,6 +69,7 @@ bool DatabaseController::step()
 		if(rc != SQLITE_ROW)
 		{
 			sqlite3_finalize(stmt);
+            hasSQL = false;
 			return false;
 		}
 		else { return true; }

@@ -48,7 +48,8 @@ private:
 
     ArrayCollection<UAnimal*> animalCollection;
     ArrayCollection<UClient*> clientCollection;
-    EntityBuilder * entity;
+    EntityBuilder * animalBuilder;
+    EntityBuilder * clientBuilder;
     bool isDBOpen;
 };
 #endif

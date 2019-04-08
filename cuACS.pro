@@ -31,8 +31,6 @@ SOURCES += \
     interface/AnimalInputDiag.cpp \
     interface/AnimalListView.cpp \
     interface/AnimalDetailDiag.cpp \
-    interface/species.cpp \
-    interface/Address.cpp \
     interface/ClientProfile.cpp \
     interface/ClientInputDiag.cpp \
     interface/ClientListView.cpp \
@@ -58,8 +56,6 @@ HEADERS += \
     interface/AnimalInputDiag.h \
     interface/AnimalListView.h \
     interface/AnimalDetailDiag.h \
-    interface/species.h \
-    interface/Address.h \
     interface/ClientProfile.h \
     interface/Levels.h \
     interface/ClientInputDiag.h \

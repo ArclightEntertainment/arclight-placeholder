@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     animalIterator = mediator->getAnimalIterator();
     clientIterator = mediator->getClientIterator();
 
-    Tests::testACM(mediator);
+    //Tests::testACM(mediator);
 }
 
 MainWindow::~MainWindow()
