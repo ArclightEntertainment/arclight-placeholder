@@ -48,6 +48,7 @@ void ACMListView::updateListView()
 
     QStringList columnNames = {"Pet", "Client", "Compatability", "Match ID"};
     acmList->setColumnCount(columnNames.length());
+    acmList->setRowCount(candidateSet->getSize());
     acmList->setHorizontalHeaderLabels(columnNames);
 
     for (int i = 0; i < candidateSet->getSize(); i++)
