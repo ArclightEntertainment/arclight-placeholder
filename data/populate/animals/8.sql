@@ -20,7 +20,8 @@ INSERT OR REPLACE INTO Animal(
 		mobilityNeeds,
 		disablityNeeds,
 		abuseHistory,
-		biography
+		biography,
+		estimatedCostPerMonth
 	)VALUES(
 		8,
 		"Bee",
@@ -43,5 +44,6 @@ INSERT OR REPLACE INTO Animal(
 		"",
 		"",
 		"",
-		"A very friendly dog. Extremely relaxed in all situations."
+		"A very friendly dog. Extremely relaxed in all situations.",
+		23
 );

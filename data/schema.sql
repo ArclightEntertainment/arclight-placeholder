@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS Animal(
 	disablityNeeds text NOT NULL,
 	abuseHistory text NOT NULL,
 	biography text NOT NULL,
+	estimatedCostPerMonth INTEGER NOT NULL,
 
 	FOREIGN KEY(id) REFERENCES Entity(id),
 	FOREIGN KEY(species, breed) REFERENCES Breed(speciesName, name),

@@ -70,6 +70,7 @@ Iterator<UAnimal*>* CUACSController::getAnimalIterator()
                     case 14:
                     case 15:
                     case 16:
+                    case 22:
                     {
                         int colValue = dbController->getIntCol();
                         Description<int> desc = Description<int>(colName, currCol, colValue);

@@ -20,7 +20,8 @@ INSERT OR REPLACE INTO Animal(
 		mobilityNeeds,
 		disablityNeeds,
 		abuseHistory,
-		biography
+		biography,
+		estimatedCostPerMonth
 	)VALUES(
 		6,
 		"Buddy",
@@ -43,5 +44,6 @@ INSERT OR REPLACE INTO Animal(
 		"Cannot go on long walks.",
 		"Has hip problems.",
 		"",
-		"A small dog who hates other animals, but loves people."
+		"A small dog who hates other animals, but loves people.",
+		30
 );

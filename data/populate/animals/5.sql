@@ -20,7 +20,8 @@ INSERT OR REPLACE INTO Animal(
 		mobilityNeeds,
 		disablityNeeds,
 		abuseHistory,
-		biography
+		biography,
+		estimatedCostPerMonth
 	)VALUES(
 		5,
 		"Lucy",
@@ -43,5 +44,6 @@ INSERT OR REPLACE INTO Animal(
 		"",
 		"",
 		"",
-		"Rescued from a barn when she was one month old. Will scratch you if you pet her for too long."
+		"Rescued from a barn when she was one month old. Will scratch you if you pet her for too long.",
+		20
 );
