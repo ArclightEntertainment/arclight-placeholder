@@ -3,6 +3,7 @@
 
 #include "EntityBuilder.h"
 #include <string>
+#include <vector>
 
 class AnimalClientPair
 {
@@ -16,6 +17,7 @@ public:
     UAnimal *getAnimal();
     UClient *getClient();
     float getCompatibility();
+    std::vector<std::string> getCompatibilityComments();
     std::string toString();
 };
 #endif // ANIMALCLIENTPAIR_H

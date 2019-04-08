@@ -18,7 +18,7 @@ public:
     explicit ACMDetailDialog(CUACSController * med, int cID, AnimalClientPair * p, QWidget *parent = 0);
     ~ACMDetailDialog();
 
-    void addComments(std::string comments[], int count=0);
+    void addComments(std::vector<std::string> commentArr);
 
 private slots:
     void handleButtonAnimal();

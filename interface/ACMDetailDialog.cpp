@@ -32,14 +32,14 @@ ACMDetailDialog::ACMDetailDialog(CUACSController * med, int cID, AnimalClientPai
     ui->compatabilityLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
 }
 
-void ACMDetailDialog::addComments(std::string commentArr[], int count)
+void ACMDetailDialog::addComments(std::vector<std::string> commentArr)
 {
-    for (int i = 0; i < count; i++)
+    for (int i = 0; i < commentArr.size(); i++)
     {
-	std::string line = "";
-	line.append(std::to_string(i));
+    std::string line = "";
+    line.append(std::to_string(i+1));
 	line.append(". ");
-	line.append(commentArr[i]);
+    line.append(commentArr.at(i));
 	QLabel * current = new QLabel(QString::fromStdString(line));
 	current->setAlignment(Qt::AlignHCenter);
 	comments->addWidget(current);

@@ -24,6 +24,13 @@ float AnimalClientPair::getCompatibility()
     return compatibility;
 }
 
+std::vector<std::string> AnimalClientPair::getCompatibilityComments()
+{
+    std::vector<std::string> strings = {"test", "test2", "test3"};
+    strings.at(2) = "test4";
+    return strings;
+}
+
 std::string AnimalClientPair::toString()
 {
     std::ostringstream stream;
