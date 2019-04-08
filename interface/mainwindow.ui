@@ -168,6 +168,13 @@
         </property>
        </widget>
       </item>
+      <item row="7" column="2">
+       <widget class="QPushButton" name="logOutButton">
+        <property name="text">
+         <string>Log Out</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>

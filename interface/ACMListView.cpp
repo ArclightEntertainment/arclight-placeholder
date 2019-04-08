@@ -1,6 +1,7 @@
 #include "ACMListView.h"
 #include "ui_listview.h"
 #include <iostream>
+#include "ACMDetailDialog.h"
 
 //Constructor, requires QWidget and an Animalmediator
 ACMListView::ACMListView(CUACSController *med, QWidget *parent) :
@@ -35,9 +36,9 @@ void ACMListView::handleButtonDetail()
     QModelIndex currentIndex = acmList->currentIndex();
     int i = acmList->item(currentIndex.row(), acmList->columnCount()-1)->text().toInt();
     //std::cout << i << " " << candidateSet->get(i)->getAnimal()->getName() << " " << candidateSet->get(i)->getClient()->getName() << " " << candidateSet->get(i)->getCompatibility() << std::endl;
-    //AnimalDetailDiag diag(mediator, mediator->getAnimalWithId(id), false, this);
-    //diag.setWindowTitle(QString::fromStdString(mediator->getAnimalWithId(id)->getName() + " Profile"));
-    //diag.exec();
+    ACMDetailDialog diag(mediator, candidateSet->get(i), this);
+    diag.setWindowTitle(QString::fromStdString(candidateSet->get(i)->getClient()->getName() + " x " + candidateSet->get(i)->getAnimal()->getName()));
+    diag.exec();
 }
 
 //Update the ListView, inserts all values

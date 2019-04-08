@@ -29,6 +29,7 @@ private slots:
     void handleButtonAnimalInput();
     void handleButtonClientView();
     void handleButtonClientInput();
+    void Login();
 
     void handleButtonACM();
 private:
@@ -39,6 +40,7 @@ private:
     QPushButton *clientViewButton;
 
     QPushButton *acmButton;
+    QPushButton *logOutButton;
 
     //TEST: QPushButton *testButton;
     CUACSController * mediator;
@@ -46,6 +48,7 @@ private:
     Iterator<UClient*> * clientIterator;
 
     int currentID;
+
 };
 
 #endif // MAINWINDOW_H
