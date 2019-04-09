@@ -180,6 +180,8 @@ Iterator<UClient*>* CUACSController::getClientIterator()
             UClient* client = (UClient*)clientBuilder->build();
             if(client != NULL)
             {
+                Description<bool> desc = Description<bool>("populated", static_cast<int>(ClientAttribute::POPULATED), true);
+                client->addBoolDesc(desc);
                 clientCollection.append(client);
             }
         }
@@ -429,7 +431,6 @@ void CUACSController::populateClientProfile(int id, int a, bool hasUnderTwelve, 
 }
 void CUACSController::finalizeClient()
 {
-    std::cout << "finalizeClient" << std::endl;
     clientBuilder->addIntDesc(Description<int>("age", static_cast<int>(ClientAttribute::AGE), -1));
     clientBuilder->setAge(-1);
     clientBuilder->addBoolDesc(Description<bool>("hasChildrenUnderTwelve", static_cast<int>(ClientAttribute::HAS_CHILDREN_UNDER_TWELVE), false));
@@ -445,7 +446,81 @@ void CUACSController::finalizeClient()
     UClient * newClient = (UClient*)clientBuilder->build();
     if (newClient != NULL)
     {
-        std::cout << "ADDED" << std::endl;
         clientCollection.append(newClient);
+        std::string attributes[21];
+        attributes[0] = std::to_string(newClient->getID());
+        attributes[1] = newClient->getString(static_cast<int>(ClientAttribute::FIRST_NAME));
+        attributes[2] = std::to_string(newClient->getBool(static_cast<int>(ClientAttribute::HAS_CHILDREN_UNDER_TWELVE)));
+        attributes[3] = std::to_string(newClient->getBool(static_cast<int>(ClientAttribute::HAS_PETS)));
+        attributes[4] = std::to_string(newClient->getInt(static_cast<int>(ClientAttribute::AGE)));
+        attributes[5] = newClient->getString(static_cast<int>(ClientAttribute::LAST_NAME));
+        attributes[6] = newClient->getString(static_cast<int>(ClientAttribute::PREF_TITLE));
+        attributes[7] = newClient->getString(static_cast<int>(ClientAttribute::PHONE_NUMBER));
+        attributes[8] = newClient->getString(static_cast<int>(ClientAttribute::STREET_LINE_1));
+        attributes[9] = newClient->getString(static_cast<int>(ClientAttribute::STREET_LINE_2));
+        attributes[10] = newClient->getString(static_cast<int>(ClientAttribute::CITY));
+        attributes[11] = newClient->getString(static_cast<int>(ClientAttribute::SUBNATIONAL_DIVISION));
+        attributes[12] = newClient->getString(static_cast<int>(ClientAttribute::COUNTRY));
+        attributes[13] = newClient->getString(static_cast<int>(ClientAttribute::POSTAL_CODE));
+        attributes[14] = std::to_string(newClient->getInt(static_cast<int>(ClientAttribute::LENGTH_OF_OWNERSHIP_EXPECTATION)));
+        attributes[15] = std::to_string(newClient->getInt(static_cast<int>(ClientAttribute::MONTHLY_BUDGET_FOR_ANIMAL)));
+        attributes[16] = std::to_string(newClient->getInt(static_cast<int>(ClientAttribute::AVAILABILITY_PER_DAY)));
+        attributes[17] = std::to_string(newClient->getInt(static_cast<int>(ClientAttribute::LEVEL_OF_MOBILITY)));
+        attributes[18] = std::to_string(newClient->getInt(static_cast<int>(ClientAttribute::LEVEL_OF_PATIENCE)));
+        attributes[19] = std::to_string(newClient->getInt(static_cast<int>(ClientAttribute::PREVIOUS_EXPERIENCE)));
+        attributes[20] = std::to_string(newClient->getInt(static_cast<int>(ClientAttribute::PHYSICAL_AFFECTION)));
+
+        std::string sqlClientTable = "INSERT OR REPLACE INTO Client(id,fName,hasChildrenUnderTwelve,hasPets,age,lName,prefTitle,phoneNumber,lengthOfOwnershipExpectation,monthlyBudgetForAnimal,availabilityPerDay,levelOfMobility,levelOfPatience,previousExperience,physicalAffection)VALUES(";
+        std::string sqlAddressTable = "INSERT OR REPLACE INTO Address(clientID,streetLine1,streetLine2,city,subnationalDivision,country,postalCode)VALUES(";
+        for(int i=0; i<21; i++)
+        {
+            switch(i)
+            {
+                case 0:
+                {
+                    sqlClientTable += attributes[i] + ",";
+                    sqlAddressTable += attributes[i] + ",";
+                    break;
+                }
+                case 1:
+                case 5:
+                case 6:
+                case 7:
+                {
+                    sqlClientTable += "\"" + attributes[i] + "\",";
+                    break;
+                }
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                {
+                    sqlAddressTable += "\"" + attributes[i] + "\",";
+                    break;
+                }
+                case 13:
+                {
+                    sqlAddressTable += "\"" + attributes[i] + "\"";
+                    break;
+                }
+                case 20:
+                {
+                    sqlClientTable += attributes[i];
+                    break;
+                }
+                default:
+                {
+                    sqlClientTable += attributes[i] + ",";
+                    break;
+                }
+            }
+        }
+        sqlClientTable += ")";
+        sqlAddressTable += ")";
+        dbController->setSQL(sqlClientTable);
+        dbController->step();
+        dbController->setSQL(sqlAddressTable);
+        dbController->step();
     }
 }
