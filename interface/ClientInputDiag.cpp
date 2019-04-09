@@ -71,8 +71,6 @@ void ClientInputDiag::handleButtonSave()
                                              ui->countryLineEdit->text().toStdString(),
                                              ui->postalLineEdit->text().toStdString()
                                              );
-
-        //mediator->pushClientToDB(index);
         mediator->finalizeClient();
         close();
     }

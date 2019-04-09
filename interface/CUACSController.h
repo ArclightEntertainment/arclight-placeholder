@@ -35,7 +35,7 @@ public:
 
     void addClient(std::string t, int iD, std::string fn, std::string ln, std::string pn);
     void populateClientAddress(std::string sl1, std::string sl2, std::string ct, std::string sub, std::string c, std::string pc);
-    void populateClientProfile(Entity * entity, int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, int lOfMobility, int lOfPatience, int prevExp, int physAffect);
+    void populateClientProfile(int id, int a, bool hasUnderTwelve, bool hasPet, int ownExp, int budget, int timeAvail, int lOfMobility, int lOfPatience, int prevExp, int physAffect);
     void finalizeClient();
 
     Iterator<UAnimal *> * createAnimalIterator () { return animalCollection.createIterator();}
