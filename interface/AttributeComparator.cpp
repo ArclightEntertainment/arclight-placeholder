@@ -14,7 +14,6 @@ float AttributeComparator::calculateCompatibility(UAnimal *animal, UClient *clie
     float overCost = (animal->getInt((int)AnimalAttribute::MONTHLY_EXPENDITURE) -
                       client->getInt((int)ClientAttribute::MONTHLY_BUDGET_FOR_ANIMAL))/
             client->getInt((int)ClientAttribute::MONTHLY_BUDGET_FOR_ANIMAL);
-    float prev = totalRating;
 
     if(overCost < 0)
     {
@@ -26,7 +25,7 @@ float AttributeComparator::calculateCompatibility(UAnimal *animal, UClient *clie
         return -1;
     }
 
-    if(animal->getInt((int)AnimalAttribute::AFFINITY_FOR_ANIMALS) == 0 &&
+    if(animal->getInt((int)AnimalAttribute::AFFINITY_FOR_CHILDREN) == 0 &&
             client->getBool((int)ClientAttribute::HAS_CHILDREN_UNDER_TWELVE))
     {
         return -1;
