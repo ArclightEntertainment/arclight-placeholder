@@ -164,7 +164,7 @@ void ClientDetailDiag::updateFields()
     //fix values with correct ids
     lineEdits[10]->setText(QString::number(aSubject->getInt(static_cast<int>(ClientAttribute::MONTHLY_BUDGET_FOR_ANIMAL))));
     lineEdits[11]->setText(QString::number(aSubject->getInt(static_cast<int>(ClientAttribute::AVAILABILITY_PER_DAY))));
-    lineEdits[12]->setText(QString::number(aSubject->getInt(static_cast<int>(ClientAttribute::AGE))));
+    lineEdits[12]->setText(QString::number(aSubject->getAge()));
     lineEdits[13]->setText(QString::number(aSubject->getInt(static_cast<int>(ClientAttribute::LENGTH_OF_OWNERSHIP_EXPECTATION))));
     lineEdits[14]->setText(QString::fromStdString((aSubject->getBool(static_cast<int>(ClientAttribute::HAS_CHILDREN_UNDER_TWELVE))) ? "Yes" : "No"));
     lineEdits[15]->setText(QString::fromStdString((aSubject->getBool(static_cast<int>(ClientAttribute::HAS_PETS))) ? "Yes" : "No"));
