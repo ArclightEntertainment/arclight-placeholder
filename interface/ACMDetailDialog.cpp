@@ -17,6 +17,7 @@ ACMDetailDialog::ACMDetailDialog(CUACSController * med, int cID, AnimalClientPai
     animalButton = ui->animalButton;
     clientButton = ui->clientButton;
     closeButton = ui->closeButton;
+    comments = ui->commentLayout;
 
     connect(animalButton , SIGNAL(released()), this,SLOT(handleButtonAnimal()));
     connect(clientButton, SIGNAL(released()), this,SLOT(handleButtonClient()));
@@ -24,12 +25,26 @@ ACMDetailDialog::ACMDetailDialog(CUACSController * med, int cID, AnimalClientPai
 
     populateAnimal();
     populateClient();
-
-    ui->compatabilityLineEdit->setText(QString::number(pair->getCompatibility()));
+    QString compatabilityString = QString::number(pair->getCompatibility()) + QString::fromStdString(" %");
+    ui->compatabilityLineEdit->setText(compatabilityString);
     ui->compatabilityLineEdit->setReadOnly(true);
+    ui->compatabilityLineEdit->setAlignment(Qt::AlignHCenter);
     ui->compatabilityLineEdit->setStyleSheet(QString::fromStdString("background-color: rgb(245, 243, 241);"));
 }
 
+void ACMDetailDialog::addComments(std::string commentArr[], int count)
+{
+    for (int i = 0; i < count; i++)
+    {
+	std::string line = "";
+	line.append(std::to_string(i));
+	line.append(". ");
+	line.append(commentArr[i]);
+	QLabel * current = new QLabel(QString::fromStdString(line));
+	current->setAlignment(Qt::AlignHCenter);
+	comments->addWidget(current);
+    }
+}
 void ACMDetailDialog::handleButtonAnimal()
 {
     AnimalDetailDiag diag(mediator, pair->getAnimal(), false, this);
