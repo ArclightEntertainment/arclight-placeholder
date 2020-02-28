@@ -6,6 +6,9 @@ cuACS is responsible for ensuring that sheltered Animals are provided a long-ter
 
 The ACM will attempt to find a suitable Match for all Animals in the shelter and will consider alternate combinations of matches until this requirement is met. However, if the algorithm is forced to choose between matching the Animal with an unsuitable home or keeping the Animal at the shelter until a more compatible home can be found, the algorithm will not choose a home that is not well-suited for the Animal.
 
+Find more about the specifics of the algorithm here:
+https://github.com/aaronramoslazette/cuACS/wiki/The-Algorithm
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Install & Run Instructions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
