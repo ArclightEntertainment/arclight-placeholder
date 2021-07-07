@@ -2,6 +2,7 @@
 #define ACMDETAILDIALOG_H
 
 #include <QDialog>
+#include<QVBoxLayout>
 #include <interface/AnimalClientPair.h>
 #include <interface/CUACSController.h>
 
@@ -17,6 +18,8 @@ public:
     explicit ACMDetailDialog(CUACSController * med, int cID, AnimalClientPair * p, QWidget *parent = 0);
     ~ACMDetailDialog();
 
+    void addComments(std::vector<std::string> commentArr);
+
 private slots:
     void handleButtonAnimal();
     void handleButtonClient();
@@ -30,6 +33,8 @@ private:
 
     AnimalClientPair * pair;
     CUACSController * mediator;
+
+    QVBoxLayout * comments;
 
     int currentID;
 

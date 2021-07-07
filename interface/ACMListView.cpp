@@ -37,6 +37,12 @@ void ACMListView::handleButtonDetail()
     QModelIndex currentIndex = acmList->currentIndex();
     int i = acmList->item(currentIndex.row(), acmList->columnCount()-1)->text().toInt();
     ACMDetailDialog diag(mediator, currentID, candidateSet->get(i), this);
+    diag.addComments(candidateSet->get(i)->getCompatibilityComments());
+    //diag.addComments(candidateSet->get(i)->getComments(), candidateSet->get(i)->getNumComments());
+    //int numComments = 3;
+    //std::string comments[numComments] = {"Example Comment", "An Example of a much LONGER Comment", "Short"};
+    //diag.addComments(comments, numComments);
+
     diag.setWindowTitle(QString::fromStdString(candidateSet->get(i)->getClient()->getName() + " x " + candidateSet->get(i)->getAnimal()->getName()));
     diag.exec();
 }
